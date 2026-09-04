@@ -16,6 +16,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "parse5": "^8.0.1",
+    "prettier": "^3.9.6",
     "typescript": "^5"
   },
   "packageManager": "pnpm@11.24.0"
