@@ -58,9 +58,13 @@ and the font loader put on `<html>` before hydration, which React otherwise clea
 Internal links are plain `<a href>`, matching the published site: each navigation is
 a full document load, so the runtime always initialises against a fresh DOM.
 
-## Regenerating from the Webflow export
+## Where the pages came from
 
-The pages are generated, not hand-written. With the SiteSucker export in place:
+`app/**/page.tsx` was generated from the Webflow export by `scripts/convert.mjs`,
+but it is now **hand-maintained source** — the homepage has diverged from the
+export (see below). Re-running the converter would overwrite those edits.
+
+With the SiteSucker export in place, the import steps were:
 
 ```bash
 node scripts/copy-assets.mjs   # collect + sanitise every referenced asset
@@ -70,6 +74,26 @@ pnpm exec prettier --write "app/**/*.tsx"
 ```
 
 `SRC` at the top of each script points at the export directory.
+
+## Deliberate divergence from the export
+
+The homepage carousels no longer use Webflow's slider:
+
+- **Hero deck** and **booking process** are native horizontal scrollers
+  (`components/scroll-carousel.tsx`), so a trackpad, a touch swipe and the
+  keyboard all move them, with scroll-snap settling each card. The arrows scroll
+  by one card and the progress bar under each deck now reflects real scroll
+  position. Webflow's autoplay is gone with the slider.
+- **Traveller reviews** are a plain three-across row that stacks below 991px —
+  with only three cards there was nothing to scroll, so the slider, its arrows
+  and its progress bar were removed.
+
+The progress thumbs use their own classes rather than Webflow's
+`.slider-line-animation` / `.booking-line-animation`, because IX2 still targets
+those by class and rewrites their inline `width` after hydration.
+
+`scripts/verify-dom.mjs` reports `/` as differing for exactly this reason; the
+other fourteen routes remain identical to the export.
 
 ## Verifying the port
 

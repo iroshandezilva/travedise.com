@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import { AgentationToolbar } from "@/components/agentation-toolbar";
+import { InterfaceKitPanel } from "@/components/interface-kit-panel";
+
 const FAVICON = "/assets/6a3375a38fce14ddb37ecc20_69e71a6f589fe83624cd3faf_travedise-logo.png";
 
 export const metadata: Metadata = {
@@ -79,9 +82,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           sizes="180x180"
         />
 
-        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: TAWK }} />
+        {/* Live chat is production-only — no support widget in local dev. */}
+        {process.env.NODE_ENV === "production" && (
+          <script type="text/javascript" dangerouslySetInnerHTML={{ __html: TAWK }} />
+        )}
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <AgentationToolbar />
+        <InterfaceKitPanel />
+      </body>
     </html>
   );
 }

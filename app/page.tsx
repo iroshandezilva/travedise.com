@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
 
+import {
+  CarouselNext,
+  CarouselPrev,
+  CarouselProgress,
+  CarouselViewport,
+  ScrollCarousel,
+} from "@/components/scroll-carousel";
+// Imported here rather than re-exported from the client component: a Server
+// Component only ever sees a module reference across a "use client" boundary,
+// so every class name would read back as undefined.
+import carousel from "@/components/scroll-carousel.module.css";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
@@ -422,28 +433,16 @@ export default function HomePage() {
               </div>
               <div className="hero-bottom-content">
                 <div className="container govaisor"></div>
-                <div
+                <ScrollCarousel
                   data-w-id="75f4af37-819f-1acf-9202-6bcdfd23d5e5"
                   style={{ opacity: "0" }}
                   className="slider-overflow home"
                 >
-                  <div
-                    data-delay="3000"
-                    data-animation="slide"
-                    className="home-hero-slider w-slider"
-                    data-autoplay="true"
-                    data-easing="ease"
-                    data-hide-arrows="false"
-                    data-disable-swipe="false"
-                    data-autoplay-limit="0"
-                    data-nav-spacing="3"
-                    data-duration="500"
-                    data-infinite="true"
-                  >
-                    <div className="home-hero-mask w-slider-mask">
+                  <div className={`home-hero-slider ${carousel.deck}`}>
+                    <CarouselViewport>
                       <div
                         data-w-id="75f4af37-819f-1acf-9202-6bcdfd23d5e8"
-                        className="home-hero-slide w-slide"
+                        className={carousel.heroSlide}
                       >
                         <div className="w-dyn-list">
                           <div role="list" className="w-dyn-items">
@@ -513,7 +512,7 @@ export default function HomePage() {
                       </div>
                       <div
                         data-w-id="75f4af37-819f-1acf-9202-6bcdfd23d5f7"
-                        className="home-hero-slide w-slide"
+                        className={carousel.heroSlide}
                       >
                         <div className="w-dyn-list">
                           <div role="list" className="w-dyn-items">
@@ -582,7 +581,7 @@ export default function HomePage() {
                       </div>
                       <div
                         data-w-id="75f4af37-819f-1acf-9202-6bcdfd23d606"
-                        className="home-hero-slide w-slide"
+                        className={carousel.heroSlide}
                       >
                         <div className="w-dyn-list">
                           <div role="list" className="w-dyn-items">
@@ -652,7 +651,7 @@ export default function HomePage() {
                       </div>
                       <div
                         data-w-id="edf07b66-ccad-8467-59d9-e89bfece21f2"
-                        className="home-hero-slide w-slide"
+                        className={carousel.heroSlide}
                       >
                         <div className="w-dyn-list">
                           <div role="list" className="w-dyn-items">
@@ -722,7 +721,7 @@ export default function HomePage() {
                       </div>
                       <div
                         data-w-id="4cfae66e-9f9d-ed04-fb87-fdc013072dfe"
-                        className="home-hero-slide w-slide"
+                        className={carousel.heroSlide}
                       >
                         <div className="w-dyn-list">
                           <div role="list" className="w-dyn-items">
@@ -790,8 +789,11 @@ export default function HomePage() {
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="home-left-arrow w-slider-arrow-left">
+                    </CarouselViewport>
+                    <CarouselPrev
+                      className="home-left-arrow w-slider-arrow-left"
+                      label="Previous package"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="100%"
@@ -806,8 +808,11 @@ export default function HomePage() {
                           ></path>
                         </g>
                       </svg>
-                    </div>
-                    <div className="home-right-arrow w-slider-arrow-right">
+                    </CarouselPrev>
+                    <CarouselNext
+                      className="home-right-arrow w-slider-arrow-right"
+                      label="Next package"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="100%"
@@ -822,13 +827,13 @@ export default function HomePage() {
                           ></path>
                         </g>
                       </svg>
-                    </div>
-                    <div className="slide-nav w-slider-nav w-round w-num"></div>
+                    </CarouselNext>
                   </div>
-                  <div className="home-slider-transparent-line">
-                    <div style={{ width: "33.33%" }} className="slider-line-animation"></div>
-                  </div>
-                </div>
+                  <CarouselProgress
+                    className="home-slider-transparent-line"
+                    barClassName={carousel.heroThumb}
+                  />
+                </ScrollCarousel>
               </div>
             </div>
             <div
@@ -1685,161 +1690,159 @@ export default function HomePage() {
                     Follow these simple steps to reserve your trip with ease.
                   </h2>
                 </div>
-                <div
-                  data-delay="4000"
-                  data-animation="slide"
-                  className="booking-process-slider w-slider"
-                  data-autoplay="true"
-                  data-easing="ease"
-                  style={{ opacity: "0" }}
-                  data-hide-arrows="false"
-                  data-disable-swipe="false"
-                  data-w-id="f1fe3e5a-8920-fcd9-8fef-a19af9e7e170"
-                  data-autoplay-limit="0"
-                  data-nav-spacing="3"
-                  data-duration="500"
-                  data-infinite="false"
-                >
-                  <div className="booking-process-mask w-slider-mask">
-                    <div
-                      data-w-id="f1fe3e5a-8920-fcd9-8fef-a19af9e7e172"
-                      className="booking-process-slide _01 w-slide"
-                    >
-                      <div className="booking-slider-contents">
-                        <div
-                          id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
-                          className="booking-slider-left"
-                        >
-                          <h3 className="text-5xl">01</h3>
-                          <div className="booking-slider-content">
-                            <h5 className="text-3xl black">Tell Us What You Want</h5>
-                            <p className="text-base">
-                              Share your dates, interests and travel style. A specialist replies
-                              within 24 hours. Not a bot, not a sales rep — an actual travel
-                              designer
-                            </p>
+                <ScrollCarousel className={carousel.contents}>
+                  <div
+                    className={`booking-process-slider ${carousel.deck}`}
+                    style={{ opacity: "0" }}
+                    data-w-id="f1fe3e5a-8920-fcd9-8fef-a19af9e7e170"
+                  >
+                    <CarouselViewport>
+                      <div
+                        data-w-id="f1fe3e5a-8920-fcd9-8fef-a19af9e7e172"
+                        className={`booking-process-slide _01 ${carousel.bookingSlide}`}
+                      >
+                        <div className="booking-slider-contents">
+                          <div
+                            id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
+                            className="booking-slider-left"
+                          >
+                            <h3 className="text-5xl">01</h3>
+                            <div className="booking-slider-content">
+                              <h5 className="text-3xl black">Tell Us What You Want</h5>
+                              <p className="text-base">
+                                Share your dates, interests and travel style. A specialist replies
+                                within 24 hours. Not a bot, not a sales rep — an actual travel
+                                designer
+                              </p>
+                            </div>
                           </div>
+                          <img
+                            src="/assets/6a30fab1023e59ceb0236bf7_Booking-Slider-Image.jpg"
+                            loading="lazy"
+                            alt="Booking Slider Image"
+                            className="booking-slider-image"
+                          />
                         </div>
-                        <img
-                          src="/assets/6a30fab1023e59ceb0236bf7_Booking-Slider-Image.jpg"
-                          loading="lazy"
-                          alt="Booking Slider Image"
-                          className="booking-slider-image"
-                        />
                       </div>
-                    </div>
-                    <div
-                      data-w-id="30e73cfe-22e7-7367-c481-1aff39df6e98"
-                      className="booking-process-slide _02 w-slide"
-                    >
-                      <div className="booking-slider-contents">
-                        <div
-                          id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
-                          className="booking-slider-left"
-                        >
-                          <h3 className="text-5xl">02</h3>
-                          <div className="booking-slider-content">
-                            <h5 className="text-3xl black">Select a Package</h5>
-                            <p className="text-base">
-                              Click on the tour you love to view full details including itinerary,
-                              pricing, and inclusions.
-                            </p>
+                      <div
+                        data-w-id="30e73cfe-22e7-7367-c481-1aff39df6e98"
+                        className={`booking-process-slide _02 ${carousel.bookingSlide}`}
+                      >
+                        <div className="booking-slider-contents">
+                          <div
+                            id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
+                            className="booking-slider-left"
+                          >
+                            <h3 className="text-5xl">02</h3>
+                            <div className="booking-slider-content">
+                              <h5 className="text-3xl black">Select a Package</h5>
+                              <p className="text-base">
+                                Click on the tour you love to view full details including itinerary,
+                                pricing, and inclusions.
+                              </p>
+                            </div>
                           </div>
+                          <img
+                            src="/assets/6a30fab54cf89df2f63f43b8_oliver-sjostrom-SDrAcUDJ-Qg-unsplash-2.jpg"
+                            loading="lazy"
+                            alt="Booking Slider Image"
+                            className="booking-slider-image"
+                          />
                         </div>
-                        <img
-                          src="/assets/6a30fab54cf89df2f63f43b8_oliver-sjostrom-SDrAcUDJ-Qg-unsplash-2.jpg"
-                          loading="lazy"
-                          alt="Booking Slider Image"
-                          className="booking-slider-image"
-                        />
                       </div>
-                    </div>
-                    <div
-                      data-w-id="8b4ff798-6ddb-48b1-e7e4-3034ac64b588"
-                      className="booking-process-slide _03 w-slide"
-                    >
-                      <div className="booking-slider-contents">
-                        <div
-                          id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
-                          className="booking-slider-left"
-                        >
-                          <h3 className="text-5xl">03</h3>
-                          <div className="booking-slider-content">
-                            <h5 className="text-3xl black">Confirm & Pay</h5>
-                            <p className="text-base">
-                              Once you're happy with everything, confirm your trip with secure
-                              payment.
-                            </p>
+                      <div
+                        data-w-id="8b4ff798-6ddb-48b1-e7e4-3034ac64b588"
+                        className={`booking-process-slide _03 ${carousel.bookingSlide}`}
+                      >
+                        <div className="booking-slider-contents">
+                          <div
+                            id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
+                            className="booking-slider-left"
+                          >
+                            <h3 className="text-5xl">03</h3>
+                            <div className="booking-slider-content">
+                              <h5 className="text-3xl black">Confirm & Pay</h5>
+                              <p className="text-base">
+                                Once you're happy with everything, confirm your trip with secure
+                                payment.
+                              </p>
+                            </div>
                           </div>
+                          <img
+                            src="/assets/6a30fab5dafa1809d13db625_paul-kapischka-43fXBR3mqoY-unsplash.jpg"
+                            loading="lazy"
+                            alt="Booking Slider Image"
+                            className="booking-slider-image"
+                          />
                         </div>
-                        <img
-                          src="/assets/6a30fab5dafa1809d13db625_paul-kapischka-43fXBR3mqoY-unsplash.jpg"
-                          loading="lazy"
-                          alt="Booking Slider Image"
-                          className="booking-slider-image"
-                        />
                       </div>
-                    </div>
-                    <div
-                      data-w-id="b9a3f1d4-dafa-53ee-35a7-cca798a9e7ff"
-                      className="booking-process-slide _04 w-slide"
-                    >
-                      <div className="booking-slider-contents">
-                        <div
-                          id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
-                          className="booking-slider-left"
-                        >
-                          <h3 className="text-5xl">04</h3>
-                          <div className="booking-slider-content">
-                            <h5 className="text-3xl black">Pack & Travel</h5>
-                            <p className="text-base">
-                              We handle all the logistics so you can relax and enjoy your journey
-                              from day one.
-                            </p>
+                      <div
+                        data-w-id="b9a3f1d4-dafa-53ee-35a7-cca798a9e7ff"
+                        className={`booking-process-slide _04 ${carousel.bookingSlide}`}
+                      >
+                        <div className="booking-slider-contents">
+                          <div
+                            id="w-node-f2aea143-70cb-690a-816f-3ca39201930a-92019309"
+                            className="booking-slider-left"
+                          >
+                            <h3 className="text-5xl">04</h3>
+                            <div className="booking-slider-content">
+                              <h5 className="text-3xl black">Pack & Travel</h5>
+                              <p className="text-base">
+                                We handle all the logistics so you can relax and enjoy your journey
+                                from day one.
+                              </p>
+                            </div>
                           </div>
+                          <img
+                            src="/assets/6a30fab27bbf7979a38659ee_morgan-nott-h9AFT1fFSzE-unsplash-1.jpg"
+                            loading="lazy"
+                            alt="Booking Slider Image"
+                            className="booking-slider-image"
+                          />
                         </div>
-                        <img
-                          src="/assets/6a30fab27bbf7979a38659ee_morgan-nott-h9AFT1fFSzE-unsplash-1.jpg"
-                          loading="lazy"
-                          alt="Booking Slider Image"
-                          className="booking-slider-image"
-                        />
                       </div>
-                    </div>
+                    </CarouselViewport>
+                    <CarouselPrev
+                      className="booking-left-arrow w-slider-arrow-left"
+                      label="Previous step"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="100%"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                        className="booking-arrow"
+                      >
+                        <path
+                          d="M14.5 19.5C14.367 19.5 14.233 19.447 14.135 19.342L9.993 14.912C9.357 14.276 9 13.416 9 12.5C9 11.584 9.357 10.724 10.004 10.076L14.134 5.65799C14.322 5.45499 14.639 5.44699 14.841 5.63499C15.043 5.82299 15.053 6.13999 14.865 6.34199L10.723 10.772C10.252 11.243 10 11.852 10 12.501C10 13.15 10.252 13.759 10.711 14.218L14.865 18.659C15.053 18.861 15.043 19.178 14.841 19.366C14.745 19.456 14.622 19.5 14.5 19.5Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                    </CarouselPrev>
+                    <CarouselNext
+                      className="booking-right-arrow w-slider-arrow-right"
+                      label="Next step"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="100%"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                        className="booking-arrow"
+                      >
+                        <path
+                          d="M10.4995 19.5C10.3765 19.5 10.2545 19.455 10.1585 19.365C9.95653 19.177 9.94653 18.86 10.1345 18.658L14.2765 14.228C14.7475 13.757 14.9995 13.148 14.9995 12.499C14.9995 11.85 14.7475 11.241 14.2885 10.782L10.1345 6.341C9.94653 6.139 9.95653 5.822 10.1585 5.634C10.3595 5.447 10.6765 5.455 10.8655 5.657L15.0075 10.087C15.6435 10.723 16.0005 11.583 16.0005 12.499C16.0005 13.415 15.6435 14.275 14.9965 14.923L10.8665 19.341C10.7675 19.446 10.6345 19.499 10.5015 19.499L10.4995 19.5Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                    </CarouselNext>
                   </div>
-                  <div className="booking-left-arrow w-slider-arrow-left">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100%"
-                      viewBox="0 0 24 25"
-                      fill="none"
-                      className="booking-arrow"
-                    >
-                      <path
-                        d="M14.5 19.5C14.367 19.5 14.233 19.447 14.135 19.342L9.993 14.912C9.357 14.276 9 13.416 9 12.5C9 11.584 9.357 10.724 10.004 10.076L14.134 5.65799C14.322 5.45499 14.639 5.44699 14.841 5.63499C15.043 5.82299 15.053 6.13999 14.865 6.34199L10.723 10.772C10.252 11.243 10 11.852 10 12.501C10 13.15 10.252 13.759 10.711 14.218L14.865 18.659C15.053 18.861 15.043 19.178 14.841 19.366C14.745 19.456 14.622 19.5 14.5 19.5Z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div className="booking-right-arrow w-slider-arrow-right">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100%"
-                      viewBox="0 0 24 25"
-                      fill="none"
-                      className="booking-arrow"
-                    >
-                      <path
-                        d="M10.4995 19.5C10.3765 19.5 10.2545 19.455 10.1585 19.365C9.95653 19.177 9.94653 18.86 10.1345 18.658L14.2765 14.228C14.7475 13.757 14.9995 13.148 14.9995 12.499C14.9995 11.85 14.7475 11.241 14.2885 10.782L10.1345 6.341C9.94653 6.139 9.95653 5.822 10.1585 5.634C10.3595 5.447 10.6765 5.455 10.8655 5.657L15.0075 10.087C15.6435 10.723 16.0005 11.583 16.0005 12.499C16.0005 13.415 15.6435 14.275 14.9965 14.923L10.8665 19.341C10.7675 19.446 10.6345 19.499 10.5015 19.499L10.4995 19.5Z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div className="slide-nav-booking-process w-slider-nav w-round w-num"></div>
-                </div>
-                <div className="booking-underline">
-                  <div style={{ width: "25%" }} className="booking-line-animation"></div>
-                </div>
+                  <CarouselProgress
+                    className="booking-underline"
+                    barClassName={carousel.bookingThumb}
+                  />
+                </ScrollCarousel>
               </div>
             </div>
           </section>
@@ -2028,91 +2031,45 @@ export default function HomePage() {
                   className="slider-main-contents"
                 >
                   <div
-                    data-delay="4000"
-                    data-animation="slide"
-                    className="review-slider w-slider"
-                    data-autoplay="false"
-                    data-easing="ease"
-                    data-hide-arrows="true"
-                    data-disable-swipe="false"
-                    data-autoplay-limit="1"
-                    data-nav-spacing="3"
-                    data-duration="500"
-                    data-infinite="false"
+                    data-w-id="f84103ab-0437-4fb5-7d04-a1dca025357a"
+                    className={carousel.reviewRow}
                   >
-                    <div
-                      data-w-id="f84103ab-0437-4fb5-7d04-a1dca025357a"
-                      className="review-mask w-slider-mask"
-                    >
-                      <div className="review-slide _01 w-slide">
-                        <div className="review-slider-content info">
-                          <h6 className="text-3xl">Free Tourist Visas</h6>
-                          <div className="review-slider-info">
-                            <h5 className="text-xl">
-                              Sri Lanka is rolling out free 30-day tourist visas for Australian
-                              passport holders in 2026, a limited pilot programme valid through
-                              March 2027
-                            </h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="review-slide _02 w-slide">
-                        <div className="review-slider-content info">
-                          <h6 className="text-3xl">A Direct Route from Melbourne</h6>
-                          <div className="review-slider-info">
-                            <h5 className="text-xl">
-                              Jetstar launches direct Melbourne to Colombo flights from August 2026,
-                              opening the easiest access Australians have ever had to the island
-                            </h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="review-slide _03 w-slide">
-                        <div className="review-slider-content info">
-                          <h6 className="text-3xl">Record-Year Quality, Pre-Rush Pricing</h6>
-                          <div className="review-slider-info">
-                            <h5 className="text-xl">
-                              Sri Lanka recorded its highest-ever arrival numbers in 2025. Hotels
-                              and operators are still pricing for recovery, not demand. That window
-                              closes soon
-                            </h5>
-                          </div>
+                    <div className="review-slide _01">
+                      <div className="review-slider-content info">
+                        <h6 className="text-3xl">Free Tourist Visas</h6>
+                        <div className="review-slider-info">
+                          <h5 className="text-xl">
+                            Sri Lanka is rolling out free 30-day tourist visas for Australian
+                            passport holders in 2026, a limited pilot programme valid through March
+                            2027
+                          </h5>
                         </div>
                       </div>
                     </div>
-                    <div className="review-left-arrow w-slider-arrow-left">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        viewBox="0 0 24 25"
-                        fill="none"
-                        className="review-arrow"
-                      >
-                        <path
-                          d="M14.5 19.431C14.367 19.431 14.233 19.378 14.135 19.273L9.993 14.843C9.357 14.207 9 13.347 9 12.431C9 11.515 9.357 10.655 10.004 10.007L14.134 5.58902C14.322 5.38602 14.639 5.37802 14.841 5.56602C15.043 5.75402 15.053 6.07102 14.865 6.27302L10.723 10.703C10.252 11.174 10 11.783 10 12.432C10 13.081 10.252 13.69 10.711 14.149L14.865 18.59C15.053 18.792 15.043 19.109 14.841 19.297C14.745 19.387 14.622 19.431 14.5 19.431Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
+                    <div className="review-slide _02">
+                      <div className="review-slider-content info">
+                        <h6 className="text-3xl">A Direct Route from Melbourne</h6>
+                        <div className="review-slider-info">
+                          <h5 className="text-xl">
+                            Jetstar launches direct Melbourne to Colombo flights from August 2026,
+                            opening the easiest access Australians have ever had to the island
+                          </h5>
+                        </div>
+                      </div>
                     </div>
-                    <div className="review-right-arrow w-slider-arrow-right">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        viewBox="0 0 24 25"
-                        fill="none"
-                        className="review-arrow"
-                      >
-                        <path
-                          d="M9.5 19.431C9.633 19.431 9.767 19.378 9.865 19.273L14.007 14.843C14.643 14.207 15 13.347 15 12.431C15 11.515 14.643 10.655 13.996 10.007L9.866 5.58902C9.678 5.38602 9.361 5.37802 9.159 5.56602C8.957 5.75402 8.947 6.07102 9.135 6.27302L13.277 10.703C13.748 11.174 14 11.783 14 12.432C14 13.081 13.748 13.69 13.289 14.149L9.135 18.59C8.947 18.792 8.957 19.109 9.159 19.297C9.255 19.387 9.378 19.431 9.5 19.431Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
+                    <div className="review-slide _03">
+                      <div className="review-slider-content info">
+                        <h6 className="text-3xl">Record-Year Quality, Pre-Rush Pricing</h6>
+                        <div className="review-slider-info">
+                          <h5 className="text-xl">
+                            Sri Lanka recorded its highest-ever arrival numbers in 2025. Hotels and
+                            operators are still pricing for recovery, not demand. That window closes
+                            soon
+                          </h5>
+                        </div>
+                      </div>
                     </div>
-                    <div className="review-slider-slide-nav w-slider-nav"></div>
                   </div>
-                </div>
-                <div className="review-underline">
-                  <div className="review-line-animation"></div>
                 </div>
               </div>
             </div>

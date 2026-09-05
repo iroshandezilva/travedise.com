@@ -1,0 +1,114 @@
+/*
+ * A native horizontal scroller: the browser supplies trackpad panning, touch
+ * swipe, momentum, rubber-banding and keyboard scrolling, and scroll-snap
+ * settles each card. Nothing here is animated by hand.
+ */
+/* Lets the carousel root group its parts without adding a box to the parent's
+   flow, so wrapping existing markup changes no layout. */
+.contents {
+  display: contents;
+}
+
+/* Webflow's `.w-slider` base supplied `position: relative`, which the absolutely
+   positioned arrows anchor to. */
+.deck {
+  position: relative;
+}
+
+.viewport {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* the progress bar under the deck is the affordance */
+  position: relative; /* slides measure their offsetLeft against this */
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+/*
+ * Card widths are lifted from the Webflow stylesheet rather than reused from it:
+ * its `.home-hero-mask` / `.booking-process-mask` rules also set `overflow:
+ * visible`, which would stop the element scrolling at all.
+ */
+.heroSlide {
+  composes: slide;
+  width: 272px;
+  margin-right: 10px;
+}
+
+@media screen and (min-width: 1920px) {
+  .heroSlide {
+    width: 290px;
+  }
+}
+
+/*
+ * The card keeps the 608px the Webflow slider gave it, which is what its
+ * `1fr 1fr` text/image grid needs to breathe — two per view in the 1241px
+ * container. The viewport adds no gap: `.booking-process-slide` already carries
+ * a 24px margin-right, and the two would stack into a 48px trough. The
+ * max-width takes over on screens too narrow for a full card.
+ */
+.bookingSlide {
+  composes: slide;
+  flex: 0 0 608px;
+  max-width: calc(100% - 24px);
+  height: auto;
+}
+
+/* Three review cards fit the row on desktop, so they stack rather than scroll. */
+.reviewRow {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.reviewRow > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media screen and (max-width: 991px) {
+  .reviewRow {
+    flex-direction: column;
+  }
+
+  .reviewRow > * {
+    max-width: none;
+  }
+}
+
+/*
+ * The progress thumbs carry their own class rather than Webflow's
+ * `.slider-line-animation` / `.booking-line-animation`: IX2 still targets those
+ * by class and rewrites their inline `width` after hydration, which no
+ * stylesheet can outrank. The declarations below are those rules verbatim,
+ * minus the fixed width the scroll position now supplies.
+ */
+.heroThumb {
+  background-color: var(--white);
+  border-radius: 10px;
+  height: 1.5px;
+  position: absolute;
+  inset: 0% auto 0% 0%;
+}
+
+@media screen and (max-width: 767px) {
+  .heroThumb {
+    background-color: var(--f3f1f1);
+  }
+}
+
+.bookingThumb {
+  background-color: var(--primary);
+  height: 1.5px;
+}
