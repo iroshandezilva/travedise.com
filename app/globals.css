@@ -1,0 +1,196 @@
+/*
+ * The Webflow stylesheet sits in its own layer, above Tailwind's preflight and below
+ * utilities: pages that haven't been migrated keep rendering as before, and utilities
+ * on migrated markup always win. Delete the `webflow` import once every page is migrated.
+ */
+@layer theme, base, webflow, components, utilities;
+
+@import "tailwindcss";
+@import "../public/css/travedise-com.webflow.shared.4454c9861.css" layer(webflow);
+
+@source not "../public";
+@source not "../scripts";
+
+/* Unmigrated pages still use Webflow class names (`container`, `hidden`…) that are also
+   Tailwind utilities. Keep them out of the scan; delete a page's line when you migrate it. */
+@source not "./about/page.tsx";
+@source not "./blog-posts/family-friendly-destinations-that-everyone-will-love/page.tsx";
+@source not "./blog-posts/the-ultimate-honeymoon-destination/page.tsx";
+@source not "./blog-posts/why-2026-is-the-best-year-for-travel-and-tour/page.tsx";
+@source not "./blog/page.tsx";
+@source not "./contact/page.tsx";
+@source not "./faq/page.tsx";
+@source not "./packages/best-of-sri-lanka/page.tsx";
+@source not "./packages/dream-honeymoon-in-sri-lanka/page.tsx";
+@source not "./packages/hillcountry/page.tsx";
+@source not "./packages/page.tsx";
+@source not "./packages/scenic-sri-lanka/page.tsx";
+@source not "./packages/simply-srilanka/page.tsx";
+@source not "./packages/wildlife-package/page.tsx";
+@source not "./page.tsx";
+
+/* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
+   write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1920px;
+
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-navy: #091733; /* primary — headings, dark sections, primary buttons */
+  --color-navy-800: #122242;
+  --color-ink: #0e0e0d;
+  --color-slate: #656e7f; /* body text */
+  --color-slate-400: #848b99;
+  --color-slate-300: #9ea7b8;
+  --color-lime: #a0f751; /* accent */
+  --color-surface: #f7f7f7;
+  --color-surface-2: #f8f8f8;
+  --color-surface-3: #f3f1f1;
+  --color-line: #0917331a; /* hairline borders on light backgrounds */
+  --color-line-strong: #09173326;
+
+  /* Headings shrink at each breakpoint — see the overrides in @layer base. */
+  --text-h1: 70px;
+  --text-h1--line-height: 109%;
+  --text-h2: 52px;
+  --text-h2--line-height: 112%;
+  --text-h3: 40px;
+  --text-h3--line-height: 112.5%;
+  --text-h4: 32px;
+  --text-h4--line-height: 144%;
+  --text-h5: 24px;
+  --text-h5--line-height: 133%;
+  --text-h6: 20px;
+  --text-h6--line-height: 150%;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 150%;
+
+  --radius-card: 20px;
+  --radius-panel: 25px;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* next/font sets these variables on <body>; `inline` resolves them where they're used. */
+@theme inline {
+  --font-sans: var(--font-general-sans), sans-serif;
+  --font-heading: var(--font-inter-tight), sans-serif;
+  --font-serif: Georgia, Times, "Times New Roman", serif;
+  --font-boska: var(--font-boska-variable), Georgia, sans-serif;
+}
+
+@layer base {
+  @media (width < 992px) {
+    :root {
+      --text-h1: 60px;
+      --text-h2: 45px;
+      --text-h3: 36px;
+      --text-h4: 28px;
+    }
+  }
+  @media (width < 768px) {
+    :root {
+      --text-h1: 45px;
+      --text-h2: 36px;
+      --text-h3: 32px;
+      --text-h6: 18px;
+      --text-body-lg: 16px;
+    }
+  }
+  @media (width < 480px) {
+    :root {
+      --text-h1: 36px;
+      --text-h2: 32px;
+      --text-h3: 28px;
+      --text-h4: 25px;
+      --text-h5: 22px;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-base/[150%] text-slate;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h6 {
+    @apply font-heading;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium text-navy;
+  }
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5 {
+    @apply text-h5;
+  }
+  h6 {
+    @apply text-h6;
+  }
+  img {
+    @apply inline-block max-w-full align-middle;
+  }
+}
+
+@utility container-site {
+  @apply mx-auto w-full max-w-[1271px] px-[15px];
+}
+
+/* <Reveal> — see components/ui/reveal.tsx */
+@layer components {
+  [data-reveal] {
+    transition:
+      opacity 1s var(--ease-out-quart) var(--reveal-delay, 0ms),
+      translate 1s var(--ease-out-quart) var(--reveal-delay, 0ms);
+  }
+  [data-reveal]:not([data-shown]) {
+    opacity: 0;
+  }
+  [data-reveal="bottom"]:not([data-shown]) {
+    translate: 0 100px;
+  }
+  [data-reveal="left"]:not([data-shown]) {
+    translate: -100px 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      transition: none;
+      opacity: 1 !important;
+      translate: none !important;
+    }
+  }
+}

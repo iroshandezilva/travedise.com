@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import "./globals.css";
+import { boska, generalSans, interTight } from "./fonts";
+
 import { AgentationToolbar } from "@/components/agentation-toolbar";
 import { InterfaceKitPanel } from "@/components/interface-kit-panel";
 
@@ -48,11 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link href="https://fonts.googleapis.com" rel="preconnect" />
         <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
-        <link
-          href="/css/travedise-com.webflow.shared.4454c9861.css"
-          rel="stylesheet"
-          type="text/css"
-        />
         <script src="/js/webfont.js" type="text/javascript" />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: WEBFONT }} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: WF_MOD }} />
@@ -87,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <script type="text/javascript" dangerouslySetInnerHTML={{ __html: TAWK }} />
         )}
       </head>
-      <body>
+      <body className={`${generalSans.variable} ${interTight.variable} ${boska.variable}`}>
         {children}
         <AgentationToolbar />
         <InterfaceKitPanel />
