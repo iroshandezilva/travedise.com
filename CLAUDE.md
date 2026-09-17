@@ -2,46 +2,32 @@
 
 # travedise.com
 
-Static Next.js port of the old Webflow site, hosted on Cloudflare Pages at
-https://travedise.com. See `README.md` for how the Webflow runtime is wired in.
+Static Next.js site on Cloudflare Pages: https://travedise.com. More background in `README.md`.
 
-## Git workflow — never commit to `main` or `dev` directly
+## Git — Claude does it, the person doesn't have to
 
-```
-feature branch ──PR──▶ dev ──PR──▶ main ──auto-deploy──▶ travedise.com
-```
+Not everyone working here knows git. Handle it for them without asking them to run commands:
 
-1. Branch off an up-to-date `dev`: `git checkout dev && git pull && git checkout -b <type>/<short-name>`
-   (`feature/…`, `fix/…`, `docs/…`, `chore/…`).
-2. Push and open the PR against **`dev`**: `gh pr create --base dev` (GitHub defaults to `main`).
-3. Releases are a PR from `dev` into `main`. Only open one when asked.
-4. Don't merge PRs, use `--admin`, or bypass the rulesets unless the owner asks in that session.
+1. **Start of every session:** `git fetch`, switch to `dev`, `git pull` — work always starts from the latest `dev`.
+   If there are uncommitted changes, ask before switching.
+2. **Before editing:** create a branch off `dev` named for the change (`feature/…`, `fix/…`, `docs/…`).
+3. **When the change is done:** `pnpm build` must pass, then commit, push, and open a PR with
+   `gh pr create --base dev` (GitHub defaults to `main` — always pass `--base dev`).
+   Write the PR description in plain language: what changed and where to look.
+4. **Tell the person** the PR link and that the owner will review it. Then check out `dev` again.
 
-Repo rules (GitHub rulesets): `main` needs a PR, owner approval (CODEOWNERS) and a
-passing `build` check; no force-push or deletion. `dev` needs owner approval on PRs.
+Never commit or push to `main` or `dev` directly, never merge PRs, never use `--admin`.
+Releases (`dev` → `main`) are done only by the owner.
 
-## Deploys
+## Where changes show up
 
-- Merging to `main` runs `.github/workflows/deploy.yml`: `pnpm build` → `wrangler pages deploy out`
-  to the Cloudflare Pages project `travedise`. PRs only run the build.
-- Never deploy manually with wrangler unless asked — `main` is the source of truth.
-- DNS, redirect rules and the Pages project live in Cloudflare (zone `travedise.com`).
-  Don't change DNS without explicit approval; MX/SPF/DKIM/Zoho records carry the domain's email.
+- `dev` → preview at https://dev.travedise.pages.dev (updates a minute after a PR merges into `dev`)
+- `main` → live site https://travedise.com
+- Deploys run from `.github/workflows/deploy.yml`. Don't deploy manually and don't change Cloudflare DNS.
 
 ## Build constraints
 
-- `next.config.ts` uses `output: "export"` — the site must stay fully static.
-  No route handlers that read the request, no middleware/proxy, no server actions,
-  no `cookies()`/`headers()`, no dynamic routes without `generateStaticParams`.
-- `pnpm start` doesn't work with a static export. To preview a build: `pnpm build && npx serve out`.
-- Run `pnpm build` before pushing; it also type-checks. Format with `pnpm exec prettier --write`.
-
-## Editing pages
-
-- `app/**/page.tsx` is hand-maintained. Don't re-run `scripts/convert.mjs` — it overwrites edits.
-- Keep Webflow class names and `data-w-id` attributes: `public/css` and the IX2 runtime in
-  `public/js` target them (animations, tabs, reveals). Elements with inline `opacity: 0`
-  are revealed by IX2, not bugs.
-- Page titles follow `"<Page> - Travedise - Your Next Adventure Starts Here"` and are set
-  in three places per page (`title`, `openGraph.title`, `twitter.title`).
-- Forms are Webflow leftovers with no backend yet — don't assume submissions go anywhere.
+- `output: "export"` — the site is fully static. No route handlers reading the request,
+  middleware/proxy, server actions, `cookies()`/`headers()`, or dynamic routes without `generateStaticParams`.
+- Preview a production build with `pnpm build && npx serve out` (`pnpm start` doesn't work with a static export).
+- Forms have no backend yet.
