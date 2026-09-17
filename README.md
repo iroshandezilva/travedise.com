@@ -97,7 +97,7 @@ other fourteen routes remain identical to the export.
 
 ## Verifying the port
 
-With `pnpm build && pnpm start -p 3111` running, and the original export served at
+With `pnpm build && npx serve out -l 3111` running, and the original export served at
 `http://localhost:8111`:
 
 ```bash
