@@ -41,7 +41,7 @@ export function Journeys() {
                   src={journey.image}
                   alt=""
                   loading="lazy"
-                  className="block h-[390px] w-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03] max-md:h-[300px]"
+                  className="block h-[390px] w-full object-cover v2-card-img max-md:h-[300px]"
                 />
               </div>
               <span className="font-soul text-[27px]/[34px] font-medium text-v2-navy max-md:text-[21px]/[27px]">

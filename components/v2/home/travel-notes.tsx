@@ -29,7 +29,7 @@ export function TravelNotes() {
                 src={featuredNote.image}
                 alt=""
                 loading="lazy"
-                className="block h-[410px] w-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03] max-md:h-[220px]"
+                className="block h-[410px] w-full object-cover v2-card-img max-md:h-[220px]"
               />
             </div>
             <span className="font-soul text-[30px]/[38px] font-medium text-v2-navy max-md:text-[23px]/[30px]">

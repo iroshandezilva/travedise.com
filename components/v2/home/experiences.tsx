@@ -59,8 +59,13 @@ export function Experiences() {
           })}
         </div>
 
-        {/* Stays two-up on a phone rather than collapsing to a single column. */}
-        <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-md:gap-3">
+        {/* Stays two-up on a phone rather than collapsing to a single column.
+            Keyed on the filter so the new set starts from `@starting-style` — without
+            it the grid swaps in a single frame, which is the one hard cut on the page. */}
+        <div
+          key={active}
+          className="grid grid-cols-4 gap-4 transition-[opacity,translate] duration-200 ease-out-quart max-lg:grid-cols-2 max-md:gap-3 motion-reduce:transition-none starting:translate-y-2 starting:opacity-0"
+        >
           {shown.map((item) => (
             <Link
               key={item.title}
@@ -72,7 +77,7 @@ export function Experiences() {
                   src={item.image}
                   alt=""
                   loading="lazy"
-                  className="block h-[322px] w-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03] max-md:h-[200px]"
+                  className="block h-[322px] w-full object-cover v2-card-img max-md:h-[200px]"
                 />
               </div>
               {/* The arrow sits at the far edge on desktop and follows the title on a phone. */}

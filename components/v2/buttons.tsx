@@ -29,7 +29,7 @@ export function PillLink({
   return (
     <Link
       className={cn(
-        "inline-flex h-[52px] items-center justify-center rounded-[26px] px-7 text-[15px]/[1.2] font-medium transition-opacity duration-200 hover:opacity-90 max-md:text-[16px]",
+        "inline-flex h-[52px] items-center justify-center rounded-[26px] px-7 text-[15px]/[1.2] font-medium transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none max-md:text-[16px]",
         {
           sky: "bg-v2-sky text-[#10212b]",
           navy: "bg-v2-navy text-white",
@@ -60,7 +60,7 @@ export function SplitPillLink({
   return (
     <Link
       className={cn(
-        "flex h-[52px] items-center justify-between rounded-full pr-5 pl-[22px] transition-opacity duration-200 hover:opacity-90 max-md:justify-center max-md:gap-2",
+        "flex h-[52px] items-center justify-between rounded-full pr-5 pl-[22px] transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none max-md:justify-center max-md:gap-2",
         variant === "sky" ? "bg-v2-sky" : "border border-v2-navy bg-white",
         className,
       )}
@@ -82,7 +82,7 @@ export function BadgeLink({ className, children, ...props }: LinkProps & { child
   return (
     <Link
       className={cn(
-        "flex h-16 shrink-0 items-center gap-[18px] rounded-full border border-white/45 pr-2.5 pl-[30px] transition-colors duration-200 hover:bg-white/8 max-md:h-14 max-md:gap-3 max-md:pl-6",
+        "flex h-16 shrink-0 items-center gap-[18px] rounded-full border border-white/45 pr-2.5 pl-[30px] transition-[background-color,transform] duration-150 ease-out-quad hover:bg-white/8 active:scale-[0.97] motion-reduce:transition-none max-md:h-14 max-md:gap-3 max-md:pl-6",
         className,
       )}
       {...props}

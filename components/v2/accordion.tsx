@@ -65,11 +65,13 @@ export function AccordionRow({
           </span>
         </span>
       </button>
-      {open && (
-        <div id={id} className={cn("v2-row-open", panelClassName)}>
-          {children}
+      {/* Stays mounted so closing animates too; `inert` keeps it out of the tab
+          order and the accessibility tree while it is collapsed. */}
+      <div id={id} data-open={open} inert={!open} className="v2-panel">
+        <div>
+          <div className={panelClassName}>{children}</div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

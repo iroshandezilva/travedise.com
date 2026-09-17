@@ -30,12 +30,21 @@ export function PackageHero({
       {/* The photo and its wash fill the header on desktop. On a phone they are a band
           at the top, with the title and thumbnails reading on white beneath. */}
       <div className="absolute inset-0 max-md:relative max-md:h-[420px]">
-        <img
-          key={shot.src}
-          src={shot.src}
-          alt={shot.label}
-          className="v2-hero-shot absolute inset-0 block size-full object-cover"
-        />
+        {/* All four are stacked and cross-faded by opacity. Swapping one `src` could
+            not cross-fade, and a keyframe would restart from zero on a quick second
+            click rather than picking up from where it was. */}
+        {shots.map((s, i) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={i === current ? s.label : ""}
+            aria-hidden={i !== current}
+            className={cn(
+              "absolute inset-0 block size-full object-cover transition-opacity duration-200 ease-out-quart motion-reduce:transition-none",
+              i === current ? "opacity-100" : "opacity-0",
+            )}
+          />
+        ))}
         <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.8) 0%, oklab(0 0 0 / 0) 56%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
       </div>
 

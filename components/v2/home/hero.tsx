@@ -31,11 +31,11 @@ export function Hero() {
           <h1 className="m-0 font-soul text-[72px]/[76px] font-medium tracking-[-0.02em] whitespace-pre-wrap text-white max-lg:text-[56px]/[60px] max-md:text-[42px]/[46px]">
             {"See Sri Lanka.\nKeep time for\nwhat matters."}
           </h1>
-          <p className="m-0 w-[520px] text-[20px]/[29px] text-[#e9eef1] max-lg:w-full max-lg:max-w-[520px] max-md:text-[16px]/[24px] max-md:text-[#e4ebef]">
+          <p className="transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 m-0 w-[520px] text-[20px]/[29px] text-[#e9eef1] max-lg:w-full max-lg:max-w-[520px] max-md:text-[16px]/[24px] max-md:text-[#e4ebef]">
             Tell us what you hope to see, and what you would rather not rush. We’ll shape a journey
             around the moments that matter.
           </p>
-          <div className="flex items-center gap-7 max-md:w-full max-md:flex-col max-md:gap-2.5">
+          <div className="transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 delay-[90ms] flex items-center gap-7 max-md:w-full max-md:flex-col max-md:gap-2.5">
             <PillLink href="/contact" variant="sky">
               Plan your trip ↗
             </PillLink>
@@ -54,7 +54,9 @@ export function Hero() {
           className="absolute top-[738px] right-0 flex items-center gap-3.5 max-lg:hidden"
         >
           <span className="flex size-[46px] shrink-0 items-center justify-center rounded-full border border-white/75 text-[23px]/[1.2] text-white">
-            ↓
+            <span aria-hidden className="v2-scroll-cue block">
+              ↓
+            </span>
           </span>
           <span className="text-[14px]/[1.2] whitespace-pre text-white">Scroll to discover</span>
         </a>
