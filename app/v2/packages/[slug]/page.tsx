@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { CtaBand } from "@/components/v2/cta-band";
 import { FooterWide } from "@/components/v2/footer-wide";
-import { ContainedCta } from "@/components/v2/package/contained-cta";
+import { ContainedCta } from "@/components/v2/contained-cta";
 import { PackageFacts } from "@/components/v2/package/facts";
 import { PackageHero } from "@/components/v2/package/hero";
 import { PackageIncludes } from "@/components/v2/package/includes";

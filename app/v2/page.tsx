@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/v2/cta-band";
 import { Experiences } from "@/components/v2/home/experiences";
 import { FieldNote } from "@/components/v2/home/field-note";
 import { Footer } from "@/components/v2/footer";
-import { Gallery } from "@/components/v2/home/gallery";
+import { Gallery } from "@/components/v2/gallery";
 import { Hero } from "@/components/v2/home/hero";
 import { Journeys } from "@/components/v2/home/journeys";
 import { Overview } from "@/components/v2/home/overview";
