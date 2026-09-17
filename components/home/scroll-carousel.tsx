@@ -7,13 +7,22 @@ import {
   useEffect,
   useRef,
   useState,
+  type ComponentProps,
   type ReactNode,
+  type RefObject,
 } from "react";
 
-import styles from "./scroll-carousel.module.css";
+import { cn } from "@/lib/cn";
+
+/*
+ * A native horizontal scroller: the browser supplies trackpad panning, touch swipe,
+ * momentum, rubber-banding and keyboard scrolling, and scroll-snap settles each card.
+ * Nothing here is animated by hand. Slides are the viewport's direct children and
+ * should carry `shrink-0 snap-start`.
+ */
 
 type CarouselContextValue = {
-  viewportRef: React.RefObject<HTMLDivElement | null>;
+  viewportRef: RefObject<HTMLDivElement | null>;
   scrollByCard: (direction: -1 | 1) => void;
   /** Both fractions of the scrollable width, so a progress bar can size and place itself. */
   progress: { size: number; offset: number };
@@ -23,15 +32,12 @@ const CarouselContext = createContext<CarouselContextValue | null>(null);
 
 function useCarousel(part: string) {
   const context = useContext(CarouselContext);
-  if (!context) {
-    throw new Error(`<ScrollCarousel.${part}> must be rendered inside <ScrollCarousel>`);
-  }
+  if (!context) throw new Error(`<${part}> must be rendered inside <ScrollCarousel>`);
   return context;
 }
 
-const cx = (...names: (string | undefined)[]) => names.filter(Boolean).join(" ");
-
-function Root({ className, children, ...rest }: React.ComponentProps<"div">) {
+/** Shares scroll state between the parts. Renders no box of its own. */
+export function ScrollCarousel({ children }: { children: ReactNode }) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState({ size: 1, offset: 0 });
 
@@ -64,76 +70,75 @@ function Root({ className, children, ...rest }: React.ComponentProps<"div">) {
     const current = slides.findIndex((slide) => slide.offsetLeft >= el.scrollLeft - 1);
     const from = current === -1 ? slides.length - 1 : current;
     const next = slides[Math.min(Math.max(from + direction, 0), slides.length - 1)];
-    next?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollTo({ left: next?.offsetLeft ?? 0, behavior: reduce ? "auto" : "smooth" });
   }, []);
 
   return (
     <CarouselContext.Provider value={{ viewportRef, scrollByCard, progress }}>
-      <div className={className} {...rest}>
-        {children}
-      </div>
+      {children}
     </CarouselContext.Provider>
   );
 }
 
-function Viewport({ className, children }: { className?: string; children: ReactNode }) {
-  const { viewportRef } = useCarousel("Viewport");
-  return (
-    <div ref={viewportRef} className={cx(styles.viewport, className)}>
-      {children}
-    </div>
-  );
-}
-
-/**
- * Rendered as a div rather than a button so the Webflow arrow classes style it
- * exactly as they did before, with the button semantics added back by hand.
- */
-function Arrow({
-  direction,
+export function CarouselViewport({
   className,
-  label,
   children,
-}: {
-  direction: -1 | 1;
-  className?: string;
-  label: string;
-  children: ReactNode;
-}) {
-  const { scrollByCard } = useCarousel(direction === -1 ? "Prev" : "Next");
+  ...props
+}: Omit<ComponentProps<"div">, "ref">) {
+  const { viewportRef } = useCarousel("CarouselViewport");
   return (
     <div
-      role="button"
-      tabIndex={0}
-      aria-label={label}
-      className={className}
-      onClick={() => scrollByCard(direction)}
-      onKeyDown={(event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        scrollByCard(direction);
-      }}
+      ref={viewportRef}
+      className={cn(
+        // The progress bar under the deck is the affordance, so the scrollbar is hidden.
+        "relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        className,
+      )}
+      {...props}
     >
       {children}
     </div>
   );
 }
 
-function Prev(props: Omit<React.ComponentProps<typeof Arrow>, "direction">) {
+type ArrowProps = { className?: string; label: string; children: ReactNode };
+
+function Arrow({ direction, className, label, children }: ArrowProps & { direction: -1 | 1 }) {
+  const { scrollByCard } = useCarousel(direction === -1 ? "CarouselPrev" : "CarouselNext");
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      className={cn("cursor-pointer", className)}
+      onClick={() => scrollByCard(direction)}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function CarouselPrev(props: ArrowProps) {
   return <Arrow direction={-1} {...props} />;
 }
 
-function Next(props: Omit<React.ComponentProps<typeof Arrow>, "direction">) {
+export function CarouselNext(props: ArrowProps) {
   return <Arrow direction={1} {...props} />;
 }
 
 /** The thumb tracks how much of the deck is on screen and how far it has scrolled. */
-function Progress({ className, barClassName }: { className?: string; barClassName?: string }) {
-  const { progress } = useCarousel("Progress");
+export function CarouselProgress({
+  className,
+  thumbClassName,
+}: {
+  className?: string;
+  thumbClassName?: string;
+}) {
+  const { progress } = useCarousel("CarouselProgress");
   return (
-    <div className={className}>
+    <div aria-hidden className={className}>
       <div
-        className={barClassName}
+        className={thumbClassName}
         style={{
           width: `${progress.size * 100}%`,
           transform: `translateX(${(progress.offset / progress.size) * 100}%)`,
@@ -142,16 +147,3 @@ function Progress({ className, barClassName }: { className?: string; barClassNam
     </div>
   );
 }
-
-/*
- * Exported individually rather than as `ScrollCarousel.Viewport` and friends:
- * a Server Component cannot read static properties off a client component's
- * module reference, so dot notation resolves to undefined at render time.
- */
-export {
-  Root as ScrollCarousel,
-  Viewport as CarouselViewport,
-  Prev as CarouselPrev,
-  Next as CarouselNext,
-  Progress as CarouselProgress,
-};

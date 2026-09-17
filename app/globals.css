@@ -22,7 +22,6 @@
 @source not "./packages/scenic-sri-lanka/page.tsx";
 @source not "./packages/simply-srilanka/page.tsx";
 @source not "./packages/wildlife-package/page.tsx";
-@source not "./page.tsx";
 
 /* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
    write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
