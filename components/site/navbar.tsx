@@ -60,9 +60,7 @@ export function Navbar({
       href="/contact"
       variant={transparent ? "glass" : "light"}
       aria-current={aria("/contact")}
-      // Webflow's `.button-01:hover` clears the white fill, leaving a see-through rim around the
-      // navy sweep. TODO: move into ArrowButton's light variant (it applies site-wide).
-      className={cn(!transparent && "hover:bg-transparent", className)}
+      className={className}
     >
       Book Now
     </ArrowButton>

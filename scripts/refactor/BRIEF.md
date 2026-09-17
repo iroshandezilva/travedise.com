@@ -42,6 +42,40 @@ Delete nothing Webflow-related yet; cleanup is a separate final step.
 - Remove Webflow leftovers from anything you migrate: `data-w-id`, `w-*` classes, `data-wf-*`,
   `style={{opacity: 0}}` placeholders, `WebflowScripts`.
 
+## Shared site components (wave 1 — reuse, don't re-implement)
+
+| Component | Use |
+|---|---|
+| `components/site/navbar.tsx` `<Navbar variant? current? fillOnScroll? hideOnScroll?>` | `/`: `variant="transparent" current="/" hideOnScroll={false}` · `/about`: `variant="transparent" current="/about"` · `/blog-posts/*`: `variant="transparent"` · `/blog` `/contact` `/packages`: `current="/blog"` etc. · `/faq`: no props · `/packages/<detail>`: `fillOnScroll={false} hideOnScroll={false}` |
+| `components/site/footer.tsx` `<Footer />` | every page, no props |
+| `components/site/page-gradient.tsx` `<PageGradient />` | first thing inside the page wrapper on `/blog` `/contact` `/faq` `/packages` and package detail pages (its wrapper must not be `relative`) |
+| `components/site/blog-post-share-bar.tsx` `<BlogPostShareBar />` | replaces `.back-details-block` on the three blog posts |
+| `components/site/faq-section.tsx` `<FaqSection items variant? cta? defaultOpen?>` | `/`, `/packages`, package details: `items={siteFaqs}` · `/faq`: `items={faqPageFaqs} variant="page"` (replaces `section.accommodations-section`) |
+| `components/site/faq-accordion.tsx` `AccordionItem`, `FaqAccordion`, `PlusMinusIcon` | any other accordion (e.g. package itinerary `.faq-list-wrap.gallery`: `AccordionItem` with custom header, `reveal={{ from: "left" }}`) |
+| `components/site/package-card.tsx` `PackageCard`, `<PackageCardGrid packages layout="home"｜"listing" reveal?>` | `/`: `packagesFor("home")`, `layout="home"` · `/packages` tabs: `packagesFor("packagesPage", tab.category)`, `layout="listing"`, `reveal={false}` for non-All tabs |
+| `components/site/blog-card.tsx` `BlogCard`, `<BlogCardGrid posts variant="section"｜"listing">` · `blog-section.tsx` `<BlogSection />` | `/` and `/about`: `<BlogSection />` · `/blog`: `<BlogCardGrid posts={blogPosts} variant="listing" />` |
+| `content/packages.ts` (`packages`, `packageListings`, `packageTabs`, `packagesFor`) · `content/blog.ts` (`blogPosts`) · `content/faqs.ts` | data — extend with new fields if your pages need them, don't duplicate |
+
+Look at `app/preview/*` for usage. The reserve-now popup (`div.reserve-now-popup`) is dead on the
+reference (nothing opens it) — **delete that markup**, don't rebuild it.
+
+Deliberate difference: FAQ items 5–9 on `/packages` and package detail pages never worked on the
+reference (Webflow bug); the new FAQ works for all items, so those sections are shorter. Expected.
+
+## Known gotchas
+
+- The Webflow stylesheet still loads (in a layer above Tailwind's preflight, below utilities) until
+  cleanup, so its **element** rules leak into migrated markup: `label { margin-bottom:5px; font-weight:bold; display:block }`,
+  `input { line-height: normal }`, `ul, ol { padding-left:40px; margin-bottom:10px }`, `blockquote`, `figure`,
+  `a { text-decoration: underline }`, `p`… Set these explicitly on your elements (`mb-0`, `leading-6`,
+  `pl-0 list-none`, `no-underline`) so they render the same after the stylesheet is removed.
+- `app/globals.css` has `@source not "./<route>/page.tsx"` lines — **delete the lines for the pages you
+  migrate** (that's the one allowed edit to globals.css), otherwise Tailwind won't generate your classes.
+- Tailwind's default transition easing is `cubic-bezier(.4,0,.2,1)`; Webflow CSS `transition: all .25s`
+  uses `ease` → write `ease-[ease]`. IX2 timelines with blank easing are linear.
+- `cn()` knows the custom tokens (`text-h1…h6`, `text-body-lg`, `rounded-card/panel`).
+- Page files become server components: drop `WebflowScripts`/`WEBFLOW_SCRIPTS`, keep `metadata` as is.
+
 ## Tools (run from the repo root)
 
 ```bash

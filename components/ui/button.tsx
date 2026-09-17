@@ -61,7 +61,8 @@ export function ArrowButton({
         "max-md:p-[3px] max-md:text-sm/5",
         glass
           ? "border-white/30 bg-black/48 text-white hover:text-navy"
-          : "border-navy/12 bg-white text-navy hover:text-white",
+          : // Webflow's `.button-01:hover` drops the white fill: a see-through rim shows around the sweep.
+            "border-navy/12 bg-white text-navy hover:bg-transparent hover:text-white",
         className,
       )}
       {...props}
