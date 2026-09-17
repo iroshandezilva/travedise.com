@@ -1,0 +1,34 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Travedise",
+    "identifier": "did:web:travedise.com"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:travedise.com:skill:travedise-trip-planning",
+      "displayName": "Travedise trip planning",
+      "description": "How agents can find Travedise's Sri Lanka tour packages, itineraries, FAQs and booking contacts.",
+      "type": "text/markdown",
+      "url": "https://travedise.com/.well-known/agent-skills/travedise-trip-planning/SKILL.md",
+      "representativeQueries": [
+        "Sri Lanka tour packages with prices",
+        "10 night Sri Lanka itinerary with hotels",
+        "family friendly Sri Lanka holiday package",
+        "how to book a Sri Lanka tour with Travedise"
+      ]
+    },
+    {
+      "identifier": "urn:air:travedise.com:docs:llms-txt",
+      "displayName": "Travedise site guide for LLMs",
+      "description": "llms.txt index of every page on travedise.com with Markdown versions.",
+      "type": "text/markdown",
+      "url": "https://travedise.com/llms.txt",
+      "representativeQueries": [
+        "Travedise Sri Lanka packages overview",
+        "best time to visit Sri Lanka Travedise FAQ",
+        "Travedise contact details"
+      ]
+    }
+  ]
+}

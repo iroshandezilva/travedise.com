@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/agent-files.mjs",
     "start": "next start"
   },
   "dependencies": {
@@ -20,9 +20,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/turndown": "^5.0.6",
     "agentation": "^3.0.2",
     "prettier": "^3.9.6",
     "tailwindcss": "^4.3.3",
+    "turndown": "^7.2.4",
     "typescript": "^5"
   },
   "packageManager": "pnpm@11.24.0"

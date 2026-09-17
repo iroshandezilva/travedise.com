@@ -34,6 +34,7 @@ jobs:
           name: site
           path: out
           retention-days: 3
+          include-hidden-files: true # out/.well-known/
 
   # main → travedise.com, dev → dev.travedise.pages.dev. PRs stop at the build check.
   deploy:
@@ -42,6 +43,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'main' && 'production' || 'preview' }}
     steps:
+      # Wrangler bundles functions/ (Pages middleware) from the working directory.
+      - uses: actions/checkout@v4
+
       - uses: actions/download-artifact@v4
         with:
           name: site
