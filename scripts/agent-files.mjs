@@ -89,6 +89,10 @@ function htmlFiles(dir) {
 const pages = [];
 for (const file of htmlFiles(OUT)) {
   const html = fs.readFileSync(file, "utf8");
+  // A page kept out of search stays out of llms.txt too, and gets no Markdown twin:
+  // these files are how agents find what we want read, not an index of every build artefact.
+  if (/<meta name="robots" content="[^"]*noindex/.test(html)) continue;
+
   const main = html.match(/<main[^>]*>([\s\S]*)<\/main>/)?.[1];
   if (!main) throw new Error(`${file} has no <main> — wrap the page content in <main>`);
 

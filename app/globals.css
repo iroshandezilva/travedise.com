@@ -31,6 +31,14 @@
   --color-line: #0917331a; /* hairline borders on light backgrounds */
   --color-line-strong: #09173326;
 
+  /* v2 home page (app/v2) — a separate palette from the rest of the site. */
+  --color-v2-navy: #101b2e; /* dark sections, headings, primary buttons */
+  --color-v2-cream: #f7f5ef; /* warm alternate section background */
+  --color-v2-sky: #47cdff; /* accent — CTAs */
+  --color-v2-sand: #c4af8c; /* step numerals on navy */
+  --color-v2-body: #545c63; /* body copy on light backgrounds */
+  --color-v2-muted: #cbd8df; /* body copy on navy */
+
   /* Headings shrink at each breakpoint — see the overrides in @layer base. */
   --text-h1: 70px;
   --text-h1--line-height: 109%;
@@ -68,6 +76,7 @@
   --font-heading: var(--font-inter-tight), sans-serif;
   --font-serif: Georgia, Times, "Times New Roman", serif;
   --font-boska: var(--font-boska-variable), Georgia, sans-serif;
+  --font-soul: var(--font-lt-soul), system-ui, sans-serif;
 }
 
 @layer base {
@@ -164,6 +173,194 @@
       transition: none;
       opacity: 1 !important;
       translate: none !important;
+    }
+  }
+}
+
+/* The v2 home page (app/v2) is a self-contained design: its own palette, LT Soul for
+   display type and Inter Tight for everything else. `.v2` scopes the body font so the
+   rest of the site keeps General Sans. */
+@utility container-v2 {
+  @apply mx-auto w-full max-w-[1280px];
+}
+
+/* Horizontal page padding for every v2 section — 54px on the 1440 canvas. */
+@utility gutter-v2 {
+  @apply px-[54px] max-lg:px-8 max-md:px-5;
+}
+
+@layer components {
+  .v2 {
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
+  }
+
+  /* Postage-stamp frame: a 1px tinted border with perforated edges, punched out of both
+     the border and the white face with intersecting radial-gradient masks. */
+  .v2-stamp {
+    --r: 9px;
+    position: relative;
+    padding: 1px;
+    background-color: --alpha(var(--color-v2-navy) / 10%);
+    filter: drop-shadow(0 1px 1px --alpha(var(--color-v2-navy) / 5%))
+      drop-shadow(0 10px 20px --alpha(var(--color-v2-navy) / 10%));
+  }
+  .v2-stamp,
+  .v2-stamp-face {
+    mask:
+      radial-gradient(var(--r) at 50% 0, #0000 98%, #000) 50% 0 / calc(4 * var(--r)) 100%,
+      radial-gradient(var(--r) at 50% 100%, #0000 98%, #000) 50% 0 / calc(4 * var(--r)) 100%,
+      radial-gradient(var(--r) at 0 50%, #0000 98%, #000) 0 50% / 100% calc(4 * var(--r)),
+      radial-gradient(var(--r) at 100% 50%, #0000 98%, #000) 0 50% / 100% calc(4 * var(--r));
+    mask-composite: intersect;
+  }
+  .v2-stamp-face {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-white);
+  }
+
+  /* The photo strip scrolls one full copy of the images, then loops. The track holds two
+     copies, so -50% lands exactly where it started. Hover holds it still. */
+  .v2-gallery-track {
+    display: flex;
+    width: max-content;
+    gap: 14px;
+    animation: v2-gallery-slide 80s linear infinite;
+  }
+  .v2-gallery-track:hover {
+    animation-play-state: paused;
+  }
+  /* Smaller frames on a phone, so the strip still moves at a readable pace. */
+  @media (width < 768px) {
+    .v2-gallery-track {
+      gap: 10px;
+      animation-duration: 60s;
+    }
+  }
+  @keyframes v2-gallery-slide {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-gallery-track {
+      animation: none;
+    }
+  }
+}
+
+@layer components {
+  /* On phones the wide card grids become one horizontal, snapping row. The layout
+     itself is utility classes on the element; this only hides the scrollbar, which
+     Tailwind has no utility for. */
+  .v2-rail {
+    scrollbar-width: none;
+  }
+  .v2-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Photo stack — three images sharing one frame. Desktop shows only the first;
+     on a phone they cross-fade, the two stacks running 3s apart so they never
+     change at the same moment. */
+  .v2-fade-stack {
+    position: relative;
+    overflow: hidden;
+  }
+  .v2-fade-stack img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+  .v2-fade-stack img:first-child {
+    opacity: 1;
+  }
+  @media (width < 768px) {
+    .v2-fade-stack img {
+      animation: v2-stack-fade 18s ease-in-out infinite;
+    }
+    .v2-fade-stack img:nth-child(2) {
+      animation-delay: 6s;
+    }
+    .v2-fade-stack img:nth-child(3) {
+      animation-delay: 12s;
+    }
+    .v2-fade-stack.offset img:nth-child(1) {
+      animation-delay: 3s;
+    }
+    .v2-fade-stack.offset img:nth-child(2) {
+      animation-delay: 9s;
+    }
+    .v2-fade-stack.offset img:nth-child(3) {
+      animation-delay: 15s;
+    }
+  }
+  @keyframes v2-stack-fade {
+    0% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    4% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    36% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Menu items lift in one after another as the panel opens. */
+  .v2-rise {
+    opacity: 0;
+    animation: v2-rise-in 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 60ms + 60ms);
+  }
+  @keyframes v2-rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* The menu's backdrop photo settles out of a slight zoom as the panel opens. */
+  .v2-sheen {
+    animation: v2-sheen 9s ease-out forwards;
+  }
+  @keyframes v2-sheen {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-fade-stack img {
+      animation: none;
+      opacity: 0;
+    }
+    .v2-fade-stack img:first-child {
+      opacity: 1;
+    }
+    .v2-rise,
+    .v2-sheen {
+      animation: none;
+      opacity: 1;
     }
   }
 }

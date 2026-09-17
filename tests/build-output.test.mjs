@@ -21,6 +21,8 @@ function pageRoutes(dir = OUT) {
     if (e.isDirectory())
       return e.name.startsWith("_next") || e.name.startsWith(".") ? [] : pageRoutes(p);
     if (!e.name.endsWith(".html") || ["404.html", "_not-found.html"].includes(e.name)) return [];
+    // Pages marked noindex are deliberately absent from the sitemap and llms.txt.
+    if (/<meta name="robots" content="[^"]*noindex/.test(fs.readFileSync(p, "utf8"))) return [];
     return [
       "/" +
         path
