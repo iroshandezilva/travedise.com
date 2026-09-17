@@ -13,9 +13,6 @@
 
 /* Unmigrated pages still use Webflow class names (`container`, `hidden`…) that are also
    Tailwind utilities. Keep them out of the scan; delete a page's line when you migrate it. */
-@source not "./about/page.tsx";
-@source not "./contact/page.tsx";
-@source not "./faq/page.tsx";
 @source not "./packages/best-of-sri-lanka/page.tsx";
 @source not "./packages/dream-honeymoon-in-sri-lanka/page.tsx";
 @source not "./packages/hillcountry/page.tsx";
