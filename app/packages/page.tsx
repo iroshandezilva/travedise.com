@@ -193,7 +193,7 @@ export default function PackagesPage() {
                   <img
                     loading="lazy"
                     src="/assets/6a90409b2572838714e11678_image-4-Vectorized-.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>
@@ -382,43 +382,6 @@ export default function PackagesPage() {
                     >
                       <div className="collection-list-wrapper-packages w-dyn-list">
                         <div role="list" className="packages-collection-list w-dyn-items">
-                          <div
-                            data-w-id="6115e99f-4353-ac69-c8b7-a759f012a863"
-                            style={{ opacity: "0" }}
-                            role="listitem"
-                            className="w-dyn-item"
-                          >
-                            <a
-                              data-w-id="6115e99f-4353-ac69-c8b7-a759f012a864"
-                              href="/packages/simply-srilanka"
-                              className="packages-item-link w-inline-block"
-                            >
-                              <div
-                                style={{
-                                  backgroundImage:
-                                    "url(/assets/6a6d9f9f00db30d38bd252e1_d6f4a52ad327b383ba0943fdf8286174.jpg)",
-                                }}
-                                className="package-card"
-                              >
-                                <div className="content-wrapper">
-                                  <div className="title-container">
-                                    <div className="overline">$3000 PP / 10 Nights</div>
-                                    <div className="text-3xl centre max-2lines">
-                                      Simply Sri Lanka
-                                    </div>
-                                  </div>
-                                  <div
-                                    data-w-id="6115e99f-4353-ac69-c8b7-a759f012a86e"
-                                    className="button-outline"
-                                  >
-                                    <div>
-                                      <div className="button-2-text _01">More info</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
                           <div
                             data-w-id="6115e99f-4353-ac69-c8b7-a759f012a863"
                             style={{ opacity: "0" }}

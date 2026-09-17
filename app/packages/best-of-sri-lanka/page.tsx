@@ -3,17 +3,17 @@ import type { Metadata } from "next";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
-  title: "Sri lanka With Little Ones - Tripvana Webflow HTML Website Template",
+  title: "Sri lanka With Little Ones - Travedise - Your Next Adventure Starts Here",
   description: "Family-paced and full of things to point at.",
   alternates: { canonical: "/packages/best-of-sri-lanka" },
   openGraph: {
-    title: "Sri lanka With Little Ones - Tripvana Webflow HTML Website Template",
+    title: "Sri lanka With Little Ones - Travedise - Your Next Adventure Starts Here",
     description: "Family-paced and full of things to point at.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sri lanka With Little Ones - Tripvana Webflow HTML Website Template",
+    title: "Sri lanka With Little Ones - Travedise - Your Next Adventure Starts Here",
     description: "Family-paced and full of things to point at.",
   },
 };
@@ -187,7 +187,7 @@ export default function BestOfSriLankaPage() {
                   <img
                     loading="lazy"
                     src="/assets/6a90409b2572838714e11678_image-4-Vectorized-.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>

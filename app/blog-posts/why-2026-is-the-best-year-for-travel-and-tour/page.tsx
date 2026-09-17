@@ -3,19 +3,22 @@ import type { Metadata } from "next";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
-  title: "Why 2026 Is the Best Year for Travel and Tour - Tripvana Webflow HTML Website Template",
+  title:
+    "Why 2026 Is the Best Year for Travel and Tour - Travedise - Your Next Adventure Starts Here",
   description:
     "With new flight routes, improved global connections trending destinations, 2026 is shaping.",
   alternates: { canonical: "/blog-posts/why-2026-is-the-best-year-for-travel-and-tour" },
   openGraph: {
-    title: "Why 2026 Is the Best Year for Travel and Tour - Tripvana Webflow HTML Website Template",
+    title:
+      "Why 2026 Is the Best Year for Travel and Tour - Travedise - Your Next Adventure Starts Here",
     description:
       "With new flight routes, improved global connections trending destinations, 2026 is shaping.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Why 2026 Is the Best Year for Travel and Tour - Tripvana Webflow HTML Website Template",
+    title:
+      "Why 2026 Is the Best Year for Travel and Tour - Travedise - Your Next Adventure Starts Here",
     description:
       "With new flight routes, improved global connections trending destinations, 2026 is shaping.",
   },
@@ -189,7 +192,7 @@ export default function Why2026IsTheBestYearForTravelAndTourPage() {
                   <img
                     loading="lazy"
                     src="/assets/69e71a6f589fe83624cd3faf_travedise-logo.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>

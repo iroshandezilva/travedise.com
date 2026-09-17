@@ -3,17 +3,17 @@ import type { Metadata } from "next";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
-  title: "Wildlife Package  - Tripvana Webflow HTML Website Template",
+  title: "Wildlife Package - Travedise - Your Next Adventure Starts Here",
   description: "Nature end to end, from gardens to leopard country.",
   alternates: { canonical: "/packages/wildlife-package" },
   openGraph: {
-    title: "Wildlife Package  - Tripvana Webflow HTML Website Template",
+    title: "Wildlife Package - Travedise - Your Next Adventure Starts Here",
     description: "Nature end to end, from gardens to leopard country.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wildlife Package  - Tripvana Webflow HTML Website Template",
+    title: "Wildlife Package - Travedise - Your Next Adventure Starts Here",
     description: "Nature end to end, from gardens to leopard country.",
   },
 };
@@ -187,7 +187,7 @@ export default function WildlifePackagePage() {
                   <img
                     loading="lazy"
                     src="/assets/6a90409b2572838714e11678_image-4-Vectorized-.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>

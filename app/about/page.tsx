@@ -195,7 +195,7 @@ export default function AboutPage() {
                   <img
                     loading="lazy"
                     src="/assets/69e71a6f589fe83624cd3faf_travedise-logo.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>
@@ -980,7 +980,7 @@ export default function AboutPage() {
                         </svg>
                       </div>
                       <div className="subtitle-text w-variant-38bc5100-ac3d-1f4c-f013-04adbcdd5c81">
-                        About Tripvana
+                        About Travedise
                       </div>
                     </div>
                   </div>

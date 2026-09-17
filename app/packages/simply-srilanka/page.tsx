@@ -3,19 +3,19 @@ import type { Metadata } from "next";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
-  title: "Simply Sri Lanka - Tripvana Webflow HTML Website Template",
+  title: "Simply Sri Lanka - Travedise - Your Next Adventure Starts Here",
   description:
     "Sri Lanka, done simply. This affordabletailor-made itinerary takes you from thepalm-fringed coastline to the misty, teaplantation hills. You’ll be climbing up rock-topfortresses, riding iconic railway lines, wanderingancient, vine-laden cities and watching gentlegatherings of elephants on this inspiring andimmersive introductory visit to Sri Lanka.",
   alternates: { canonical: "/packages/simply-srilanka" },
   openGraph: {
-    title: "Simply Sri Lanka - Tripvana Webflow HTML Website Template",
+    title: "Simply Sri Lanka - Travedise - Your Next Adventure Starts Here",
     description:
       "Sri Lanka, done simply. This affordabletailor-made itinerary takes you from thepalm-fringed coastline to the misty, teaplantation hills. You’ll be climbing up rock-topfortresses, riding iconic railway lines, wanderingancient, vine-laden cities and watching gentlegatherings of elephants on this inspiring andimmersive introductory visit to Sri Lanka.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Simply Sri Lanka - Tripvana Webflow HTML Website Template",
+    title: "Simply Sri Lanka - Travedise - Your Next Adventure Starts Here",
     description:
       "Sri Lanka, done simply. This affordabletailor-made itinerary takes you from thepalm-fringed coastline to the misty, teaplantation hills. You’ll be climbing up rock-topfortresses, riding iconic railway lines, wanderingancient, vine-laden cities and watching gentlegatherings of elephants on this inspiring andimmersive introductory visit to Sri Lanka.",
   },
@@ -190,7 +190,7 @@ export default function SimplySrilankaPage() {
                   <img
                     loading="lazy"
                     src="/assets/6a90409b2572838714e11678_image-4-Vectorized-.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>

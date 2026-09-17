@@ -3,19 +3,19 @@ import type { Metadata } from "next";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
-  title: "FAQ - Tripvana Webflow HTML Website Template",
+  title: "FAQ - Travedise - Your Next Adventure Starts Here",
   description:
     "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "FAQ - Tripvana Webflow HTML Website Template",
+    title: "FAQ - Travedise - Your Next Adventure Starts Here",
     description:
       "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FAQ - Tripvana Webflow HTML Website Template",
+    title: "FAQ - Travedise - Your Next Adventure Starts Here",
     description:
       "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
   },
@@ -190,7 +190,7 @@ export default function FaqPage() {
                   <img
                     loading="lazy"
                     src="/assets/6a90409b2572838714e11678_image-4-Vectorized-.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>

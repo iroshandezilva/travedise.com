@@ -4,13 +4,13 @@ import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
   title:
-    "Family-Friendly Destinations That Everyone Will Love - Tripvana Webflow HTML Website Template",
+    "Family-Friendly Destinations That Everyone Will Love - Travedise - Your Next Adventure Starts Here",
   description:
     "Traveling with family doesn’t have to be stressful. Discover safe, fun, and exciting.",
   alternates: { canonical: "/blog-posts/family-friendly-destinations-that-everyone-will-love" },
   openGraph: {
     title:
-      "Family-Friendly Destinations That Everyone Will Love - Tripvana Webflow HTML Website Template",
+      "Family-Friendly Destinations That Everyone Will Love - Travedise - Your Next Adventure Starts Here",
     description:
       "Traveling with family doesn’t have to be stressful. Discover safe, fun, and exciting.",
     type: "website",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Family-Friendly Destinations That Everyone Will Love - Tripvana Webflow HTML Website Template",
+      "Family-Friendly Destinations That Everyone Will Love - Travedise - Your Next Adventure Starts Here",
     description:
       "Traveling with family doesn’t have to be stressful. Discover safe, fun, and exciting.",
   },
@@ -192,7 +192,7 @@ export default function FamilyFriendlyDestinationsThatEveryoneWillLovePage() {
                   <img
                     loading="lazy"
                     src="/assets/69e71a6f589fe83624cd3faf_travedise-logo.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>

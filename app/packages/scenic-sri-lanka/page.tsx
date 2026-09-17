@@ -3,17 +3,17 @@ import type { Metadata } from "next";
 import { WebflowScripts, type ScriptSpec } from "@/components/webflow-scripts";
 
 export const metadata: Metadata = {
-  title: "Scenic Sri Lanka  - Tripvana Webflow HTML Website Template",
+  title: "Scenic Sri Lanka - Travedise - Your Next Adventure Starts Here",
   description: "From Sigiriya rock fortress to Yala National Park and breathtaking views.",
   alternates: { canonical: "/packages/scenic-sri-lanka" },
   openGraph: {
-    title: "Scenic Sri Lanka  - Tripvana Webflow HTML Website Template",
+    title: "Scenic Sri Lanka - Travedise - Your Next Adventure Starts Here",
     description: "From Sigiriya rock fortress to Yala National Park and breathtaking views.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scenic Sri Lanka  - Tripvana Webflow HTML Website Template",
+    title: "Scenic Sri Lanka - Travedise - Your Next Adventure Starts Here",
     description: "From Sigiriya rock fortress to Yala National Park and breathtaking views.",
   },
 };
@@ -187,7 +187,7 @@ export default function ScenicSriLankaPage() {
                   <img
                     loading="lazy"
                     src="/assets/6a90409b2572838714e11678_image-4-Vectorized-.svg"
-                    alt="Tripvana Logo"
+                    alt="Travedise Logo"
                     className="tripvana-logo"
                   />
                 </a>
