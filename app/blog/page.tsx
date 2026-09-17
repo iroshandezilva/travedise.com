@@ -32,23 +32,25 @@ export default function BlogPage() {
     <div className="overflow-clip pb-2.5">
       <PageGradient />
       <Navbar current="/blog" />
-      <section>
-        <div className="container-site">
-          <div className="flex flex-col items-center justify-center gap-20 pt-[230px] pb-20 max-lg:gap-[60px] max-lg:pt-[140px] max-md:gap-[30px] max-md:pt-[120px] max-md:pb-[60px] max-sm:pt-[100px]">
-            <div className="flex max-w-[800px] flex-col items-center justify-center gap-[25px] max-md:gap-4">
-              <Reveal delay={50}>
-                <SectionTag>Blog & Tips</SectionTag>
-              </Reveal>
-              <Reveal as="h2" delay={100} className="m-0 text-center font-serif">
-                Expert travel advice to help you explore smarter and deeper.
-              </Reveal>
-            </div>
-            <div className="w-full border-b border-line pb-20 max-lg:pb-[50px] max-md:pb-10">
-              <BlogCardGrid posts={blogPosts} variant="listing" />
+      <main>
+        <section>
+          <div className="container-site">
+            <div className="flex flex-col items-center justify-center gap-20 pt-[230px] pb-20 max-lg:gap-[60px] max-lg:pt-[140px] max-md:gap-[30px] max-md:pt-[120px] max-md:pb-[60px] max-sm:pt-[100px]">
+              <div className="flex max-w-[800px] flex-col items-center justify-center gap-[25px] max-md:gap-4">
+                <Reveal delay={50}>
+                  <SectionTag>Blog & Tips</SectionTag>
+                </Reveal>
+                <Reveal as="h2" delay={100} className="m-0 text-center font-serif">
+                  Expert travel advice to help you explore smarter and deeper.
+                </Reveal>
+              </div>
+              <div className="w-full border-b border-line pb-20 max-lg:pb-[50px] max-md:pb-10">
+                <BlogCardGrid posts={blogPosts} variant="listing" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
       <Footer />
     </div>
   );
