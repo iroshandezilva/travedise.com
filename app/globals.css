@@ -230,6 +230,13 @@
   .v2-gallery-track:hover {
     animation-play-state: paused;
   }
+  /* Smaller frames on a phone, so the strip still moves at a readable pace. */
+  @media (width < 768px) {
+    .v2-gallery-track {
+      gap: 10px;
+      animation-duration: 60s;
+    }
+  }
   @keyframes v2-gallery-slide {
     to {
       transform: translateX(-50%);
@@ -238,6 +245,122 @@
   @media (prefers-reduced-motion: reduce) {
     .v2-gallery-track {
       animation: none;
+    }
+  }
+}
+
+@layer components {
+  /* On phones the wide card grids become one horizontal, snapping row. The layout
+     itself is utility classes on the element; this only hides the scrollbar, which
+     Tailwind has no utility for. */
+  .v2-rail {
+    scrollbar-width: none;
+  }
+  .v2-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Photo stack — three images sharing one frame. Desktop shows only the first;
+     on a phone they cross-fade, the two stacks running 3s apart so they never
+     change at the same moment. */
+  .v2-fade-stack {
+    position: relative;
+    overflow: hidden;
+  }
+  .v2-fade-stack img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+  .v2-fade-stack img:first-child {
+    opacity: 1;
+  }
+  @media (width < 768px) {
+    .v2-fade-stack img {
+      animation: v2-stack-fade 18s ease-in-out infinite;
+    }
+    .v2-fade-stack img:nth-child(2) {
+      animation-delay: 6s;
+    }
+    .v2-fade-stack img:nth-child(3) {
+      animation-delay: 12s;
+    }
+    .v2-fade-stack.offset img:nth-child(1) {
+      animation-delay: 3s;
+    }
+    .v2-fade-stack.offset img:nth-child(2) {
+      animation-delay: 9s;
+    }
+    .v2-fade-stack.offset img:nth-child(3) {
+      animation-delay: 15s;
+    }
+  }
+  @keyframes v2-stack-fade {
+    0% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    4% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    36% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Menu items lift in one after another as the panel opens. */
+  .v2-rise {
+    opacity: 0;
+    animation: v2-rise-in 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 60ms + 60ms);
+  }
+  @keyframes v2-rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* The menu's backdrop photo settles out of a slight zoom as the panel opens. */
+  .v2-sheen {
+    animation: v2-sheen 9s ease-out forwards;
+  }
+  @keyframes v2-sheen {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-fade-stack img {
+      animation: none;
+      opacity: 0;
+    }
+    .v2-fade-stack img:first-child {
+      opacity: 1;
+    }
+    .v2-rise,
+    .v2-sheen {
+      animation: none;
+      opacity: 1;
     }
   }
 }

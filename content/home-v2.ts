@@ -37,10 +37,30 @@ export const navLinks = [
   { href: "/blog", label: "Travel notes" },
 ] as const;
 
+/** The phone menu has room for one more entry than the desktop bar. */
+export const mobileNavLinks = [...navLinks, { href: "#questions", label: "Questions" }] as const;
+
+/** The journey promoted at the foot of the phone menu. */
+export const menuFeature = {
+  title: "Hill Country & Beach",
+  body: "Cool mornings in the tea estates, then the south coast.",
+  image: images.teaEstate,
+  href: "/packages/hillcountry",
+};
+
 /* 00 Overview ------------------------------------------------------------------ */
 
-export const overviewLede =
-  "Sri Lanka is small enough to cross in a day and varied enough to hold you for a month. Tea country in the morning, the coast by evening, and a road between them worth slowing down for. What changes a trip here is not the list of places. It is how much time you leave around them.";
+/**
+ * Split in three so the phone layout can drop the middle sentence, as the mobile
+ * design does, without keeping a second copy of the paragraph.
+ */
+export const overviewLede = {
+  open: "Sri Lanka is small enough to cross in a day and varied enough to hold you for a month.",
+  desktopOnly:
+    " Tea country in the morning, the coast by evening, and a road between them worth slowing down for.",
+  close:
+    " What changes a trip here is not the list of places. It is how much time you leave around them.",
+};
 
 /**
  * Place names wrapped in `[brackets]` in the bodies below are rendered as links. The
@@ -166,6 +186,17 @@ export const moreJourneys: { title: string; image: string; href: string }[] = [
   },
 ];
 
+/**
+ * The phone layout drops the small-card row and instead carries the honeymoon journey
+ * as a fourth card on the rail, where it needs a description like the others.
+ */
+export const railJourney: Journey = {
+  title: "Honeymoon In Sri Lanka",
+  body: "Quiet places to land, with room to do nothing at all.",
+  image: images.honeymoon,
+  href: "/packages/dream-honeymoon-in-sri-lanka",
+};
+
 /* 03 The island in pictures ----------------------------------------------------- */
 
 export const galleryImages: { src: string; alt: string }[] = [
@@ -214,6 +245,23 @@ export const routeQuestions: { title: string; body: string; image: string }[] = 
     body: "A good itinerary has space to decide as you go.",
     image: images.optionalDays,
   },
+];
+
+/**
+ * On a phone the two team photos cross-fade through three frames each instead of
+ * sitting still. The first image of each stack is what the desktop layout shows.
+ */
+export const aboutStacks: { src: string; alt: string }[][] = [
+  [
+    { src: images.quietStop, alt: "A quiet stop along the route" },
+    { src: images.honeymoon, alt: "Palms along the coast road" },
+    { src: images.littleOnes, alt: "Tea pickers on an estate slope" },
+  ],
+  [
+    { src: images.scenic, alt: "The Travedise team" },
+    { src: images.noteFamily, alt: "A guide on the road" },
+    { src: images.noteDates, alt: "Planning a route together" },
+  ],
 ];
 
 /* 07 People behind the plan ------------------------------------------------------ */

@@ -26,16 +26,21 @@ function withPlaceLinks(body: string): ReactNode[] {
 export function Overview() {
   return (
     <section id="overview" className="w-full shrink-0 bg-white py-24 gutter-v2 max-md:py-16">
-      <div className="container-v2 flex items-start gap-24 max-lg:flex-col max-lg:gap-12">
-        <p className="m-0 w-[620px] shrink-0 font-soul text-[40px]/[52px] tracking-[-0.01em] text-v2-navy max-lg:w-full max-lg:text-[32px]/[42px] max-md:text-[26px]/[36px]">
-          {overviewLede}
+      <div className="container-v2 flex items-start gap-24 max-lg:flex-col max-lg:gap-12 max-md:gap-8">
+        <p className="m-0 w-[620px] shrink-0 font-soul text-[40px]/[52px] tracking-[-0.01em] text-v2-navy max-lg:w-full max-lg:text-[32px]/[42px] max-md:text-[27px]/[36px]">
+          {overviewLede.open}
+          <span className="max-md:hidden">{overviewLede.desktopOnly}</span>
+          {overviewLede.close}
         </p>
         <div className="flex min-w-0 flex-1 flex-col gap-[22px]">
-          <h2 className="m-0 mb-0.5 font-soul text-[24px]/[30px] font-normal text-v2-navy">
+          <h2 className="m-0 mb-0.5 font-soul text-[24px]/[30px] font-normal text-v2-navy max-md:mb-0 max-md:text-[22px]/[28px]">
             What people come back talking about
           </h2>
           {overviewNotes.map((note) => (
-            <p key={note.lead} className="m-0 text-[16px]/[26px] text-[#3a424a]">
+            <p
+              key={note.lead}
+              className="m-0 text-[16px]/[26px] text-[#3a424a] max-md:text-[15px]/[24px]"
+            >
               <strong className="font-semibold text-v2-navy">{note.lead}</strong>{" "}
               {withPlaceLinks(note.body)}
             </p>
