@@ -1,18 +1,6 @@
-/*
- * The Webflow stylesheet sits in its own layer, above Tailwind's preflight and below
- * utilities: pages that haven't been migrated keep rendering as before, and utilities
- * on migrated markup always win. Delete the `webflow` import once every page is migrated.
- */
-@layer theme, base, webflow, components, utilities;
-
 @import "tailwindcss";
-@import "../public/css/travedise-com.webflow.shared.4454c9861.css" layer(webflow);
 
 @source not "../public";
-@source not "../scripts";
-
-/* Unmigrated pages still use Webflow class names (`container`, `hidden`…) that are also
-   Tailwind utilities. Keep them out of the scan; delete a page's line when you migrate it. */
 
 /* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
    write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
