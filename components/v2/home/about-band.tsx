@@ -1,6 +1,5 @@
-import Link from "next/link";
-
-import { aboutStacks } from "@/content/home-v2";
+import { SplitPillLink } from "@/components/v2/buttons";
+import { aboutStacks } from "@/content/v2/home";
 
 /**
  * A statement about how we work, beside two overlapping photos of the team. The photos
@@ -23,17 +22,13 @@ export function AboutBand() {
               Get to know the team behind each thoughtful journey.
             </span>
           </p>
-          <Link
+          <SplitPillLink
             href="/about"
-            className="flex h-[51px] w-[176px] items-center justify-between rounded-full border border-v2-navy bg-white px-5 max-md:h-[50px] max-md:w-[168px]"
+            variant="outline"
+            className="w-[176px] max-md:h-[50px] max-md:w-[168px]"
           >
-            <span className="text-[16px]/[20px] font-semibold text-v2-navy max-md:text-[15px]">
-              About us
-            </span>
-            <span className="text-[18px]/[20px] font-semibold text-v2-navy max-md:text-[16px]">
-              ↗
-            </span>
-          </Link>
+            About us
+          </SplitPillLink>
         </div>
 
         <div className="relative h-[585px] w-[586px] shrink-0 max-lg:h-[440px] max-lg:w-full max-md:order-first max-md:h-[360px]">

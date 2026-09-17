@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { SOCIALS } from "@/components/site/social-links";
-import { images, menuFeature, mobileNavLinks } from "@/content/home-v2";
+import { images } from "@/content/v2/images";
+import { menuFeature, mobileNavLinks } from "@/content/v2/shared";
 
 import { LogoMark } from "./logo";
 
@@ -64,18 +65,19 @@ export function MobileMenu() {
       </button>
 
       {mounted &&
-        open &&
         createPortal(
           <div
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="fixed inset-0 z-50 overflow-y-auto bg-[#0c1526] md:hidden"
+            data-open={open}
+            inert={!open}
+            className="v2-menu fixed inset-0 z-50 overflow-y-auto bg-[#0c1526] md:hidden"
           >
             <img
               src={images.honeymoon}
               alt=""
-              className="v2-sheen absolute inset-0 block size-full object-cover opacity-[0.32]"
+              className="absolute inset-0 block size-full object-cover opacity-[0.32]"
             />
             <div
               className="absolute inset-0"
@@ -124,7 +126,7 @@ export function MobileMenu() {
                     href={href}
                     onClick={close}
                     style={{ "--i": i } as React.CSSProperties}
-                    className="v2-rise flex items-center justify-between py-[13px]"
+                    className="v2-menu-item flex items-center justify-between py-[13px]"
                   >
                     <span className="font-soul text-[34px]/[42px] text-white">{label}</span>
                     <span aria-hidden className="text-[17px] text-white/50">
@@ -138,7 +140,7 @@ export function MobileMenu() {
                 href={menuFeature.href}
                 onClick={close}
                 style={{ "--i": mobileNavLinks.length } as React.CSSProperties}
-                className="v2-rise mt-[26px] flex items-center gap-3.5 rounded-[18px] border border-white/16 bg-white/8 p-3"
+                className="v2-menu-item mt-[26px] flex items-center gap-3.5 rounded-[18px] border border-white/16 bg-white/8 p-3"
               >
                 <img
                   src={menuFeature.image}

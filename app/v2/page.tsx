@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 
-import { AboutBand } from "@/components/home-v2/about-band";
-import { CtaBand } from "@/components/home-v2/cta-band";
-import { Experiences } from "@/components/home-v2/experiences";
-import { FieldNote } from "@/components/home-v2/field-note";
-import { Footer } from "@/components/home-v2/footer";
-import { Gallery } from "@/components/home-v2/gallery";
-import { Hero } from "@/components/home-v2/hero";
-import { Journeys } from "@/components/home-v2/journeys";
-import { Overview } from "@/components/home-v2/overview";
-import { PlanningProcess } from "@/components/home-v2/planning-process";
-import { Questions } from "@/components/home-v2/questions";
-import { RouteQuestions } from "@/components/home-v2/route-questions";
-import { TravelNotes } from "@/components/home-v2/travel-notes";
-import { images } from "@/content/home-v2";
+import { AboutBand } from "@/components/v2/home/about-band";
+import { CtaBand } from "@/components/v2/cta-band";
+import { Experiences } from "@/components/v2/home/experiences";
+import { FieldNote } from "@/components/v2/home/field-note";
+import { Footer } from "@/components/v2/footer";
+import { Gallery } from "@/components/v2/gallery";
+import { Hero } from "@/components/v2/home/hero";
+import { Journeys } from "@/components/v2/home/journeys";
+import { Overview } from "@/components/v2/home/overview";
+import { PlanningProcess } from "@/components/v2/home/planning-process";
+import { Questions } from "@/components/v2/questions";
+import { RouteQuestions } from "@/components/v2/home/route-questions";
+import { TravelNotes } from "@/components/v2/home/travel-notes";
+import { images } from "@/content/v2/images";
 
 const TITLE = "Travedise — See Sri Lanka. Keep time for what matters.";
 const DESCRIPTION =

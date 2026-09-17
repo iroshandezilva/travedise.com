@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { routeQuestions } from "@/content/home-v2";
+import { routeQuestions } from "@/content/v2/home";
 
 /**
  * Three numbered questions that shape an itinerary. On a phone they become a snapping

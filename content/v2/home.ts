@@ -1,52 +1,9 @@
 /**
  * Copy and list data for the v2 home page (`app/v2`). Text is verbatim from the
  * "Home V6 Report-led coastal" design.
- *
- * Photos keep the content-hashed filenames they were exported with, so `images` gives
- * each one a name the components can read.
  */
 
-const asset = (file: string) => `/v2/${file}`;
-
-export const images = {
-  heroVideo: asset("930215efa40428fd9f8d0f63024f2fb6.mp4"),
-  heroPoster: asset("00f1ff4407e11b759d4f26d644519daa.jpg"),
-  livingCulture: asset("f26bc30518ebd238ece8cf61450c8ebe.jpg"),
-  wildlifeEncounters: asset("b40791bd0b77588784c9b501ad5ab76d.jpg"),
-  quietMoments: asset("45e72851c404eb37de3c32b346aab1e2.jpg"),
-  sacredPlaces: asset("d480fd5463c2a41899b5d4b1dcd83a9b.jpg"),
-  scenic: asset("e77a66899f34c2489eb802df5e80cac9.jpg"),
-  teaEstate: asset("c5670454fa292ca33ce909311116223f.jpg"),
-  wildlifePackage: asset("3276de156e35f2243c312d74076e3b41.jpg"),
-  simply: asset("a330488cea582574b523136d4e00efa4.jpg"),
-  littleOnes: asset("1260892ee6b033b2f8f08368d097bbc4.jpg"),
-  honeymoon: asset("f8a8b4efa2e0ef78b05c873af56b6205.webp"),
-  cloudForest: asset("6bbb9c964adcfd7bed8e04ad714c5daa.jpg"),
-  southCoast: asset("ef6d2ae748237034bb3ea6e04683759b.jpg"),
-  quietStop: asset("49c9ea8f6d4c74abde92d705e38b45e5.jpg"),
-  optionalDays: asset("11945aa7861c13c1884485b6e4e5b3b6.jpg"),
-  noteFamily: asset("09d95dc68e65357e5e1c3fd7f705b12f.jpg"),
-  noteDates: asset("2666b322c67fd187300b1a0855435be6.jpg"),
-  ctaBand: asset("0a72b04674868246806c566e0bca4df0.jpg"),
-} as const;
-
-export const navLinks = [
-  { href: "/packages", label: "Journeys" },
-  { href: "#experiences", label: "Experiences" },
-  { href: "/about", label: "About us" },
-  { href: "/blog", label: "Travel notes" },
-] as const;
-
-/** The phone menu has room for one more entry than the desktop bar. */
-export const mobileNavLinks = [...navLinks, { href: "#questions", label: "Questions" }] as const;
-
-/** The journey promoted at the foot of the phone menu. */
-export const menuFeature = {
-  title: "Hill Country & Beach",
-  body: "Cool mornings in the tea estates, then the south coast.",
-  image: images.teaEstate,
-  href: "/packages/hillcountry",
-};
+import { images } from "./images";
 
 /* 00 Overview ------------------------------------------------------------------ */
 
@@ -306,38 +263,5 @@ export const secondaryNotes: { title: string; body: string; image: string; href:
     body: "Tell us when you want to travel. We can discuss which region feels right for that season.",
     image: images.noteDates,
     href: "/contact",
-  },
-];
-
-/* 09 Questions -------------------------------------------------------------------- */
-
-export const questions: { q: string; a: string }[] = [
-  {
-    q: "How do you shape a journey around us?",
-    a: "We begin with your dates, interests, and pace. From there, we discuss a route and refine it with you.",
-  },
-  {
-    q: "How much time should we allow for Sri Lanka?",
-    a: "Ten days covers the island's highlights without rushing. Two weeks lets you add the east coast or stay longer where you want to.",
-  },
-  {
-    q: "Can we make the trip work for children?",
-    a: "Yes. We shorten the drives, build in pool afternoons, and pick stays with room to spread out.",
-  },
-  {
-    q: "What happens after we get in touch?",
-    a: "We reply with a few questions, then send a draft route to react to. Nothing is booked until the plan feels right.",
-  },
-  {
-    q: "Can the route change while we plan?",
-    a: "As often as you like. Most itineraries go through two or three rounds before they settle.",
-  },
-  {
-    q: "What is included in a proposed trip?",
-    a: "Stays, transport with a driver-guide, entrance fees for the sites you choose, and the day plans. We list anything optional separately.",
-  },
-  {
-    q: "How do we choose the right coast for our dates?",
-    a: "The monsoons reach the two coasts at opposite times of year. Tell us your dates and we will point you at the one with the better weather.",
   },
 ];

@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-import { featuredNote, secondaryNotes } from "@/content/home-v2";
+import { QuietLink } from "@/components/v2/buttons";
+
+import { featuredNote, secondaryNotes } from "@/content/v2/home";
 
 /**
  * One large note beside two smaller ones. A grid, because "Explore all notes" sits
@@ -13,12 +15,12 @@ export function TravelNotes() {
         <h2 className="col-start-1 row-start-1 m-0 font-soul text-[46px]/[54px] font-medium text-v2-navy max-md:text-[30px]/[38px]">
           Useful reading for the way there.
         </h2>
-        <Link
+        <QuietLink
           href="/blog"
-          className="col-start-2 row-start-1 justify-self-end border-b border-v2-navy pb-[7px] text-[16px]/[1.2] text-v2-navy max-md:col-start-1 max-md:row-start-3 max-md:justify-self-start max-md:border-0 max-md:pb-0 max-md:text-[15px]/[20px] max-md:text-[#126a8f]"
+          className="col-start-2 row-start-1 justify-self-end pb-[7px] max-md:col-start-1 max-md:row-start-3 max-md:justify-self-start"
         >
           Explore all notes ↗
-        </Link>
+        </QuietLink>
 
         <div className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-9 max-lg:grid-cols-1 max-md:col-span-1 max-md:gap-[26px]">
           <Link href={featuredNote.href} className="group flex flex-col gap-3">
@@ -27,7 +29,7 @@ export function TravelNotes() {
                 src={featuredNote.image}
                 alt=""
                 loading="lazy"
-                className="block h-[410px] w-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03] max-md:h-[220px]"
+                className="block h-[410px] w-full object-cover v2-card-img max-md:h-[220px]"
               />
             </div>
             <span className="font-soul text-[30px]/[38px] font-medium text-v2-navy max-md:text-[23px]/[30px]">
