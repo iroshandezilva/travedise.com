@@ -16,8 +16,20 @@ Not everyone working here knows git. Handle it for them without asking them to r
    Write the PR description in plain language: what changed and where to look.
 4. **Tell the person** the PR link and that the owner will review it. Then check out `dev` again.
 
-Never commit or push to `main` or `dev` directly, never merge PRs, never use `--admin`.
-Releases (`dev` → `main`) are done only by the owner.
+Never commit or push to `main` or `dev` directly. Releases (`dev` → `main`) are done only by the owner.
+
+## Merging — only for the owner
+
+PRs need the owner's approval, and GitHub doesn't let anyone approve their own PR. So when the
+owner asks to merge a PR, Claude merges it for them:
+
+1. Confirm it's the owner: `gh api user --jq .login` must print `iroshandezilva`. If it prints
+   anything else, don't merge — say the owner has to review and merge it.
+2. Check the PR's `build` check passed (`gh pr checks <n>`); if it failed, say so and stop.
+3. `gh pr merge <n> --admin --squash --delete-branch` (for a `dev` → `main` release PR use `--merge`
+   and keep the branch). Share what was merged and where it deploys.
+
+Never merge on your own initiative or for anyone else.
 
 ## Where changes show up
 
