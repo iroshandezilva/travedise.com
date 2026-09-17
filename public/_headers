@@ -1,0 +1,15 @@
+# Cloudflare Pages static headers. Page routes get theirs from functions/_middleware.js.
+
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/.well-known/ai-catalog.json
+  Content-Type: application/json
+  Access-Control-Allow-Origin: *
+
+/.well-known/agent-skills/*
+  Access-Control-Allow-Origin: *

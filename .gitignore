@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code agent worktrees
+/.claude/worktrees/
+
+# Wrangler local dev state
+/.wrangler/

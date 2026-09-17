@@ -2,7 +2,7 @@ name: Build & deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
     branches: [main, dev]
   workflow_dispatch:
@@ -34,21 +34,32 @@ jobs:
           name: site
           path: out
           retention-days: 3
+          include-hidden-files: true # out/.well-known/
 
-  # Only pushes to main reach production — PRs stop at the build check.
+  # main → travedise.com, dev → dev.travedise.pages.dev. PRs stop at the build check.
   deploy:
     needs: build
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ github.ref_name == 'main' && 'production' || 'preview' }}
     steps:
+      # Wrangler bundles functions/ (Pages middleware) from the working directory.
+      - uses: actions/checkout@v4
+
       - uses: actions/download-artifact@v4
         with:
           name: site
           path: out
 
-      - uses: cloudflare/wrangler-action@v3
+      # Run Wrangler directly: wrangler-action would try to install via pnpm (lockfile present).
+      - uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: c875c02d0b617757f8c631be7664e6c5
-          command: pages deploy out --project-name travedise --branch main --commit-hash ${{ github.sha }}
+          node-version: 24
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: c875c02d0b617757f8c631be7664e6c5
+        run: >-
+          npx --yes wrangler@4 pages deploy out --project-name travedise
+          --branch ${{ github.ref_name }} --commit-hash ${{ github.sha }}
