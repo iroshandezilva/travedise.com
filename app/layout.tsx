@@ -6,6 +6,7 @@ import { boska, generalSans, interTight } from "./fonts";
 import { AgentationToolbar } from "@/components/agentation-toolbar";
 import { InterfaceKitPanel } from "@/components/interface-kit-panel";
 import { WebMcpTools } from "@/components/site/webmcp-tools";
+import { jsonLdScript, siteJsonLd } from "@/lib/structured-data";
 
 const FAVICON = "/assets/6a3375a38fce14ddb37ecc20_69e71a6f589fe83624cd3faf_travedise-logo.png";
 
@@ -64,6 +65,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body className={`${generalSans.variable} ${interTight.variable} ${boska.variable}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(siteJsonLd) }}
+        />
         {children}
         <WebMcpTools />
         <AgentationToolbar />

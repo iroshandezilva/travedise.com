@@ -71,7 +71,7 @@ export function AccordionItem({
   header,
   children,
   defaultOpen = false,
-  headingAs: Heading = "h6",
+  headingAs: Heading = "h3",
   className,
   headingClassName,
   panelClassName,
@@ -153,7 +153,7 @@ export function FaqAccordion({
             "rounded-[15px] bg-white px-[25px] py-5 max-lg:p-[30px] max-md:p-5 max-sm:px-4",
             bordered && "border border-line",
           )}
-          headingClassName="font-heading font-medium text-navy max-sm:text-[20px]"
+          headingClassName="font-heading text-h6 font-medium text-navy max-sm:text-[20px]"
           panelClassName="max-w-[700px]"
         >
           <p
