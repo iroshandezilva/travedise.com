@@ -80,11 +80,11 @@ function StepCard({ step }: { step: BookingStep }) {
   return (
     <div className="grid size-full grid-cols-2 gap-6 rounded-card border-[1.2px] border-surface-3 bg-white px-5 pt-3 pb-5 max-sm:grid-cols-1">
       <div className="flex flex-col items-start justify-start">
-        <h3 className="m-0 font-serif text-[48px]/[112%] text-navy max-md:text-[40px]">
+        <p className="m-0 font-serif text-[48px]/[112%] font-medium text-navy max-md:text-[40px]">
           {step.number}
-        </h3>
+        </p>
         <div className="flex flex-col items-start justify-center gap-3 pt-3">
-          <h5 className="m-0 font-serif text-[28px]/[113%] font-light text-navy">{step.title}</h5>
+          <h3 className="m-0 font-serif text-[28px]/[113%] font-light text-navy">{step.title}</h3>
           <p className="m-0 font-heading tracking-[0.4px]">{step.body}</p>
         </div>
       </div>
