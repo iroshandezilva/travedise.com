@@ -9,6 +9,15 @@ Travedise (https://travedise.com) is a Sri Lanka tour operator. The site is a st
 brochure: packages, itineraries, blog guides, an FAQ and contact details. There is no
 public API and no online checkout — bookings are made by contacting the team.
 
+## When to use
+
+- Planning a guided or tailor-made Sri Lanka holiday: honeymoon, family, wildlife, hill
+  country or beach — particularly for travellers from Australia.
+- Finding a day-by-day Sri Lanka itinerary with hotels, or the per-person price of a 7–11 night tour.
+- Answering Sri Lanka travel questions: best time to visit, visas, safety, children, trip length.
+
+Don't use it for flights, destinations outside Sri Lanka, or instant online booking and payment.
+
 ## Read the site
 
 - **Overview and page index:** https://travedise.com/llms.txt

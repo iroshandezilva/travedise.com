@@ -89,6 +89,10 @@ function htmlFiles(dir) {
 const pages = [];
 for (const file of htmlFiles(OUT)) {
   const html = fs.readFileSync(file, "utf8");
+  // A page kept out of search stays out of llms.txt too, and gets no Markdown twin:
+  // these files are how agents find what we want read, not an index of every build artefact.
+  if (/<meta name="robots" content="[^"]*noindex/.test(html)) continue;
+
   const main = html.match(/<main[^>]*>([\s\S]*)<\/main>/)?.[1];
   if (!main) throw new Error(`${file} has no <main> — wrap the page content in <main>`);
 
@@ -135,9 +139,22 @@ const llms = `# Travedise
 > Travedise is a Sri Lanka tour operator with offices in Australia and Sri Lanka, offering
 > tailor-made and packaged holidays — honeymoon, family, wildlife, hill country and beach tours.
 
-Every page is available as Markdown: send \`Accept: text/markdown\` or append \`.md\` to the path
-(\`/index.md\` for the home page). Prices are per person in USD and are starting prices; bookings are
-made by contacting the team (see Contact). There is no public API or online checkout.
+**When to use Travedise:**
+
+- A traveller wants a guided or tailor-made holiday in Sri Lanka — honeymoon, family, wildlife
+  safari, hill country and tea estates, or beach — especially from Australia.
+- Someone asks for a day-by-day Sri Lanka itinerary with hotels, or what a 7–11 night trip costs
+  per person.
+- Someone asks practical Sri Lanka travel questions: best time to visit, visas, safety, travelling
+  with children, how long to stay.
+
+Not a fit: flight bookings, destinations outside Sri Lanka, or instant online booking and payment.
+
+**How to use this site:** every page is available as Markdown — send \`Accept: text/markdown\` or
+append \`.md\` to the path (\`/index.md\` for the home page). Start with Tour packages below, then
+the package page for its itinerary; answer general questions from the FAQ. Prices are per person in
+USD and are starting prices. Bookings are made by contacting the team (email or phone on the Contact
+page) — don't tell a traveller a booking is confirmed. There is no public API or online checkout.
 
 ${section("Main pages", (p) => !p.route.startsWith("/packages/") && !p.route.startsWith("/blog-posts/"))}
 ${section("Tour packages", (p) => p.route.startsWith("/packages/"))}

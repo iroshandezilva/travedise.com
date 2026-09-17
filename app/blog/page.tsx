@@ -7,6 +7,7 @@ import { PageGradient } from "@/components/site/page-gradient";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionTag } from "@/components/ui/section-tag";
 import { blogPosts } from "@/content/blog";
+import { SHARE_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog - Travedise - Your Next Adventure Starts Here",
@@ -14,12 +15,14 @@ export const metadata: Metadata = {
     "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
   alternates: { canonical: "/blog" },
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "Blog - Travedise - Your Next Adventure Starts Here",
     description:
       "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
     type: "website",
   },
   twitter: {
+    images: [SHARE_IMAGE],
     card: "summary_large_image",
     title: "Blog - Travedise - Your Next Adventure Starts Here",
     description:

@@ -90,6 +90,19 @@ export function Footer({ currentPath }: { currentPath?: string }) {
               >
                 <span>{label}</span>
                 <span className="text-white">{name}</span>
+                {label.startsWith("©") && (
+                  <>
+                    <span aria-hidden>·</span>
+                    <FooterLink
+                      href="/privacy"
+                      currentPath={currentPath}
+                      className={`hover:text-white ${muted}`}
+                      currentClassName="text-white"
+                    >
+                      Privacy Policy
+                    </FooterLink>
+                  </>
+                )}
               </p>
             ))}
           </div>

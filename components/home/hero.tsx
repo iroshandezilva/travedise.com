@@ -128,9 +128,9 @@ function DeckCard({ pkg }: { pkg: TravelPackage }) {
         </div>
       </div>
       <div className="flex items-center justify-between px-1.5">
-        <h1 className="m-0 font-heading text-[16px]/[109%] font-medium tracking-[0.4px] text-navy">
+        <h2 className="m-0 font-heading text-[16px]/[109%] font-medium tracking-[0.4px] text-navy">
           {pkg.title}
-        </h1>
+        </h2>
         <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-line">
           <ArrowUpRight className="size-5" />
         </span>

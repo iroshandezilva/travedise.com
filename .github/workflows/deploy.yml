@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # sitemap lastmod comes from git history
 
       - uses: pnpm/action-setup@v4
 
@@ -27,6 +29,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm build
+
+      - run: pnpm test
 
       - uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'

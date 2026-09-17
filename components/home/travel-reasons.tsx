@@ -22,13 +22,13 @@ export function TravelReasons() {
             {travelReasons.map((reason) => (
               <div key={reason.title} className="mr-6 w-full min-w-0 flex-[1_1_0]">
                 <div className="flex h-[460px] w-full flex-col items-start justify-between gap-[121px] rounded-card bg-navy-800 p-[30px] max-md:h-[390px] max-md:gap-[114px] max-md:p-[25px] max-sm:px-4 max-sm:py-5">
-                  <h6 className="m-0 font-serif text-[28px]/[113%] font-light text-white">
+                  <h3 className="m-0 font-serif text-[28px]/[113%] font-light text-white">
                     {reason.title}
-                  </h6>
+                  </h3>
                   <div className="flex w-full flex-col gap-[30px] max-md:gap-5">
-                    <h5 className="m-0 font-heading text-[20px]/[30px] font-light tracking-[0.3px] text-surface-3">
+                    <p className="m-0 font-heading text-[20px]/[30px] font-light tracking-[0.3px] text-surface-3">
                       {reason.body}
-                    </h5>
+                    </p>
                   </div>
                 </div>
               </div>
