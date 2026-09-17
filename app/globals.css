@@ -13,12 +13,6 @@
 
 /* Unmigrated pages still use Webflow class names (`container`, `hidden`…) that are also
    Tailwind utilities. Keep them out of the scan; delete a page's line when you migrate it. */
-@source not "./packages/best-of-sri-lanka/page.tsx";
-@source not "./packages/dream-honeymoon-in-sri-lanka/page.tsx";
-@source not "./packages/hillcountry/page.tsx";
-@source not "./packages/scenic-sri-lanka/page.tsx";
-@source not "./packages/simply-srilanka/page.tsx";
-@source not "./packages/wildlife-package/page.tsx";
 
 /* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
    write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
