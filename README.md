@@ -1,116 +1,55 @@
-# travedise.com — Next.js port
+# travedise.com
 
-A pixel-for-pixel port of the published Webflow site at `travedise.com` to Next.js 16
-(App Router, TypeScript, statically prerendered). Every page's markup, stylesheet,
-assets and Webflow runtime are the originals; only the delivery changed.
+Marketing site for Travedise — Sri Lanka tour packages. Next.js 16 (App Router), React 19,
+Tailwind CSS v4, deployed as a fully static export to Cloudflare Pages.
 
-## Routes
-
-| Route | Source page |
-| --- | --- |
-| `/` | `index.html` |
-| `/about` | `about.html` |
-| `/packages` | `packages.html` |
-| `/packages/{best-of-sri-lanka,dream-honeymoon-in-sri-lanka,hillcountry,scenic-sri-lanka,simply-srilanka,wildlife-package}` | `packages/*.html` |
-| `/blog` | `blog.html` |
-| `/blog-posts/{family-friendly-destinations-that-everyone-will-love,the-ultimate-honeymoon-destination,why-2026-is-the-best-year-for-travel-and-tour}` | `blog-posts/*.html` |
-| `/contact` | `contact.html` |
-| `/faq` | `faq.html` |
-
-`<head>` metadata (title, description, Open Graph, Twitter, favicons) is expressed
-through the App Router `metadata` API.
-
-## Layout
-
-```
-app/                     one page.tsx per route + the shared root layout
-components/
-  webflow-scripts.tsx    boots the Webflow runtime after hydration
-public/css/              the Webflow stylesheet, byte-identical apart from asset URLs
-public/js/               jQuery, the Webflow chunks, GSAP — unmodified
-public/assets/           every image, font, Lottie and SVG the site references
-scripts/                 the one-shot converter and the verification harness
-```
-
-## How the Webflow runtime is wired in
-
-Two things about Webflow's runtime do not survive a naive port, and both are handled
-in `components/webflow-scripts.tsx` and `app/layout.tsx`:
-
-1. **The runtime has to boot after hydration.** Webflow's IX2 engine writes the
-   initial state of every page-load interaction as inline styles (collapsed FAQ
-   answers, staged reveals, hidden images). If it runs before React hydrates —
-   as it does in the published site, where the scripts are blocking tags at the
-   end of `<body>` — hydration reverts those styles. The chain is therefore
-   injected from an effect, one script at a time with `async = false` so the
-   documented execution order (jQuery → shared chunks → the page's feature bundle
-   → GSAP) is preserved, and finished with Webflow's own `IX2_PAGE_UPDATE` event.
-
-2. **`data-wf-page` has to be on `<html>`.** IX2 addresses interaction targets as
-   `<data-wf-page>|<data-w-id>`; without the page id, roughly half the
-   interactions silently fail to bind. It cannot come from the shared root layout,
-   so each page passes its id to `<WebflowScripts>`, which sets the attribute
-   before booting the runtime.
-
-`app/layout.tsx` additionally restores the `w-mod-*` / `wf-*` classes that Webflow
-and the font loader put on `<html>` before hydration, which React otherwise clears.
-
-Internal links are plain `<a href>`, matching the published site: each navigation is
-a full document load, so the runtime always initialises against a fresh DOM.
-
-## Where the pages came from
-
-`app/**/page.tsx` was generated from the Webflow export by `scripts/convert.mjs`,
-but it is now **hand-maintained source** — the homepage has diverged from the
-export (see below). Re-running the converter would overwrite those edits.
-
-With the SiteSucker export in place, the import steps were:
-
-```bash
-node scripts/copy-assets.mjs   # collect + sanitise every referenced asset
-node scripts/rewrite-css.mjs   # point the stylesheet at /assets
-node scripts/convert.mjs       # emit app/**/page.tsx from the HTML
-pnpm exec prettier --write "app/**/*.tsx"
-```
-
-`SRC` at the top of each script points at the export directory.
-
-## Deliberate divergence from the export
-
-The homepage carousels no longer use Webflow's slider:
-
-- **Hero deck** and **booking process** are native horizontal scrollers
-  (`components/scroll-carousel.tsx`), so a trackpad, a touch swipe and the
-  keyboard all move them, with scroll-snap settling each card. The arrows scroll
-  by one card and the progress bar under each deck now reflects real scroll
-  position. Webflow's autoplay is gone with the slider.
-- **Traveller reviews** are a plain three-across row that stacks below 991px —
-  with only three cards there was nothing to scroll, so the slider, its arrows
-  and its progress bar were removed.
-
-The progress thumbs use their own classes rather than Webflow's
-`.slider-line-animation` / `.booking-line-animation`, because IX2 still targets
-those by class and rewrites their inline `width` after hydration.
-
-`scripts/verify-dom.mjs` reports `/` as differing for exactly this reason; the
-other fourteen routes remain identical to the export.
-
-## Verifying the port
-
-With `pnpm build && npx serve out -l 3111` running, and the original export served at
-`http://localhost:8111`:
-
-```bash
-node scripts/verify-dom.mjs      # element-by-element diff of both renders
-node scripts/verify-assets.mjs   # every referenced URL resolves
-```
-
-`verify-dom` compares the full element tree — tags, attributes and text — of each
-route against its source page, normalising only the asset URLs that were rewritten.
+- `main` → https://travedise.com
+- `dev` → https://dev.travedise.pages.dev
 
 ## Development
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev                          # http://localhost:3000
+pnpm build && npx serve out       # preview the production (static) build
 ```
+
+`next.config.ts` sets `output: "export"`, so everything must be static: no route handlers that read
+the request, middleware, server actions, `cookies()`/`headers()`, or dynamic routes without
+`generateStaticParams`. `pnpm start` doesn't work with a static export.
+
+## Structure
+
+```
+app/                  routes — each page.tsx composes sections and exports its metadata
+  globals.css         Tailwind import, design tokens (@theme), base typography, <Reveal> styles
+  fonts.ts            next/font: General Sans, Boska (local), Inter Tight (Google)
+components/
+  ui/                 primitives: ArrowButton, PillButton, OutlinePill, TextRoll, SectionTag, Reveal
+  site/               shared across pages: Navbar, Footer, FaqSection, PackageCard, BlogCard, …
+  home/ about/ contact/ packages/ package-detail/ blog/   page-specific sections
+content/              typed page content: packages, package details, blog posts, FAQs, …
+lib/cn.ts             className helper (clsx + tailwind-merge aware of our tokens)
+public/assets/        images and icons
+```
+
+Copy lives in `content/`, not in JSX — to change a package, FAQ or blog post, edit the data file.
+
+## Styling
+
+- **Tailwind utilities only** — no CSS files beyond `app/globals.css`, no CSS modules.
+- **Desktop-first**, matching the original design: unprefixed classes are desktop, then override
+  with `max-lg:` (≤991px), `max-md:` (≤767px), `max-sm:` (≤479px).
+- **Tokens** (`app/globals.css`): colors `navy`, `navy-800`, `slate`, `slate-300/400`, `lime`,
+  `surface`, `line`…; fonts `font-sans` (body), `font-heading`, `font-serif`, `font-boska`;
+  `text-h1`…`text-h6` (shrink per breakpoint automatically), `text-body-lg`; `rounded-card`,
+  `rounded-panel`; `container-site` for the 1271px page container; `ease-out-quart` etc.
+- **Motion**: CSS transitions/keyframes. Scroll-in animations use `<Reveal from delay>`;
+  hover effects use `group-hover:`. Anything larger than a hover respects `prefers-reduced-motion`.
+- Reuse `components/ui` and `components/site` before writing new markup.
+
+## Deploys and workflow
+
+Pushes to `dev` and `main` deploy via `.github/workflows/deploy.yml` (Cloudflare Pages project
+`travedise`). All changes go through a branch → PR into `dev`; `dev` → `main` is a release PR.
+See `CLAUDE.md` for the full workflow.
