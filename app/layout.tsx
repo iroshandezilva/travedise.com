@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { boska, generalSans, interTight } from "./fonts";
+import { boska, generalSans, interTight, ltSoul } from "./fonts";
 
 import { AgentationToolbar } from "@/components/agentation-toolbar";
 import { InterfaceKitPanel } from "@/components/interface-kit-panel";
@@ -63,7 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <script type="text/javascript" dangerouslySetInnerHTML={{ __html: TAWK }} />
         )}
       </head>
-      <body className={`${generalSans.variable} ${interTight.variable} ${boska.variable}`}>
+      <body
+        className={`${generalSans.variable} ${interTight.variable} ${boska.variable} ${ltSoul.variable}`}
+      >
         {children}
         <WebMcpTools />
         <AgentationToolbar />
