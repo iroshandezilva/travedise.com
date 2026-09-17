@@ -51,8 +51,15 @@ jobs:
           name: site
           path: out
 
-      - uses: cloudflare/wrangler-action@v3
+      # Run Wrangler directly: wrangler-action would try to install via pnpm (lockfile present).
+      - uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: c875c02d0b617757f8c631be7664e6c5
-          command: pages deploy out --project-name travedise --branch ${{ github.ref_name }} --commit-hash ${{ github.sha }}
+          node-version: 24
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: c875c02d0b617757f8c631be7664e6c5
+        run: >-
+          npx --yes wrangler@4 pages deploy out --project-name travedise
+          --branch ${{ github.ref_name }} --commit-hash ${{ github.sha }}
