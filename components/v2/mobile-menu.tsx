@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { SOCIALS } from "@/components/site/social-links";
-import { images, menuFeature, mobileNavLinks } from "@/content/home-v2";
+import { images } from "@/content/v2/images";
+import { menuFeature, mobileNavLinks } from "@/content/v2/shared";
 
 import { LogoMark } from "./logo";
 

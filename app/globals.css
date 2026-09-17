@@ -364,3 +364,42 @@
     }
   }
 }
+
+@layer components {
+  /* An accordion panel easing open — the itinerary days and every FAQ list. */
+  .v2-row-open {
+    animation: v2-row-open 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  @keyframes v2-row-open {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* A hero photo settling in when the carousel switches to it. */
+  .v2-hero-shot {
+    animation: v2-hero-shot 0.7s ease-out;
+  }
+  @keyframes v2-hero-shot {
+    from {
+      opacity: 0.4;
+      transform: scale(1.03);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-row-open,
+    .v2-hero-shot {
+      animation: none;
+    }
+  }
+}

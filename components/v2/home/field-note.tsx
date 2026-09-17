@@ -1,4 +1,5 @@
-import { images, pointOfView } from "@/content/home-v2";
+import { pointOfView } from "@/content/v2/home";
+import { images } from "@/content/v2/images";
 import { cn } from "@/lib/cn";
 
 /** The compass rose watermarked into the corner of each stamp photo. */

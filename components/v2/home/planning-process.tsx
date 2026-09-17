@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { planningSteps } from "@/content/home-v2";
+import { planningSteps } from "@/content/v2/home";
 
 /**
  * The four steps from first message to departure, on navy. The step numerals are a

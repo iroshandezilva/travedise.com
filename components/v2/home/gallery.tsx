@@ -1,4 +1,4 @@
-import { galleryImages } from "@/content/home-v2";
+import { galleryImages } from "@/content/v2/home";
 
 /**
  * A photo strip that scrolls endlessly. The track holds the images twice — the second

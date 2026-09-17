@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { overviewLede, overviewNotes, placeLinks } from "@/content/home-v2";
+import { overviewLede, overviewNotes, placeLinks } from "@/content/v2/home";
 
 /** Splits `…in [Yala], elephants…` into text and links, using the `placeLinks` map. */
 function withPlaceLinks(body: string): ReactNode[] {

@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-import { featuredJourneys, moreJourneys, railJourney } from "@/content/home-v2";
+import { QuietLink } from "@/components/v2/buttons";
+
+import { featuredJourneys, moreJourneys, railJourney } from "@/content/v2/home";
 
 /**
  * Three large journey cards, then a row of three smaller ones. On a phone the large
@@ -18,13 +20,10 @@ export function Journeys() {
           <h2 className="m-0 font-soul text-[46px]/[54px] font-medium text-v2-navy max-md:text-[30px]/[38px]">
             A starting point, shaped with you.
           </h2>
-          <Link
-            href="/packages"
-            className="inline-block border-b border-v2-navy pb-2 text-[16px]/[1.2] text-v2-navy max-md:border-0 max-md:pb-0 max-md:text-[15px]/[20px] max-md:text-[#126a8f]"
-          >
+          <QuietLink href="/packages">
             <span className="max-md:hidden">Browse journeys ↗</span>
             <span className="hidden max-md:inline">Browse all journeys ↗</span>
-          </Link>
+          </QuietLink>
         </div>
 
         <div className="v2-rail grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-3 max-md:overflow-x-auto max-md:px-5">

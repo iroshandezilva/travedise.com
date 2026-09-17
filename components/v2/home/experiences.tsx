@@ -8,7 +8,7 @@ import {
   experiences,
   type ExperienceFilter,
   type Experience,
-} from "@/content/home-v2";
+} from "@/content/v2/home";
 import { cn } from "@/lib/cn";
 
 /** Four entry points into the island, narrowed by the chip row above them. */

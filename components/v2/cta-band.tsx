@@ -1,6 +1,6 @@
-import Link from "next/link";
-
-import { images } from "@/content/home-v2";
+import { SplitPillLink } from "@/components/v2/buttons";
+import { closingCta } from "@/content/v2/shared";
+import { images } from "@/content/v2/images";
 
 /**
  * Closing call to action. On desktop the text sits over a photo that bleeds off the
@@ -31,15 +31,12 @@ export function CtaBand() {
             Tell us what you want to see, what you want to feel, and how you like to travel. We’ll
             shape the rest together.
           </p>
-          <Link
-            href="/contact"
-            className="flex h-[52px] w-[192px] items-center justify-between rounded-full bg-v2-sky pr-5 pl-[22px] max-md:h-[54px] max-md:w-full max-md:justify-center max-md:gap-2 max-md:rounded-[27px] max-md:px-0"
+          <SplitPillLink
+            href={closingCta.href}
+            className="w-[192px] max-md:h-[54px] max-md:w-full max-md:rounded-[27px]"
           >
-            <span className="text-[16px]/[20px] font-semibold text-v2-navy">Plan your trip</span>
-            <span className="text-[18px]/[20px] font-medium text-v2-navy max-md:text-[16px] max-md:font-semibold">
-              ↗
-            </span>
-          </Link>
+            {closingCta.action}
+          </SplitPillLink>
         </div>
         {/* Phone only: the band's photo, which has nothing to sit behind here. */}
         <img
