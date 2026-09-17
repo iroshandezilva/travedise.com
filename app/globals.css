@@ -20,13 +20,7 @@
 @source not "./blog/page.tsx";
 @source not "./contact/page.tsx";
 @source not "./faq/page.tsx";
-@source not "./packages/best-of-sri-lanka/page.tsx";
-@source not "./packages/dream-honeymoon-in-sri-lanka/page.tsx";
-@source not "./packages/hillcountry/page.tsx";
 @source not "./packages/page.tsx";
-@source not "./packages/scenic-sri-lanka/page.tsx";
-@source not "./packages/simply-srilanka/page.tsx";
-@source not "./packages/wildlife-package/page.tsx";
 @source not "./page.tsx";
 
 /* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
