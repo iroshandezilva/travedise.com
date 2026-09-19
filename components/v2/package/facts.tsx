@@ -13,7 +13,7 @@ export function PackageFacts({ facts }: { facts: PackageV2["facts"] }) {
       <div className="flex gap-16 max-lg:gap-10 max-md:flex-col max-md:gap-6">
         {facts.map((fact) => (
           <div key={fact.value} className="flex flex-col gap-1.5">
-            <span className="font-soul text-[24px]/[30px] text-white max-md:text-[21px]/[27px]">
+            <span className="font-display text-[24px]/[30px] text-white max-md:text-[21px]/[27px]">
               {fact.value}
             </span>
             <span className="text-[14px]/[20px] text-[#b8c8d1]">{fact.detail}</span>

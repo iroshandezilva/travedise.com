@@ -1,4 +1,4 @@
-import { galleryImages } from "@/content/v2/home";
+import { galleryImages } from "@/content/v2/shared";
 
 /**
  * A photo strip that scrolls endlessly. The track holds the images twice — the second
@@ -19,7 +19,7 @@ export function Gallery({
       className="w-full shrink-0 overflow-clip bg-v2-navy py-[90px] max-md:py-14"
     >
       <div className="container-v2 mb-[42px] flex items-end justify-between gutter-v2 max-lg:flex-col max-lg:items-start max-lg:gap-5 max-md:mb-[26px] max-md:gap-3.5 max-md:px-5">
-        <h2 className="m-0 font-soul text-[46px]/[54px] font-medium text-white max-md:text-[30px]/[38px]">
+        <h2 className="m-0 font-display text-[46px]/[54px] font-medium text-white max-md:text-[30px]/[38px]">
           {heading}
         </h2>
         <p className="m-0 w-[330px] shrink-0 text-[16px]/[25px] text-v2-muted max-lg:w-full max-lg:max-w-[430px] max-md:text-[15px]/[23px]">

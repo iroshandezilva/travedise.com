@@ -1,20 +1,21 @@
 /**
- * Copy shared by every v2 page: the navigation, the closing call to action, and the
- * "Before the journey begins" questions. A package page and the home page pull from
+ * Copy shared by every v2 page: the navigation, the photo strip, the closing call to
+ * action, and the "Before the journey begins" questions. A package page and the home page pull from
  * here so the two never drift apart.
  */
 
 import { images } from "./images";
 
+/** Anchors are written against `/v2` so the same bar works from a journey page. */
 export const navLinks = [
-  { href: "/packages", label: "Journeys" },
-  { href: "#experiences", label: "Experiences" },
-  { href: "/about", label: "About us" },
-  { href: "/blog", label: "Travel notes" },
+  { href: "/v2/packages", label: "Journeys" },
+  { href: "/v2#regions", label: "Places" },
+  { href: "/v2#how", label: "How it works" },
+  { href: "/v2#notes", label: "Travel notes" },
 ] as const;
 
 /** The phone menu has room for one more entry than the desktop bar. */
-export const mobileNavLinks = [...navLinks, { href: "#questions", label: "Questions" }] as const;
+export const mobileNavLinks = [...navLinks, { href: "/v2#questions", label: "Questions" }] as const;
 
 /** The journey promoted at the foot of the phone menu. */
 export const menuFeature = {
@@ -23,6 +24,19 @@ export const menuFeature = {
   image: images.teaEstate,
   href: "/packages/hillcountry",
 };
+
+/* Photo strip, on the journeys index ----------------------------------------------- */
+
+export const galleryImages: { src: string; alt: string }[] = [
+  { src: images.cloudForest, alt: "Cloud forest in the hill country" },
+  { src: images.teaEstate, alt: "Tea estate at first light" },
+  { src: images.simply, alt: "A road through the interior" },
+  { src: images.littleOnes, alt: "Working tea slopes" },
+  { src: images.honeymoon, alt: "Palms above the coast" },
+  { src: images.southCoast, alt: "The south coast in the afternoon" },
+  { src: images.wildlifePackage, alt: "A beach with nobody on it" },
+  { src: images.scenic, alt: "A stop along the way" },
+];
 
 /* 09 Questions -------------------------------------------------------------------- */
 

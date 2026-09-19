@@ -22,7 +22,7 @@ export function CtaBand() {
       />
       <div className="relative mx-auto h-full w-full max-w-[1280px] max-md:h-auto">
         <div className="absolute top-16 left-0 flex w-[625px] flex-col gap-6 max-lg:static max-lg:w-full max-md:px-5 max-md:pt-14">
-          <h2 className="m-0 font-soul text-[60px]/[66px] font-normal tracking-[-0.03em] whitespace-pre-wrap text-v2-navy max-lg:text-[44px]/[50px] max-md:text-[38px]/[44px] max-md:tracking-[-0.02em]">
+          <h2 className="m-0 font-display text-[60px]/[66px] font-normal tracking-[-0.03em] whitespace-pre-wrap text-v2-navy max-lg:text-[44px]/[50px] max-md:text-[38px]/[44px] max-md:tracking-[-0.02em]">
             {"Let’s make the\njourney yours."}
           </h2>
         </div>

@@ -15,14 +15,18 @@ export const boska = localFont({
   variable: "--font-boska-variable",
 });
 
-/** Display face for the v2 home page — Regular (400) and Medium (500). */
-export const ltSoul = localFont({
+/**
+ * Display face for the v2 pages — Ragmont, a variable font with weight and width axes.
+ * The italic is its own file; the v2 CTA band sets one word in it.
+ */
+export const ragmont = localFont({
   src: [
-    { path: "./fonts/LTSoul-Regular.otf", weight: "400", style: "normal" },
-    { path: "./fonts/LTSoul-Medium.otf", weight: "500", style: "normal" },
+    { path: "./fonts/Ragmont-Variable.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/Ragmont-Variable-Italic.woff2", weight: "100 900", style: "italic" },
   ],
+  declarations: [{ prop: "font-stretch", value: "75% 150%" }],
   display: "swap",
-  variable: "--font-lt-soul",
+  variable: "--font-ragmont",
 });
 
 export const interTight = Inter_Tight({

@@ -96,7 +96,7 @@ export function MobileMenu() {
                   className="flex items-center gap-2"
                 >
                   <LogoMark className="h-6 w-[34px]" />
-                  <span className="font-soul text-[21px]/[26px] font-medium text-white">
+                  <span className="font-display text-[21px]/[26px] font-medium text-white">
                     Travedise
                   </span>
                 </Link>
@@ -128,7 +128,7 @@ export function MobileMenu() {
                     style={{ "--i": i } as React.CSSProperties}
                     className="v2-menu-item flex items-center justify-between py-[13px]"
                   >
-                    <span className="font-soul text-[34px]/[42px] text-white">{label}</span>
+                    <span className="font-display text-[34px]/[42px] text-white">{label}</span>
                     <span aria-hidden className="text-[17px] text-white/50">
                       ↗
                     </span>
@@ -148,7 +148,7 @@ export function MobileMenu() {
                   className="block size-[76px] shrink-0 rounded-xl object-cover"
                 />
                 <span className="flex flex-col gap-[5px]">
-                  <span className="font-soul text-[17px]/[22px] font-medium text-white">
+                  <span className="font-display text-[17px]/[22px] font-medium text-white">
                     {menuFeature.title}
                   </span>
                   <span className="text-[13px]/[19px] text-[#d9e4e9e6]">{menuFeature.body}</span>

@@ -65,7 +65,7 @@ export function PackageHero({
         </Link>
 
         <div className="absolute bottom-[58px] left-0 flex w-[700px] flex-col gap-[18px] max-lg:w-[60%] max-md:static max-md:mt-6 max-md:w-auto max-md:gap-3 max-md:px-5">
-          <h1 className="m-0 font-soul text-[68px]/[74px] font-medium tracking-[-0.02em] text-white max-lg:text-[52px]/[58px] max-md:text-[38px]/[44px] max-md:text-v2-navy">
+          <h1 className="m-0 font-display text-[68px]/[74px] font-medium tracking-[-0.02em] text-white max-lg:text-[52px]/[58px] max-md:text-[38px]/[44px] max-md:text-v2-navy">
             {title}
           </h1>
           <p className="m-0 text-[20px]/[29px] text-[#e8eef1] max-md:text-[16px]/[25px] max-md:text-v2-body">

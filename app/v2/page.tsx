@@ -1,23 +1,21 @@
 import type { Metadata } from "next";
 
-import { AboutBand } from "@/components/v2/home/about-band";
-import { CtaBand } from "@/components/v2/cta-band";
-import { Experiences } from "@/components/v2/home/experiences";
-import { FieldNote } from "@/components/v2/home/field-note";
-import { Footer } from "@/components/v2/footer";
-import { Gallery } from "@/components/v2/gallery";
+import { FooterWide } from "@/components/v2/footer-wide";
+import { Frames } from "@/components/v2/home/frames";
 import { Hero } from "@/components/v2/home/hero";
 import { Journeys } from "@/components/v2/home/journeys";
-import { Overview } from "@/components/v2/home/overview";
-import { PlanningProcess } from "@/components/v2/home/planning-process";
-import { Questions } from "@/components/v2/questions";
-import { RouteQuestions } from "@/components/v2/home/route-questions";
+import { PlanningSteps } from "@/components/v2/home/planning-steps";
+import { ProofStrip } from "@/components/v2/home/proof-strip";
+import { ReadyBand } from "@/components/v2/home/ready-band";
+import { Regions } from "@/components/v2/home/regions";
+import { Team } from "@/components/v2/home/team";
 import { TravelNotes } from "@/components/v2/home/travel-notes";
+import { Questions } from "@/components/v2/questions";
+import { hero, homeQuestions } from "@/content/v2/home";
 import { images } from "@/content/v2/images";
 
 const TITLE = "Travedise — See Sri Lanka. Keep time for what matters.";
-const DESCRIPTION =
-  "Tell us what you hope to see, and what you would rather not rush. We’ll shape a journey around the moments that matter.";
+const DESCRIPTION = hero.body;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -40,28 +38,29 @@ export const metadata: Metadata = {
 };
 
 /**
- * Home page, v2 — the "Report-led coastal" design. Self-contained: its own palette,
- * LT Soul display type, and its own nav and footer, none of which the rest of the
- * site uses yet. The live home page at `/` is untouched.
+ * Home page, v2 — the "Home V8 Decision path" design. Self-contained: its own palette,
+ * Ragmont display type, and its own nav and footer, none of which the rest of the site
+ * uses yet. The live home page at `/` is untouched.
  */
 export default function HomeV2Page() {
   return (
-    <div className="v2 flex flex-col overflow-clip bg-v2-navy">
+    <div className="v2 flex flex-col overflow-clip bg-white">
       <Hero />
       <main>
-        <Overview />
-        <Experiences />
+        <ProofStrip />
+        <Regions />
         <Journeys />
-        <Gallery />
-        <FieldNote />
-        <RouteQuestions />
-        <AboutBand />
-        <PlanningProcess />
+        <Frames />
+        <Team />
+        <PlanningSteps />
         <TravelNotes />
-        <Questions />
-        <CtaBand />
+        <Questions items={homeQuestions} />
+        <ReadyBand />
       </main>
-      <Footer />
+      <FooterWide
+        statement="A small island with long days in it. Plan it once, properly, and it stays with you for years."
+        statementFace="body"
+      />
     </div>
   );
 }

@@ -35,7 +35,8 @@
   --color-v2-navy: #101b2e; /* dark sections, headings, primary buttons */
   --color-v2-cream: #f7f5ef; /* warm alternate section background */
   --color-v2-sky: #47cdff; /* accent — CTAs */
-  --color-v2-sand: #c4af8c; /* step numerals on navy */
+  --color-v2-sand: #c4af8c; /* step numerals, the dot between card facts */
+  --color-v2-ember: #c96a45; /* the arrow disc on the closing CTA */
   --color-v2-body: #545c63; /* body copy on light backgrounds */
   --color-v2-muted: #cbd8df; /* body copy on navy */
 
@@ -77,7 +78,7 @@
   --font-heading: var(--font-inter-tight), sans-serif;
   --font-serif: Georgia, Times, "Times New Roman", serif;
   --font-boska: var(--font-boska-variable), Georgia, sans-serif;
-  --font-soul: var(--font-lt-soul), system-ui, sans-serif;
+  --font-display: var(--font-ragmont), Georgia, serif;
 }
 
 @layer base {
@@ -178,7 +179,7 @@
   }
 }
 
-/* The v2 home page (app/v2) is a self-contained design: its own palette, LT Soul for
+/* The v2 home page (app/v2) is a self-contained design: its own palette, Ragmont for
    display type and Inter Tight for everything else. `.v2` scopes the body font so the
    rest of the site keeps General Sans. */
 @utility container-v2 {
@@ -193,31 +194,6 @@
 @layer components {
   .v2 {
     font-family: var(--font-inter-tight), system-ui, sans-serif;
-  }
-
-  /* Postage-stamp frame: a 1px tinted border with perforated edges, punched out of both
-     the border and the white face with intersecting radial-gradient masks. */
-  .v2-stamp {
-    --r: 9px;
-    position: relative;
-    padding: 1px;
-    background-color: --alpha(var(--color-v2-navy) / 10%);
-    filter: drop-shadow(0 1px 1px --alpha(var(--color-v2-navy) / 5%))
-      drop-shadow(0 10px 20px --alpha(var(--color-v2-navy) / 10%));
-  }
-  .v2-stamp,
-  .v2-stamp-face {
-    mask:
-      radial-gradient(var(--r) at 50% 0, #0000 98%, #000) 50% 0 / calc(4 * var(--r)) 100%,
-      radial-gradient(var(--r) at 50% 100%, #0000 98%, #000) 50% 0 / calc(4 * var(--r)) 100%,
-      radial-gradient(var(--r) at 0 50%, #0000 98%, #000) 0 50% / 100% calc(4 * var(--r)),
-      radial-gradient(var(--r) at 100% 50%, #0000 98%, #000) 0 50% / 100% calc(4 * var(--r));
-    mask-composite: intersect;
-  }
-  .v2-stamp-face {
-    height: 100%;
-    width: 100%;
-    background-color: var(--color-white);
   }
 
   /* The photo strip scrolls one full copy of the images, then loops. The track holds two
@@ -261,65 +237,6 @@
     display: none;
   }
 
-  /* Photo stack — three images sharing one frame. Desktop shows only the first;
-     on a phone they cross-fade, the two stacks running 3s apart so they never
-     change at the same moment. */
-  .v2-fade-stack {
-    position: relative;
-    overflow: hidden;
-  }
-  .v2-fade-stack img {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    opacity: 0;
-  }
-  .v2-fade-stack img:first-child {
-    opacity: 1;
-  }
-  @media (width < 768px) {
-    .v2-fade-stack img {
-      animation: v2-stack-fade 18s ease-in-out infinite;
-    }
-    .v2-fade-stack img:nth-child(2) {
-      animation-delay: 6s;
-    }
-    .v2-fade-stack img:nth-child(3) {
-      animation-delay: 12s;
-    }
-    .v2-fade-stack.offset img:nth-child(1) {
-      animation-delay: 3s;
-    }
-    .v2-fade-stack.offset img:nth-child(2) {
-      animation-delay: 9s;
-    }
-    .v2-fade-stack.offset img:nth-child(3) {
-      animation-delay: 15s;
-    }
-  }
-  @keyframes v2-stack-fade {
-    0% {
-      opacity: 0;
-      transform: scale(1.05);
-    }
-    4% {
-      opacity: 1;
-    }
-    30% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    36% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-      transform: scale(1.05);
-    }
-  }
-
   /* The phone menu and its items. Transitions rather than keyframes, so opening and
      closing in quick succession retargets from wherever the motion got to instead of
      restarting — and so there is a real exit rather than a pop-out. */
@@ -353,13 +270,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .v2-fade-stack img {
-      animation: none;
-      opacity: 0;
-    }
-    .v2-fade-stack img:first-child {
-      opacity: 1;
-    }
     .v2-menu,
     .v2-menu-item {
       transition-duration: 1ms;
@@ -425,6 +335,110 @@
   @media (prefers-reduced-motion: reduce) {
     .v2-scroll-cue {
       animation: none;
+    }
+  }
+}
+
+@layer components {
+  /* Four photo columns that share a row. Hovering the row narrows every column, and
+     the one under the cursor takes the room; its note fades up under the place name.
+     The other captions step back while one column is open. Gated on a real pointer —
+     on a phone the columns become a 2×2 grid with every note showing. */
+  .v2-reveal {
+    display: flex;
+    gap: 8px;
+  }
+  .v2-reveal-col {
+    position: relative;
+    margin: 0;
+    flex: 1 1 0%;
+    min-width: 0;
+    overflow: hidden;
+    transition: flex-grow 820ms var(--ease-out-quint);
+  }
+  .v2-reveal-col img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92);
+    transition:
+      transform 1100ms var(--ease-out-quint),
+      filter 620ms ease;
+  }
+  .v2-reveal-col figcaption {
+    position: absolute;
+    inset: auto 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 20px 20px;
+    background-image: linear-gradient(0deg, rgb(12 21 38 / 0.82) 0%, rgb(12 21 38 / 0) 100%);
+    transition: opacity 420ms ease;
+  }
+  .v2-reveal-place {
+    font-size: 15px;
+    line-height: 21px;
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+  .v2-reveal-note {
+    font-size: 13px;
+    line-height: 19px;
+    color: rgb(255 255 255 / 0.78);
+    opacity: 0;
+    translate: 0 7px;
+    transition:
+      opacity 520ms ease 140ms,
+      translate 520ms var(--ease-out-quint) 140ms;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .v2-reveal:hover .v2-reveal-col {
+      flex-grow: 0.62;
+    }
+    .v2-reveal .v2-reveal-col:hover {
+      flex-grow: 2.14;
+    }
+    .v2-reveal .v2-reveal-col:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.04);
+    }
+    .v2-reveal:hover .v2-reveal-col figcaption {
+      opacity: 0;
+    }
+    .v2-reveal .v2-reveal-col:hover figcaption {
+      opacity: 1;
+    }
+    .v2-reveal .v2-reveal-col:hover .v2-reveal-note {
+      opacity: 1;
+      translate: none;
+    }
+  }
+  @media (width < 768px) {
+    .v2-reveal {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .v2-reveal-col {
+      aspect-ratio: 4 / 5;
+    }
+    .v2-reveal-col figcaption {
+      padding: 14px;
+    }
+    .v2-reveal-place {
+      white-space: normal;
+    }
+    .v2-reveal-note {
+      opacity: 1;
+      translate: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-reveal-col,
+    .v2-reveal-col img,
+    .v2-reveal-col figcaption,
+    .v2-reveal-note {
+      transition: none;
     }
   }
 }
