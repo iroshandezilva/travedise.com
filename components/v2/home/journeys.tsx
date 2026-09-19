@@ -1,79 +1,89 @@
 import Link from "next/link";
 
-import { QuietLink } from "@/components/v2/buttons";
+import { Section } from "@/components/v2/section";
+import { journeyPhotos } from "@/content/v2/home";
+import { journeys } from "@/content/v2/journeys";
 
-import { featuredJourneys, moreJourneys, railJourney } from "@/content/v2/home";
+import { IntroText, SectionIntro } from "./section-intro";
 
 /**
- * Three large journey cards, then a row of three smaller ones. On a phone the large
- * cards become a snapping rail that scrolls edge to edge, the honeymoon journey joins
- * the end of it, and the smaller row drops away.
+ * The six journeys as cards carrying the same facts, so they can be compared without
+ * opening six pages. On a phone the grid becomes a snapping rail.
  */
 export function Journeys() {
   return (
-    <section
-      id="journeys"
-      className="w-full shrink-0 overflow-clip bg-white py-[77px] gutter-v2 max-md:px-0 max-md:py-14"
-    >
-      <div className="container-v2 flex flex-col gap-[34px] max-md:gap-[26px]">
-        <div className="flex items-end justify-between max-md:flex-col max-md:items-start max-md:gap-3.5 max-md:px-5">
-          <h2 className="m-0 font-soul text-[46px]/[54px] font-medium text-v2-navy max-md:text-[30px]/[38px]">
-            A starting point, shaped with you.
-          </h2>
-          <QuietLink href="/packages">
-            <span className="max-md:hidden">Browse journeys ↗</span>
-            <span className="hidden max-md:inline">Browse all journeys ↗</span>
-          </QuietLink>
-        </div>
+    <Section id="journeys" surface="cream" bleed className="py-[90px] max-md:py-14">
+      <SectionIntro
+        heading="Start with the one that sounds like you."
+        headingClassName="max-w-[620px]"
+        className="mb-[42px] max-md:mb-7 max-md:px-5"
+        aside={
+          <div className="flex w-[400px] shrink-0 flex-col items-start gap-4 max-lg:w-full max-lg:max-w-[520px]">
+            <IntroText className="w-auto max-lg:w-auto">
+              Six routes, shaped around who is travelling. Same facts on every card so you can
+              compare them without opening six pages. All of them can be changed.
+            </IntroText>
+            <Link href="/v2/packages" className="text-[16px]/[1.2] text-v2-navy hover:opacity-80">
+              All six journeys, in detail ↗
+            </Link>
+          </div>
+        }
+      />
 
-        <div className="v2-rail grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-3 max-md:overflow-x-auto max-md:px-5">
-          {[...featuredJourneys, railJourney].map((journey, i) => (
+      <div className="v2-rail grid grid-cols-3 gap-[30px] max-lg:grid-cols-2 max-lg:gap-6 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-3 max-md:overflow-x-auto max-md:px-5">
+        {journeys.map((journey) => {
+          const photo = journeyPhotos[journey.key];
+          return (
             <Link
-              key={journey.title}
+              key={journey.key}
               href={journey.href}
-              className={`group flex flex-col gap-[11px] max-md:w-[260px] max-md:shrink-0 max-md:snap-start max-md:gap-2.5 ${
-                // The fourth card only belongs to the phone rail.
-                i === featuredJourneys.length ? "hidden max-md:flex" : ""
-              }`}
+              className="group flex flex-col bg-white max-md:w-[280px] max-md:shrink-0 max-md:snap-start"
             >
-              <div className="overflow-hidden">
+              <div className="h-[200px] w-full overflow-clip max-md:h-[180px]">
                 <img
-                  src={journey.image}
-                  alt=""
+                  src={photo.image}
+                  alt={photo.alt}
                   loading="lazy"
-                  className="block h-[390px] w-full object-cover v2-card-img max-md:h-[300px]"
+                  className="v2-card-img block size-full object-cover"
                 />
               </div>
-              <span className="font-soul text-[27px]/[34px] font-medium text-v2-navy max-md:text-[21px]/[27px]">
-                {journey.title} ↗
-              </span>
-              <span className="text-[15px]/[23px] text-v2-body max-md:text-[14px]/[21px]">
-                {journey.body}
-              </span>
+              <div className="flex flex-1 flex-col gap-3 px-6 pt-6 pb-[26px] max-md:px-5 max-md:pt-5 max-md:pb-[22px]">
+                <span className="text-[13px]/[18px] text-[#8192a3]">{journey.theme}</span>
+                <h3 className="m-0 text-[24px]/[32px] font-semibold tracking-[-0.01em] text-v2-navy max-md:text-[21px]/[28px]">
+                  {journey.name}
+                </h3>
+                <div className="flex items-baseline gap-3">
+                  <span className="text-[16px]/[22px] text-v2-navy">{journey.nights}</span>
+                  <span aria-hidden className="text-[14px] text-v2-sand">
+                    ·
+                  </span>
+                  <span className="text-[16px]/[24px] font-semibold text-v2-navy">
+                    {journey.price}
+                  </span>
+                </div>
+                <p className="m-0 text-[14px]/[21px] text-[#65788c]">{journey.route}</p>
+                <div className="mt-auto flex items-center justify-between gap-4 pt-[18px]">
+                  <span className="text-[15px]/[20px] text-v2-navy">See the itinerary</span>
+                  <span
+                    aria-hidden
+                    className="flex size-9 shrink-0 items-center justify-center rounded-full border border-v2-navy/25 text-[14px] text-v2-navy transition-colors duration-150 group-hover:border-v2-navy motion-reduce:transition-none"
+                  >
+                    ↗
+                  </span>
+                </div>
+              </div>
             </Link>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:hidden">
-          {moreJourneys.map((journey) => (
-            <Link
-              key={journey.title}
-              href={journey.href}
-              className="flex items-center gap-4 pt-[13px]"
-            >
-              <img
-                src={journey.image}
-                alt=""
-                loading="lazy"
-                className="block h-[78px] w-[116px] shrink-0 object-cover"
-              />
-              <span className="font-soul text-[21px]/[28px] font-medium text-v2-navy">
-                {journey.title}
-              </span>
-            </Link>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    </section>
+
+      <p className="m-0 mt-[42px] text-[14px]/[22px] text-[#65788c] max-md:mt-7 max-md:px-5">
+        Prices are a starting point for two people sharing, and every route can be shortened,
+        stretched or joined to another.{" "}
+        <a href="#how" className="text-v2-navy hover:opacity-80">
+          How a quote is built ↗
+        </a>
+      </p>
+    </Section>
   );
 }

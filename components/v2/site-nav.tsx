@@ -21,7 +21,7 @@ export function SiteNav() {
         className="flex h-11 w-[205px] shrink-0 items-center gap-2 max-lg:w-auto"
       >
         <LogoMark className="h-[30px] w-[43px] max-md:h-6 max-md:w-[34px]" />
-        <span className="font-soul text-[28px]/[34px] font-medium text-white max-md:text-[21px]/[26px]">
+        <span className="font-display text-[28px]/[34px] font-medium text-white max-md:text-[21px]/[26px]">
           Travedise
         </span>
       </Link>

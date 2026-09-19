@@ -1,7 +1,6 @@
-import Link from "next/link";
-
 import { PillLink } from "@/components/v2/buttons";
 import { HeroScrim, SiteNav } from "@/components/v2/site-nav";
+import { hero } from "@/content/v2/home";
 import { images } from "@/content/v2/images";
 
 /**
@@ -11,7 +10,7 @@ import { images } from "@/content/v2/images";
  */
 export function Hero() {
   return (
-    <header className="relative h-[900px] w-full shrink-0 overflow-clip gutter-v2 max-lg:h-[820px] max-md:h-[720px] max-md:px-0">
+    <header className="relative h-[720px] w-full shrink-0 overflow-clip gutter-v2 max-md:px-0">
       <video
         src={images.heroVideo}
         poster={images.heroPoster}
@@ -27,22 +26,21 @@ export function Hero() {
       <div className="relative mx-auto h-full w-full max-w-[1280px]">
         <SiteNav />
 
-        <div className="absolute top-[392px] left-0 flex w-[900px] flex-col items-start gap-7 max-lg:top-auto max-lg:bottom-24 max-lg:w-full max-md:right-5 max-md:bottom-11 max-md:left-5 max-md:w-auto max-md:gap-5">
-          <h1 className="m-0 font-soul text-[72px]/[76px] font-medium tracking-[-0.02em] whitespace-pre-wrap text-white max-lg:text-[56px]/[60px] max-md:text-[42px]/[46px]">
-            {"See Sri Lanka.\nKeep time for\nwhat matters."}
+        <div className="absolute top-[262px] left-0 flex w-[900px] flex-col items-start gap-7 max-lg:top-auto max-lg:bottom-24 max-lg:w-full max-md:right-5 max-md:bottom-11 max-md:left-5 max-md:w-auto max-md:gap-5">
+          <h1 className="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] whitespace-pre-wrap text-white max-lg:text-[52px]/[58px] max-md:text-[40px]/[45px]">
+            {hero.heading}
           </h1>
-          <p className="transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 m-0 w-[520px] text-[20px]/[29px] text-[#e9eef1] max-lg:w-full max-lg:max-w-[520px] max-md:text-[16px]/[24px] max-md:text-[#e4ebef]">
-            Tell us what you hope to see, and what you would rather not rush. We’ll shape a journey
-            around the moments that matter.
+          <p className="m-0 w-[520px] text-[20px]/[29px] text-[#e9eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-lg:w-full max-lg:max-w-[520px] max-md:text-[16px]/[24px] max-md:text-[#e4ebef]">
+            {hero.body}
           </p>
-          <div className="transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 delay-[90ms] flex items-center gap-7 max-md:w-full max-md:flex-col max-md:gap-2.5">
+          <div className="flex items-center gap-7 transition-[opacity,translate] delay-[90ms] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:w-full max-md:flex-col max-md:gap-2.5">
             <PillLink href="/contact" variant="sky">
               Plan your trip ↗
             </PillLink>
             <PillLink
-              href="/packages"
+              href="/v2/packages"
               variant="glass"
-              className="border-transparent bg-transparent px-0 max-md:border-white/40 max-md:bg-white/12 max-md:px-7"
+              className="border-transparent bg-transparent px-0 font-normal max-md:border-white/40 max-md:bg-white/12 max-md:px-7"
             >
               Browse journeys ↗
             </PillLink>
@@ -50,8 +48,8 @@ export function Hero() {
         </div>
 
         <a
-          href="#field-note"
-          className="absolute top-[738px] right-0 flex items-center gap-3.5 max-lg:hidden"
+          href="#regions"
+          className="absolute top-[572px] right-0 flex items-center gap-3.5 max-lg:hidden"
         >
           <span className="flex size-[46px] shrink-0 items-center justify-center rounded-full border border-white/75 text-[23px]/[1.2] text-white">
             <span aria-hidden className="v2-scroll-cue block">

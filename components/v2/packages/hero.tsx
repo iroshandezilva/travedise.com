@@ -15,7 +15,7 @@ export function JourneysHero() {
       <div className="relative mx-auto h-full w-full max-w-[1280px]">
         <SiteNav />
         <div className="absolute inset-x-0 bottom-[58px] flex max-w-[820px] flex-col gap-[18px] max-md:bottom-8 max-md:gap-3">
-          <h1 className="m-0 font-soul text-[62px]/[68px] font-medium tracking-[-0.02em] text-white max-lg:text-[48px]/[54px] max-md:text-[34px]/[40px]">
+          <h1 className="m-0 font-display text-[62px]/[68px] font-medium tracking-[-0.02em] text-white max-lg:text-[48px]/[54px] max-md:text-[34px]/[40px]">
             {journeysHero.title}
           </h1>
           <p className="m-0 max-w-[660px] text-[19px]/[29px] text-[#e8eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:text-[15px]/[24px]">

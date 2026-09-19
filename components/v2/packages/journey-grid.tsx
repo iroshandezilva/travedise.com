@@ -8,7 +8,7 @@ export function JourneyGrid() {
   return (
     <Section className="py-[110px] max-md:py-14">
       <div className="mb-[58px] flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
-        <h2 className="m-0 font-soul text-[46px]/[55px] font-medium tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+        <h2 className="m-0 font-display text-[46px]/[55px] font-medium tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
           Every journey we run.
         </h2>
         <p className="m-0 w-[380px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">
@@ -36,14 +36,16 @@ export function JourneyGrid() {
               </span>
             </div>
             <div className="flex flex-1 flex-col gap-3.5 px-7 pt-7 pb-[30px] max-md:px-5 max-md:pt-5 max-md:pb-6">
-              <h3 className="m-0 font-soul text-[27px]/[34px] font-medium text-v2-navy max-md:text-[22px]/[28px]">
+              <h3 className="m-0 font-display text-[27px]/[34px] font-medium text-v2-navy max-md:text-[22px]/[28px]">
                 {journey.name}
               </h3>
               <p className="m-0 text-[15px]/[24px] text-[#52687b]">{journey.short}</p>
               <div className="mt-auto flex items-center justify-between gap-[18px] pt-[22px]">
                 <div className="flex flex-col gap-[3px]">
                   <span className="text-[13px]/[18px] text-[#8192a3]">{journey.nights}</span>
-                  <span className="font-soul text-[21px]/[28px] text-v2-navy">{journey.price}</span>
+                  <span className="font-display text-[21px]/[28px] text-v2-navy">
+                    {journey.price}
+                  </span>
                 </div>
                 <span
                   aria-hidden

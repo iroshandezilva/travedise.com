@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { boska, generalSans, interTight, ltSoul } from "./fonts";
+import { boska, generalSans, interTight, ragmont } from "./fonts";
 
 import { AgentationToolbar } from "@/components/agentation-toolbar";
 import { InterfaceKitPanel } from "@/components/interface-kit-panel";
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body
-        className={`${generalSans.variable} ${interTight.variable} ${boska.variable} ${ltSoul.variable}`}
+        className={`${generalSans.variable} ${interTight.variable} ${boska.variable} ${ragmont.variable}`}
       >
         <script
           type="application/ld+json"

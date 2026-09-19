@@ -22,7 +22,7 @@ export function Questions({ items = questions }: { items?: { q: string; a: strin
     >
       <div className="container-v2 grid grid-cols-[410px_1fr] gap-x-20 gap-y-[25px] max-lg:grid-cols-1 max-lg:gap-y-10 max-md:gap-y-6">
         <div className="col-start-1 row-start-1 flex flex-col items-start gap-[25px] max-md:gap-6">
-          <h2 className="m-0 font-soul text-[45px]/[52px] font-medium text-v2-navy max-md:text-[30px]/[38px]">
+          <h2 className="m-0 font-display text-[45px]/[52px] font-medium text-v2-navy max-md:text-[30px]/[38px]">
             {questionsIntro.heading}
           </h2>
           <p className="m-0 text-[17px]/[26px] text-v2-navy max-md:text-[15px]/[24px] max-md:text-[#485055]">

@@ -27,7 +27,7 @@ export function MapExplorer() {
     >
       <div className="container-v2 flex flex-col">
         <div className="mb-[52px] flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
-          <h2 className="m-0 max-w-[620px] font-soul text-[46px]/[55px] font-medium tracking-[-0.01em] text-white max-md:text-[30px]/[38px]">
+          <h2 className="m-0 max-w-[620px] font-display text-[46px]/[55px] font-medium tracking-[-0.01em] text-white max-md:text-[30px]/[38px]">
             See where each journey goes.
           </h2>
           <p className="m-0 w-[380px] shrink-0 text-[16px]/[25px] text-[#b8c8d1] max-lg:w-full max-md:text-[15px]/[24px]">
@@ -150,7 +150,7 @@ export function MapExplorer() {
                   <span className="flex min-w-0 flex-col gap-[5px]">
                     <span
                       className={cn(
-                        "font-soul text-[25px]/[32px] font-medium max-md:text-[19px]/[26px]",
+                        "font-display text-[25px]/[32px] font-medium max-md:text-[19px]/[26px]",
                         on ? "text-white" : "text-white/72",
                       )}
                     >
@@ -201,7 +201,7 @@ export function MapExplorer() {
               />
               <div className="flex min-w-0 flex-1 flex-col gap-3">
                 <span className="text-[14px]/[20px] text-v2-sky">{active.theme}</span>
-                <span className="font-soul text-[27px]/[34px] font-medium text-white max-md:text-[22px]/[28px]">
+                <span className="font-display text-[27px]/[34px] font-medium text-white max-md:text-[22px]/[28px]">
                   {active.name}
                 </span>
                 <p className="m-0 text-[15px]/[23px] text-[#c4d2db]">{active.blurb}</p>
