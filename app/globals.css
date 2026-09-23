@@ -63,6 +63,7 @@
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1); /* looping motion — no snap at the ends */
 
   --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
   @keyframes marquee {
@@ -170,6 +171,17 @@
   [data-reveal="left"]:not([data-shown]) {
     translate: -100px 0;
   }
+  /* The v2 preset. Shorter and closer than `bottom` (1s / 100px) on purpose: the v2
+     home has nine sections, and a long slide on each one adds up to a page that feels
+     like it is catching up with the reader rather than keeping pace. */
+  [data-reveal="rise"] {
+    transition:
+      opacity 560ms var(--ease-out-quint) var(--reveal-delay, 0ms),
+      translate 560ms var(--ease-out-quint) var(--reveal-delay, 0ms);
+  }
+  [data-reveal="rise"]:not([data-shown]) {
+    translate: 0 18px;
+  }
   @media (prefers-reduced-motion: reduce) {
     [data-reveal] {
       transition: none;
@@ -196,16 +208,49 @@
     font-family: var(--font-inter-tight), system-ui, sans-serif;
   }
 
+  /* Every in-page jump on this page — the hero's scroll cue, "How a quote is built",
+     the footer's section links — travels there instead of teleporting, so the reader
+     keeps their place. `:has` scopes it to v2; the rest of the site jumps as before. */
+  @media (prefers-reduced-motion: no-preference) {
+    html:has(.v2) {
+      scroll-behavior: smooth;
+    }
+  }
+  .v2 section[id] {
+    scroll-margin-top: 24px;
+  }
+
+  /* The quiet text links fade between their two states rather than snapping. The pill
+     buttons name their own transition in a utility class, which wins over this. */
+  .v2 a {
+    transition:
+      opacity 150ms var(--ease-out-quad),
+      color 150ms var(--ease-out-quad);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2 a {
+      transition: none;
+    }
+  }
+
   /* The photo strip scrolls one full copy of the images, then loops. The track holds two
      copies, so -50% lands exactly where it started. Hover holds it still. */
   .v2-gallery-track {
     display: flex;
     width: max-content;
     gap: 14px;
+    /* A wide strip of large photos moving without pause: holding it on its own layer
+       keeps the browser from re-rasterising it mid-loop, which is where the judder in
+       a long marquee comes from. */
+    will-change: transform;
     animation: v2-gallery-slide 80s linear infinite;
   }
-  .v2-gallery-track:hover {
-    animation-play-state: paused;
+  /* Only where there is a cursor to hover with. On a phone a tap latches :hover on,
+     which would leave the strip stopped with nothing left to un-hover it. */
+  @media (hover: hover) and (pointer: fine) {
+    .v2-gallery-track:hover {
+      animation-play-state: paused;
+    }
   }
   /* Smaller frames on a phone, so the strip still moves at a readable pace. */
   @media (width < 768px) {
@@ -244,8 +289,8 @@
     opacity: 0;
     visibility: hidden;
     transition:
-      opacity 240ms var(--ease-out-quart),
-      visibility 0s linear 240ms;
+      opacity 180ms var(--ease-out-quart),
+      visibility 0s linear 180ms;
   }
   .v2-menu[data-open="true"] {
     opacity: 1;
@@ -258,14 +303,15 @@
     opacity: 0;
     translate: 0 14px;
     transition:
-      opacity 300ms var(--ease-out-quint),
-      translate 300ms var(--ease-out-quint);
+      opacity 220ms var(--ease-out-quint),
+      translate 220ms var(--ease-out-quint);
   }
-  /* Opening, each item follows the one above it. Closing, they all leave together —
-     an exit the user has already decided on should get out of the way. */
+  /* Opening, each item follows the one above it. Closing, they all leave together and
+     quicker — an exit the user has already decided on should get out of the way. */
   .v2-menu[data-open="true"] .v2-menu-item {
     opacity: 1;
     translate: none;
+    transition-duration: 300ms;
     transition-delay: calc(var(--i, 0) * 40ms);
   }
 
@@ -286,13 +332,16 @@
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
+    /* Closing is the shorter of the two: the reader is already on their way to the
+       next question. */
     transition:
-      grid-template-rows 240ms var(--ease-out-quart),
-      opacity 180ms var(--ease-out-quart);
+      grid-template-rows 190ms var(--ease-out-quart),
+      opacity 140ms var(--ease-out-quart);
   }
   .v2-panel[data-open="true"] {
     grid-template-rows: 1fr;
     opacity: 1;
+    transition-duration: 260ms, 200ms;
   }
   .v2-panel > * {
     overflow: hidden;
@@ -302,7 +351,7 @@
   /* Card photos lift a little under the cursor. Gated on a real pointer, because a
      tap would otherwise latch the scale on with nothing to un-hover it. */
   .v2-card-img {
-    transition: transform 150ms var(--ease-out-quart);
+    transition: transform 400ms var(--ease-out-quart);
   }
   @media (hover: hover) and (pointer: fine) {
     .group:hover .v2-card-img {
@@ -325,7 +374,7 @@
   /* The hero's scroll cue. A 900px full-bleed header gives no other sign that the
      page continues, so the arrow carries that on its own. */
   .v2-scroll-cue {
-    animation: v2-scroll-cue 2s var(--ease-in-out-quart) infinite alternate;
+    animation: v2-scroll-cue 1.8s var(--ease-in-out-sine) infinite alternate;
   }
   @keyframes v2-scroll-cue {
     to {
@@ -345,6 +394,12 @@
      The other captions step back while one column is open. Gated on a real pointer —
      on a phone the columns become a 2×2 grid with every note showing. */
   .v2-reveal {
+    /* The column and the photo inside it are one moving thing, so they share a
+       duration and a curve — a photo that keeps zooming after its column has stopped
+       is what makes an expander feel loose. The captions only fade, so they are
+       quicker: at the column's pace they would lag behind the room they sit in. */
+    --v2-reveal-dur: 540ms;
+    --v2-reveal-text: 300ms;
     display: flex;
     gap: 8px;
   }
@@ -354,7 +409,7 @@
     flex: 1 1 0%;
     min-width: 0;
     overflow: hidden;
-    transition: flex-grow 820ms var(--ease-out-quint);
+    transition: flex-grow var(--v2-reveal-dur) var(--ease-out-quint);
   }
   .v2-reveal-col img {
     display: block;
@@ -363,8 +418,8 @@
     object-fit: cover;
     filter: saturate(0.92);
     transition:
-      transform 1100ms var(--ease-out-quint),
-      filter 620ms ease;
+      transform var(--v2-reveal-dur) var(--ease-out-quint),
+      filter var(--v2-reveal-dur) var(--ease-out-quint);
   }
   .v2-reveal-col figcaption {
     position: absolute;
@@ -374,7 +429,7 @@
     gap: 4px;
     padding: 18px 20px 20px;
     background-image: linear-gradient(0deg, rgb(12 21 38 / 0.82) 0%, rgb(12 21 38 / 0) 100%);
-    transition: opacity 420ms ease;
+    transition: opacity var(--v2-reveal-text) var(--ease-out-quart);
   }
   .v2-reveal-place {
     font-size: 15px;
@@ -389,8 +444,8 @@
     opacity: 0;
     translate: 0 7px;
     transition:
-      opacity 520ms ease 140ms,
-      translate 520ms var(--ease-out-quint) 140ms;
+      opacity var(--v2-reveal-text) var(--ease-out-quart) 120ms,
+      translate var(--v2-reveal-text) var(--ease-out-quint) 120ms;
   }
   @media (hover: hover) and (pointer: fine) {
     .v2-reveal:hover .v2-reveal-col {

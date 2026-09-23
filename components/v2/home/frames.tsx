@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { Reveal } from "@/components/ui/reveal";
 import { frames } from "@/content/v2/home";
 
 /**
@@ -18,7 +19,10 @@ export function Frames() {
       id="gallery"
       className="w-full shrink-0 overflow-clip bg-v2-navy py-[60px] max-md:py-14"
     >
-      <div className="container-v2 mb-10 flex items-end justify-between gap-[60px] gutter-v2 max-lg:flex-col max-lg:items-start max-lg:gap-5 max-md:mb-[26px]">
+      <Reveal
+        from="rise"
+        className="container-v2 mb-10 flex items-end justify-between gap-[60px] gutter-v2 max-lg:flex-col max-lg:items-start max-lg:gap-5 max-md:mb-[26px]"
+      >
         <h2 className="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-white max-md:text-[30px]/[38px]">
           Frames from the road.
         </h2>
@@ -37,7 +41,7 @@ export function Frames() {
             {paused ? "Play" : "Pause"}
           </button>
         </div>
-      </div>
+      </Reveal>
 
       <div className="w-full overflow-hidden">
         {/* Only set when paused: an inline "running" would beat the hover rule. */}

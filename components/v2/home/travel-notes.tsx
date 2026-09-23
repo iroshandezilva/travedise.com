@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/v2/section";
 import { travelNotes } from "@/content/v2/home";
 
@@ -22,7 +23,11 @@ export function TravelNotes() {
         }
       />
 
-      <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-9">
+      <Reveal
+        from="rise"
+        delay={90}
+        className="grid grid-cols-3 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-9"
+      >
         {travelNotes.map((note) => (
           <Link key={note.title} href={note.href} className="group flex flex-col gap-3">
             <div className="mb-1.5 overflow-clip">
@@ -39,7 +44,7 @@ export function TravelNotes() {
             <p className="m-0 text-[15px]/[23px] text-[#52687b]">{note.body}</p>
           </Link>
         ))}
-      </div>
+      </Reveal>
     </Section>
   );
 }
