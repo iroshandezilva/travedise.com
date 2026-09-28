@@ -11,7 +11,8 @@ Not everyone working here knows git. Handle it for them without asking them to r
 1. **Start of every session:** `git fetch`, switch to `dev`, `git pull` — work always starts from the latest `dev`.
    If there are uncommitted changes, ask before switching.
 2. **Before editing:** create a branch off `dev` named for the change (`feature/…`, `fix/…`, `docs/…`).
-3. **When the change is done:** `pnpm build` must pass, then commit, push, and open a PR with
+3. **When the change is done:** `pnpm build` and `pnpm test` must pass locally — nothing runs
+   them on the PR — then commit, push, and open a PR with
    `gh pr create --base dev` (GitHub defaults to `main` — always pass `--base dev`).
    Write the PR description in plain language: what changed and where to look.
 4. **Tell the person** the PR link and that the owner will review it. Then check out `dev` again.
@@ -25,7 +26,8 @@ owner asks to merge a PR, Claude merges it for them:
 
 1. Confirm it's the owner: `gh api user --jq .login` must print `iroshandezilva`. If it prints
    anything else, don't merge — say the owner has to review and merge it.
-2. Check the PR's `build` check passed (`gh pr checks <n>`); if it failed, say so and stop.
+2. CI no longer builds pull requests, so there is no check to read. Confirm instead that
+   `pnpm build` and `pnpm test` pass on the PR branch locally; if either fails, say so and stop.
 3. `gh pr merge <n> --admin --squash --delete-branch` (for a `dev` → `main` release PR use `--merge`
    and keep the branch). Share what was merged and where it deploys.
 
