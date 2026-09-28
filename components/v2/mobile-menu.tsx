@@ -90,7 +90,7 @@ export function MobileMenu() {
             <div className="relative flex min-h-dvh flex-col px-5 pt-[18px] pb-7">
               <div className="flex h-13 shrink-0 items-center justify-between">
                 <Link
-                  href="/v2"
+                  href="/"
                   aria-label="Travedise home"
                   onClick={close}
                   className="flex items-center gap-2"

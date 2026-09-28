@@ -6,16 +6,16 @@
 
 import { images } from "./images";
 
-/** Anchors are written against `/v2` so the same bar works from a journey page. */
+/** Anchors are written against the home page so the same bar works from a journey page. */
 export const navLinks = [
   { href: "/v2/packages", label: "Journeys" },
-  { href: "/v2#regions", label: "Places" },
-  { href: "/v2#how", label: "How it works" },
-  { href: "/v2#notes", label: "Travel notes" },
+  { href: "/#regions", label: "Places" },
+  { href: "/#how", label: "How it works" },
+  { href: "/#notes", label: "Travel notes" },
 ] as const;
 
 /** The phone menu has room for one more entry than the desktop bar. */
-export const mobileNavLinks = [...navLinks, { href: "/v2#questions", label: "Questions" }] as const;
+export const mobileNavLinks = [...navLinks, { href: "/#questions", label: "Questions" }] as const;
 
 /** The journey promoted at the foot of the phone menu. */
 export const menuFeature = {

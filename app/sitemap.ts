@@ -11,10 +11,7 @@ export const dynamic = "force-static";
 
 /** Each URL with the files its content comes from — `lastmod` is their latest commit date. */
 const ENTRIES: { path: string; sources: string[] }[] = [
-  {
-    path: "/",
-    sources: ["app/page.tsx", "components/home", "content/home.ts", "content/packages.ts"],
-  },
+  { path: "/", sources: ["app/page.tsx", "components/v2", "content/v2"] },
   {
     path: "/packages",
     sources: ["app/packages/page.tsx", "components/packages", "content/packages.ts"],

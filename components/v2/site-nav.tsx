@@ -16,7 +16,7 @@ export function SiteNav() {
   return (
     <div className="absolute inset-x-0 top-[22px] flex h-[70px] items-center justify-between max-md:top-3.5 max-md:right-4 max-md:left-4 max-md:h-15 max-md:rounded-full max-md:border max-md:border-white/22 max-md:bg-[#10253280] max-md:pr-2 max-md:pl-4 max-md:backdrop-blur-[16px]">
       <Link
-        href="/v2"
+        href="/"
         aria-label="Travedise home"
         className="flex h-11 w-[205px] shrink-0 items-center gap-2 max-lg:w-auto"
       >
