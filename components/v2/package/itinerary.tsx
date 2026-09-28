@@ -69,31 +69,35 @@ export function PackageItinerary({ itinerary }: { itinerary: PackageV2["itinerar
                     <span className="font-display text-[20px]/[26px] text-v2-navy max-md:text-[18px]/[24px]">
                       {day.stay.name}
                     </span>
-                    <p className="m-0 text-[15px]/[24px] text-[#52687b] max-md:text-[14px]/[22px]">
-                      {day.stay.note}
-                    </p>
+                    {day.stay.note && (
+                      <p className="m-0 text-[15px]/[24px] text-[#52687b] max-md:text-[14px]/[22px]">
+                        {day.stay.note}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
 
-              <div className="v2-rail flex gap-3 max-md:snap-x max-md:snap-mandatory max-md:overflow-x-auto max-md:px-5">
-                {day.photos.map((photo) => (
-                  <figure
-                    key={photo.src + photo.caption}
-                    className="m-0 flex w-80 shrink-0 flex-col gap-2 max-md:w-[250px] max-md:snap-start"
-                  >
-                    <img
-                      src={photo.src}
-                      alt={photo.caption}
-                      loading="lazy"
-                      className="block h-[210px] w-full rounded-lg object-cover max-md:h-[165px]"
-                    />
-                    <figcaption className="text-[13px]/[19px] text-[#6e808e]">
-                      {photo.caption}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
+              {day.photos.length > 0 && (
+                <div className="v2-rail flex gap-3 max-md:snap-x max-md:snap-mandatory max-md:overflow-x-auto max-md:px-5">
+                  {day.photos.map((photo) => (
+                    <figure
+                      key={photo.src + photo.caption}
+                      className="m-0 flex w-80 shrink-0 flex-col gap-2 max-md:w-[250px] max-md:snap-start"
+                    >
+                      <img
+                        src={photo.src}
+                        alt={photo.caption}
+                        loading="lazy"
+                        className="block h-[210px] w-full rounded-lg object-cover max-md:h-[165px]"
+                      />
+                      <figcaption className="text-[13px]/[19px] text-[#6e808e]">
+                        {photo.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
             </AccordionRow>
           );
         })}

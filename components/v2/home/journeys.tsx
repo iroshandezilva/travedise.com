@@ -24,7 +24,7 @@ export function Journeys() {
               Six routes, shaped around who is travelling. Same facts on every card so you can
               compare them without opening six pages. All of them can be changed.
             </IntroText>
-            <Link href="/v2/packages" className="text-[16px]/[1.2] text-v2-navy hover:opacity-80">
+            <Link href="/packages" className="text-[16px]/[1.2] text-v2-navy hover:opacity-80">
               All six journeys, in detail ↗
             </Link>
           </div>

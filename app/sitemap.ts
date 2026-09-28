@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import type { MetadataRoute } from "next";
 
 import { blogPosts } from "@/content/blog";
-import { packages } from "@/content/packages";
+import { packageV2Slugs } from "@/content/v2/packages";
 import { SITE_URL } from "@/lib/site";
 
 // Static export: generated once at build, so it always lists what the build contains.
@@ -14,7 +14,7 @@ const ENTRIES: { path: string; sources: string[] }[] = [
   { path: "/", sources: ["app/page.tsx", "components/v2", "content/v2"] },
   {
     path: "/packages",
-    sources: ["app/packages/page.tsx", "components/packages", "content/packages.ts"],
+    sources: ["app/packages/page.tsx", "components/v2/packages", "content/v2/journeys.ts"],
   },
   { path: "/about", sources: ["app/about/page.tsx", "components/about", "content/about.ts"] },
   { path: "/blog", sources: ["app/blog/page.tsx", "content/blog.ts"] },
@@ -24,9 +24,9 @@ const ENTRIES: { path: string; sources: string[] }[] = [
     sources: ["app/contact/page.tsx", "components/contact", "content/contact.ts"],
   },
   { path: "/privacy", sources: ["app/privacy/page.tsx", "content/privacy.ts"] },
-  ...Object.values(packages).map((p) => ({
-    path: p.href,
-    sources: [`app${p.href}/page.tsx`, "components/package-detail", "content/package-details.ts"],
+  ...packageV2Slugs.map((slug) => ({
+    path: `/packages/${slug}`,
+    sources: ["app/packages/[slug]/page.tsx", "components/v2/package", "content/v2/packages.ts"],
   })),
   ...blogPosts.map((p) => ({
     path: p.href,
