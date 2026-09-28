@@ -27,13 +27,13 @@ export function Hero() {
         <SiteNav />
 
         <div className="absolute top-[262px] left-0 flex w-[900px] flex-col items-start gap-7 max-lg:top-auto max-lg:bottom-24 max-lg:w-full max-md:right-5 max-md:bottom-11 max-md:left-5 max-md:w-auto max-md:gap-5">
-          <h1 className="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] whitespace-pre-wrap text-white max-lg:text-[52px]/[58px] max-md:text-[40px]/[45px]">
+          <h1 className="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] whitespace-pre-wrap text-white transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-lg:text-[52px]/[58px] max-md:text-[40px]/[45px]">
             {hero.heading}
           </h1>
-          <p className="m-0 w-[520px] text-[20px]/[29px] text-[#e9eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-lg:w-full max-lg:max-w-[520px] max-md:text-[16px]/[24px] max-md:text-[#e4ebef]">
+          <p className="m-0 w-[520px] text-[20px]/[29px] text-[#e9eef1] transition-[opacity,translate] delay-[80ms] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-lg:w-full max-lg:max-w-[520px] max-md:text-[16px]/[24px] max-md:text-[#e4ebef]">
             {hero.body}
           </p>
-          <div className="flex items-center gap-7 transition-[opacity,translate] delay-[90ms] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:w-full max-md:flex-col max-md:gap-2.5">
+          <div className="flex items-center gap-7 transition-[opacity,translate] delay-[160ms] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:w-full max-md:flex-col max-md:gap-2.5">
             <PillLink href="/contact" variant="sky">
               Plan your trip ↗
             </PillLink>
@@ -49,7 +49,7 @@ export function Hero() {
 
         <a
           href="#regions"
-          className="absolute top-[572px] right-0 flex items-center gap-3.5 max-lg:hidden"
+          className="absolute top-[572px] right-0 flex items-center gap-3.5 transition-[opacity,translate] delay-[240ms] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-lg:hidden"
         >
           <span className="flex size-[46px] shrink-0 items-center justify-center rounded-full border border-white/75 text-[23px]/[1.2] text-white">
             <span aria-hidden className="v2-scroll-cue block">

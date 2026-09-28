@@ -1,11 +1,15 @@
 import type { ReactNode } from "react";
 
+import { Reveal } from "@/components/ui/reveal";
 import { cn } from "@/lib/cn";
 
 /**
  * The heading row most home sections open with: a display heading on the left and a
  * short paragraph (or a link) bottom-aligned on the right. On narrower screens the two
  * stack.
+ *
+ * The row rises into place the first time it is scrolled to, which is what tells the
+ * reader a new section has started — the section that follows it comes in just behind.
  */
 export function SectionIntro({
   heading,
@@ -19,7 +23,8 @@ export function SectionIntro({
   headingClassName?: string;
 }) {
   return (
-    <div
+    <Reveal
+      from="rise"
       className={cn(
         "flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4",
         className,
@@ -34,7 +39,7 @@ export function SectionIntro({
         {heading}
       </h2>
       {aside}
-    </div>
+    </Reveal>
   );
 }
 

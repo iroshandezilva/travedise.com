@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/v2/section";
 import { journeyPhotos } from "@/content/v2/home";
 import { journeys } from "@/content/v2/journeys";
@@ -30,7 +31,11 @@ export function Journeys() {
         }
       />
 
-      <div className="v2-rail grid grid-cols-3 gap-[30px] max-lg:grid-cols-2 max-lg:gap-6 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-3 max-md:overflow-x-auto max-md:px-5">
+      <Reveal
+        from="rise"
+        delay={90}
+        className="v2-rail grid grid-cols-3 gap-[30px] max-lg:grid-cols-2 max-lg:gap-6 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-3 max-md:overflow-x-auto max-md:px-5"
+      >
         {journeys.map((journey) => {
           const photo = journeyPhotos[journey.key];
           return (
@@ -75,15 +80,20 @@ export function Journeys() {
             </Link>
           );
         })}
-      </div>
+      </Reveal>
 
-      <p className="m-0 mt-[42px] text-[14px]/[22px] text-[#65788c] max-md:mt-7 max-md:px-5">
+      <Reveal
+        as="p"
+        from="rise"
+        delay={140}
+        className="m-0 mt-[42px] text-[14px]/[22px] text-[#65788c] max-md:mt-7 max-md:px-5"
+      >
         Prices are a starting point for two people sharing, and every route can be shortened,
         stretched or joined to another.{" "}
         <a href="#how" className="text-v2-navy hover:opacity-80">
           How a quote is built ↗
         </a>
-      </p>
+      </Reveal>
     </Section>
   );
 }

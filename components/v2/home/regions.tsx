@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/v2/section";
 import { regions } from "@/content/v2/home";
 import { cn } from "@/lib/cn";
@@ -15,7 +16,8 @@ import { IntroText, SectionIntro } from "./section-intro";
  *
  * Both photos of every region are stacked and cross-faded by opacity, like the package
  * hero, so switching never waits on a download and a quick second click picks up where
- * the fade was. The text panel is remounted per region and enters from @starting-style.
+ * the fade was. The text panel is remounted per region and enters from @starting-style,
+ * on the same 260ms as the photos — the three are one switch and should read as one.
  */
 export function Regions() {
   const [current, setCurrent] = useState(0);
@@ -35,9 +37,11 @@ export function Regions() {
         }
       />
 
-      <div
+      <Reveal
         role="group"
         aria-label="Regions"
+        from="rise"
+        delay={90}
         className="v2-rail mb-9 flex flex-wrap gap-2.5 max-md:-mx-5 max-md:mb-7 max-md:flex-nowrap max-md:overflow-x-auto max-md:px-5"
       >
         {regions.map((r, i) => (
@@ -56,9 +60,13 @@ export function Regions() {
             {r.name}
           </button>
         ))}
-      </div>
+      </Reveal>
 
-      <div className="flex items-start gap-16 max-xl:gap-12 max-lg:flex-col max-md:gap-12">
+      <Reveal
+        from="rise"
+        delay={150}
+        className="flex items-start gap-16 max-xl:gap-12 max-lg:flex-col max-md:gap-12"
+      >
         <div className="relative h-[520px] w-[720px] shrink-0 max-xl:w-[56%] max-lg:h-[440px] max-lg:w-full max-md:h-[280px]">
           {regions.map((r, i) => (
             <img
@@ -68,7 +76,7 @@ export function Regions() {
               aria-hidden={i !== current}
               loading="lazy"
               className={cn(
-                "absolute inset-0 block size-full object-cover transition-opacity duration-300 ease-out-quart motion-reduce:transition-none",
+                "absolute inset-0 block size-full object-cover transition-opacity duration-[260ms] ease-out-quart motion-reduce:transition-none",
                 i === current ? "opacity-100" : "opacity-0",
               )}
             />
@@ -82,7 +90,7 @@ export function Regions() {
                 aria-hidden
                 loading="lazy"
                 className={cn(
-                  "absolute inset-0 block size-full object-cover transition-opacity duration-300 ease-out-quart motion-reduce:transition-none",
+                  "absolute inset-0 block size-full object-cover transition-opacity duration-[260ms] ease-out-quart motion-reduce:transition-none",
                   i === current ? "opacity-100" : "opacity-0",
                 )}
               />
@@ -92,7 +100,7 @@ export function Regions() {
 
         <div
           key={region.name}
-          className="flex min-w-0 flex-1 flex-col gap-[26px] pt-1.5 transition-[opacity,translate] duration-300 ease-out-quint motion-reduce:transition-none starting:translate-y-2.5 starting:opacity-0 max-md:gap-5 max-md:pt-0"
+          className="flex min-w-0 flex-1 flex-col gap-[26px] pt-1.5 transition-[opacity,translate] duration-[260ms] ease-out-quint motion-reduce:transition-none starting:translate-y-2 starting:opacity-0 max-md:gap-5 max-md:pt-0"
         >
           <h3 className="m-0 text-[32px]/[40px] font-semibold tracking-[-0.01em] text-v2-navy max-md:text-[24px]/[32px]">
             {region.name}
@@ -124,7 +132,7 @@ export function Regions() {
             See {region.short} on the map <span aria-hidden>↗</span>
           </Link>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

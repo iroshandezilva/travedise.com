@@ -1,5 +1,6 @@
 "use client";
 
+import { Reveal } from "@/components/ui/reveal";
 import { PillLink } from "@/components/v2/buttons";
 import { questions, questionsIntro } from "@/content/v2/shared";
 
@@ -21,16 +22,23 @@ export function Questions({ items = questions }: { items?: { q: string; a: strin
       className="w-full shrink-0 bg-v2-cream py-[78px] gutter-v2 max-md:py-14"
     >
       <div className="container-v2 grid grid-cols-[410px_1fr] gap-x-20 gap-y-[25px] max-lg:grid-cols-1 max-lg:gap-y-10 max-md:gap-y-6">
-        <div className="col-start-1 row-start-1 flex flex-col items-start gap-[25px] max-md:gap-6">
+        <Reveal
+          from="rise"
+          className="col-start-1 row-start-1 flex flex-col items-start gap-[25px] max-md:gap-6"
+        >
           <h2 className="m-0 font-display text-[45px]/[52px] font-medium text-v2-navy max-md:text-[30px]/[38px]">
             {questionsIntro.heading}
           </h2>
           <p className="m-0 text-[17px]/[26px] text-v2-navy max-md:text-[15px]/[24px] max-md:text-[#485055]">
             {questionsIntro.body}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="col-start-2 row-span-2 row-start-1 flex min-w-0 flex-col max-lg:col-start-1 max-lg:row-span-1 max-lg:row-start-2">
+        <Reveal
+          from="rise"
+          delay={100}
+          className="col-start-2 row-span-2 row-start-1 flex min-w-0 flex-col max-lg:col-start-1 max-lg:row-span-1 max-lg:row-start-2"
+        >
           {items.map((item, i) => (
             <AccordionRow
               key={item.q}
@@ -49,7 +57,7 @@ export function Questions({ items = questions }: { items?: { q: string; a: strin
               </p>
             </AccordionRow>
           ))}
-        </div>
+        </Reveal>
 
         <PillLink
           href={questionsIntro.href}

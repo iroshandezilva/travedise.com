@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Reveal } from "@/components/ui/reveal";
 import { readyBand } from "@/content/v2/home";
 
 /**
@@ -37,7 +38,10 @@ export function ReadyBand() {
       />
 
       <div className="relative mx-auto flex h-full w-full max-w-[1280px] items-end justify-end max-md:justify-start">
-        <div className="flex w-[560px] flex-col gap-[22px] pb-[72px] max-md:w-full max-md:gap-4 max-md:pb-10">
+        <Reveal
+          from="rise"
+          className="flex w-[560px] flex-col gap-[22px] pb-[72px] max-md:w-full max-md:gap-4 max-md:pb-10"
+        >
           <h2 className="m-0 font-display text-[56px]/[62px] font-normal tracking-[-0.01em] text-white max-md:text-[40px]/[46px]">
             Ready when
             <br />
@@ -68,7 +72,7 @@ export function ReadyBand() {
               See the journeys
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/v2/section";
 import { planningSteps } from "@/content/v2/home";
 
@@ -19,7 +20,12 @@ export function PlanningSteps() {
         }
       />
 
-      <ol className="m-0 grid list-none grid-cols-4 gap-[22px] p-0 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-3">
+      <Reveal
+        as="ol"
+        from="rise"
+        delay={90}
+        className="m-0 grid list-none grid-cols-4 gap-[22px] p-0 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-3"
+      >
         {planningSteps.map((step, i) => (
           <li
             key={step.title}
@@ -35,7 +41,7 @@ export function PlanningSteps() {
             <p className="m-0 text-[15px]/[24px] text-[#52687b]">{step.body}</p>
           </li>
         ))}
-      </ol>
+      </Reveal>
     </Section>
   );
 }

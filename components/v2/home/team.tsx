@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Reveal } from "@/components/ui/reveal";
 import { PillLink } from "@/components/v2/buttons";
 import { Section } from "@/components/v2/section";
 import { team, teamFrames } from "@/content/v2/home";
@@ -16,7 +17,10 @@ export function Team() {
       className="py-[90px] max-lg:py-16 max-md:py-14"
       innerClassName="flex items-center gap-24 max-xl:gap-16 max-lg:flex-col max-lg:items-start max-lg:gap-12 max-md:gap-8"
     >
-      <div className="v2-reveal h-[520px] w-[560px] shrink-0 max-lg:h-[440px] max-lg:w-full max-md:h-auto">
+      <Reveal
+        from="rise"
+        className="v2-reveal h-[520px] w-[560px] shrink-0 max-lg:h-[440px] max-lg:w-full max-md:h-auto"
+      >
         {teamFrames.map((frame) => (
           <figure key={frame.src} className="v2-reveal-col">
             <img src={frame.src} alt={frame.alt} loading="lazy" />
@@ -26,9 +30,9 @@ export function Team() {
             </figcaption>
           </figure>
         ))}
-      </div>
+      </Reveal>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-7 max-md:gap-5">
+      <Reveal from="rise" delay={100} className="flex min-w-0 flex-1 flex-col gap-7 max-md:gap-5">
         <h2 className="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]">
           {team.heading}
         </h2>
@@ -52,7 +56,7 @@ export function Team() {
             Talk to Chamara ↗
           </Link>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }
