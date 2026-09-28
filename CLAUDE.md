@@ -17,7 +17,8 @@ Not everyone working here knows git. Handle it for them without asking them to r
    Write the PR description in plain language: what changed and where to look.
 4. **Tell the person** the PR link and that the owner will review it. Then check out `dev` again.
 
-Never commit or push to `main` or `dev` directly. Releases (`dev` → `main`) are done only by the owner.
+Never commit or push to `main` or `dev` directly — GitHub blocks direct pushes to both for everyone,
+the owner included, so every change goes through a PR. Releases (`dev` → `main`) are done only by the owner.
 
 ## Merging — only for the owner
 
@@ -29,7 +30,8 @@ owner asks to merge a PR, Claude merges it for them:
 2. CI no longer builds pull requests, so there is no check to read. Confirm instead that
    `pnpm build` and `pnpm test` pass on the PR branch locally; if either fails, say so and stop.
 3. `gh pr merge <n> --admin --squash --delete-branch` (for a `dev` → `main` release PR use `--merge`
-   and keep the branch). Share what was merged and where it deploys.
+   and keep the branch). `--admin` skips the approval rule, which the owner may do only when
+   merging a PR — not for direct pushes. Share what was merged and where it deploys.
 
 Never merge on your own initiative or for anyone else.
 
