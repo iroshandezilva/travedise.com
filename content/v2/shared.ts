@@ -15,7 +15,11 @@ export const navLinks = [
 ] as const;
 
 /** The phone menu has room for one more entry than the desktop bar. */
-export const mobileNavLinks = [...navLinks, { href: "/#questions", label: "Questions" }] as const;
+export const mobileNavLinks = [
+  ...navLinks,
+  { href: "/about", label: "About" },
+  { href: "/#questions", label: "Questions" },
+] as const;
 
 /** The journey promoted at the foot of the phone menu. */
 export const menuFeature = {

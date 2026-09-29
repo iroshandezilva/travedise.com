@@ -14,14 +14,18 @@ import { IntroText, SectionIntro } from "./section-intro";
  * "Five corners of a small island" — a row of region pills, and the picked region's
  * photos and facts beneath them.
  *
- * Both photos of every region are stacked and cross-faded by opacity, like the package
- * hero, so switching never waits on a download and a quick second click picks up where
- * the fade was. The text panel is remounted per region and enters from @starting-style,
- * on the same 260ms as the photos — the three are one switch and should read as one.
+ * The photo that is showing is in the page, plus any region already opened, so a
+ * switch can still cross-fade. The other regions stay out until they are picked.
  */
 export function Regions() {
   const [current, setCurrent] = useState(0);
+  const [shown, setShown] = useState<number[]>([0]);
   const region = regions[current];
+
+  function show(index: number) {
+    setShown((prev) => (prev.includes(index) ? prev : [...prev, index]));
+    setCurrent(index);
+  }
 
   return (
     <Section id="regions" className="py-[90px] max-md:py-14">
@@ -49,7 +53,7 @@ export function Regions() {
             key={r.name}
             type="button"
             aria-pressed={i === current}
-            onClick={() => setCurrent(i)}
+            onClick={() => show(i)}
             className={cn(
               "shrink-0 rounded-full border px-[22px] py-[13px] text-[15px]/[20px] transition-[background-color,color,border-color,scale] duration-200 ease-out-quart active:scale-[0.97] motion-reduce:transition-none max-md:px-[18px] max-md:py-[11px] max-md:text-[14px]",
               i === current
@@ -68,33 +72,37 @@ export function Regions() {
         className="flex items-start gap-16 max-xl:gap-12 max-lg:flex-col max-md:gap-12"
       >
         <div className="relative h-[520px] w-[720px] shrink-0 max-xl:w-[56%] max-lg:h-[440px] max-lg:w-full max-md:h-[280px]">
-          {regions.map((r, i) => (
-            <img
-              key={r.image}
-              src={r.image}
-              alt={i === current ? r.alt : ""}
-              aria-hidden={i !== current}
-              loading="lazy"
-              className={cn(
-                "absolute inset-0 block size-full object-cover transition-opacity duration-[260ms] ease-out-quart motion-reduce:transition-none",
-                i === current ? "opacity-100" : "opacity-0",
-              )}
-            />
-          ))}
-          <div className="absolute -right-7 -bottom-9 h-[170px] w-[236px] border-8 border-white bg-white max-md:right-3 max-md:-bottom-7 max-md:h-[96px] max-md:w-[132px] max-md:border-[5px]">
-            {regions.map((r, i) => (
+          {regions.map((r, i) =>
+            shown.includes(i) ? (
               <img
-                key={r.inset}
-                src={r.inset}
-                alt=""
-                aria-hidden
+                key={r.image}
+                src={r.image}
+                alt={i === current ? r.alt : ""}
+                aria-hidden={i !== current}
                 loading="lazy"
                 className={cn(
                   "absolute inset-0 block size-full object-cover transition-opacity duration-[260ms] ease-out-quart motion-reduce:transition-none",
                   i === current ? "opacity-100" : "opacity-0",
                 )}
               />
-            ))}
+            ) : null,
+          )}
+          <div className="absolute -right-7 -bottom-9 h-[170px] w-[236px] border-8 border-white bg-white max-md:right-3 max-md:-bottom-7 max-md:h-[96px] max-md:w-[132px] max-md:border-[5px]">
+            {regions.map((r, i) =>
+              shown.includes(i) ? (
+                <img
+                  key={r.inset}
+                  src={r.inset}
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  className={cn(
+                    "absolute inset-0 block size-full object-cover transition-opacity duration-[260ms] ease-out-quart motion-reduce:transition-none",
+                    i === current ? "opacity-100" : "opacity-0",
+                  )}
+                />
+              ) : null,
+            )}
           </div>
         </div>
 

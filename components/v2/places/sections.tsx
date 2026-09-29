@@ -307,7 +307,7 @@ export function PlaceNearby({ place }: { place: Place }) {
                   />
                 </div>
                 <div className="flex flex-col gap-2.5 px-[26px] pt-6 pb-[26px] max-md:px-5 max-md:pt-5 max-md:pb-6">
-                  <h3 className="m-0 font-display text-[28px]/[34px] font-medium tracking-[-0.005em] text-v2-navy transition-colors duration-300 group-hover:text-[#344458] max-md:text-[24px]/[30px]">
+                  <h3 className="m-0 text-[28px]/[34px] font-medium tracking-[-0.005em] text-v2-navy transition-colors duration-300 group-hover:text-[#344458] max-md:text-[24px]/[30px]">
                     {p.name}
                   </h3>
                   <p className="m-0 text-[15px]/[24px] text-[#52687b]">{p.line}</p>

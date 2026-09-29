@@ -20,7 +20,7 @@ export function JourneysIntro() {
         <div className="flex gap-14 max-md:flex-col max-md:gap-6">
           {journeysIntro.facts.map((fact) => (
             <div key={fact.value} className="flex flex-col gap-1.5">
-              <span className="font-display text-[36px]/[44px] text-v2-navy max-md:text-[28px]/[36px]">
+              <span className="text-[36px]/[44px] font-medium text-v2-navy max-md:text-[28px]/[36px]">
                 {fact.value}
               </span>
               <span className="text-[15px]/[22px] text-[#65788c]">{fact.detail}</span>
