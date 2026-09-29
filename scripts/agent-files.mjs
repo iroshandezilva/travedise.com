@@ -156,8 +156,9 @@ the package page for its itinerary; answer general questions from the FAQ. Price
 USD and are starting prices. Bookings are made by contacting the team (email or phone on the Contact
 page) — don't tell a traveller a booking is confirmed. There is no public API or online checkout.
 
-${section("Main pages", (p) => !p.route.startsWith("/packages/") && !p.route.startsWith("/blog-posts/"))}
+${section("Main pages", (p) => !/^\/(packages|places|blog-posts)\//.test(p.route))}
 ${section("Tour packages", (p) => p.route.startsWith("/packages/"))}
+${section("Places", (p) => p.route.startsWith("/places/"))}
 ${section("Travel guides", (p) => p.route.startsWith("/blog-posts/"))}
 ## Optional
 

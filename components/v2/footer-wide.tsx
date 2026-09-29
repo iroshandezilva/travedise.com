@@ -84,7 +84,7 @@ export function FooterWide({
         <div className="flex justify-between gap-15 max-lg:flex-wrap max-lg:gap-10 max-md:gap-8">
           <FooterColumn title="Explore">
             <FooterLink href="/packages">Journeys</FooterLink>
-            <FooterLink href="/#regions">Places</FooterLink>
+            <FooterLink href="/places">Places</FooterLink>
             <FooterLink href="/when-to-go">When to go</FooterLink>
             <FooterLink href="/blog">Travel notes</FooterLink>
             <FooterLink href="/about">About us</FooterLink>
