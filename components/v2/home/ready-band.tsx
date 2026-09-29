@@ -5,10 +5,11 @@ import { readyBand } from "@/content/v2/home";
 
 /**
  * Closing call to action over a full-bleed photo. The top of the photo fades into the
- * cream of the questions section above it; the text sits bottom right on desktop and
- * along the bottom on a phone, each over its own darkening wash.
+ * section above it — cream on the home page, white where `above` says so. The text sits
+ * bottom right on desktop and along the bottom on a phone, each over its own darkening wash.
  */
-export function ReadyBand() {
+export function ReadyBand({ above = "cream" }: { above?: "cream" | "white" } = {}) {
+  const edge = above === "white" ? "255,255,255" : "247,245,239";
   return (
     <section
       id="plan"
@@ -25,7 +26,7 @@ export function ReadyBand() {
         className="absolute inset-0 max-md:hidden"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgb(247,245,239) 0%, rgba(247,245,239,0.82) 12%, rgba(247,245,239,0.35) 30%, rgba(247,245,239,0) 50%), linear-gradient(270deg, rgba(12,21,38,0.72) 0%, rgba(12,21,38,0.42) 42%, rgba(12,21,38,0) 70%), linear-gradient(0deg, rgba(12,21,38,0.5) 0%, rgba(12,21,38,0) 45%)",
+            `linear-gradient(180deg, rgb(${edge}) 0%, rgba(${edge},0.82) 12%, rgba(${edge},0.35) 30%, rgba(${edge},0) 50%), linear-gradient(270deg, rgba(12,21,38,0.72) 0%, rgba(12,21,38,0.42) 42%, rgba(12,21,38,0) 70%), linear-gradient(0deg, rgba(12,21,38,0.5) 0%, rgba(12,21,38,0) 45%)`,
         }}
       />
       <div
@@ -33,7 +34,7 @@ export function ReadyBand() {
         className="absolute inset-0 hidden max-md:block"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgb(247,245,239) 0%, rgba(247,245,239,0) 22%), linear-gradient(0deg, rgba(12,21,38,0.86) 0%, rgba(12,21,38,0.55) 45%, rgba(12,21,38,0) 70%)",
+            `linear-gradient(180deg, rgb(${edge}) 0%, rgba(${edge},0) 22%), linear-gradient(0deg, rgba(12,21,38,0.86) 0%, rgba(12,21,38,0.55) 45%, rgba(12,21,38,0) 70%)`,
         }}
       />
 
