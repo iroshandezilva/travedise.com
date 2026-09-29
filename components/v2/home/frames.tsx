@@ -1,9 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { Reveal } from "@/components/ui/reveal";
 import { frames } from "@/content/v2/home";
+import { journeys } from "@/content/v2/journeys";
+
+/** A frame's journey links to its package page; a journey without one stays plain text. */
+const journeyHref: Record<string, string> = Object.fromEntries(
+  journeys.filter((j) => j.href.startsWith("/packages/")).map((j) => [j.name, j.href]),
+);
 
 /**
  * "Frames from the road" — a captioned photo strip that scrolls on its own. It moves
@@ -66,7 +73,20 @@ export function Frames() {
                   <span className="text-[15px]/[21px] text-white max-md:text-[14px]/[20px]">
                     {frame.place}
                   </span>
-                  <span className="text-[13px]/[19px] text-[#8a9eac]">On {frame.journey}</span>
+                  <span className="text-[13px]/[19px] text-[#8a9eac]">
+                    On{" "}
+                    {journeyHref[frame.journey] ? (
+                      <Link
+                        href={journeyHref[frame.journey]}
+                        tabIndex={copy ? -1 : undefined}
+                        className="underline decoration-white/30 underline-offset-[3px] transition-[color,text-decoration-color] duration-150 hover:text-white hover:decoration-white"
+                      >
+                        {frame.journey}
+                      </Link>
+                    ) : (
+                      frame.journey
+                    )}
+                  </span>
                 </figcaption>
               </figure>
             )),
