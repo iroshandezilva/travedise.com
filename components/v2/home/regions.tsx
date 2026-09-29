@@ -126,7 +126,7 @@ export function Regions() {
             ))}
           </dl>
           <Link
-            href="/v2/packages"
+            href="/packages"
             className="mt-2 inline-flex items-center gap-2.5 self-start rounded-full border border-v2-navy/30 px-[22px] py-[13px] text-[15px]/[20px] text-v2-navy transition-[border-color,scale] duration-150 ease-out-quad hover:border-v2-navy active:scale-[0.97] motion-reduce:transition-none"
           >
             See {region.short} on the map <span aria-hidden>↗</span>

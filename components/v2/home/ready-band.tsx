@@ -66,7 +66,7 @@ export function ReadyBand() {
               </span>
             </Link>
             <Link
-              href="/v2/packages"
+              href="/packages"
               className="flex h-[60px] items-center justify-center rounded-full border border-white/55 px-6 text-[16px]/[20px] text-white backdrop-blur-[10px] transition-[background-color,scale] duration-150 ease-out-quad hover:bg-white/8 active:scale-[0.97] motion-reduce:transition-none max-md:h-14"
             >
               See the journeys

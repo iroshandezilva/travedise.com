@@ -209,7 +209,10 @@ export function MapExplorer() {
                   href={active.href}
                   className="inline-flex items-center gap-2.5 self-start rounded-full border border-white/40 px-5 py-[11px] text-[15px] text-white transition-colors duration-200 hover:bg-white/8 max-md:self-stretch max-md:justify-center"
                 >
-                  Read the full itinerary <span aria-hidden>↗</span>
+                  {active.href.startsWith("/packages/")
+                    ? "Read the full itinerary"
+                    : "Ask us about this route"}{" "}
+                  <span aria-hidden>↗</span>
                 </Link>
               </div>
             </div>

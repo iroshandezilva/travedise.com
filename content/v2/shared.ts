@@ -8,7 +8,7 @@ import { images } from "./images";
 
 /** Anchors are written against the home page so the same bar works from a journey page. */
 export const navLinks = [
-  { href: "/v2/packages", label: "Journeys" },
+  { href: "/packages", label: "Journeys" },
   { href: "/#regions", label: "Places" },
   { href: "/#how", label: "How it works" },
   { href: "/#notes", label: "Travel notes" },

@@ -1,13 +1,14 @@
 /**
- * The journeys index (`app/v2/packages`): the six routes, and the geometry the map
+ * The journeys index (`app/packages`): the six routes, and the geometry the map
  * explorer draws them with.
  *
  * The alt text here describes what is actually in each photo. The design's own alt
  * text described different pictures, and the key names in `images.ts` carry the same
  * mistake — worth correcting there too.
  *
- * `href` points at a journey's v2 page where one exists and its current page
- * otherwise — only Scenic Sri Lanka has been rebuilt on the v2 template so far.
+ * `href` points at the journey's page. Simply Sri Lanka has no itinerary written yet,
+ * so it goes to the contact page instead. The routes and stops follow the day-by-day
+ * itineraries in `packages.ts`, so the map draws what the page describes.
  */
 import { images, packageImages as pkg } from "./images";
 
@@ -93,7 +94,7 @@ export const journeys: Journey[] = [
       "The classic loop, paced so it never feels like a checklist. Ruins in the cool of the morning, tea country through the middle, then a week of the south coast to finish on.",
     image: images.cloudForest,
     alt: "Coconut palms on a red headland above the sea",
-    href: "/packages/simply-srilanka",
+    href: "/contact",
   },
   {
     key: "family",
@@ -101,31 +102,31 @@ export const journeys: Journey[] = [
     theme: "Travelling as a family",
     nights: "11 nights",
     price: "from $3,200 pp",
-    route: "Negombo → Dambulla → Kandy → Udawalawe → Mirissa → Bentota",
-    stops: ["negombo", "dambulla", "kandy", "udawalawe", "mirissa", "bentota"],
+    route: "Kandy → Nuwara Eliya → Yala → Galle → Colombo",
+    stops: ["kandy", "nuwara", "yala", "galle", "colombo"],
     short:
       "Shorter drives, rooms with space to spread out, and one elephant morning that earns the early start.",
     blurb:
       "Shorter drives, rooms with space to spread out, and an elephant morning that earns the early start. Built for the ages where an hour in the car already counts as a long one.",
     image: images.honeymoon,
     alt: "A table set on the sand at sunset",
-    href: "/packages",
+    href: "/packages/best-of-sri-lanka",
   },
   {
     key: "scenic",
     name: "Scenic Sri Lanka",
     theme: "Slow and scenic",
-    nights: "8 nights",
+    nights: "10 nights",
     price: "from $2,600 pp",
-    route: "Colombo → Kandy → Nuwara Eliya → Ella → Tangalle",
-    stops: ["colombo", "kandy", "nuwara", "ella", "tangalle"],
+    route: "Kandy → Dambulla → Sigiriya → Yala → Tangalle → Galle",
+    stops: ["kandy", "dambulla", "sigiriya", "yala", "tangalle", "galle"],
     short:
-      "The route we send most people on, with two days in the middle where nothing at all is planned.",
+      "The route we send most people on: old cities, the rock, the park, then a slow finish on the coast.",
     blurb:
-      "The route we send most people on. Hill country by train, a couple of nights where nothing at all is planned, and a quiet stretch of the south before you fly home.",
+      "The route we send most people on. The Cultural Triangle and the rock at Sigiriya, three days in Yala, and a quiet stretch of the south coast before you fly home.",
     image: pkg.northRoad,
     alt: "Two travellers looking out towards Sigiriya rock",
-    href: "/v2/packages/scenic-sri-lanka",
+    href: "/packages/scenic-sri-lanka",
   },
   {
     key: "hillcoast",
@@ -133,8 +134,8 @@ export const journeys: Journey[] = [
     theme: "Tea and coast",
     nights: "8 nights",
     price: "from $2,500 pp",
-    route: "Kandy → Nuwara Eliya → Ella → Mirissa → Galle",
-    stops: ["kandy", "nuwara", "ella", "mirissa", "galle"],
+    route: "Kandy → Nuwara Eliya → Ella → Yala → Tangalle → Galle",
+    stops: ["kandy", "nuwara", "ella", "yala", "tangalle", "galle"],
     short:
       "Cold mornings up in the tea estates, then warm evenings on the sand once the road comes back down.",
     blurb:
@@ -149,12 +150,12 @@ export const journeys: Journey[] = [
     theme: "Wildlife",
     nights: "8 nights",
     price: "from $3,000 pp",
-    route: "Wilpattu → Sigiriya → Kandy → Udawalawe → Yala",
-    stops: ["wilpattu", "sigiriya", "kandy", "udawalawe", "yala"],
+    route: "Sigiriya → Kandy → Ella → Yala → Galle",
+    stops: ["sigiriya", "kandy", "ella", "yala", "galle"],
     short:
-      "Three parks with quite different characters, and the guides who know when the animals are out.",
+      "Elephant country, the hills, then two days in Yala with guides who know when the animals are out.",
     blurb:
-      "Three parks with quite different characters, and the guides who know them, planned around the hours the animals are actually out. Leopards are never promised, only made likely.",
+      "Elephants at Minneriya, birds and butterflies above Ella, then two days in Yala, planned around the hours the animals are actually out. Leopards are never promised, only made likely.",
     image: images.simply,
     alt: "A lit hotel reflected in the water at dusk",
     href: "/packages/wildlife-package",
@@ -165,11 +166,11 @@ export const journeys: Journey[] = [
     theme: "Just the two of you",
     nights: "10 nights",
     price: "from $4,000 pp",
-    route: "Kandy → Nuwara Eliya → Ella → Tangalle → Bentota",
-    stops: ["kandy", "nuwara", "ella", "tangalle", "bentota"],
+    route: "Kandy → Nuwara Eliya → Yala → Tangalle → Galle",
+    stops: ["kandy", "nuwara", "yala", "tangalle", "galle"],
     short: "Fewer stops, longer stays, and the kind of rooms worth staying in well past breakfast.",
     blurb:
-      "Fewer stops, longer stays, and the kind of rooms worth staying in past breakfast. A tea bungalow with a fire lit in the evening, then a villa where the beach is the end of the garden.",
+      "Fewer stops, longer stays, and the kind of rooms worth staying in past breakfast. A planter’s bungalow in the tea country, then three nights where the beach is the end of the garden.",
     image: images.southCoast,
     alt: "A couple walking the beach at sunset",
     href: "/packages/dream-honeymoon-in-sri-lanka",

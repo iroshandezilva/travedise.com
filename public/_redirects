@@ -3,3 +3,10 @@
 # The home page was built at /v2 before it went live. Anyone holding that link —
 # a bookmark, a message, a preview shared during the rebuild — lands on it anyway.
 /v2 / 301
+
+# The journeys pages were built at /v2/packages before they replaced /packages.
+/v2/packages /packages 301
+/v2/packages/* /packages/:splat 301
+
+# Simply Sri Lanka never had an itinerary, and its page went with the old design.
+/packages/simply-srilanka /packages 301
