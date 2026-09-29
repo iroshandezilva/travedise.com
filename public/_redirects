@@ -13,3 +13,8 @@
 
 # The contact page was replaced by the trip-planning page.
 /contact /plan-your-trip 301
+
+# The three original blog posts were rewritten as travel notes with new titles.
+/blog-posts/the-ultimate-honeymoon-destination /blog-posts/ten-days-for-two 301
+/blog-posts/family-friendly-destinations-that-everyone-will-love /blog-posts/sri-lanka-with-children 301
+/blog-posts/why-2026-is-the-best-year-for-travel-and-tour /blog-posts/a-first-trip-to-sri-lanka 301

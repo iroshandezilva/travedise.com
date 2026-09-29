@@ -27,13 +27,18 @@ app/                  routes — each page.tsx composes sections and exports its
 components/
   ui/                 primitives: ArrowButton, PillButton, OutlinePill, TextRoll, SectionTag, Reveal
   site/               shared across pages: Navbar, Footer, FaqSection, PackageCard, BlogCard, …
-  home/ about/ contact/ packages/ package-detail/ blog/   page-specific sections
+  home/ about/        page-specific sections (original design)
+  v2/                 the new design: shared nav, footer, CTAs; v2/blog is the travel notes
 content/              typed page content: packages, package details, blog posts, FAQs, …
 lib/cn.ts             className helper (clsx + tailwind-merge aware of our tokens)
 public/assets/        images and icons
 ```
 
 Copy lives in `content/`, not in JSX — to change a package, FAQ or blog post, edit the data file.
+
+To add a travel note, add a file to `content/blog/posts/` (copy an existing one) and list it in
+`content/blog/index.ts`. The template at `app/blog-posts/[slug]/page.tsx` builds its page, and
+`/blog`, the sitemap and "Keep reading" pick it up. Reading time is counted from the text.
 
 ## Styling
 

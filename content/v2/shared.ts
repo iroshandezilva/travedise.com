@@ -11,7 +11,7 @@ export const navLinks = [
   { href: "/packages", label: "Journeys" },
   { href: "/#regions", label: "Places" },
   { href: "/#how", label: "How it works" },
-  { href: "/#notes", label: "Travel notes" },
+  { href: "/blog", label: "Travel notes" },
 ] as const;
 
 /** The phone menu has room for one more entry than the desktop bar. */

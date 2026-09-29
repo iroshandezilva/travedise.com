@@ -1,0 +1,66 @@
+import { images } from "@/content/v2/images";
+
+import { TEAM, type BlogPost } from "../types";
+
+export const post: BlogPost = {
+  slug: "polonnaruwa-by-bicycle",
+  title: "Polonnaruwa, on two wheels",
+  titleEm: "on two wheels",
+  standfirst: "The ancient city is flat and spread out. For once, a bicycle beats the car.",
+  dek: "The ancient city is flat and spread out. For once, a bicycle beats the car.",
+  category: "Culture",
+  date: "2026-03-12",
+  author: TEAM,
+  image: { src: images.noteFamily, alt: "The moonstone steps at Polonnaruwa at sunset" },
+  body: [
+    {
+      type: "lead",
+      text: [
+        "Polonnaruwa was the royal capital of Sri Lanka around nine hundred years ago. Its palaces, temples and stupas are spread over several kilometres of flat, shady parkland. It is one of the few places on the island where we take you out of the car.",
+      ],
+    },
+
+    { type: "h2", id: "why", text: "Why a bicycle" },
+    {
+      type: "p",
+      text: [
+        "By car you stop, park, walk in, walk out and drive on. By bicycle the ruins run together into one long morning under the trees, with monkeys on the walls and almost no traffic. The paths are flat and the distances short.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "Your guide cycles with you, and the driver follows with water and takes the bikes back when you are done.",
+      ],
+    },
+
+    { type: "h2", id: "see", text: "What to see" },
+    {
+      type: "list",
+      items: [
+        ["The Vatadage, a round relic house with carved moonstones on its steps."],
+        ["The Royal Palace and the audience hall, with rows of carved elephants."],
+        [
+          "Gal Vihara, four Buddha figures cut from one granite face. Save it for last: it is the one people remember.",
+        ],
+      ],
+    },
+    {
+      type: "quote",
+      text: "Start at seven, finish before the heat, and end at Gal Vihara.",
+    },
+
+    { type: "h2", id: "practical", text: "Practical things" },
+    {
+      type: "p",
+      text: [
+        "Buy tickets at the museum by the entrance, and give it twenty minutes first: it makes the ruins make sense. Cover shoulders and knees, and take shoes off where the signs say. A morning is enough; the afternoon can go to elephants at Minneriya or Kaudulla if you are here between July and September.",
+      ],
+    },
+    {
+      type: "note",
+      label: "Not a cyclist?",
+      text: "The ride is flat and slow, and anyone who can ride a bicycle can do it. If you would rather not, we keep the car and simply make fewer stops.",
+    },
+  ],
+};

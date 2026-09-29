@@ -11,8 +11,9 @@ import { MobileMenu } from "./mobile-menu";
  * glass pill.
  *
  * It expects to sit inside a `relative` container that is the hero's inner column.
+ * `current` is the href of the page's own section; that link gets the accent underline.
  */
-export function SiteNav() {
+export function SiteNav({ current }: { current?: string } = {}) {
   return (
     <div className="absolute inset-x-0 top-[22px] flex h-[70px] items-center justify-between max-md:top-3.5 max-md:right-4 max-md:left-4 max-md:h-15 max-md:rounded-full max-md:border max-md:border-white/22 max-md:bg-[#10253280] max-md:pr-2 max-md:pl-4 max-md:backdrop-blur-[16px]">
       <Link
@@ -31,7 +32,12 @@ export function SiteNav() {
         className="flex h-14 items-center gap-[26px] rounded-full border border-white/29 bg-[#102532a8] px-[26px] backdrop-blur-[18px] max-lg:hidden"
       >
         {navLinks.map(({ href, label }) => (
-          <Link key={label} href={href} className="text-[15px]/[1.2] text-white">
+          <Link
+            key={label}
+            href={href}
+            aria-current={href === current ? "page" : undefined}
+            className="text-[15px]/[1.2] text-white aria-[current=page]:underline aria-[current=page]:decoration-v2-sky aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-[7px]"
+          >
             {label}
           </Link>
         ))}
