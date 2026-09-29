@@ -282,6 +282,23 @@
     display: none;
   }
 
+  /* Each step of the trip-planning form rises in as it replaces the last. A keyframe is
+     fine here: the step is a fresh element, so there is nothing to retarget from. */
+  .v2-step-in {
+    animation: v2-step-in 450ms var(--ease-out-quint);
+  }
+  @keyframes v2-step-in {
+    from {
+      opacity: 0;
+      translate: 0 12px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-step-in {
+      animation: none;
+    }
+  }
+
   /* The phone menu and its items. Transitions rather than keyframes, so opening and
      closing in quick succession retargets from wherever the motion got to instead of
      restarting — and so there is a real exit rather than a pop-out. */

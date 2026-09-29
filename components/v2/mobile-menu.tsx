@@ -157,7 +157,7 @@ export function MobileMenu() {
 
               <div className="mt-auto flex flex-col gap-[18px] pt-10">
                 <Link
-                  href="/contact"
+                  href="/plan-your-trip"
                   onClick={close}
                   className="flex h-[54px] items-center justify-center rounded-[27px] bg-v2-sky text-[16px] font-semibold text-[#10212b]"
                 >

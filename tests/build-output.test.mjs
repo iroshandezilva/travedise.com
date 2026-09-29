@@ -188,7 +188,7 @@ describe("homepage", () => {
 });
 
 describe("trust pages", () => {
-  for (const route of ["/about", "/contact", "/privacy"]) {
+  for (const route of ["/about", "/plan-your-trip", "/privacy"]) {
     it(`${route} exists with at least 500 characters of visible text`, () => {
       const html = read(`${route.slice(1)}.html`);
       const body = html

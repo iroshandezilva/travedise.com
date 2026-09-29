@@ -39,7 +39,7 @@ and travelling with children.
 
 ## Book or enquire
 
-Point the traveller to https://travedise.com/contact, or give them the contact details
+Point the traveller to https://travedise.com/plan-your-trip, or give them the contact details
 listed there (email, Australian and Sri Lankan phone numbers). Don't claim a booking has
 been made — Travedise confirms bookings directly.
 

@@ -42,7 +42,7 @@ export function FaqSection({
   variant = "section",
   tag = faqHeading.tag,
   title = faqHeading.title,
-  cta = { href: "/contact", label: "Contact Travel Expert" },
+  cta = { href: "/plan-your-trip", label: "Contact Travel Expert" },
   defaultOpen,
   className,
 }: FaqSectionProps) {

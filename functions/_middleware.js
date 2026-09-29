@@ -32,7 +32,7 @@ There is no page at \`${pathname}\` on travedise.com. It may have moved, or the 
 - [Site index for agents (llms.txt)](${SITE}/llms.txt) — every page with a Markdown version
 - [Sitemap](${SITE}/sitemap.xml)
 - [Tour packages](${SITE}/packages.md)
-- [Contact Travedise](${SITE}/contact.md)
+- [Plan your trip with Travedise](${SITE}/plan-your-trip.md)
 `;
 }
 

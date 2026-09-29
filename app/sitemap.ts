@@ -20,8 +20,8 @@ const ENTRIES: { path: string; sources: string[] }[] = [
   { path: "/blog", sources: ["app/blog/page.tsx", "content/blog.ts"] },
   { path: "/faq", sources: ["app/faq/page.tsx", "content/faqs.ts"] },
   {
-    path: "/contact",
-    sources: ["app/contact/page.tsx", "components/contact", "content/contact.ts"],
+    path: "/plan-your-trip",
+    sources: ["app/plan-your-trip/page.tsx", "components/v2/plan", "content/v2/plan.ts"],
   },
   { path: "/privacy", sources: ["app/privacy/page.tsx", "content/privacy.ts"] },
   ...Object.values(packages).map((p) => ({

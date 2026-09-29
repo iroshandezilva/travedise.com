@@ -90,7 +90,7 @@ export function FooterWide({
           </FooterColumn>
 
           <FooterColumn title="Talk to us">
-            <FooterLink href="/contact">Plan your trip</FooterLink>
+            <FooterLink href="/plan-your-trip">Plan your trip</FooterLink>
             <FooterLink href="mailto:contact@travedise.com">contact@travedise.com</FooterLink>
             <FooterLink href="tel:+61426965569">+61 426 965 569</FooterLink>
             <FooterLink href="tel:+94763972171">+94 76 397 2171</FooterLink>
@@ -132,7 +132,7 @@ export function FooterWide({
             <FooterLink href="/faq" muted>
               Questions
             </FooterLink>
-            <FooterLink href="/contact" muted>
+            <FooterLink href="/plan-your-trip" muted>
               Contact us
             </FooterLink>
           </nav>

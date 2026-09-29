@@ -9,7 +9,7 @@ import { Reveal } from "@/components/ui/reveal";
 export function BlogPromoCard({
   title = "Kandy Discovery Tour",
   description = "Includes guided monastery visits, local experiences, and trekking.",
-  cta = { href: "/contact", label: "From $1,699/Person" },
+  cta = { href: "/plan-your-trip", label: "From $1,699/Person" },
   image = "/assets/6a30c7d75601d08b07505cb0_chathura-anuradha-subasinghe-isdvqf04MDk-unsplash-2.jpg",
 }: {
   title?: string;
