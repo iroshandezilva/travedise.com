@@ -6,6 +6,35 @@ import { questions, questionsIntro } from "@/content/v2/shared";
 
 import { AccordionRow, useAccordion } from "./accordion";
 
+export type QuestionItem = { q: string; a: string };
+
+/** The open-one-at-a-time list shared by the home questions band and the FAQ page. */
+export function QuestionList({ items }: { items: QuestionItem[] }) {
+  const acc = useAccordion(0);
+  return (
+    <div className="flex min-w-0 flex-col">
+      {items.map((item, i) => (
+        <AccordionRow
+          key={item.q}
+          open={acc.isOpen(i)}
+          onToggle={() => acc.toggle(i)}
+          buttonClassName="gap-5 py-[19px] max-md:items-start max-md:py-4"
+          panelClassName="pr-10 pb-5 max-md:pr-0 max-md:pb-[18px]"
+          head={
+            <span className="text-[17px]/[25px] text-v2-navy max-md:text-[16px]/[24px]">
+              {item.q}
+            </span>
+          }
+        >
+          <p className="m-0 text-[15px]/[24px] text-v2-navy max-md:text-[14px]/[23px] max-md:text-v2-body">
+            {item.a}
+          </p>
+        </AccordionRow>
+      ))}
+    </div>
+  );
+}
+
 /**
  * "Before the journey begins" — the same questions on the home page and on every
  * package page, so a reader gets one answer to a question, not two.
@@ -13,9 +42,7 @@ import { AccordionRow, useAccordion } from "./accordion";
  * A grid, because the call to action sits under the intro on desktop but below the
  * whole list on a phone.
  */
-export function Questions({ items = questions }: { items?: { q: string; a: string }[] }) {
-  const acc = useAccordion(0);
-
+export function Questions({ items = questions }: { items?: QuestionItem[] }) {
   return (
     <section
       id="questions"
@@ -39,24 +66,7 @@ export function Questions({ items = questions }: { items?: { q: string; a: strin
           delay={100}
           className="col-start-2 row-span-2 row-start-1 flex min-w-0 flex-col max-lg:col-start-1 max-lg:row-span-1 max-lg:row-start-2"
         >
-          {items.map((item, i) => (
-            <AccordionRow
-              key={item.q}
-              open={acc.isOpen(i)}
-              onToggle={() => acc.toggle(i)}
-              buttonClassName="gap-5 py-[19px] max-md:items-start max-md:py-4"
-              panelClassName="pr-10 pb-5 max-md:pr-0 max-md:pb-[18px]"
-              head={
-                <span className="text-[17px]/[25px] text-v2-navy max-md:text-[16px]/[24px]">
-                  {item.q}
-                </span>
-              }
-            >
-              <p className="m-0 text-[15px]/[24px] text-v2-navy max-md:text-[14px]/[23px] max-md:text-v2-body">
-                {item.a}
-              </p>
-            </AccordionRow>
-          ))}
+          <QuestionList items={items} />
         </Reveal>
 
         <PillLink

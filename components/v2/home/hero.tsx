@@ -1,4 +1,7 @@
+import { preload } from "react-dom";
+
 import { PillLink } from "@/components/v2/buttons";
+import { HeroVideo } from "@/components/v2/home/hero-video";
 import { HeroScrim, SiteNav } from "@/components/v2/site-nav";
 import { hero } from "@/content/v2/home";
 import { images } from "@/content/v2/images";
@@ -9,18 +12,11 @@ import { images } from "@/content/v2/images";
  * the headline sits at the bottom of the frame above two stacked buttons.
  */
 export function Hero() {
+  preload(images.heroPoster, { as: "image", fetchPriority: "high" });
+
   return (
     <header className="relative h-[720px] w-full shrink-0 overflow-clip gutter-v2 max-md:px-0">
-      <video
-        src={images.heroVideo}
-        poster={images.heroPoster}
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-label="Sri Lankan landscapes in motion"
-        className="absolute inset-0 block size-full object-cover"
-      />
+      <HeroVideo src={images.heroVideo} poster={images.heroPoster} />
       <HeroScrim desktop="linear-gradient(90deg, oklab(0.2 -0.014 -0.012 / 0.64) 0%, oklab(0.2 -0.014 -0.012 / 0.22) 57%, oklab(0.2 -0.014 -0.012 / 0.1) 100%), linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.73) 0%, oklab(0 0 0 / 0) 52%)" />
 
       <div className="relative mx-auto h-full w-full max-w-[1280px]">

@@ -36,14 +36,14 @@ export function JourneyGrid() {
               </span>
             </div>
             <div className="flex flex-1 flex-col gap-3.5 px-7 pt-7 pb-[30px] max-md:px-5 max-md:pt-5 max-md:pb-6">
-              <h3 className="m-0 font-display text-[27px]/[34px] font-medium text-v2-navy max-md:text-[22px]/[28px]">
+              <h3 className="m-0 text-[27px]/[34px] font-medium text-v2-navy max-md:text-[22px]/[28px]">
                 {journey.name}
               </h3>
               <p className="m-0 text-[15px]/[24px] text-[#52687b]">{journey.short}</p>
               <div className="mt-auto flex items-center justify-between gap-[18px] pt-[22px]">
                 <div className="flex flex-col gap-[3px]">
                   <span className="text-[13px]/[18px] text-[#8192a3]">{journey.nights}</span>
-                  <span className="font-display text-[21px]/[28px] text-v2-navy">
+                  <span className="text-[21px]/[28px] font-medium text-v2-navy">
                     {journey.price}
                   </span>
                 </div>

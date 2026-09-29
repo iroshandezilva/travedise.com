@@ -150,7 +150,7 @@ export function MapExplorer() {
                   <span className="flex min-w-0 flex-col gap-[5px]">
                     <span
                       className={cn(
-                        "font-display text-[25px]/[32px] font-medium max-md:text-[19px]/[26px]",
+                        "text-[25px]/[32px] font-medium max-md:text-[19px]/[26px]",
                         on ? "text-white" : "text-white/72",
                       )}
                     >
@@ -201,7 +201,7 @@ export function MapExplorer() {
               />
               <div className="flex min-w-0 flex-1 flex-col gap-3">
                 <span className="text-[14px]/[20px] text-v2-sky">{active.theme}</span>
-                <span className="font-display text-[27px]/[34px] font-medium text-white max-md:text-[22px]/[28px]">
+                <span className="text-[27px]/[34px] font-medium text-white max-md:text-[22px]/[28px]">
                   {active.name}
                 </span>
                 <p className="m-0 text-[15px]/[23px] text-[#c4d2db]">{active.blurb}</p>

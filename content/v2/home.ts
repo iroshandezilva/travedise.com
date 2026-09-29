@@ -237,7 +237,7 @@ export const planningSteps: { title: string; body: string }[] = [
   },
   {
     title: "We send a first route",
-    body: "A suggested route with the stays we would use and a full price, usually within [N working days]. No charge and no obligation at this point.",
+    body: "A suggested route with the stays we would use and a full price, usually within a few working days. No charge and no obligation at this point.",
   },
   {
     title: "You change it until it fits",
@@ -245,7 +245,7 @@ export const planningSteps: { title: string; body: string }[] = [
   },
   {
     title: "Book, then travel",
-    body: "A [X%] deposit confirms it, with the balance due [N weeks] before you fly. Your planner stays reachable the whole time you are here.",
+    body: "A deposit confirms the booking, with the balance due before you fly. Your planner stays reachable the whole time you are here.",
   },
 ];
 

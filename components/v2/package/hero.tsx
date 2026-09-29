@@ -23,28 +23,41 @@ export function PackageHero({
   shots: Shot[];
 }) {
   const [current, setCurrent] = useState(0);
+  const [shown, setShown] = useState<number[]>([0]);
   const shot = shots[current];
+
+  function prime(index: number) {
+    setShown((prev) => (prev.includes(index) ? prev : [...prev, index]));
+  }
+
+  function show(index: number) {
+    prime(index);
+    setCurrent(index);
+  }
 
   return (
     <header className="relative h-[760px] w-full shrink-0 overflow-clip gutter-v2 max-lg:h-[700px] max-md:h-auto max-md:px-0 max-md:pb-8">
       {/* The photo and its wash fill the header on desktop. On a phone they are a band
           at the top, with the title and thumbnails reading on white beneath. */}
       <div className="absolute inset-0 max-md:relative max-md:h-[420px]">
-        {/* All four are stacked and cross-faded by opacity. Swapping one `src` could
-            not cross-fade, and a keyframe would restart from zero on a quick second
-            click rather than picking up from where it was. */}
-        {shots.map((s, i) => (
-          <img
-            key={s.src}
-            src={s.src}
-            alt={i === current ? s.label : ""}
-            aria-hidden={i !== current}
-            className={cn(
-              "absolute inset-0 block size-full object-cover transition-opacity duration-200 ease-out-quart motion-reduce:transition-none",
-              i === current ? "opacity-100" : "opacity-0",
-            )}
-          />
-        ))}
+        {/* Only shots the reader has opened are in the page. The first is here
+            immediately; the rest arrive when a thumbnail is chosen, then stay so a
+            later switch can still cross-fade. */}
+        {shots.map((s, i) =>
+          shown.includes(i) ? (
+            <img
+              key={s.src}
+              src={s.src}
+              alt={i === current ? s.label : ""}
+              aria-hidden={i !== current}
+              fetchPriority={i === 0 ? "high" : "auto"}
+              className={cn(
+                "absolute inset-0 block size-full object-cover transition-opacity duration-200 ease-out-quart motion-reduce:transition-none",
+                i === current ? "opacity-100" : "opacity-0",
+              )}
+            />
+          ) : null,
+        )}
         <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.8) 0%, oklab(0 0 0 / 0) 56%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
       </div>
 
@@ -86,20 +99,26 @@ export function PackageHero({
                 type="button"
                 aria-label={s.label}
                 aria-pressed={i === current}
-                onClick={() => setCurrent(i)}
+                onMouseEnter={() => prime(i)}
+                onFocus={() => prime(i)}
+                onClick={() => show(i)}
                 className={cn(
                   "h-[74px] w-[104px] shrink-0 overflow-hidden rounded-md border-2 p-0 transition-colors duration-200 max-md:snap-start",
                   i === current ? "border-white/90 max-md:border-v2-navy" : "border-white/28",
                 )}
               >
-                <img
-                  src={s.src}
-                  alt=""
-                  className={cn(
-                    "block size-full object-cover transition-opacity duration-200",
-                    i === current ? "opacity-100" : "opacity-70",
-                  )}
-                />
+                {shown.includes(i) ? (
+                  <img
+                    src={s.src}
+                    alt=""
+                    className={cn(
+                      "block size-full object-cover transition-opacity duration-200",
+                      i === current ? "opacity-100" : "opacity-70",
+                    )}
+                  />
+                ) : (
+                  <span className="block size-full bg-white/15" />
+                )}
               </button>
             ))}
           </div>

@@ -75,10 +75,9 @@
 
 /* next/font sets these variables on <body>; `inline` resolves them where they're used. */
 @theme inline {
-  --font-sans: var(--font-general-sans), sans-serif;
-  --font-heading: var(--font-inter-tight), sans-serif;
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+  --font-heading: var(--font-inter-tight), system-ui, sans-serif;
   --font-serif: Georgia, Times, "Times New Roman", serif;
-  --font-boska: var(--font-boska-variable), Georgia, sans-serif;
   --font-display: var(--font-ragmont), Georgia, serif;
 }
 
@@ -191,9 +190,8 @@
   }
 }
 
-/* The v2 home page (app/v2) is a self-contained design: its own palette, Ragmont for
-   display type and Inter Tight for everything else. `.v2` scopes the body font so the
-   rest of the site keeps General Sans. */
+/* v2 pages: Ragmont for display type, Inter Tight for everything else. `.v2` sets the
+   body face so a page can opt into it. */
 @utility container-v2 {
   @apply mx-auto w-full max-w-[1280px];
 }
