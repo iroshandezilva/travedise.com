@@ -1,0 +1,63 @@
+import { Reveal } from "@/components/ui/reveal";
+import { Section } from "@/components/v2/section";
+import { offices } from "@/content/v2/about";
+
+const ISLAND =
+  "M 106.6 19.4 C 121.0 26.7 144.0 50.3 160.0 64.8 C 175.9 79.3 195.4 98.0 206.4 110.2 C 217.4 122.3 224.4 132.6 228.8 140.9 C 233.2 149.2 229.8 154.2 233.9 162.0 C 238.0 169.8 247.1 179.2 254.6 189.5 C 262.0 199.9 274.3 215.4 280.4 226.8 C 286.4 238.2 284.1 249.2 292.4 260.8 C 300.7 272.5 325.1 288.8 332.0 299.7 C 338.8 310.6 330.7 319.0 335.4 328.9 C 340.1 338.7 353.8 348.3 361.2 361.3 C 368.6 374.2 378.0 393.8 381.8 409.9 C 385.7 425.9 385.0 447.7 385.3 461.7 C 385.6 475.7 387.4 484.4 383.6 497.3 C 379.7 510.3 369.5 531.6 361.2 542.7 C 352.9 553.8 340.8 559.2 332.0 567.0 C 323.2 574.8 313.9 584.8 306.2 591.3 C 298.5 597.8 291.5 602.8 283.8 607.5 C 276.1 612.2 271.2 615.8 258.0 620.5 C 244.8 625.1 216.1 631.5 201.2 636.7 C 186.4 641.8 177.2 651.6 165.1 652.9 C 153.0 654.2 135.7 647.6 125.6 644.8 C 115.4 641.9 108.4 639.4 101.5 635.0 C 94.6 630.6 88.6 627.3 82.6 617.2 C 76.5 607.1 67.5 583.3 63.6 571.9 C 59.8 560.5 62.1 555.8 58.5 545.9 C 54.9 536.1 44.6 519.4 41.3 510.3 C 38.0 501.2 38.7 499.9 37.8 489.2 C 37.0 478.6 37.5 460.5 36.1 443.9 C 34.7 427.3 32.3 403.4 29.2 385.6 C 26.2 367.7 19.7 344.5 17.2 332.1 C 14.7 319.7 12.7 316.4 13.8 307.8 C 14.9 299.2 20.5 290.3 24.1 278.6 C 27.7 267.0 33.1 248.4 36.1 234.9 C 39.1 221.4 42.4 206.8 43.0 194.4 C 43.6 182.0 38.2 168.8 39.6 157.1 C 40.9 145.5 49.1 134.5 51.6 121.5 C 54.1 108.5 56.7 89.1 55.0 76.1 C 53.4 63.2 38.8 49.6 41.3 40.5 C 43.8 31.4 60.1 22.8 70.5 19.4 C 81.0 16.1 92.3 12.2 106.6 19.4 Z";
+
+/** Sri Lanka in outline with the Galle office marked on the south coast. */
+function IslandMap({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="20 0 380 675"
+      preserveAspectRatio="xMidYMid meet"
+      role="img"
+      aria-label="Map of Sri Lanka with Galle marked on the south coast"
+      className={className}
+    >
+      <path d={ISLAND} fill="rgb(16 27 46 / 0.07)" stroke="rgb(16 27 46 / 0.42)" strokeWidth="1.6" />
+      <circle cx="106.6" cy="630.2" r="14" className="fill-v2-sky" opacity="0.2" />
+      <circle cx="106.6" cy="630.2" r="6" className="fill-v2-sky" stroke="#f7f5ef" strokeWidth="2" />
+      <text x="90.6" y="635.2" textAnchor="end" fontSize="15" fontWeight="500" fill="#101b2e">
+        Galle
+      </text>
+    </svg>
+  );
+}
+
+/** "Where we are": the island map beside the two offices and their phone numbers. */
+export function Offices() {
+  return (
+    <Section
+      surface="cream"
+      className="py-[100px] max-lg:py-16 max-md:py-14"
+      innerClassName="flex items-center gap-20 max-lg:gap-12 max-md:flex-col-reverse max-md:items-stretch max-md:gap-10"
+    >
+      <Reveal from="rise" className="w-[300px] shrink-0 max-lg:w-[220px] max-md:mx-auto max-md:w-[160px]">
+        <IslandMap className="block h-[500px] w-full max-lg:h-[380px] max-md:h-[270px]" />
+      </Reveal>
+
+      <Reveal from="rise" delay={100} className="flex min-w-0 flex-1 flex-col gap-9 max-md:gap-6">
+        <h2 className="m-0 max-w-[620px] font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]">
+          {offices.heading}
+        </h2>
+        <div className="grid grid-cols-2 gap-[30px] max-xl:grid-cols-1 max-lg:gap-5 max-md:gap-4">
+          {offices.items.map((o) => (
+            <div key={o.place} className="flex flex-col gap-3 bg-white p-[30px] max-md:p-6">
+              <h3 className="m-0 text-[18px]/[26px] font-semibold text-v2-navy">{o.place}</h3>
+              <p className="m-0 text-[16px]/[25px] text-[#344458]">
+                {o.address[0]}
+                <br />
+                {o.address[1]}
+              </p>
+              <a href={o.phone.href} className="text-[16px]/[24px] text-v2-navy hover:opacity-80">
+                {o.phone.label}
+              </a>
+            </div>
+          ))}
+        </div>
+        <p className="m-0 text-[15px]/[24px] text-[#52687b]">{offices.note}</p>
+      </Reveal>
+    </Section>
+  );
+}

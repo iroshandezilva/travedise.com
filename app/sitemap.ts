@@ -16,7 +16,10 @@ const ENTRIES: { path: string; sources: string[] }[] = [
     path: "/packages",
     sources: ["app/packages/page.tsx", "components/v2/packages", "content/v2/journeys.ts"],
   },
-  { path: "/about", sources: ["app/about/page.tsx", "components/about", "content/about.ts"] },
+  {
+    path: "/about",
+    sources: ["app/about/page.tsx", "components/v2/about", "content/v2/about.ts"],
+  },
   { path: "/blog", sources: ["app/blog/page.tsx", "components/v2/blog", "content/blog"] },
   { path: "/faq", sources: ["app/faq/page.tsx", "content/faqs.ts"] },
   {
