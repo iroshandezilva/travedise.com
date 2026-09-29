@@ -7,7 +7,7 @@ const PAGES = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Packages", href: "/packages" },
-  { label: "Contact", href: "/contact" },
+  { label: "Plan your trip", href: "/plan-your-trip" },
   { label: "FAQ", href: "/faq" },
 ];
 

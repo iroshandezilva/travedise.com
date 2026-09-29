@@ -7,7 +7,7 @@
  * mistake — worth correcting there too.
  *
  * `href` points at the journey's page. Simply Sri Lanka has no itinerary written yet,
- * so it goes to the contact page instead. The routes and stops follow the day-by-day
+ * so it goes to the trip-planning page instead. The routes and stops follow the day-by-day
  * itineraries in `packages.ts`, so the map draws what the page describes.
  */
 import { images, packageImages as pkg } from "./images";
@@ -94,7 +94,7 @@ export const journeys: Journey[] = [
       "The classic loop, paced so it never feels like a checklist. Ruins in the cool of the morning, tea country through the middle, then a week of the south coast to finish on.",
     image: images.cloudForest,
     alt: "Coconut palms on a red headland above the sea",
-    href: "/contact",
+    href: "/plan-your-trip",
   },
   {
     key: "family",

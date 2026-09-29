@@ -77,7 +77,7 @@ export const closingCta = {
   heading: "Let’s make the\njourney yours.",
   body: "Tell us what you want to see, what you want to feel, and how you like to travel. We’ll shape the rest together.",
   action: "Plan your trip",
-  href: "/contact",
+  href: "/plan-your-trip",
   image: images.ctaBand,
 };
 
@@ -87,5 +87,5 @@ export const questionsIntro = {
   heading: "Before the journey begins.",
   body: "A few practical questions are worth settling early. We can talk through the rest together.",
   action: "Talk to a travel designer ↗",
-  href: "/contact",
+  href: "/plan-your-trip",
 };

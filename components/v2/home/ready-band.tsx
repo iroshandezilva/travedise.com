@@ -52,7 +52,7 @@ export function ReadyBand() {
           </p>
           <div className="flex items-center gap-[22px] pt-2.5 max-md:flex-col max-md:items-stretch max-md:gap-2.5 max-md:pt-2">
             <Link
-              href="/contact"
+              href="/plan-your-trip"
               className="flex h-[60px] items-center gap-[18px] rounded-full bg-v2-sky pr-2 pl-7 transition-[opacity,scale] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none max-md:h-14 max-md:justify-between"
             >
               <span className="text-[16px]/[20px] font-semibold text-[#10212b]">

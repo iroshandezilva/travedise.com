@@ -43,7 +43,7 @@ const tools: Tool[] = [
     name: "get_page_markdown",
     title: "Read a page as Markdown",
     description:
-      "Get the Markdown content of a travedise.com page, e.g. '/packages/hillcountry' for an itinerary, '/faq' or '/contact'.",
+      "Get the Markdown content of a travedise.com page, e.g. '/packages/hillcountry' for an itinerary, '/faq' or '/plan-your-trip'.",
     inputSchema: {
       type: "object",
       properties: { path: { type: "string", description: "Site path starting with '/'." } },
@@ -70,13 +70,14 @@ const tools: Tool[] = [
       email: contactEmail.value,
       phones: contactPhones.numbers.map((n) => `${n.number} ${n.region}`),
       offices: contactOffices.map((o) => ({ name: o.label, address: o.lines.join(" ").trim() })),
-      contactPage: new URL("/contact", location.origin).href,
+      planYourTripPage: new URL("/plan-your-trip", location.origin).href,
     }),
   },
   {
     name: "open_page",
     title: "Open a page",
-    description: "Navigate the browser to a travedise.com page, e.g. '/packages' or '/contact'.",
+    description:
+      "Navigate the browser to a travedise.com page, e.g. '/packages' or '/plan-your-trip'.",
     inputSchema: {
       type: "object",
       properties: { path: { type: "string", description: "Site path starting with '/'." } },

@@ -50,7 +50,7 @@ export function Team() {
             Read our story <span aria-hidden>↗</span>
           </PillLink>
           <Link
-            href="/contact"
+            href="/plan-your-trip"
             className="text-[15px]/[20px] text-v2-navy hover:opacity-80 max-md:text-center"
           >
             Talk to Chamara ↗

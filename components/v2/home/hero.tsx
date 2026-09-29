@@ -34,7 +34,7 @@ export function Hero() {
             {hero.body}
           </p>
           <div className="flex items-center gap-7 transition-[opacity,translate] delay-[160ms] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:w-full max-md:flex-col max-md:gap-2.5">
-            <PillLink href="/contact" variant="sky">
+            <PillLink href="/plan-your-trip" variant="sky">
               Plan your trip ↗
             </PillLink>
             <PillLink

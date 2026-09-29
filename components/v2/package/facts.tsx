@@ -20,7 +20,7 @@ export function PackageFacts({ facts }: { facts: PackageV2["facts"] }) {
           </div>
         ))}
       </div>
-      <PillLink href="/contact" variant="sky" className="shrink-0 px-[26px] font-semibold">
+      <PillLink href="/plan-your-trip" variant="sky" className="shrink-0 px-[26px] font-semibold">
         Start planning this journey ↗
       </PillLink>
     </Section>

@@ -10,3 +10,6 @@
 
 # Simply Sri Lanka never had an itinerary, and its page went with the old design.
 /packages/simply-srilanka /packages 301
+
+# The contact page was replaced by the trip-planning page.
+/contact /plan-your-trip 301

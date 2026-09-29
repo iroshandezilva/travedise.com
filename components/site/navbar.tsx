@@ -9,7 +9,7 @@ const LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/packages", label: "Packages" },
-  { href: "/contact", label: "Contact" },
+  { href: "/plan-your-trip", label: "Plan your trip" },
   { href: "/blog", label: "Blog" },
 ] as const;
 
@@ -26,7 +26,7 @@ export type NavbarProps = {
    * `transparent` — white links and glass pills over a photo hero; the bar fills navy.
    */
   variant?: "light" | "transparent";
-  /** The link shown as the current page. Also marks the "Book Now" buttons on /contact. */
+  /** The link shown as the current page. */
   current?: NavHref;
   /** Fill the bar over the first 3% of page scroll. `false` = solid white from the start. */
   fillOnScroll?: boolean;
@@ -42,7 +42,7 @@ export type NavbarProps = {
  * | `/`                                   | `variant="transparent" current="/" hideOnScroll={false}` |
  * | `/about`                              | `variant="transparent" current="/about"`            |
  * | `/blog-posts/*`                       | `variant="transparent"`                             |
- * | `/blog`, `/contact`, `/packages`      | `current="/blog"` · `"/contact"` · `"/packages"`     |
+ * | `/blog`, `/packages`                  | `current="/blog"` · `"/packages"`                   |
  * | `/faq`                                | (none)                                              |
  * | `/packages/*` (package detail)        | `fillOnScroll={false} hideOnScroll={false}`          |
  */
@@ -57,9 +57,9 @@ export function Navbar({
 
   const book = (className?: string) => (
     <ArrowButton
-      href="/contact"
+      href="/plan-your-trip"
       variant={transparent ? "glass" : "light"}
-      aria-current={aria("/contact")}
+      aria-current={aria("/plan-your-trip")}
       className={className}
     >
       Book Now

@@ -37,7 +37,7 @@ export function Hero() {
                   this clipping box, the button starts fully clipped, so an IntersectionObserver
                   would never see it. The hero is always in view on load anyway. */}
               <div className="transition-[opacity,translate] delay-100 duration-1000 ease-out-quart motion-reduce:transition-none starting:translate-y-[100px] starting:opacity-0">
-                <BookTourButton href="/contact">Book Your Tour</BookTourButton>
+                <BookTourButton href="/plan-your-trip">Book Your Tour</BookTourButton>
               </div>
             </div>
           </div>

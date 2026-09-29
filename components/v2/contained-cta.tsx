@@ -27,7 +27,7 @@ export function ContainedCta({
           </h2>
           <p className="m-0 text-[17px]/[26px] text-v2-muted max-md:text-[15px]/[24px]">{body}</p>
         </div>
-        <BadgeLink href="/contact" className="max-md:w-full max-md:justify-between">
+        <BadgeLink href="/plan-your-trip" className="max-md:w-full max-md:justify-between">
           Let’s get planning
         </BadgeLink>
       </div>
