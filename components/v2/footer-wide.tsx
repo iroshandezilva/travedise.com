@@ -85,6 +85,7 @@ export function FooterWide({
           <FooterColumn title="Explore">
             <FooterLink href="/packages">Journeys</FooterLink>
             <FooterLink href="/#regions">Places</FooterLink>
+            <FooterLink href="/when-to-go">When to go</FooterLink>
             <FooterLink href="/blog">Travel notes</FooterLink>
             <FooterLink href="/about">About us</FooterLink>
           </FooterColumn>
