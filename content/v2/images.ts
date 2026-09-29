@@ -27,6 +27,33 @@ export const images = {
   ctaBand: asset("0a72b04674868246806c566e0bca4df0.jpg"),
 } as const;
 
+/**
+ * Shots for the place pages, picked from the site's photo library and named for what is
+ * actually in them. Copies in `public/places`, resized where the original was large.
+ */
+const place = (file: string) => `/places/${file}`;
+
+export const placeImages = {
+  teaBungalow: place("nuwara-tea-bungalow.jpg"),
+  teaMist: place("nuwara-tea-mist.jpg"),
+  teaPickers: place("nuwara-tea-pickers.jpg"),
+  ellaLookout: place("ella-lookout.jpg"),
+  ellaWaterfall: place("ella-waterfall.jpg"),
+  hillTrain: place("hill-country-train.jpg"),
+  sigiriyaRock: place("sigiriya-rock.jpg"),
+  sigiriyaFromAbove: place("sigiriya-from-above.jpg"),
+  dambullaCave: place("dambulla-cave.jpg"),
+  polonnaruwaRuins: place("polonnaruwa-ruins.jpg"),
+  minneriyaElephants: place("minneriya-elephants.jpg"),
+  weligamaHeadland: place("weligama-headland.jpg"),
+  beachWalk: place("beach-walk.jpg"),
+  reefFromAbove: place("reef-from-above.jpg"),
+  quietBay: place("quiet-bay.jpg"),
+  yalaLeopard: place("yala-leopard.jpg"),
+  udawalaweElephants: place("udawalawe-elephants.jpg"),
+  udawalaweJeep: place("udawalawe-jeep.jpg"),
+} as const;
+
 /** Shots added by the package design. */
 export const packageImages = {
   kandyLake: asset("1b2426204ca1bdc04d91da3ee8fce28b.jpg"),

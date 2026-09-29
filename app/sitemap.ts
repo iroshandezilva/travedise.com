@@ -4,6 +4,7 @@ import type { MetadataRoute } from "next";
 
 import { notes } from "@/content/blog";
 import { packageV2Slugs } from "@/content/v2/packages";
+import { placeSlugs } from "@/content/v2/places";
 import { SITE_URL } from "@/lib/site";
 
 // Static export: generated once at build, so it always lists what the build contains.
@@ -15,6 +16,10 @@ const ENTRIES: { path: string; sources: string[] }[] = [
   {
     path: "/packages",
     sources: ["app/packages/page.tsx", "components/v2/packages", "content/v2/journeys.ts"],
+  },
+  {
+    path: "/places",
+    sources: ["app/places/page.tsx", "components/v2/places", "content/v2/places.ts"],
   },
   {
     path: "/when-to-go",
@@ -34,6 +39,10 @@ const ENTRIES: { path: string; sources: string[] }[] = [
   ...packageV2Slugs.map((slug) => ({
     path: `/packages/${slug}`,
     sources: ["app/packages/[slug]/page.tsx", "components/v2/package", "content/v2/packages.ts"],
+  })),
+  ...placeSlugs.map((slug) => ({
+    path: `/places/${slug}`,
+    sources: ["app/places/[slug]/page.tsx", "components/v2/places", "content/v2/places.ts"],
   })),
   ...notes.map((n) => ({
     path: n.href,
