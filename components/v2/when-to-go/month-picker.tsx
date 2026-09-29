@@ -73,11 +73,11 @@ export function MonthPicker() {
           })}
         </div>
 
-        <div className="flex items-stretch gap-16 max-lg:flex-col max-lg:gap-8">
+        <div className="flex items-stretch gap-16 max-xl:gap-10 max-lg:flex-col max-lg:gap-8">
           <div
             key={month.name}
             aria-live="polite"
-            className="v2-step-in flex w-[560px] shrink-0 flex-col gap-[18px] bg-white/6 p-8 max-lg:w-full max-md:gap-3.5 max-md:p-6"
+            className="v2-step-in flex w-[560px] shrink-0 max-xl:w-[46%] flex-col gap-[18px] bg-white/6 p-8 max-lg:w-full max-md:gap-3.5 max-md:p-6"
           >
             <div className="text-[14px]/[20px] text-v2-sky">{month.name} in Sri Lanka</div>
             <h3 className="m-0 font-heading text-[28px]/[36px] font-semibold tracking-[-0.01em] text-white max-md:text-[22px]/[30px]">
