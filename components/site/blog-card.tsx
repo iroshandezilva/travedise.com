@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Reveal } from "@/components/ui/reveal";
-import type { BlogPost } from "@/content/blog";
+import type { Note } from "@/content/blog";
 import { cn } from "@/lib/cn";
 
 export type BlogCardVariant = "section" | "listing";
@@ -20,7 +20,7 @@ export function BlogCard({
   variant,
   className,
 }: {
-  post: BlogPost;
+  post: Note;
   variant: BlogCardVariant;
   className?: string;
 }) {
@@ -36,15 +36,13 @@ export function BlogCard({
       <div className="relative w-full overflow-clip rounded-[20px]">
         <img
           src={post.image.src}
-          srcSet={post.image.srcSet}
-          sizes={post.image.sizes}
-          alt={post.title}
+          alt={post.image.alt}
           loading="lazy"
           className="h-[302px] w-full rounded-[20px] object-cover transition-transform duration-350 ease-linear group-hover:scale-110 max-lg:h-[250px] max-md:h-[300px]"
         />
         <div className="absolute top-5 left-5 flex items-center justify-center gap-2 text-[13px] text-white max-sm:top-2.5 max-sm:left-2.5 xl:gap-[15px] xl:text-[14px]">
-          <div className="rounded-full bg-ink px-[15px] py-2 text-center">{post.date}</div>
-          <div>{post.readingTime}</div>
+          <div className="rounded-full bg-ink px-[15px] py-2 text-center">{post.dateLabel}</div>
+          <div>{post.minutes} min read</div>
         </div>
       </div>
       <div
@@ -59,7 +57,7 @@ export function BlogCard({
               {post.title}
             </div>
             <p className="m-0 max-h-12 overflow-auto font-heading tracking-[0.4px] text-slate">
-              {post.excerpt}
+              {post.dek}
             </p>
           </div>
         ) : (
@@ -68,7 +66,7 @@ export function BlogCard({
               {post.title}
             </div>
             <p className="mt-2.5 mb-6 text-[18px]/[155%] text-slate max-md:mb-2.5 max-md:text-base/[155%]">
-              {post.excerpt}
+              {post.dek}
             </p>
           </>
         )}
@@ -95,7 +93,7 @@ export function BlogCardGrid({
   reveal = true,
   className,
 }: {
-  posts: BlogPost[];
+  posts: Note[];
   variant: BlogCardVariant;
   reveal?: boolean;
   className?: string;

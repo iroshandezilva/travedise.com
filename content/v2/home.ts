@@ -251,10 +251,7 @@ export const planningSteps: { title: string; body: string }[] = [
 
 /* 07 Travel notes ----------------------------------------------------------------- */
 
-/**
- * The design's notes are articles not written yet. The first two point at the closest
- * posts the site has; the coast note points at the question that answers it below.
- */
+/** Three of the notes on /blog, as the home design pictures them. */
 export const travelNotes: {
   title: string;
   body: string;
@@ -267,21 +264,21 @@ export const travelNotes: {
     body: "The stays and stretches of coast we send couples to, and the ones we do not.",
     image: images.honeymoon,
     alt: "A table set for two on the sand at dusk",
-    href: "/blog-posts/the-ultimate-honeymoon-destination",
+    href: "/blog-posts/ten-days-for-two",
   },
   {
     title: "Sri Lanka with children, without the long drives",
     body: "How we shorten the road and where the early starts are worth it.",
     image: images.optionalDays,
     alt: "An elephant at close range on an early drive",
-    href: "/blog-posts/family-friendly-destinations-that-everyone-will-love",
+    href: "/blog-posts/sri-lanka-with-children",
   },
   {
     title: "Which coast, and when",
     body: "How the two monsoons decide where you should be, month by month.",
     image: images.quietStop,
     alt: "An avenue of palms running down to the coast",
-    href: "#questions",
+    href: "/blog-posts/which-coast-and-when",
   },
 ];
 

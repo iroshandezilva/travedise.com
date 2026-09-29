@@ -2,10 +2,10 @@ import { BlogCardGrid } from "@/components/site/blog-card";
 import { PillButton } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionTag } from "@/components/ui/section-tag";
-import { blogPosts, type BlogPost } from "@/content/blog";
+import { notes, type Note } from "@/content/blog";
 
 /** "Blog & Tips" — the latest posts and a link to /blog. Identical on the home page and /about. */
-export function BlogSection({ posts = blogPosts }: { posts?: BlogPost[] }) {
+export function BlogSection({ posts = notes.slice(0, 3) }: { posts?: Note[] }) {
   return (
     <section>
       <div className="container-site">

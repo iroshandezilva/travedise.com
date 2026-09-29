@@ -1,60 +1,40 @@
 import type { Metadata } from "next";
 
-import { BlogCardGrid } from "@/components/site/blog-card";
-import { Footer } from "@/components/site/footer";
-import { Navbar } from "@/components/site/navbar";
-import { PageGradient } from "@/components/site/page-gradient";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionTag } from "@/components/ui/section-tag";
-import { blogPosts } from "@/content/blog";
-import { SHARE_IMAGE } from "@/lib/site";
+import { FeaturedNote } from "@/components/v2/blog/featured-note";
+import { NotesBrowser } from "@/components/v2/blog/notes-browser";
+import { NotesHero } from "@/components/v2/blog/notes-hero";
+import { FooterWide } from "@/components/v2/footer-wide";
+import { noteCategories, notes } from "@/content/blog";
+import { images } from "@/content/v2/images";
+
+const TITLE = "Travel notes — Travedise";
+const DESCRIPTION =
+  "What we have learned from running these routes: when to go, where to slow down, and the small decisions that make a trip feel unhurried.";
 
 export const metadata: Metadata = {
-  title: "Blog - Travedise - Your Next Adventure Starts Here",
-  description:
-    "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/blog" },
-  openGraph: {
-    images: [SHARE_IMAGE],
-    title: "Blog - Travedise - Your Next Adventure Starts Here",
-    description:
-      "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
-    type: "website",
-  },
+  openGraph: { images: [images.heroPoster], title: TITLE, description: DESCRIPTION, type: "website" },
   twitter: {
-    images: [SHARE_IMAGE],
+    images: [images.heroPoster],
     card: "summary_large_image",
-    title: "Blog - Travedise - Your Next Adventure Starts Here",
-    description:
-      "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 
+/** The notes index: the newest note up top, then every other note behind topic filters. */
 export default function BlogPage() {
+  const [featured, ...rest] = notes;
   return (
-    <div className="overflow-clip pb-2.5">
-      <PageGradient />
-      <Navbar current="/blog" />
+    <div className="v2 flex flex-col overflow-clip bg-white">
+      <NotesHero />
       <main>
-        <section>
-          <div className="container-site">
-            <div className="flex flex-col items-center justify-center gap-20 pt-[230px] pb-20 max-lg:gap-[60px] max-lg:pt-[140px] max-md:gap-[30px] max-md:pt-[120px] max-md:pb-[60px] max-sm:pt-[100px]">
-              <div className="flex max-w-[800px] flex-col items-center justify-center gap-[25px] max-md:gap-4">
-                <Reveal delay={50}>
-                  <SectionTag>Blog & Tips</SectionTag>
-                </Reveal>
-                <Reveal as="h2" delay={100} className="m-0 text-center font-serif">
-                  Expert travel advice to help you explore smarter and deeper.
-                </Reveal>
-              </div>
-              <div className="w-full border-b border-line pb-20 max-lg:pb-[50px] max-md:pb-10">
-                <BlogCardGrid posts={blogPosts} variant="listing" />
-              </div>
-            </div>
-          </div>
-        </section>
+        <FeaturedNote note={featured} />
+        <NotesBrowser notes={rest} categories={noteCategories} />
       </main>
-      <Footer />
+      <FooterWide />
     </div>
   );
 }

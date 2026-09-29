@@ -1,0 +1,143 @@
+import { images } from "@/content/v2/images";
+
+import { TEAM, type BlogPost } from "../types";
+
+export const post: BlogPost = {
+  slug: "which-coast-and-when",
+  title: "Which coast, and when",
+  titleEm: "and when",
+  standfirst: "How the two monsoons decide where you should be, month by month.",
+  dek: "There are two rainy seasons in Sri Lanka, and they take turns. That is good news: in almost any month, one side of the island is dry. Here is how to pick the right coast for the dates you already have.",
+  category: "Planning",
+  date: "2026-09-22",
+  author: TEAM,
+  image: {
+    src: images.cloudForest,
+    alt: "Coconut palms on a red headland above the sea",
+    position: "50% 45%",
+  },
+  body: [
+    {
+      type: "lead",
+      text: [
+        "People often ask us when the rainy season is in Sri Lanka. The honest answer is that there are two, and they take turns. In almost any month, one side of the island is dry.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "So the trick is not finding the perfect month. It is choosing the right coast for the month you already have, and letting the rest of the route follow from that.",
+      ],
+    },
+
+    { type: "h2", id: "monsoons", text: "Two monsoons, two coasts" },
+    {
+      type: "p",
+      text: [
+        "The south west monsoon runs roughly from May to September. It brings rain to the west and south coasts, from Colombo down through Bentota, Galle and Mirissa, and to the western slopes of the hill country.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "The north east monsoon runs from about October to January and does the same to the east and north: Trincomalee, Pasikuda, Arugam Bay and Jaffna. Whichever one is blowing, the other coast is usually dry.",
+      ],
+    },
+    {
+      type: "table",
+      caption: "The island at a glance",
+      columns: ["Where", "At its best", "Wettest"],
+      rows: [
+        ["South and west coast", "December to April", "May to September"],
+        ["East coast", "May to September", "October to January"],
+        ["Cultural Triangle", "Most of the year", "October to December"],
+      ],
+    },
+
+    {
+      type: "h2",
+      id: "south",
+      text: "December to April: the south and west",
+      toc: "December to April: south and west",
+    },
+    {
+      type: "p",
+      text: [
+        "This is the classic season, and the busiest. The beaches from Bentota down to Tangalle are calm, the hill country is crisp and clear in the mornings, and the whales pass Mirissa from November to April.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "If you are coming over Christmas, book early. The second half of December fills faster than any other fortnight of the year, and the best rooms on the south coast go first.",
+      ],
+    },
+    {
+      type: "figure",
+      src: images.southCoast,
+      alt: "A couple walking the beach at sunset",
+      caption:
+        "The south coast in late afternoon. From December to April the sea here is at its calmest.",
+    },
+
+    { type: "h2", id: "east", text: "May to September: turn east" },
+    {
+      type: "p",
+      text: [
+        "When the rain reaches the south, we flip the route. Trincomalee and Pasikuda are calm and quiet, the surf season at Arugam Bay starts in June, and the Cultural Triangle in the middle of the island stays dry.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "It is also the season for elephants. From July to September they gather in large numbers at Minneriya as the tank dries out. Yala usually closes for a few weeks around September and October, so we plan the park days around it rather than around the calendar.",
+      ],
+    },
+    {
+      type: "quote",
+      text: "We do not plan around the calendar. We plan around where the weather is kind.",
+    },
+
+    { type: "h2", id: "between", text: "The months in between" },
+    {
+      type: "p",
+      text: [
+        "October and November are the hinge of the year. Either monsoon can bring rain, but the island is quiet, prices soften, and by the end of November the south coast is opening up again. For travellers with a little flexibility these are some of the best-value weeks there are.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "Monsoon rain also tends to arrive in heavy afternoon bursts rather than grey days on end. A wet-season day is rarely a lost one, as long as the morning is used well.",
+      ],
+    },
+    {
+      type: "note",
+      label: "Two dates worth knowing",
+      text: "The Sinhala and Tamil New Year in mid April, and the Kandy Esala Perahera in July or August, both fill hotels and roads. Worth seeing, and worth booking around before you fix your dates.",
+    },
+
+    { type: "h2", id: "route", text: "What this means for your route" },
+    {
+      type: "p",
+      text: [
+        "If your dates are fixed, tell us and we will choose the coast. If they are not, tell us what you want most, whether that is beaches, wildlife or the hills, and we will suggest the month.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "If the hills are part of the plan, ",
+        { text: "tea country by train", href: "/blog-posts/tea-country-by-train" },
+        " works in either season, and the ",
+        { text: "Kandy perahera", href: "/blog-posts/the-kandy-perahera" },
+        " is worth knowing about before you fix a July or August date.",
+      ],
+    },
+  ],
+  cta: {
+    heading: "Tell us your dates, we will pick the coast.",
+    em: "we will pick",
+    body: "A travel designer comes back with a first route shaped around the weather you will actually get.",
+  },
+};
