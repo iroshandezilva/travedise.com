@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import { contactEmail, contactOffices, contactPhones } from "@/content/contact";
 import { packages } from "@/content/packages";
+import { packagesV2, packageV2Slugs } from "@/content/v2/packages";
 
 type Tool = {
   name: string;
@@ -30,11 +31,12 @@ const tools: Tool[] = [
     inputSchema: { type: "object", properties: {} },
     annotations: { readOnlyHint: true },
     execute: async () =>
-      Object.values(packages).map((p) => ({
-        title: p.title.trim(),
-        priceAndDuration: p.priceLine,
-        url: new URL(p.href, location.origin).href,
-        markdown: new URL(`${p.href}.md`, location.origin).href,
+      // Only journeys with a page; the title is the page's, the price line the card's.
+      packageV2Slugs.map((slug) => ({
+        title: packagesV2[slug]!.title,
+        priceAndDuration: packages[slug].priceLine,
+        url: new URL(packages[slug].href, location.origin).href,
+        markdown: new URL(`${packages[slug].href}.md`, location.origin).href,
       })),
   },
   {

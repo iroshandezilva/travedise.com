@@ -13,7 +13,7 @@ import { packageQuestions, packagesV2, packageV2Slugs } from "@/content/v2/packa
 
 type Params = { slug: string };
 
-/** Static export: only the journeys written up for v2 get a page. */
+/** Static export: every journey with an itinerary in `packagesV2` gets a page. */
 export function generateStaticParams(): Params[] {
   return packageV2Slugs.map((slug) => ({ slug }));
 }
@@ -27,9 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return {
     title,
     description: pkg.summary,
-    alternates: { canonical: `/v2/packages/${slug}` },
-    // A design preview, not a page we want ranking against the live package page.
-    robots: { index: false, follow: true },
+    alternates: { canonical: `/packages/${slug}` },
     openGraph: {
       images: [pkg.shots[0].src],
       title,
@@ -46,11 +44,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 }
 
 /**
- * The v2 package template. Everything on the page comes from `packagesV2`, so a new
+ * The package template. Everything on the page comes from `packagesV2`, so a new
  * journey is a content entry rather than a new page. The nav, the questions and the
  * closing band are the same components the v2 home page uses.
  */
-export default async function PackageV2Page({ params }: { params: Promise<Params> }) {
+export default async function PackagePage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const pkg = packagesV2[slug as keyof typeof packagesV2];
   if (!pkg) notFound();
@@ -63,7 +61,7 @@ export default async function PackageV2Page({ params }: { params: Promise<Params
         <PackageIncludes includes={pkg.includes} />
         <PackageItinerary itinerary={pkg.itinerary} />
         <ContainedCta />
-        <Questions items={packageQuestions} />
+        <Questions items={packageQuestions(pkg)} />
         <CtaBand />
       </main>
       <FooterWide />

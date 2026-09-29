@@ -38,7 +38,7 @@ export function Hero() {
               Plan your trip ↗
             </PillLink>
             <PillLink
-              href="/v2/packages"
+              href="/packages"
               variant="glass"
               className="border-transparent bg-transparent px-0 font-normal max-md:border-white/40 max-md:bg-white/12 max-md:px-7"
             >

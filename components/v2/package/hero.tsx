@@ -64,7 +64,9 @@ export function PackageHero({
           ← All journeys, Sri Lanka
         </Link>
 
-        <div className="absolute bottom-[58px] left-0 flex w-[700px] flex-col gap-[18px] max-lg:w-[60%] max-md:static max-md:mt-6 max-md:w-auto max-md:gap-3 max-md:px-5">
+        {/* Below xl the title and the thumbnails no longer fit side by side, so the
+            title lifts to sit above them. */}
+        <div className="absolute bottom-[58px] left-0 flex w-[700px] flex-col gap-[18px] max-xl:bottom-[190px] max-lg:w-[75%] max-md:static max-md:mt-6 max-md:w-auto max-md:gap-3 max-md:px-5">
           <h1 className="m-0 font-display text-[68px]/[74px] font-medium tracking-[-0.02em] text-white max-lg:text-[52px]/[58px] max-md:text-[38px]/[44px] max-md:text-v2-navy">
             {title}
           </h1>
