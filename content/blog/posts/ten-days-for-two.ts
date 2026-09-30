@@ -10,6 +10,7 @@ export const post: BlogPost = {
   standfirst: "The stays and stretches of coast we send couples to, and the ones we do not.",
   dek: "The stays and stretches of coast we send couples to, and the ones we do not.",
   category: "Couples",
+  next: { label: "See Honeymoon In Sri Lanka", href: "/packages/dream-honeymoon-in-sri-lanka" },
   date: "2025-09-07",
   author: TEAM,
   image: { src: images.honeymoon, alt: "A table set for two on the sand at dusk" },

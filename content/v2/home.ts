@@ -284,7 +284,7 @@ export const travelNotes: {
 
 /* 08 Questions -------------------------------------------------------------------- */
 
-export const homeQuestions: { q: string; a: string }[] = [
+export const homeQuestions: { q: string; a: string; link?: { label: string; href: string } }[] = [
   {
     q: "How much time should we allow for Sri Lanka?",
     a: "Ten nights is the sweet spot for a first visit. Eight works if you keep to one half of the island, and fourteen lets you add the east coast or a second park without rushing.",
@@ -295,7 +295,11 @@ export const homeQuestions: { q: string; a: string }[] = [
   },
   {
     q: "Can we make the trip work for children?",
-    a: "Yes. Shorter drives, rooms with space to spread out, and an elephant morning that is worth the early start. Sri Lanka With Little Ones shows how we shape it.",
+    a: "Yes. Shorter drives, rooms with space to spread out, and an elephant morning that is worth the early start.",
+    link: {
+      label: "Sri Lanka With Little Ones shows how we shape it.",
+      href: "/packages/best-of-sri-lanka",
+    },
   },
   {
     q: "What is included in a proposed trip?",

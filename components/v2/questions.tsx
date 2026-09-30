@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
+
 import { Reveal } from "@/components/ui/reveal";
 import { PillLink } from "@/components/v2/buttons";
 import { questions, questionsIntro } from "@/content/v2/shared";
 
 import { AccordionRow, useAccordion } from "./accordion";
 
-export type QuestionItem = { q: string; a: string };
+/** `link`, when set, is appended to the answer as its last sentence. */
+export type QuestionItem = { q: string; a: string; link?: { label: string; href: string } };
 
 /** The open-one-at-a-time list shared by the home questions band and the FAQ page. */
 export function QuestionList({ items }: { items: QuestionItem[] }) {
@@ -28,6 +31,17 @@ export function QuestionList({ items }: { items: QuestionItem[] }) {
         >
           <p className="m-0 text-[15px]/[24px] text-v2-navy max-md:text-[14px]/[23px] max-md:text-v2-body">
             {item.a}
+            {item.link && (
+              <>
+                {" "}
+                <Link
+                  href={item.link.href}
+                  className="underline decoration-v2-navy/35 underline-offset-4 transition-[text-decoration-color] duration-150 hover:decoration-v2-navy"
+                >
+                  {item.link.label}
+                </Link>
+              </>
+            )}
           </p>
         </AccordionRow>
       ))}

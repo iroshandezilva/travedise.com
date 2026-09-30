@@ -9,6 +9,7 @@ export const post: BlogPost = {
   standfirst: "Leopards are never promised, only made likely. How we plan the park days.",
   dek: "Leopards are never promised, only made likely. How we plan the park days.",
   category: "Wildlife",
+  next: { label: "See Wild Sri Lanka", href: "/packages/wildlife-package" },
   date: "2026-08-14",
   author: TEAM,
   image: {

@@ -10,6 +10,7 @@ export const post: BlogPost = {
   standfirst: "How we shorten the road and where the early starts are worth it.",
   dek: "How we shorten the road and where the early starts are worth it.",
   category: "Families",
+  next: { label: "See Sri Lanka With Little Ones", href: "/packages/best-of-sri-lanka" },
   date: "2025-09-07",
   author: TEAM,
   image: { src: images.littleOnes, alt: "A child watching the road from the jeep" },

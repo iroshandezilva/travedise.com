@@ -10,6 +10,7 @@ export const post: BlogPost = {
     "The hill country line is slow on purpose. Which stretch to ride, and where to get off.",
   dek: "The hill country line is slow on purpose. Which stretch to ride, and where to get off.",
   category: "Routes",
+  next: { label: "See Scenic Sri Lanka", href: "/packages/scenic-sri-lanka" },
   date: "2026-07-28",
   author: TEAM,
   image: { src: images.teaEstate, alt: "The train crossing the Nine Arch Bridge near Ella" },
