@@ -28,9 +28,9 @@ const hint = "m-0 text-[14px]/[21px] text-[#6e808e]";
 /**
  * The two-step trip enquiry: the trip first, then how to reach you, then a thank-you.
  *
- * The site is a static export with no form handler, so sending opens the visitor's
- * email app with the enquiry written out, addressed to us. The thank-you says so,
- * rather than promising a reply to a message that may never have left.
+ * Sending posts to /api/enquiry (a Cloudflare Pages Function), which emails the
+ * enquiry to us through Zoho Mail and a confirmation to the address typed in.
+ * If that fails, the error offers the visitor our address to write to instead.
  *
  * `onStep` lets the page's progress rail follow along.
  */
@@ -53,6 +53,9 @@ export function TripForm({ onStep }: { onStep?: (step: Step) => void }) {
   const [country, setCountry] = useState("");
   const [channel, setChannel] = useState(0);
   const [heard, setHeard] = useState("");
+  const [website, setWebsite] = useState("");
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -84,34 +87,43 @@ export function TripForm({ onStep }: { onStep?: (step: Step) => void }) {
     setPicked((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i]));
   }
 
-  function send() {
-    if (!formRef.current?.reportValidity()) return;
-    const block = (lines: (string | false)[]) =>
-      lines.filter((l): l is string => Boolean(l)).join("\n");
-    const body = [
-      block([
-        `Name: ${first} ${last}`,
-        `Email: ${email}`,
-        `Phone: ${code === "Other" ? "" : `${code} `}${phone}`,
-        country !== "" && `Country or region: ${country}`,
-        `Best way to reach me: ${channels[channel]}`,
-        heard !== "" && `Heard about Travedise from: ${heard}`,
-      ]),
-      block([
-        `Journey: ${journey || "Open"}`,
-        when !== "" && `When: ${when}`,
-        `Length: ${durations[duration]}`,
-        `Travellers: ${adults} adults, ${children} children${ages ? ` (ages ${ages})` : ""}`,
-        `Budget per person: ${budgets[budget]}`,
-        interestList.length > 0 && `Interests: ${interestList.join(", ")}`,
-      ]),
-      notes !== "" && `What would make this trip mine:\n${notes}`,
-    ]
-      .filter(Boolean)
-      .join("\n\n");
-    const subject = `Trip enquiry from ${first} ${last}`;
-    window.location.href = `mailto:${enquiryEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setStep("sent");
+  async function send() {
+    if (sending || !formRef.current?.reportValidity()) return;
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first,
+          last,
+          email,
+          code,
+          phone,
+          country,
+          channel: channels[channel],
+          heard,
+          journey,
+          when,
+          duration: durations[duration],
+          adults,
+          children,
+          ages,
+          budget: budgets[budget],
+          interests: interestList.join(", "),
+          notes,
+          website,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || "Your enquiry could not be sent.");
+      setStep("sent");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Your enquiry could not be sent.");
+    } finally {
+      setSending(false);
+    }
   }
 
   function reset() {
@@ -366,15 +378,39 @@ export function TripForm({ onStep }: { onStep?: (step: Step) => void }) {
             </select>
           </Field>
 
+          {/* Honeypot: hidden from people, filled in by bots. */}
+          <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </div>
+
           <p className={hint}>
-            Sending opens your email app with the enquiry written out, addressed to {enquiryEmail}.
-            By sending it you agree that Travedise may contact you about your trip. Your details are
+            We will email you a copy of your enquiry. By sending it you agree that Travedise may contact you about your trip. Your details are
             used to answer this request, nothing else.
           </p>
 
+          {error !== "" && (
+            <p role="alert" className="m-0 text-[15px]/[23px] text-[#a3342b]">
+              {error} Please try again, or write to{" "}
+              <a href={`mailto:${enquiryEmail}`} className="underline">
+                {enquiryEmail}
+              </a>
+              .
+            </p>
+          )}
+
           <Footer>
             <SecondaryButton onClick={() => setStep(1)}>← Back to your trip</SecondaryButton>
-            <PrimaryButton>Send your enquiry</PrimaryButton>
+            <PrimaryButton disabled={sending}>
+              {sending ? "Sending…" : "Send your enquiry"}
+            </PrimaryButton>
           </Footer>
         </Panel>
       )}
@@ -396,13 +432,13 @@ export function TripForm({ onStep }: { onStep?: (step: Step) => void }) {
             Thank you. That is enough to start with.
           </h2>
           <p className="m-0 max-w-[620px] text-[17px]/[27px] text-v2-muted max-md:text-[15px]/[24px]">
-            Your email app should have opened with the enquiry written out. Once you send it, a
-            travel designer will read it and come back within a day, usually with a question or two
-            before any suggestions. If nothing opened, write to{" "}
+            We have your enquiry, and a copy is on its way to {email}. A travel designer will read
+            it and come back within a day, usually with a question or two before any suggestions. If
+            the copy does not arrive, check your spam folder or write to{" "}
             <a href={`mailto:${enquiryEmail}`} className="text-white underline">
               {enquiryEmail}
-            </a>{" "}
-            or call us on the numbers beside this form.
+            </a>
+            .
           </p>
           <div className="flex gap-3.5 max-md:flex-col">
             <Link
@@ -541,11 +577,12 @@ function Footer({ children }: { children: ReactNode }) {
   );
 }
 
-function PrimaryButton({ children }: { children: ReactNode }) {
+function PrimaryButton({ children, disabled }: { children: ReactNode; disabled?: boolean }) {
   return (
     <button
       type="submit"
-      className="flex h-[60px] items-center justify-between gap-4 rounded-full bg-v2-sky pr-2.5 pl-7 transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none"
+      disabled={disabled}
+      className="flex h-[60px] items-center justify-between gap-4 rounded-full bg-v2-sky pr-2.5 pl-7 transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] disabled:cursor-wait disabled:opacity-70 motion-reduce:transition-none"
     >
       <span className="text-[16px] font-semibold text-[#10212b]">{children}</span>
       <span

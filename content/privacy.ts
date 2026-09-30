@@ -21,7 +21,7 @@ export const privacySections: PolicySection[] = [
       "You can browse travedise.com without creating an account or giving us your name. We collect personal information only in these situations:",
     ],
     list: [
-      "When you email or call us — your name, contact details and whatever you tell us about your trip, such as travel dates, the number of travellers, preferences and any accessibility or dietary needs.",
+      "When you email or call us, or send the Plan your trip form — your name, contact details and whatever you tell us about your trip, such as travel dates, the number of travellers, preferences and any accessibility or dietary needs.",
       "When you use the live chat on the site — the messages you send and any name or email address you choose to share. The chat is provided by tawk.to, which also records technical details such as your IP address, browser and the page you were on.",
       "When you book a tour with us — the details needed to arrange it, such as passport names, arrival and departure information, and payment records.",
       "Automatically, when you visit — our hosting and security provider, Cloudflare, processes technical data such as your IP address, browser type and the pages requested, to deliver the site and protect it from abuse.",
@@ -45,7 +45,7 @@ export const privacySections: PolicySection[] = [
     ],
     list: [
       "travel suppliers in Sri Lanka — hotels, transport providers and guides — who need your details to provide the services you booked;",
-      "Zoho Mail, which hosts our email;",
+      "Zoho Mail, which hosts our email and sends the Plan your trip form to us, with a copy to you;",
       "tawk.to, which provides the live chat;",
       "Cloudflare, which hosts and protects the website; and",
       "authorities, where the law requires us to.",
