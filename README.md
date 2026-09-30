@@ -58,3 +58,34 @@ To add a travel note, add a file to `content/blog/posts/` (copy an existing one)
 Pushes to `dev` and `main` deploy via `.github/workflows/deploy.yml` (Cloudflare Pages project
 `travedise`). All changes go through a branch → PR into `dev`; `dev` → `main` is a release PR.
 See `CLAUDE.md` for the full workflow.
+
+## Trip enquiry email
+
+The Plan your trip form posts to `/api/enquiry` (`functions/api/enquiry.js`, a Cloudflare Pages
+Function that runs next to the static site). It sends two emails through the Zoho Mail API from
+`contact@travedise.com`: the full enquiry to us, and a copy of the same submission to the address
+the traveller typed in. Zoho's API has no reply-to, so our copy starts with the traveller's address.
+
+It needs these secrets on the Cloudflare Pages project `travedise` (Settings → Variables and
+Secrets, for both Production and Preview):
+
+| Name | Value |
+| --- | --- |
+| `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET` | from a **Self Client** at https://api-console.zoho.com |
+| `ZOHO_REFRESH_TOKEN` | generated once from that Self Client (steps below) |
+| `ZOHO_ACCOUNT_ID` | the mailbox's account id (steps below) |
+| `ZOHO_DOMAIN` | optional: `com` (default), `eu`, `in`, `com.au`, `jp` or `ca` — where the Zoho account lives |
+| `ENQUIRY_FROM`, `ENQUIRY_TO` | optional: both default to `contact@travedise.com` |
+
+Getting the refresh token and account id (use your data centre's domain in place of `.com`):
+
+1. In https://api-console.zoho.com, add a **Self Client**, copy its Client ID and Secret.
+2. Under **Generate Code**, scope `ZohoMail.messages.CREATE,ZohoMail.accounts.READ`, duration
+   10 minutes. Copy the code.
+3. Exchange it (within 10 minutes):
+   `curl -X POST "https://accounts.zoho.com/oauth/v2/token?grant_type=authorization_code&client_id=ID&client_secret=SECRET&code=CODE"`
+   — keep the `refresh_token` from the reply; copy the `access_token` for the next step.
+4. `curl -H "Authorization: Zoho-oauthtoken ACCESS_TOKEN" https://mail.zoho.com/api/accounts`
+   — the `accountId` of the `contact@travedise.com` mailbox is `ZOHO_ACCOUNT_ID`.
+
+Without the secrets the endpoint answers 503 and the form tells the visitor to email us directly.
