@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import { contactEmail, contactOffices, contactPhones } from "@/content/contact";
 import { packages } from "@/content/packages";
+import { packagesV2, packageV2Slugs } from "@/content/v2/packages";
 
 type Tool = {
   name: string;
@@ -30,18 +31,19 @@ const tools: Tool[] = [
     inputSchema: { type: "object", properties: {} },
     annotations: { readOnlyHint: true },
     execute: async () =>
-      Object.values(packages).map((p) => ({
-        title: p.title.trim(),
-        priceAndDuration: p.priceLine,
-        url: new URL(p.href, location.origin).href,
-        markdown: new URL(`${p.href}.md`, location.origin).href,
+      // Only journeys with a page; the title is the page's, the price line the card's.
+      packageV2Slugs.map((slug) => ({
+        title: packagesV2[slug]!.title,
+        priceAndDuration: packages[slug].priceLine,
+        url: new URL(packages[slug].href, location.origin).href,
+        markdown: new URL(`${packages[slug].href}.md`, location.origin).href,
       })),
   },
   {
     name: "get_page_markdown",
     title: "Read a page as Markdown",
     description:
-      "Get the Markdown content of a travedise.com page, e.g. '/packages/hillcountry' for an itinerary, '/faq' or '/contact'.",
+      "Get the Markdown content of a travedise.com page, e.g. '/packages/hillcountry' for an itinerary, '/faq' or '/plan-your-trip'.",
     inputSchema: {
       type: "object",
       properties: { path: { type: "string", description: "Site path starting with '/'." } },
@@ -68,13 +70,14 @@ const tools: Tool[] = [
       email: contactEmail.value,
       phones: contactPhones.numbers.map((n) => `${n.number} ${n.region}`),
       offices: contactOffices.map((o) => ({ name: o.label, address: o.lines.join(" ").trim() })),
-      contactPage: new URL("/contact", location.origin).href,
+      planYourTripPage: new URL("/plan-your-trip", location.origin).href,
     }),
   },
   {
     name: "open_page",
     title: "Open a page",
-    description: "Navigate the browser to a travedise.com page, e.g. '/packages' or '/contact'.",
+    description:
+      "Navigate the browser to a travedise.com page, e.g. '/packages' or '/plan-your-trip'.",
     inputSchema: {
       type: "object",
       properties: { path: { type: "string", description: "Site path starting with '/'." } },

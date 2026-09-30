@@ -1,0 +1,63 @@
+import Link from "next/link";
+
+import { Section } from "@/components/v2/section";
+import { journeys } from "@/content/v2/journeys";
+
+/** Every route as a card, for reading rather than comparing. */
+export function JourneyGrid() {
+  return (
+    <Section className="py-[110px] max-md:py-14">
+      <div className="mb-[58px] flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
+        <h2 className="m-0 font-display text-[46px]/[55px] font-medium tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+          Every journey we run.
+        </h2>
+        <p className="m-0 w-[380px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">
+          Six routes, each written out day by day. If one is nearly right, say so and we will adjust
+          it.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+        {journeys.map((journey) => (
+          <Link
+            key={journey.key}
+            href={journey.href}
+            className="group flex flex-col bg-v2-cream transition-shadow duration-200 hover:shadow-[0_16px_36px_rgba(16,27,46,0.10)] motion-reduce:transition-none"
+          >
+            <div className="relative h-[268px] w-full overflow-clip max-md:h-[220px]">
+              <img
+                src={journey.image}
+                alt={journey.alt}
+                loading="lazy"
+                className="v2-card-img block size-full object-cover"
+              />
+              <span className="absolute top-4 left-4 border border-white/24 bg-v2-navy/72 px-3.5 py-2 text-[13px]/[17px] text-white backdrop-blur-[12px]">
+                {journey.theme}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col gap-3.5 px-7 pt-7 pb-[30px] max-md:px-5 max-md:pt-5 max-md:pb-6">
+              <h3 className="m-0 text-[27px]/[34px] font-medium text-v2-navy max-md:text-[22px]/[28px]">
+                {journey.name}
+              </h3>
+              <p className="m-0 text-[15px]/[24px] text-[#52687b]">{journey.short}</p>
+              <div className="mt-auto flex items-center justify-between gap-[18px] pt-[22px]">
+                <div className="flex flex-col gap-[3px]">
+                  <span className="text-[13px]/[18px] text-[#8192a3]">{journey.nights}</span>
+                  <span className="text-[21px]/[28px] font-medium text-v2-navy">
+                    {journey.price}
+                  </span>
+                </div>
+                <span
+                  aria-hidden
+                  className="flex size-11 shrink-0 items-center justify-center rounded-full border border-v2-navy/25 text-[15px] text-v2-navy"
+                >
+                  ↗
+                </span>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </Section>
+  );
+}

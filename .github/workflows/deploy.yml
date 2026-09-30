@@ -3,8 +3,6 @@ name: Build & deploy
 on:
   push:
     branches: [main, dev]
-  pull_request:
-    branches: [main, dev]
   workflow_dispatch:
 
 concurrency:
@@ -16,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # sitemap lastmod comes from git history
 
       - uses: pnpm/action-setup@v4
 
@@ -28,18 +28,20 @@ jobs:
 
       - run: pnpm build
 
+      - run: pnpm test
+
       - uses: actions/upload-artifact@v4
-        if: github.event_name != 'pull_request'
         with:
           name: site
           path: out
           retention-days: 3
           include-hidden-files: true # out/.well-known/
 
-  # main → travedise.com, dev → dev.travedise.pages.dev. PRs stop at the build check.
+  # main → travedise.com, dev → dev.travedise.pages.dev.
+  # The ref guard matters for workflow_dispatch, which can be run from any branch.
   deploy:
     needs: build
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'main' && 'production' || 'preview' }}
     steps:

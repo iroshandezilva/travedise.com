@@ -1,0 +1,73 @@
+import { images, packageImages } from "@/content/v2/images";
+
+import { TEAM, type BlogPost } from "../types";
+
+export const post: BlogPost = {
+  slug: "the-kandy-perahera",
+  title: "The Kandy perahera, and booking around it",
+  titleEm: "and booking around it",
+  standfirst: "Ten nights in July or August that fill every room in the hill capital.",
+  dek: "Ten nights in July or August that fill every room in the hill capital.",
+  category: "Culture",
+  date: "2026-06-30",
+  author: TEAM,
+  image: {
+    src: packageImages.kandyLake,
+    alt: "Fire bearers in a night procession",
+    position: "50% 35%",
+  },
+  body: [
+    {
+      type: "lead",
+      text: [
+        "Every year, for ten nights around the Esala full moon, Kandy holds one of the great processions of Asia. Dancers, drummers, fire bearers and elephants walk the streets around the Temple of the Tooth, and the city fills to the rafters.",
+      ],
+    },
+
+    { type: "h2", id: "what", text: "What it is" },
+    {
+      type: "p",
+      text: [
+        "The Esala Perahera honours the sacred tooth relic of the Buddha, kept in the temple beside the lake. The processions grow night by night, and the last few, the Randoli peraheras, are the largest. The final procession is followed by a water-cutting ceremony at the river the next morning.",
+      ],
+    },
+    {
+      type: "figure",
+      src: images.livingCulture,
+      alt: "A fire dancer in Kandy",
+      caption: "The fire dancers come out after dark. Most nights run well past ten.",
+    },
+
+    { type: "h2", id: "when", text: "When it falls" },
+    {
+      type: "p",
+      text: [
+        "The dates follow the lunar calendar, so the perahera lands in July in some years and August in others. The temple confirms them a few months ahead. If your trip is in the summer, check before you fix your flights.",
+      ],
+    },
+
+    { type: "h2", id: "booking", text: "Booking around it" },
+    {
+      type: "p",
+      text: [
+        "Hotels in and around Kandy fill early and prices rise sharply for the whole ten nights. If you want to see it, we book early and reserve seats on one of the stands along the route, which is far better than standing in the crowd for hours.",
+      ],
+    },
+    {
+      type: "p",
+      text: [
+        "If you do not, we route you around the city on those nights. The roads are busy, and a hill country stay an hour away is calmer and better value.",
+      ],
+    },
+    {
+      type: "note",
+      label: "Worth knowing",
+      text: "Dress as you would for a temple, with shoulders and knees covered. Bring water and something to sit on if you are not on a stand. The procession starts after dark and moves slowly.",
+    },
+  ],
+  cta: {
+    heading: "Travelling in July or August? We will check the dates.",
+    em: "We will check",
+    body: "Tell us when you are coming and we will plan the Kandy nights around the perahera, or around the crowds.",
+  },
+};

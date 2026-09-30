@@ -1,0 +1,20 @@
+# Cloudflare Pages redirects.
+
+# The home page was built at /v2 before it went live. Anyone holding that link —
+# a bookmark, a message, a preview shared during the rebuild — lands on it anyway.
+/v2 / 301
+
+# The journeys pages were built at /v2/packages before they replaced /packages.
+/v2/packages /packages 301
+/v2/packages/* /packages/:splat 301
+
+# Simply Sri Lanka never had an itinerary, and its page went with the old design.
+/packages/simply-srilanka /packages 301
+
+# The contact page was replaced by the trip-planning page.
+/contact /plan-your-trip 301
+
+# The three original blog posts were rewritten as travel notes with new titles.
+/blog-posts/the-ultimate-honeymoon-destination /blog-posts/ten-days-for-two 301
+/blog-posts/family-friendly-destinations-that-everyone-will-love /blog-posts/sri-lanka-with-children 301
+/blog-posts/why-2026-is-the-best-year-for-travel-and-tour /blog-posts/a-first-trip-to-sri-lanka 301

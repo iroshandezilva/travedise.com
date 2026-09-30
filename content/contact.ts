@@ -1,9 +1,7 @@
-/** `/contact` copy and contact details, verbatim from the Webflow site. */
-
-export const contactHeading = {
-  tag: "Contact us",
-  title: "Let’s start planning your adventure now,",
-};
+/**
+ * Contact details, verbatim from the Webflow site. The contact page they came from is
+ * gone (see `/plan-your-trip`); the structured data and the WebMCP tools still read them.
+ */
 
 const ICON = {
   mail: "/assets/6a90445eb2a6e026c5f88276_mail-02.png",
@@ -36,6 +34,3 @@ export const contactOffices: (ContactLabel & { lines: string[] })[] = [
     lines: ["212A Inland Hill Road,", "Karapitiya,", "Galle."],
   },
 ];
-
-export const contactImage =
-  "/assets/6a9045ee58b0d313dda33739_fd2aa4af760c506d8fa17273985a47a8c3cc6556.jpg";
