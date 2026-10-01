@@ -20,7 +20,7 @@ export default function NotFound() {
       <main className="container-v2 flex flex-col items-start gap-4 gutter-v2 py-16 max-md:py-12">
         <PillLink href="/">Back to the home page</PillLink>
         <PillLink href="/plan-your-trip" variant="outline">
-          Plan your trip
+          Plan your journey
         </PillLink>
       </main>
       <FooterWide statementFace="body" />

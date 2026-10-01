@@ -80,7 +80,7 @@ export const questions: { q: string; a: string }[] = [
 export const closingCta = {
   heading: "Let’s make the\njourney yours.",
   body: "Tell us what you want to see, what you want to feel, and how you like to travel. We’ll shape the rest together.",
-  action: "Plan your trip",
+  action: "Plan your journey",
   href: "/plan-your-trip",
   image: images.ctaBand,
 };

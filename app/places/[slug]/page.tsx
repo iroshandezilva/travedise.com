@@ -66,7 +66,7 @@ export default async function PlacePage({ params }: { params: Promise<Params> })
             </>
           }
           body={place.ctaBody}
-          action="Plan your trip"
+          action="Plan your journey"
         />
       </main>
       <FooterWide />

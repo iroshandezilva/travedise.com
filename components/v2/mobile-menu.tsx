@@ -161,7 +161,7 @@ export function MobileMenu() {
                   onClick={close}
                   className="flex h-[54px] items-center justify-center rounded-[27px] bg-v2-sky text-[16px] font-semibold text-[#10212b]"
                 >
-                  Plan your trip ↗
+                  Plan your journey ↗
                 </Link>
                 <div className="flex items-center gap-[18px]">
                   {SOCIALS.map((social) => (
