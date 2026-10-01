@@ -98,7 +98,7 @@ export function BadgeLink({ className, children, ...props }: LinkProps & { child
   );
 }
 
-/** The underlined text link that sits opposite a section heading ("Browse journeys ↗"). */
+/** The underlined text link that sits opposite a section heading ("Explore our journeys ↗"). */
 export function QuietLink({ className, children, ...props }: LinkProps & { children: ReactNode }) {
   return (
     <Link

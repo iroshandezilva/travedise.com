@@ -57,7 +57,7 @@ export function ReadyBand({ above = "cream" }: { above?: "cream" | "white" } = {
               className="flex h-[60px] items-center gap-[18px] rounded-full bg-v2-sky pr-2 pl-7 transition-[opacity,scale] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none max-md:h-14 max-md:justify-between"
             >
               <span className="text-[16px]/[20px] font-semibold text-[#10212b]">
-                Plan your trip
+                Plan your journey
               </span>
               <span
                 aria-hidden

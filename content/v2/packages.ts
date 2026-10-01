@@ -157,7 +157,7 @@ const scenicSriLanka: PackageV2 = {
       },
       {
         title: "Meals",
-        body: "Breakfast every day, plus the meals that are part of a stay or a long drive. The rest stays open, because eating out is half the trip.",
+        body: "Half board: breakfast and dinner every day. Special farewell dinner on the last day of your tour — including delicious food and drinks, hosted especially for you.",
       },
       {
         title: "Transfers and driver",
@@ -309,7 +309,7 @@ const littleOnes: PackageV2 = {
       },
       {
         title: "Meals",
-        body: "Breakfast every day, plus the meals that are part of a stay or a long drive. The rest stays open for wherever the children want to eat.",
+        body: "Half board: breakfast and dinner every day. Special farewell dinner on the last day of your tour — including delicious food and drinks, hosted especially for you.",
       },
       {
         title: "Transfers and driver",
@@ -419,7 +419,7 @@ const honeymoon: PackageV2 = {
       },
       {
         title: "Meals",
-        body: "Breakfast every day, plus the meals that are part of a stay. Long dinners are left open so you can choose where to have them.",
+        body: "Half board: breakfast and dinner every day. Special farewell dinner on the last day of your tour — including delicious food and drinks, hosted especially for you.",
       },
       {
         title: "Transfers and driver",
@@ -525,7 +525,7 @@ const hillCountry: PackageV2 = {
       },
       {
         title: "Meals",
-        body: "Breakfast every day, plus the meals that are part of a stay or a long drive. The rest stays open, because eating out is half the trip.",
+        body: "Half board: breakfast and dinner every day. Special farewell dinner on the last day of your tour — including delicious food and drinks, hosted especially for you.",
       },
       {
         title: "Transfers and driver",
@@ -624,7 +624,7 @@ const wildlife: PackageV2 = {
       },
       {
         title: "Meals",
-        body: "Breakfast every day, plus the meals that are part of a stay or an early safari. The rest stays open.",
+        body: "Half board: breakfast and dinner every day. Special farewell dinner on the last day of your tour — including delicious food and drinks, hosted especially for you.",
       },
       {
         title: "Transfers and driver",

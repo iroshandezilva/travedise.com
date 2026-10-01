@@ -48,7 +48,7 @@ export function SiteNav({ current }: { current?: string } = {}) {
           href="/plan-your-trip"
           className="rounded-[50px] border border-v2-sky bg-v2-sky px-[22px] py-[13px] text-[15px]/[1.2] font-medium text-[#10212b] max-md:hidden"
         >
-          Plan your trip ↗
+          Plan your journey ↗
         </Link>
         <MobileMenu />
       </div>

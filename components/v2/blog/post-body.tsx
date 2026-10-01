@@ -141,7 +141,7 @@ function BlockView({ block }: { block: Block }) {
  */
 export function PostBody({ note }: { note: Note }) {
   const headings = note.body.filter((b) => b.type === "h2");
-  const next = note.next ?? { label: "Plan your trip", href: "/plan-your-trip" };
+  const next = note.next ?? { label: "Plan your journey", href: "/plan-your-trip" };
 
   return (
     <Section className="pt-[100px] pb-[110px] max-md:pt-10 max-md:pb-16">

@@ -44,7 +44,7 @@ export default function PlacesPage() {
             </>
           }
           body="Tell us what you like and when you can travel. We will suggest the places and join them into a route."
-          action="Plan your trip"
+          action="Plan your journey"
         />
       </main>
       <FooterWide />
