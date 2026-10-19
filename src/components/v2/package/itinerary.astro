@@ -1,0 +1,113 @@
+---
+import { cn } from "@/lib/cn";
+import type { PackageV2 } from "@/data/v2/packages";
+
+import AccordionRow from "../accordion-row.astro";
+import Section from "../section.astro";
+
+/**
+ * The route, day by day. Each row opens to show what the day holds, where you sleep,
+ * and a strip of photos — which scrolls sideways rather than shrinking on a phone.
+ */
+interface Props {
+  itinerary: PackageV2["itinerary"];
+}
+const { itinerary } = Astro.props;
+---
+
+<Section class="pt-2.5 pb-24 max-md:pt-0 max-md:pb-14" innerClass="flex flex-col gap-[42px] max-md:gap-6">
+  <div class="flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4">
+    <h2 class="m-0 font-display text-[46px]/[54px] font-normal text-[#14253a] max-md:text-[30px]/[38px]">
+      {itinerary.heading}
+    </h2>
+    <p
+      class="m-0 w-[370px] shrink-0 font-display text-[26px]/[34px] text-[#42586a] max-lg:w-full max-md:font-sans max-md:text-[15px]/[24px]"
+    >
+      {itinerary.lede}
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-2.5" data-accordion data-itinerary>
+    {
+      itinerary.days.map((day, i) => {
+        const open = i === 0;
+        return (
+          <AccordionRow
+            open={open}
+            class={cn(
+              "flex flex-col overflow-hidden rounded-2xl transition-colors duration-200",
+              open ? "bg-v2-cream" : "bg-[#fcfbf9]",
+            )}
+            buttonClass="px-7 py-[26px] max-md:px-5 max-md:py-5"
+            panelClass="flex flex-col gap-6 px-7 pb-[30px] max-md:px-0 max-md:pb-6"
+          >
+            <span slot="head" class="flex flex-col gap-2 max-md:gap-1">
+              <span class="text-[14px]/[20px] text-[#52687b]">{day.meta}</span>
+              <span class="font-display text-[27px]/[34px] font-medium text-v2-navy max-md:text-[20px]/[26px]">
+                {day.title}
+              </span>
+            </span>
+            <span slot="aside" class="font-display text-[32px]/[40px] text-v2-sand max-md:text-[22px]/[28px]">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
+            <div class="flex items-start gap-16 max-lg:flex-col max-lg:gap-6 max-md:px-5">
+              <p class="m-0 w-[520px] shrink-0 text-[17px]/[27px] text-[#42586a] max-lg:w-full max-md:text-[15px]/[24px]">
+                {day.body}
+              </p>
+              <div class="flex min-w-0 flex-1 items-start gap-4">
+                <img
+                  src={day.stay.thumb}
+                  alt={day.stay.name}
+                  loading="lazy"
+                  class="block size-24 shrink-0 rounded-lg object-cover max-md:size-20"
+                />
+                <div class="flex flex-col gap-2">
+                  <span class="font-display text-[20px]/[26px] text-v2-navy max-md:text-[18px]/[24px]">
+                    {day.stay.name}
+                  </span>
+                  {day.stay.note && (
+                    <p class="m-0 text-[15px]/[24px] text-[#52687b] max-md:text-[14px]/[22px]">{day.stay.note}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {day.photos.length > 0 && (
+              <div class="v2-rail flex gap-3 max-md:snap-x max-md:snap-mandatory max-md:overflow-x-auto max-md:px-5">
+                {day.photos.map((photo) => (
+                  <figure class="m-0 flex w-80 shrink-0 flex-col gap-2 max-md:w-[250px] max-md:snap-start">
+                    <img
+                      src={photo.src}
+                      alt={photo.caption}
+                      loading="lazy"
+                      class="block h-[210px] w-full rounded-lg object-cover max-md:h-[165px]"
+                    />
+                    <figcaption class="text-[13px]/[19px] text-[#6e808e]">{photo.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
+          </AccordionRow>
+        );
+      })
+    }
+  </div>
+</Section>
+
+<script>
+  // The accordion opens and closes the rows; this keeps each row's fill in step with
+  // it — cream while open, near-white while closed.
+  for (const list of document.querySelectorAll("[data-itinerary]")) {
+    const sync = (button: Element) => {
+      const row = button.closest("[data-accordion-row]");
+      if (!row) return;
+      const open = button.getAttribute("aria-expanded") === "true";
+      row.classList.toggle("bg-v2-cream", open);
+      row.classList.toggle("bg-[#fcfbf9]", !open);
+    };
+    new MutationObserver((records) => {
+      for (const record of records) sync(record.target as Element);
+    }).observe(list, { subtree: true, attributeFilter: ["aria-expanded"] });
+  }
+</script>

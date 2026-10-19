@@ -1,0 +1,74 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import Section from "@/components/v2/section.astro";
+import { regionByKey, type Place } from "@/data/v2/places";
+import { levelLabels, months, type Level } from "@/data/v2/when-to-go";
+import { cn } from "@/lib/cn";
+
+const heading =
+  "m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]";
+
+const cell: Record<Level, string> = {
+  3: "bg-v2-navy",
+  2: "bg-v2-sand",
+  1: "bg-[#e9e6de]",
+};
+
+/** Twelve months as a strip of cells, from the region's row in the month guide. */
+interface Props {
+  place: Place;
+}
+const { place } = Astro.props;
+const ratings = regionByKey[place.region].ratings;
+---
+
+<Section surface="cream" class="py-[100px] max-md:py-14">
+  <div class="flex flex-col gap-10 max-md:gap-7">
+    <div class="flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-5">
+      <div class="flex flex-col gap-3.5">
+        <h2 class={heading}>When to go.</h2>
+        <p class="m-0 max-w-[640px] text-[16px]/[25px] text-[#52687b] max-md:text-[15px]/[24px]">
+          {place.season}
+        </p>
+      </div>
+      <ul class="m-0 flex shrink-0 list-none flex-wrap gap-[22px] p-0 max-md:gap-x-4 max-md:gap-y-2">
+        {
+          ([3, 2, 1] as const).map((level) => (
+            <li class="flex items-center gap-2 text-[14px] text-[#52687b]">
+              <span aria-hidden="true" class={cn("size-3.5", cell[level], level === 1 && "border border-v2-navy/12")} />
+              {levelLabels[level]}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <Reveal as="ol" from="fade" class="m-0 grid list-none grid-cols-12 gap-1.5 p-0 max-md:gap-[3px]">
+      {
+        months.map((m, i) => (
+          <li class="flex flex-col gap-2.5 max-md:gap-2">
+            <div title={`${m.name}: ${levelLabels[ratings[i]]}`} class={cn("h-14 max-md:h-9", cell[ratings[i]])} />
+            <div class="text-[14px]/[20px] text-[#52687b] max-md:text-center max-md:text-[12px]/[16px]">
+              <span aria-hidden="true" class="max-md:hidden">
+                {m.name.slice(0, 3)}
+              </span>
+              <span aria-hidden="true" class="hidden max-md:inline">
+                {m.name[0]}
+              </span>
+              <span class="sr-only">
+                {m.name}: {levelLabels[ratings[i]]}
+              </span>
+            </div>
+          </li>
+        ))
+      }
+    </Reveal>
+
+    <a
+      href="/when-to-go"
+      class="inline-flex items-center gap-2.5 self-start text-[16px]/[1.2] text-v2-navy underline-offset-4 hover:underline"
+    >
+      The full month guide <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</Section>

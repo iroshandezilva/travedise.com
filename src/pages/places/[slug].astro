@@ -1,0 +1,43 @@
+---
+import ContainedCta from "@/components/v2/contained-cta.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import PlaceDoing from "@/components/v2/places/place-doing.astro";
+import PlaceHero from "@/components/v2/places/place-hero.astro";
+import PlaceIntro from "@/components/v2/places/place-intro.astro";
+import PlaceJourneys from "@/components/v2/places/place-journeys.astro";
+import PlaceNearby from "@/components/v2/places/place-nearby.astro";
+import PlaceSeasons from "@/components/v2/places/place-seasons.astro";
+import { placeBySlug, placeSlugs } from "@/data/v2/places";
+import Base from "@/layouts/base.astro";
+
+/** Static build: every place in `places` gets a page. */
+export function getStaticPaths() {
+  return placeSlugs.map((slug) => ({ params: { slug } }));
+}
+
+/**
+ * The place template. Everything on the page comes from the place's entry in
+ * `src/content/places/`; the months come from its region's row in the month guide, and
+ * the journeys from the routes that stop there.
+ */
+const { slug } = Astro.params;
+const place = placeBySlug[slug!];
+const title = `${place.name}, Sri Lanka — Travedise`;
+---
+
+<Base title={title} description={place.summary} canonical={`/places/${slug}`} image={place.image.src} ogType="article">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PlaceHero place={place} />
+    <main>
+      <PlaceIntro place={place} />
+      <PlaceDoing place={place} />
+      <PlaceSeasons place={place} />
+      <PlaceJourneys place={place} />
+      <PlaceNearby place={place} />
+      <ContainedCta body={place.ctaBody} action="Plan your trip">
+        <Fragment slot="heading">Want {place.name}{" "}<em class="italic">in your</em> route?</Fragment>
+      </ContainedCta>
+    </main>
+    <FooterWide />
+  </div>
+</Base>

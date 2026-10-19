@@ -1,0 +1,60 @@
+{
+  "order": 10,
+  "slug": "bentota",
+  "name": "Bentota",
+  "region": "southwest",
+  "line": "River and beach within easy reach of the airport, for a first or last night.",
+  "image": {
+    "src": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+    "alt": "A table set on the sand as a couple walk the beach"
+  },
+  "map": {
+    "cx": 68.8,
+    "cy": 571.9,
+    "tx": 56.8,
+    "ty": 576.4,
+    "anchor": "end"
+  },
+  "summary": "A river, a long beach and good hotels, about two hours from the airport. The easy first or last night.",
+  "nights": "1 or 2 nights",
+  "goodFor": "Arrivals, departures",
+  "intro": {
+    "heading": "An easy start, or an easy finish.",
+    "paragraphs": [
+      "Bentota is where the Bentota river meets the sea, on the west coast south of Colombo. There is a long beach on the ocean side, a calm lagoon on the other, and some of the island’s best-run beach hotels between them.",
+      "Many long-haul flights land late at night or leave early in the morning. A night here rather than in the city means you start or finish the trip by the sea, without a long drive in either direction."
+    ]
+  },
+  "mapCaption": "On the west coast, south of Colombo. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Bentota is for recovering from a flight, or resting before one. These are the things we fill the time with.",
+    "items": [
+      {
+        "title": "A boat up the river",
+        "body": "Mangroves, water monitors and kingfishers, on a slow boat from the jetty, with a stop at a cinnamon garden."
+      },
+      {
+        "title": "Lunuganga",
+        "body": "Geoffrey Bawa’s country estate on the lake, and the garden he spent fifty years shaping. Open for guided visits."
+      },
+      {
+        "title": "Brief Garden",
+        "body": "The house and garden of his brother Bevis, a short drive inland, with the sculpture and the planting much as he left them."
+      },
+      {
+        "title": "A day on the lagoon",
+        "body": "Kayaks, paddleboards or nothing at all, on water that stays calm when the sea is rough."
+      }
+    ]
+  },
+  "season": "Bentota is on the west coast, so it follows the south and west: at its best from December to April, and wet from May to September. The river and the lagoon are good in any month.",
+  "nearby": {
+    "heading": "Along the same coast.",
+    "slugs": [
+      "galle",
+      "mirissa",
+      "tangalle"
+    ]
+  },
+  "ctaBody": "Tell us your flight times and we will put it at the start or the end of the route."
+}

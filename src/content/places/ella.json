@@ -1,0 +1,71 @@
+{
+  "order": 3,
+  "slug": "ella",
+  "name": "Ella",
+  "region": "hill",
+  "line": "A small hill town with walks from the door and the train running through.",
+  "image": {
+    "src": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+    "alt": "A blue train crossing the Nine Arch Bridge through the trees"
+  },
+  "map": {
+    "cx": 246,
+    "cy": 499,
+    "tx": 258,
+    "ty": 503.5,
+    "anchor": "start"
+  },
+  "journeyStop": "ella",
+  "summary": "A small town in a gap in the hills, with the railway running through it and walks that start at the front door.",
+  "nights": "2 nights",
+  "goodFor": "Walkers, families",
+  "intro": {
+    "heading": "A town for walking.",
+    "paragraphs": [
+      "Ella is a single street of cafés and guesthouses in a gap between two ridges, looking south over the lowlands. The train from Kandy and Nuwara Eliya stops here, and most people arrive on it.",
+      "It is busier than it was, but the walking has not changed. Little Adam’s Peak, Ella Rock and the Nine Arch Bridge are all within reach on foot, so the car can stay parked for a day or two."
+    ]
+  },
+  "mapCaption": "On the southern edge of the hill country. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Ella is best on foot. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "Little Adam’s Peak at sunrise",
+        "body": "An easy climb of under an hour, up through the tea to a ridge with the valley below. Worth the alarm."
+      },
+      {
+        "title": "The Nine Arch Bridge",
+        "body": "A stone viaduct in the trees, a short walk from town. We check the timetable so you are there when a train crosses."
+      },
+      {
+        "title": "Ella Rock for a longer day",
+        "body": "A proper half-day hike along the railway line and up through forest, with a guide who knows the turns."
+      },
+      {
+        "title": "Arriving by train",
+        "body": "The line from Nuwara Eliya is the best of the hill country railway. We book the seats and have the car waiting at the station."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/ella-lookout.jpg",
+      "alt": "Hills and a valley from a wooden lookout"
+    },
+    {
+      "src": "/places/ella-waterfall.jpg",
+      "alt": "A waterfall in the forested hills"
+    }
+  ],
+  "season": "Ella follows the hill country: driest from January to March, green and showery at the end of the year. It sits lower than Nuwara Eliya, so the evenings are mild rather than cold.",
+  "nearby": {
+    "heading": "Down from the hills.",
+    "slugs": [
+      "nuwara-eliya",
+      "yala",
+      "udawalawe"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with the train booked for the way in."
+}

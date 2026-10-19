@@ -1,0 +1,31 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import ReadyBand from "@/components/v2/home/ready-band.astro";
+import WhenToGoHero from "@/components/v2/when-to-go/when-to-go-hero.astro";
+import MonthPicker from "@/components/v2/when-to-go/month-picker.astro";
+import YearGrid from "@/components/v2/when-to-go/year-grid.astro";
+import { whenToGoHero } from "@/data/v2/when-to-go";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "When to go to Sri Lanka, month by month — Travedise";
+
+/**
+ * The month guide. Driven by `src/data/v2/when-to-go.ts` — the month picker and the
+ * year grid both read the same ratings table.
+ */
+---
+
+<Base title={TITLE} description={whenToGoHero.body} canonical="/when-to-go" image={whenToGoHero.image} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <WhenToGoHero />
+    <main>
+      <MonthPicker />
+      <YearGrid />
+      <ReadyBand above="white" />
+    </main>
+    <FooterWide
+      statement="A small island with long days in it. Plan it once, properly, and it stays with you for years."
+      statementFace="body"
+    />
+  </div>
+</Base>

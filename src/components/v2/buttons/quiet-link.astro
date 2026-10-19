@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/lib/cn";
+
+/** The underlined text link that sits opposite a section heading ("Browse journeys ↗"). */
+type Props = HTMLAttributes<"a">;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<a
+  class={cn(
+    "inline-block border-b border-v2-navy pb-2 text-[16px]/[1.2] text-v2-navy max-md:border-0 max-md:pb-0 max-md:text-[15px]/[20px] max-md:text-[#126a8f]",
+    className,
+  )}
+  {...props}><slot /></a
+>

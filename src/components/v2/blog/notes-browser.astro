@@ -1,0 +1,172 @@
+---
+import type { Category, Note } from "@/data/blog";
+import { cn } from "@/lib/cn";
+
+import Section from "../section.astro";
+import NoteCard from "./note-card.astro";
+
+/**
+ * "Everything we have written": topic chips that filter the grid, a live count, and a
+ * "More notes" button once there are more than nine to show.
+ *
+ * The page arrives showing "All". Every card is also kept in a <template>, tagged with
+ * its topic, so the script can rebuild the grid for a chosen topic without a request.
+ */
+interface Props {
+  notes: Note[];
+  categories: Category[];
+}
+const { notes, categories } = Astro.props;
+
+const PAGE = 9;
+const CHIP =
+  "h-11 cursor-pointer rounded-full border px-5 text-[15px]/[1] transition-colors duration-250 motion-reduce:transition-none max-md:h-10 max-md:px-4 max-md:text-[14px]";
+const CHIP_ON = "border-v2-navy bg-v2-navy text-white";
+const CHIP_OFF = "border-v2-navy/20 bg-transparent text-v2-navy hover:border-v2-navy/45";
+const count = (n: number) => (n === 1 ? "1 note" : `${n} notes`);
+---
+
+<Section
+  class="pt-20 pb-[110px] max-md:pt-12 max-md:pb-16"
+  data-notes-browser
+  data-page={PAGE}
+  data-chip-on={CHIP_ON}
+  data-chip-off={CHIP_OFF}
+>
+    <div
+      class="mb-11 flex items-end justify-between gap-15 border-b border-v2-navy/12 pb-7 max-md:mb-8 max-md:flex-col max-md:items-start max-md:gap-4"
+    >
+      <div class="flex flex-col gap-[22px] max-md:gap-4">
+        <h2
+          class="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]"
+        >
+          Everything we have written.
+        </h2>
+        <div role="group" aria-label="Filter notes by topic" class="flex flex-wrap gap-2">
+          {
+            ["All", ...categories].map((label) => {
+              const on = label === "All";
+              return (
+                <button
+                  type="button"
+                  aria-pressed={on ? "true" : "false"}
+                  data-topic={label}
+                  class={cn(CHIP, on ? CHIP_ON : CHIP_OFF)}
+                >
+                  {label}
+                </button>
+              );
+            })
+          }
+        </div>
+      </div>
+      <div aria-live="polite" class="shrink-0 text-[15px]/[22px] text-[#65788c]" data-notes-count>
+        {count(notes.length)}
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-3 gap-x-8 gap-y-15 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-y-10"
+      data-notes-grid
+    >
+      {notes.slice(0, PAGE).map((note) => <NoteCard note={note} />)}
+    </div>
+
+    {
+      notes.length > PAGE && (
+        <div class="mt-[72px] flex justify-center max-md:mt-12" data-notes-more>
+          <button
+            type="button"
+            class="flex h-15 cursor-pointer items-center gap-4 rounded-full border border-v2-navy/30 bg-transparent pr-2 pl-7 text-[16px] text-v2-navy transition-transform duration-150 ease-out-quad active:scale-[0.97] motion-reduce:transition-none"
+          >
+            <span>More notes</span>
+            <span
+              aria-hidden="true"
+              class="flex size-11 items-center justify-center rounded-full bg-v2-navy text-[16px] text-white"
+            >
+              ↓
+            </span>
+          </button>
+        </div>
+      )
+    }
+
+    <template data-notes-all>
+      {
+        notes.map((note) => (
+          <div data-category={note.category}>
+            <NoteCard note={note} />
+          </div>
+        ))
+      }
+    </template>
+    <template data-notes-more-template>
+      <div class="mt-[72px] flex justify-center max-md:mt-12" data-notes-more>
+        <button
+          type="button"
+          class="flex h-15 cursor-pointer items-center gap-4 rounded-full border border-v2-navy/30 bg-transparent pr-2 pl-7 text-[16px] text-v2-navy transition-transform duration-150 ease-out-quad active:scale-[0.97] motion-reduce:transition-none"
+        >
+          <span>More notes</span>
+          <span
+            aria-hidden="true"
+            class="flex size-11 items-center justify-center rounded-full bg-v2-navy text-[16px] text-white"
+          >
+            ↓
+          </span>
+        </button>
+      </div>
+    </template>
+</Section>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>("[data-notes-browser]")) {
+    const page = Number(root.dataset.page);
+    const on = root.dataset.chipOn!.split(" ");
+    const off = root.dataset.chipOff!.split(" ");
+    const chips = [...root.querySelectorAll<HTMLButtonElement>("[data-topic]")];
+    const countEl = root.querySelector<HTMLElement>("[data-notes-count]")!;
+    const grid = root.querySelector<HTMLElement>("[data-notes-grid]")!;
+    const all = [...root.querySelector<HTMLTemplateElement>("[data-notes-all]")!.content.children] as HTMLElement[];
+    const moreTemplate = root.querySelector<HTMLTemplateElement>("[data-notes-more-template]")!;
+
+    let topic = "All";
+    let limit = page;
+
+    function render() {
+      const matching = all.filter((card) => topic === "All" || card.dataset.category === topic);
+      countEl.textContent = matching.length === 1 ? "1 note" : `${matching.length} notes`;
+      grid.replaceChildren(
+        ...matching.slice(0, limit).map((card) => card.firstElementChild!.cloneNode(true)),
+      );
+
+      for (const chip of chips) {
+        const active = chip.dataset.topic === topic;
+        chip.setAttribute("aria-pressed", String(active));
+        chip.classList.remove(...(active ? off : on));
+        chip.classList.add(...(active ? on : off));
+      }
+
+      let more = grid.parentElement!.querySelector<HTMLElement>(":scope > [data-notes-more]");
+      if (matching.length > limit && !more) {
+        more = moreTemplate.content.firstElementChild!.cloneNode(true) as HTMLElement;
+        grid.after(more);
+      } else if (matching.length <= limit && more) {
+        more.remove();
+      }
+    }
+
+    for (const chip of chips) {
+      chip.addEventListener("click", () => {
+        topic = chip.dataset.topic!;
+        limit = page;
+        render();
+      });
+    }
+    // The "More notes" button comes and goes with the topic, so listen on the root.
+    root.addEventListener("click", (event) => {
+      if (!(event.target as Element).closest("[data-notes-more] button")) return;
+      limit += page;
+      render();
+    });
+  }
+</script>

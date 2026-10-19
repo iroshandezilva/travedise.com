@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/lib/cn";
+
+/**
+ * A wide pill whose label sits left and arrow sits right, rather than centred —
+ * used where the button is a destination in itself ("About us", "Plan your trip").
+ */
+type Props = HTMLAttributes<"a"> & { variant?: "sky" | "outline"; arrow?: string };
+
+const { variant = "sky", arrow = "↗", class: className, ...props } = Astro.props;
+---
+
+<a
+  class={cn(
+    "flex h-[52px] items-center justify-between rounded-full pr-5 pl-[22px] transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none max-md:justify-center max-md:gap-2",
+    variant === "sky" ? "bg-v2-sky" : "border border-v2-navy bg-white",
+    className,
+  )}
+  {...props}
+>
+  <span class="text-[16px]/[20px] font-semibold text-v2-navy"><slot /></span>
+  <span aria-hidden="true" class="text-[18px]/[20px] font-medium text-v2-navy max-md:text-[16px]">
+    {arrow}
+  </span>
+</a>

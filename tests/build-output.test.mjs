@@ -1,4 +1,4 @@
-// Checks the static export in out/ (run `pnpm build` first): the machine-readable files and
+// Checks the static build in dist/ (run `pnpm build` first): the machine-readable files and
 // homepage signals that search engines and AI agents rely on.
 import assert from "node:assert/strict";
 import crypto from "node:crypto";
@@ -6,11 +6,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, it } from "node:test";
 
-const OUT = "out";
+const OUT = "dist";
 const SITE = "https://travedise.com";
 
 if (!fs.existsSync(path.join(OUT, "index.html"))) {
-  throw new Error("out/ is missing — run `pnpm build` before `pnpm test`");
+  throw new Error("dist/ is missing — run `pnpm build` before `pnpm test`");
 }
 
 const read = (file) => fs.readFileSync(path.join(OUT, file), "utf8");
@@ -19,7 +19,7 @@ function pageRoutes(dir = OUT) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
     const p = path.join(dir, e.name);
     if (e.isDirectory())
-      return e.name.startsWith("_next") || e.name.startsWith(".") ? [] : pageRoutes(p);
+      return e.name.startsWith("_astro") || e.name.startsWith(".") ? [] : pageRoutes(p);
     if (!e.name.endsWith(".html") || ["404.html", "_not-found.html"].includes(e.name)) return [];
     // Pages marked noindex are deliberately absent from the sitemap and llms.txt.
     if (/<meta name="robots" content="[^"]*noindex/.test(fs.readFileSync(p, "utf8"))) return [];
@@ -138,11 +138,11 @@ describe(".well-known", () => {
 describe("homepage", () => {
   it("has lang, canonical, og:type and og:image", () => {
     assert.match(home, /<html lang="en"/);
-    assert.match(home, /<link rel="canonical" href="https:\/\/travedise\.com"\/>/);
-    assert.match(home, /<meta property="og:type" content="website"\/>/);
+    assert.match(home, /<link rel="canonical" href="https:\/\/travedise\.com"\/?>/);
+    assert.match(home, /<meta property="og:type" content="website"\/?>/);
     assert.match(
       home,
-      /<meta property="og:image" content="https:\/\/travedise\.com\/og\/travedise\.jpg"\/>/,
+      /<meta property="og:image" content="https:\/\/travedise\.com\/og\/travedise\.jpg"\/?>/,
     );
     assert.ok(fs.existsSync(path.join(OUT, "og/travedise.jpg")));
   });

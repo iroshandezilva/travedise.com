@@ -1,0 +1,72 @@
+{
+  "order": 5,
+  "slug": "dambulla",
+  "name": "Dambulla",
+  "region": "triangle",
+  "line": "Cave temples under a single rock, painted floor to ceiling.",
+  "image": {
+    "src": "/places/dambulla-cave.jpg",
+    "alt": "A seated Buddha before painted walls in a cave temple",
+    "position": "50% 30%"
+  },
+  "map": {
+    "cx": 177.2,
+    "cy": 338.6,
+    "tx": 165.2,
+    "ty": 343.1,
+    "anchor": "end"
+  },
+  "journeyStop": "dambulla",
+  "summary": "Five cave temples under one granite outcrop, filled with statues and painted from floor to ceiling. An hour here stays with people for years.",
+  "nights": "Half a day",
+  "goodFor": "Culture, photographers",
+  "intro": {
+    "heading": "Caves full of paint.",
+    "paragraphs": [
+      "The cave temples at Dambulla have been a place of worship for more than two thousand years. Inside five caves under an overhanging rock there are over 150 statues of the Buddha, and nearly every surface above them is painted.",
+      "It is twenty minutes from Sigiriya, so we do not move hotels for it. We go early or late, when the light is low and the caves are quiet, and leave time for the walk up and down the rock."
+    ]
+  },
+  "mapCaption": "At the southern edge of the Cultural Triangle. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Dambulla is a morning, not a stay. These are the things we build it around.",
+    "items": [
+      {
+        "title": "The five caves",
+        "body": "Start in the largest, the Temple of the Great King, and work outward. Shoes off at the gate, shoulders and knees covered."
+      },
+      {
+        "title": "The walk up the rock",
+        "body": "Around fifteen minutes of steps, with monkeys for company and a view over the plains from the top."
+      },
+      {
+        "title": "A spice garden on the way",
+        "body": "The road towards Kandy passes several. We choose one that grows what it shows you, rather than one that only sells."
+      },
+      {
+        "title": "Lunch in a village",
+        "body": "Rice and curry cooked over wood, at a family house a few minutes off the main road."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/v2/c1a3908123f2e026248328dafc946572.jpg",
+      "alt": "A Buddha statue lit against murals deep inside a cave"
+    },
+    {
+      "src": "/v2/d480fd5463c2a41899b5d4b1dcd83a9b.jpg",
+      "alt": "Seated Buddha statues inside a painted cave temple"
+    }
+  ],
+  "season": "Dambulla follows the Cultural Triangle: dry for most of the year and at its best from February to April. Inside the caves it is cool in any month, but the climb up is hot by late morning.",
+  "nearby": {
+    "heading": "Around the Triangle.",
+    "slugs": [
+      "sigiriya",
+      "polonnaruwa",
+      "kandy"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, on the quietest morning of your stay."
+}

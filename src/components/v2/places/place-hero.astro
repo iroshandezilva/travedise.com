@@ -1,0 +1,72 @@
+---
+import HeroScrim from "@/components/v2/hero-scrim.astro";
+import SiteNav from "@/components/v2/site-nav.astro";
+import { regionByKey, type Place } from "@/data/v2/places";
+
+/**
+ * A place's hero: breadcrumb, the name set large, a line, and a glass strip of three
+ * facts — when it is at its best, how long we give it, and who it suits.
+ */
+interface Props {
+  place: Place;
+}
+const { place } = Astro.props;
+
+const region = regionByKey[place.region];
+const facts = [
+  { term: "At its best", value: region.best },
+  { term: "We suggest", value: place.nights },
+  { term: "Good for", value: place.goodFor },
+];
+---
+
+<header class="relative h-[700px] w-full shrink-0 overflow-clip gutter-v2 max-lg:h-[640px] max-md:h-[600px]">
+  <img
+    src={place.image.src}
+    alt={place.image.alt}
+    class="absolute inset-0 block size-full object-cover"
+    style={{ objectPosition: place.image.position ?? "50% 50%" }}
+  />
+  <HeroScrim
+    desktop={"linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.9) 0%, oklab(0 0 0 / 0) 64%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)"}
+  />
+
+  <div class="relative mx-auto h-full w-full max-w-[1280px]">
+    <SiteNav current="/places" />
+    <div
+      class="absolute inset-x-0 bottom-[60px] flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-8 max-md:bottom-7 max-md:gap-6"
+    >
+      <div class="flex max-w-[700px] flex-col gap-5 max-md:gap-3">
+        <nav
+          aria-label="Breadcrumb"
+          class="flex items-center gap-2.5 text-[15px]/[22px] text-[#c4d2db] max-md:text-[14px]/[20px]"
+        >
+          <a href="/places" class="text-white hover:underline">Places</a>
+          <span aria-hidden="true">/</span>
+          <span>{region.name}</span>
+        </nav>
+        <h1
+          class="m-0 font-display text-[96px]/[96px] font-medium tracking-[-0.02em] text-white max-lg:text-[72px]/[76px] max-md:text-[42px]/[46px]"
+        >
+          {place.name}
+        </h1>
+        <p
+          class="m-0 text-[20px]/[30px] text-[#e8eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:text-[15px]/[24px]"
+        >
+          {place.summary}
+        </p>
+      </div>
+
+      <dl class="m-0 flex shrink-0 gap-px border border-white/24 bg-white/18 backdrop-blur-[18px] max-md:w-full">
+        {
+          facts.map((fact) => (
+            <div class="flex flex-col gap-1 bg-[#102532b8] px-[22px] py-[18px] max-md:flex-1 max-md:px-3.5 max-md:py-3">
+              <dt class="text-[13px]/[18px] text-[#b8c8d1] max-md:text-[12px]/[16px]">{fact.term}</dt>
+              <dd class="m-0 text-[16px]/[22px] text-white max-md:text-[13px]/[18px]">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</header>

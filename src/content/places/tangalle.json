@@ -1,0 +1,71 @@
+{
+  "order": 9,
+  "slug": "tangalle",
+  "name": "Tangalle",
+  "region": "southwest",
+  "line": "Long, quiet beaches at the far end of the south coast.",
+  "image": {
+    "src": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+    "alt": "A couple walking a palm-lined beach at sunset"
+  },
+  "map": {
+    "cx": 201.2,
+    "cy": 628.6,
+    "tx": 213.2,
+    "ty": 633.1,
+    "anchor": "start"
+  },
+  "journeyStop": "tangalle",
+  "summary": "Long, empty beaches at the far end of the south coast, and the easiest place on the island to do nothing for a few days.",
+  "nights": "3 nights",
+  "goodFor": "Couples, honeymoons",
+  "intro": {
+    "heading": "The quiet end of the coast.",
+    "paragraphs": [
+      "East of Mirissa the south coast empties out. Tangalle is a small market town with long beaches either side of it, many of them backed by nothing but palms and a handful of villas.",
+      "This is where we end a lot of journeys. After the hills and the parks, three nights here with nowhere to be is often what people remember most fondly. Yala is close enough for a day, if you want one."
+    ]
+  },
+  "mapCaption": "Towards the eastern end of the south coast. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Tangalle is a place to slow down. These are the things we build the days around, when there is anything at all.",
+    "items": [
+      {
+        "title": "A different beach each day",
+        "body": "Goyambokka, Silent Beach, Rekawa and Marakolliya are all a short tuk-tuk ride apart, and none of them is ever busy."
+      },
+      {
+        "title": "Turtles at Rekawa",
+        "body": "Green turtles come ashore to nest on most nights of the year. A local conservation project watches the beach and calls you when one arrives."
+      },
+      {
+        "title": "The rock temple at Mulkirigala",
+        "body": "Cave shrines stacked up a rock inland, quieter than Dambulla and a good morning’s climb."
+      },
+      {
+        "title": "Long lunches",
+        "body": "Grilled fish, a cold drink and a hammock. We choose stays that are good at all three."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/beach-walk.jpg",
+      "alt": "A lone walker on a wide, empty beach"
+    },
+    {
+      "src": "/places/reef-from-above.jpg",
+      "alt": "Palms, sand and reef from above"
+    }
+  ],
+  "season": "Tangalle follows the south coast: at its best from December to April, and wet from May to September. The sea is rough in the monsoon months, so swimming is for the dry season.",
+  "nearby": {
+    "heading": "Along the same coast.",
+    "slugs": [
+      "mirissa",
+      "galle",
+      "yala"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with a few days at the end with nothing planned."
+}

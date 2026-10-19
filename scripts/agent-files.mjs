@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Runs after `next build` (see package.json). Writes agent-facing files into out/:
+ * Runs after `astro build` (see package.json). Writes agent-facing files into dist/:
  *
  * - `<route>.md` — Markdown of each page's <main> content (`/index.md` for the home page).
  *   functions/_middleware.js serves these for `Accept: text/markdown` requests.
@@ -12,7 +12,7 @@ import fs from "node:fs";
 import path from "node:path";
 import TurndownService from "turndown";
 
-const OUT = "out";
+const OUT = "dist";
 const SITE = "https://travedise.com";
 
 const td = new TurndownService({
@@ -81,7 +81,7 @@ function meta(html, re) {
 function htmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) return e.name.startsWith("_next") ? [] : htmlFiles(p);
+    if (e.isDirectory()) return e.name.startsWith("_astro") ? [] : htmlFiles(p);
     return e.name.endsWith(".html") && !["404.html", "_not-found.html"].includes(e.name) ? [p] : [];
   });
 }

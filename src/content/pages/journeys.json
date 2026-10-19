@@ -1,0 +1,155 @@
+{
+  "journeysHero": {
+    "title": "Journeys across Sri Lanka",
+    "body": "Six routes we run often, each one a starting point rather than a fixed thing. Trace them on the map, read them day by day, then tell us what you would change.",
+    "image": "/v2/3276de156e35f2243c312d74076e3b41.jpg",
+    "alt": "A leopard crossing the track ahead of a safari jeep"
+  },
+  "journeysIntro": {
+    "heading": "One island, and about six honest ways through it.",
+    "paragraphs": [
+      "Sri Lanka is small enough to cross in a day and varied enough that you should not try. These journeys are the shapes we keep coming back to, built around driving times that leave the afternoon free and stays we have slept in ourselves.",
+      "Every route here can be shortened, stretched, flipped, or joined to another. The prices are a real starting point for two people sharing, not a teaser."
+    ],
+    "facts": [
+      {
+        "value": "8 to 11",
+        "detail": "Nights on the ground"
+      },
+      {
+        "value": "Private",
+        "detail": "Your own driver and vehicle"
+      },
+      {
+        "value": "6 weeks",
+        "detail": "A comfortable lead time"
+      }
+    ]
+  },
+  "journeys": [
+    {
+      "key": "simply",
+      "name": "Simply Sri Lanka",
+      "theme": "A first visit",
+      "nights": "10 nights",
+      "price": "from $3,000 pp",
+      "route": "Negombo → Anuradhapura → Sigiriya → Kandy → Nuwara Eliya → Yala → Galle",
+      "stops": [
+        "negombo",
+        "anuradhapura",
+        "sigiriya",
+        "kandy",
+        "nuwara",
+        "yala",
+        "galle"
+      ],
+      "short": "The classic loop, paced so it never feels like a checklist. Ruins, tea country, then the south coast.",
+      "blurb": "The classic loop, paced so it never feels like a checklist. Ruins in the cool of the morning, tea country through the middle, then a week of the south coast to finish on.",
+      "image": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+      "alt": "Coconut palms on a red headland above the sea",
+      "href": "/plan-your-trip"
+    },
+    {
+      "key": "family",
+      "name": "Sri Lanka With Little Ones",
+      "theme": "Travelling as a family",
+      "nights": "11 nights",
+      "price": "from $3,200 pp",
+      "route": "Kandy → Nuwara Eliya → Yala → Galle → Colombo",
+      "stops": [
+        "kandy",
+        "nuwara",
+        "yala",
+        "galle",
+        "colombo"
+      ],
+      "short": "Shorter drives, rooms with space to spread out, and one elephant morning that earns the early start.",
+      "blurb": "Shorter drives, rooms with space to spread out, and an elephant morning that earns the early start. Built for the ages where an hour in the car already counts as a long one.",
+      "image": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+      "alt": "A table set on the sand at sunset",
+      "href": "/packages/best-of-sri-lanka"
+    },
+    {
+      "key": "scenic",
+      "name": "Scenic Sri Lanka",
+      "theme": "Slow and scenic",
+      "nights": "10 nights",
+      "price": "from $2,600 pp",
+      "route": "Kandy → Dambulla → Sigiriya → Yala → Tangalle → Galle",
+      "stops": [
+        "kandy",
+        "dambulla",
+        "sigiriya",
+        "yala",
+        "tangalle",
+        "galle"
+      ],
+      "short": "The route we send most people on: old cities, the rock, the park, then a slow finish on the coast.",
+      "blurb": "The route we send most people on. The Cultural Triangle and the rock at Sigiriya, three days in Yala, and a quiet stretch of the south coast before you fly home.",
+      "image": "/v2/9706cd80e0a69d9f3a4d07c86cb2bd72.jpg",
+      "alt": "Two travellers looking out towards Sigiriya rock",
+      "href": "/packages/scenic-sri-lanka"
+    },
+    {
+      "key": "hillcoast",
+      "name": "Hill Country & Beach",
+      "theme": "Tea and coast",
+      "nights": "8 nights",
+      "price": "from $2,500 pp",
+      "route": "Kandy → Nuwara Eliya → Ella → Yala → Tangalle → Galle",
+      "stops": [
+        "kandy",
+        "nuwara",
+        "ella",
+        "yala",
+        "tangalle",
+        "galle"
+      ],
+      "short": "Cold mornings up in the tea estates, then warm evenings on the sand once the road comes back down.",
+      "blurb": "Two halves that could not be less alike. Cold mornings in the estates above Nuwara Eliya, then warm evenings on the sand once the road comes back down to sea level.",
+      "image": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+      "alt": "A train crossing a viaduct in the hill country",
+      "href": "/packages/hillcountry"
+    },
+    {
+      "key": "wild",
+      "name": "Wild Sri Lanka",
+      "theme": "Wildlife",
+      "nights": "8 nights",
+      "price": "from $3,000 pp",
+      "route": "Sigiriya → Kandy → Ella → Yala → Galle",
+      "stops": [
+        "sigiriya",
+        "kandy",
+        "ella",
+        "yala",
+        "galle"
+      ],
+      "short": "Elephant country, the hills, then two days in Yala with guides who know when the animals are out.",
+      "blurb": "Elephants at Minneriya, birds and butterflies above Ella, then two days in Yala, planned around the hours the animals are actually out. Leopards are never promised, only made likely.",
+      "image": "/v2/a330488cea582574b523136d4e00efa4.jpg",
+      "alt": "A lit hotel reflected in the water at dusk",
+      "href": "/packages/wildlife-package"
+    },
+    {
+      "key": "honeymoon",
+      "name": "Honeymoon In Sri Lanka",
+      "theme": "Just the two of you",
+      "nights": "10 nights",
+      "price": "from $4,000 pp",
+      "route": "Kandy → Nuwara Eliya → Yala → Tangalle → Galle",
+      "stops": [
+        "kandy",
+        "nuwara",
+        "yala",
+        "tangalle",
+        "galle"
+      ],
+      "short": "Fewer stops, longer stays, and the kind of rooms worth staying in well past breakfast.",
+      "blurb": "Fewer stops, longer stays, and the kind of rooms worth staying in past breakfast. A planter’s bungalow in the tea country, then three nights where the beach is the end of the garden.",
+      "image": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+      "alt": "A couple walking the beach at sunset",
+      "href": "/packages/dream-honeymoon-in-sri-lanka"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+---
+import { cn } from "@/lib/cn";
+import type { Shot } from "@/data/v2/packages";
+
+import HeroScrim from "../hero-scrim.astro";
+import SiteNav from "../site-nav.astro";
+
+/**
+ * The package hero: one large photo with a thumbnail carousel in the bottom corner.
+ * Picking a thumbnail swaps the photo, which fades in rather than cutting.
+ *
+ * On a phone the thumbnails become a swipeable strip under the title.
+ */
+interface Props {
+  title: string;
+  summary: string;
+  shots: Shot[];
+}
+const { title, summary, shots } = Astro.props;
+const shot = shots[0];
+---
+
+<header
+  data-package-hero
+  class="relative h-[760px] w-full shrink-0 overflow-clip gutter-v2 max-lg:h-[700px] max-md:h-auto max-md:px-0 max-md:pb-8"
+>
+  {/* The photo and its wash fill the header on desktop. On a phone they are a band
+      at the top, with the title and thumbnails reading on white beneath. */}
+  <div class="absolute inset-0 max-md:relative max-md:h-[420px]" data-hero-photos>
+    {/* Only shots the reader has opened are in the page. The first is here
+        immediately; the rest arrive when a thumbnail is chosen, then stay so a
+        later switch can still cross-fade. */}
+    <img
+      src={shot.src}
+      alt={shot.label}
+      aria-hidden="false"
+      fetchpriority="high"
+      data-shot={0}
+      class="absolute inset-0 block size-full object-cover transition-opacity duration-200 ease-out-quart motion-reduce:transition-none opacity-100"
+    />
+    <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.8) 0%, oklab(0 0 0 / 0) 56%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
+  </div>
+
+  {/* Anchored to the header so it stays over the photo once the column below it
+      stops filling the frame on a phone. */}
+  <div class="absolute inset-x-0 top-0 z-10 gutter-v2 max-md:px-0">
+    <div class="relative mx-auto h-[92px] w-full max-w-[1280px] max-md:h-[74px]">
+      <SiteNav />
+    </div>
+  </div>
+
+  <div class="relative mx-auto h-full w-full max-w-[1280px] max-md:h-auto">
+    <a
+      href="/packages"
+      class="absolute top-[124px] left-0 inline-flex h-10 items-center rounded-full bg-white/18 px-[18px] text-[14px]/[20px] text-white backdrop-blur-[14px] max-md:hidden"
+    >
+      ← All journeys, Sri Lanka
+    </a>
+
+    {/* Below xl the title and the thumbnails no longer fit side by side, so the
+        title lifts to sit above them. */}
+    <div
+      class="absolute bottom-[58px] left-0 flex w-[700px] flex-col gap-[18px] max-xl:bottom-[190px] max-lg:w-[75%] max-md:static max-md:mt-6 max-md:w-auto max-md:gap-3 max-md:px-5"
+    >
+      <h1
+        class="m-0 font-display text-[68px]/[74px] font-medium tracking-[-0.02em] text-white max-lg:text-[52px]/[58px] max-md:text-[38px]/[44px] max-md:text-v2-navy"
+      >
+        {title}
+      </h1>
+      <p class="m-0 text-[20px]/[29px] text-[#e8eef1] max-md:text-[16px]/[25px] max-md:text-v2-body">
+        {summary}
+      </p>
+    </div>
+
+    <div
+      class="absolute right-0 bottom-[58px] flex flex-col items-end gap-3 max-md:static max-md:mt-6 max-md:items-stretch max-md:gap-2.5"
+    >
+      <div class="text-[13px]/[18px] tracking-[0.04em] text-white/72 max-md:px-5 max-md:text-v2-body" data-hero-label>
+        {shot.label}
+      </div>
+      <div class="v2-rail flex gap-2.5 max-md:snap-x max-md:snap-mandatory max-md:overflow-x-auto max-md:px-5">
+        {
+          shots.map((s, i) => (
+            <button
+              type="button"
+              aria-label={s.label}
+              aria-pressed={i === 0 ? "true" : "false"}
+              data-thumb={i}
+              data-src={s.src}
+              class={cn(
+                "h-[74px] w-[104px] shrink-0 overflow-hidden rounded-md border-2 p-0 transition-colors duration-200 max-md:snap-start",
+                i === 0 ? "border-white/90 max-md:border-v2-navy" : "border-white/28",
+              )}
+            >
+              {i === 0 ? (
+                <img
+                  src={s.src}
+                  alt=""
+                  class="block size-full object-cover transition-opacity duration-200 opacity-100"
+                />
+              ) : (
+                <span class="block size-full bg-white/15" />
+              )}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const PHOTO =
+    "absolute inset-0 block size-full object-cover transition-opacity duration-200 ease-out-quart motion-reduce:transition-none";
+  const THUMB_IMG = "block size-full object-cover transition-opacity duration-200";
+  const THUMB_ON = ["border-white/90", "max-md:border-v2-navy"];
+  const THUMB_OFF = ["border-white/28"];
+
+  for (const hero of document.querySelectorAll<HTMLElement>("[data-package-hero]")) {
+    const photos = hero.querySelector<HTMLElement>("[data-hero-photos]")!;
+    const label = hero.querySelector<HTMLElement>("[data-hero-label]")!;
+    const thumbs = [...hero.querySelectorAll<HTMLButtonElement>("[data-thumb]")];
+    let current = 0;
+
+    const photoAt = (i: number) => photos.querySelector<HTMLImageElement>(`img[data-shot="${i}"]`);
+
+    // Put a shot's photo (hidden) and its thumbnail image in the page, once.
+    function prime(i: number) {
+      if (photoAt(i)) return;
+      const thumb = thumbs[i];
+      const src = thumb.dataset.src!;
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      img.setAttribute("aria-hidden", "true");
+      img.setAttribute("fetchpriority", "auto");
+      img.dataset.shot = String(i);
+      img.className = `${PHOTO} opacity-0`;
+      // Keep the photos in shot order, all ahead of the wash.
+      const after = [...photos.querySelectorAll<HTMLImageElement>("img[data-shot]")].find(
+        (el) => Number(el.dataset.shot) > i,
+      );
+      const before = after ?? photos.querySelector(":scope > :not(img[data-shot])");
+      photos.insertBefore(img, before);
+
+      const small = document.createElement("img");
+      small.src = src;
+      small.alt = "";
+      small.className = `${THUMB_IMG} opacity-70`;
+      thumb.replaceChildren(small);
+    }
+
+    function show(i: number) {
+      prime(i);
+      current = i;
+      thumbs.forEach((thumb, j) => {
+        const on = j === current;
+        thumb.setAttribute("aria-pressed", String(on));
+        thumb.classList.remove(...(on ? THUMB_OFF : THUMB_ON));
+        thumb.classList.add(...(on ? THUMB_ON : THUMB_OFF));
+        const small = thumb.querySelector("img");
+        small?.classList.toggle("opacity-100", on);
+        small?.classList.toggle("opacity-70", !on);
+
+        const photo = photoAt(j);
+        if (!photo) return;
+        photo.alt = on ? thumb.getAttribute("aria-label")! : "";
+        photo.setAttribute("aria-hidden", String(!on));
+        photo.classList.toggle("opacity-100", on);
+        photo.classList.toggle("opacity-0", !on);
+      });
+      label.textContent = thumbs[i].getAttribute("aria-label");
+    }
+
+    thumbs.forEach((thumb, i) => {
+      thumb.addEventListener("mouseenter", () => prime(i));
+      thumb.addEventListener("focus", () => prime(i));
+      thumb.addEventListener("click", () => show(i));
+    });
+  }
+</script>

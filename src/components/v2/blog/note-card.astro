@@ -1,0 +1,31 @@
+---
+import type { Note } from "@/data/blog";
+
+/**
+ * A note in a grid: photo, category and reading time, title and one line. Shared by the
+ * /blog grid and "Keep reading" under each post.
+ */
+interface Props {
+  note: Note;
+}
+const { note } = Astro.props;
+---
+
+<a href={note.href} class="group flex flex-col gap-3">
+  <div class="h-[250px] w-full overflow-clip max-md:h-[220px]">
+    <img
+      src={note.image.src}
+      alt={note.image.alt}
+      loading="lazy"
+      class="v2-card-img block size-full object-cover"
+      style={{ objectPosition: note.image.position }}
+    />
+  </div>
+  <div class="mt-1.5 text-[14px]/[20px] text-[#65788c]">{note.meta}</div>
+  <h3
+    class="m-0 text-[24px]/[32px] font-semibold tracking-[-0.01em] text-v2-navy transition-colors duration-300 group-hover:text-[#344458] max-md:text-[21px]/[28px]"
+  >
+    {note.title}
+  </h3>
+  <p class="m-0 text-[15px]/[23px] text-[#52687b]">{note.dek}</p>
+</a>

@@ -1,0 +1,71 @@
+{
+  "order": 2,
+  "slug": "nuwara-eliya",
+  "name": "Nuwara Eliya",
+  "region": "hill",
+  "line": "Tea country at altitude, cool enough for a fire in the evening.",
+  "image": {
+    "src": "/places/nuwara-tea-bungalow.jpg",
+    "alt": "Rows of tea around an estate bungalow on a hillside"
+  },
+  "map": {
+    "cx": 197.8,
+    "cy": 482.8,
+    "tx": 185.8,
+    "ty": 487.3,
+    "anchor": "end"
+  },
+  "journeyStop": "nuwara",
+  "summary": "The highest town on the island, among the tea estates. Cool mornings, mist in the valleys, and a fire lit in the evening.",
+  "nights": "2 nights",
+  "goodFor": "Couples, slow travellers",
+  "intro": {
+    "heading": "Up in the tea.",
+    "paragraphs": [
+      "Nuwara Eliya sits at around 1,900 metres, and the British built it as an escape from the heat of the coast. The town still has the brick post office and the racecourse to show for it, but the reason to come is what surrounds it: tea on every slope, running up into the cloud.",
+      "We put people in a planter’s bungalow out on an estate rather than in town. You wake to the pickers already on the hillside, walk before breakfast, and spend the afternoon doing very little by the fire."
+    ]
+  },
+  "mapCaption": "High in the middle of the hill country. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Nuwara Eliya is about cool air and long views. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "A morning on a tea estate",
+        "body": "Walk the rows with the pickers, then follow the leaf through the factory to the tasting room. Most estates here are working ones, not museums."
+      },
+      {
+        "title": "Horton Plains at first light",
+        "body": "A high plateau of grassland and cloud forest, and a walk out to World’s End, where the land drops away. Leave before six to beat the mist."
+      },
+      {
+        "title": "The train down to Ella",
+        "body": "Three hours or so through the tea, on one of the best stretches of railway anywhere. We book the seats and meet you at the other end."
+      },
+      {
+        "title": "An afternoon by the fire",
+        "body": "The evenings are cold enough for one. The bungalows we use have a garden, a few shelves of books and very little else to do."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/nuwara-tea-pickers.jpg",
+      "alt": "Tea pickers among the bushes on a hillside estate"
+    },
+    {
+      "src": "/places/nuwara-tea-mist.jpg",
+      "alt": "Tea bushes on a misty hillside"
+    }
+  ],
+  "season": "The hills have their own weather. January to March is the clearest, with cold nights and bright mornings. The rest of the year is milder and mistier, and rain is most likely from October to December. Pack a jumper whatever the month.",
+  "nearby": {
+    "heading": "On the way in, and the way down.",
+    "slugs": [
+      "kandy",
+      "ella",
+      "yala"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with a bungalow out on an estate."
+}

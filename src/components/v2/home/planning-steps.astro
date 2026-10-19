@@ -1,0 +1,41 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import Section from "@/components/v2/section.astro";
+import { planningSteps } from "@/data/v2/home";
+
+import IntroText from "./intro-text.astro";
+import SectionIntro from "./section-intro.astro";
+
+/** "How the planning actually works" — four numbered steps on white cards. */
+---
+
+<Section id="how" surface="cream" class="py-[90px] max-md:py-14">
+  <SectionIntro
+    heading="How the planning actually works."
+    headingClass="max-w-[620px]"
+    class="mb-[42px] max-md:mb-7"
+  >
+    <IntroText slot="aside">
+      Four steps, no pressure at any of them. Nothing is held or charged until you say the plan is right.
+    </IntroText>
+  </SectionIntro>
+
+  <Reveal
+    as="ol"
+    from="rise"
+    delay={90}
+    class="m-0 grid list-none grid-cols-4 gap-[22px] p-0 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-3"
+  >
+    {
+      planningSteps.map((step, i) => (
+        <li class="flex flex-col gap-3 bg-white px-7 pt-[30px] pb-8 max-md:px-6 max-md:pt-6 max-md:pb-7">
+          <span aria-hidden="true" class="text-[24px]/[32px] font-semibold tracking-[-0.01em] text-v2-sand">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <h3 class="m-0 text-[18px]/[26px] font-semibold text-v2-navy">{step.title}</h3>
+          <p class="m-0 text-[15px]/[24px] text-[#52687b]">{step.body}</p>
+        </li>
+      ))
+    }
+  </Reveal>
+</Section>

@@ -1,0 +1,32 @@
+---
+import ContainedCta from "@/components/v2/contained-cta.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import PlacesExplorer from "@/components/v2/places/places-explorer.astro";
+import PlacesHero from "@/components/v2/places/places-hero.astro";
+import { placesHero } from "@/data/v2/places";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "Places in Sri Lanka we know well — Travedise";
+
+/**
+ * The places index. Driven by `src/data/v2/places.ts` — the map, the region list and the
+ * grid all read the same entries, and each card opens that place's own page.
+ */
+---
+
+<Base title={TITLE} description={placesHero.body} canonical="/places" image={placesHero.image} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PlacesHero />
+    <main>
+      <PlacesExplorer />
+      <ContainedCta
+        class="pt-0"
+        body="Tell us what you like and when you can travel. We will suggest the places and join them into a route."
+        action="Plan your trip"
+      >
+        <Fragment slot="heading">Not sure <em class="italic">where to start</em>?</Fragment>
+      </ContainedCta>
+    </main>
+    <FooterWide />
+  </div>
+</Base>

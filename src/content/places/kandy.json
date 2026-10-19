@@ -1,0 +1,71 @@
+{
+  "order": 1,
+  "slug": "kandy",
+  "name": "Kandy",
+  "region": "hill",
+  "line": "The hill capital, built around a lake and the Temple of the Tooth.",
+  "image": {
+    "src": "/v2/a330488cea582574b523136d4e00efa4.jpg",
+    "alt": "The Temple of the Tooth across the lake in Kandy at dusk"
+  },
+  "map": {
+    "cx": 173.7,
+    "cy": 430.9,
+    "tx": 161.7,
+    "ty": 435.4,
+    "anchor": "end"
+  },
+  "journeyStop": "kandy",
+  "summary": "The last royal capital, set around a lake at the edge of the hills. Loud by day, and the place to see the island’s most important temple at evening prayers.",
+  "nights": "2 nights",
+  "goodFor": "Culture, first visits",
+  "intro": {
+    "heading": "A royal city, still in use.",
+    "paragraphs": [
+      "Kandy was the capital of the last Sinhalese kingdom until 1815, and it has never stopped being a working city. The Temple of the Sacred Tooth Relic sits beside the lake at its centre, and people come from all over the island to pray there, morning and evening.",
+      "The town itself is crowded in the middle of the day. We book a stay in the hills above it, go down for the evening puja and the walk around the lake, and head up into the tea country before the traffic builds."
+    ]
+  },
+  "mapCaption": "In the middle of the island, where the hill country begins. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Kandy rewards an early start and a quiet afternoon. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "Evening puja at the temple",
+        "body": "Drums, lamps and a line of families carrying flowers. We time the visit for the doors opening, with a guide who can explain what you are watching."
+      },
+      {
+        "title": "The walk around the lake",
+        "body": "A little over three kilometres on the flat, shaded most of the way, and at its best in the last hour of light."
+      },
+      {
+        "title": "The gardens at Peradeniya",
+        "body": "Old trees, orchids and a lawn under a giant fig, a short drive out of town. Go in the morning, before the school groups."
+      },
+      {
+        "title": "An evening of Kandyan dance",
+        "body": "Drummers, dancers and fire walkers in a small hall near the lake. An hour long, and done with real skill."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/hill-country-train.jpg",
+      "alt": "A blue train crossing a viaduct in the hills"
+    },
+    {
+      "src": "/v2/2666b322c67fd187300b1a0855435be6.jpg",
+      "alt": "A white spired tower on a ridge above forested hills"
+    }
+  ],
+  "season": "Kandy sits at the edge of the hills, so it follows the hill country: clear and fresh from January to March, with showers most afternoons from October to December. The Esala Perahera fills the town for ten nights in July or August, and is worth booking early for.",
+  "nearby": {
+    "heading": "Further into the hills.",
+    "slugs": [
+      "nuwara-eliya",
+      "ella",
+      "sigiriya"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with a room above the town rather than in it."
+}

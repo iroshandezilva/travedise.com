@@ -1,0 +1,73 @@
+{
+  "order": 7,
+  "slug": "galle",
+  "name": "Galle",
+  "region": "southwest",
+  "line": "A walled fort town on the south coast, best after the day-trippers leave.",
+  "image": {
+    "src": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+    "alt": "A lit café street inside Galle Fort at night",
+    "position": "50% 45%"
+  },
+  "map": {
+    "cx": 106.6,
+    "cy": 630.2,
+    "tx": 94.6,
+    "ty": 634.7,
+    "anchor": "end"
+  },
+  "journeyStop": "galle",
+  "summary": "A walled fort town on the south coast. Busy at midday, quiet and golden by evening, and still lived in.",
+  "nights": "2 nights",
+  "goodFor": "Couples, first visits",
+  "intro": {
+    "heading": "A fort that is still a town.",
+    "paragraphs": [
+      "Galle Fort was begun by the Portuguese and rebuilt by the Dutch in the seventeenth century. It is a UNESCO World Heritage Site now, but people still live, work and go to school inside the walls, and that is what makes it worth staying in rather than passing through.",
+      "Most visitors come on a day trip from the beaches and leave by late afternoon. We book a night or two inside the walls, so you have the ramparts at sunset and the lanes to yourself in the morning."
+    ]
+  },
+  "mapCaption": "On the south western corner of the island. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Galle is best taken slowly. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "The ramparts at sunset",
+        "body": "Walk the walls from the clock tower round to the lighthouse as the light goes. Half the town does the same, and it never feels crowded."
+      },
+      {
+        "title": "The lanes before breakfast",
+        "body": "Churches, a mosque, old Dutch houses and the first cafés opening, while the streets are still being swept."
+      },
+      {
+        "title": "A day on the nearby beaches",
+        "body": "Unawatuna and the quieter coves beyond it are a short drive east when you want to swim."
+      },
+      {
+        "title": "Dinner inside the walls",
+        "body": "Restaurants in restored houses, all a few minutes’ walk from wherever you are staying."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg",
+      "alt": "A lone walker on an empty stretch of the south coast"
+    },
+    {
+      "src": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+      "alt": "A table set on the sand as a couple walk the beach"
+    }
+  ],
+  "season": "Galle follows the south and west coast: dry and calm from December to April, wet while the south west monsoon blows from May to September. Whales pass Mirissa, a short drive east, from November to April.",
+  "journeysHeading": "Journeys that end in Galle.",
+  "nearby": {
+    "heading": "Along the same coast.",
+    "slugs": [
+      "mirissa",
+      "tangalle",
+      "bentota"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with a room inside the walls."
+}

@@ -1,0 +1,61 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import Section from "@/components/v2/section.astro";
+import { reviews } from "@/data/v2/about";
+
+/**
+ * "What travellers said afterwards": three real reviews, word for word, with the overall
+ * rating beside the heading. Renders nothing until `reviews.items` has something in it.
+ */
+const { rating } = reviews;
+---
+
+{
+  reviews.items.length > 0 && (
+    <Section
+      id="reviews"
+      class="py-[100px] max-lg:py-16 max-md:py-14"
+      innerClass="flex flex-col gap-[46px] max-md:gap-8"
+    >
+      <Reveal
+        from="rise"
+        class="flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-5"
+      >
+        <h2 class="m-0 max-w-[620px] font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]">
+          {reviews.heading}
+        </h2>
+        {rating && (
+          <div class="flex w-[400px] shrink-0 flex-col items-start gap-3.5 max-lg:w-auto">
+            <p class="m-0 flex items-baseline gap-3">
+              <span class="text-[34px]/[42px] font-semibold tracking-[-0.01em] text-v2-navy">
+                {rating.value}
+              </span>
+              <span class="text-[16px]/[24px] text-[#52687b]">
+                from {rating.count} reviews on {rating.source}
+              </span>
+            </p>
+            <a href={rating.href} class="text-[16px]/[1.2] text-v2-navy hover:opacity-80">
+              Read all of them ↗
+            </a>
+          </div>
+        )}
+      </Reveal>
+
+      <div class="grid grid-cols-3 items-stretch gap-[30px] max-lg:grid-cols-1 max-lg:gap-5">
+        {reviews.items.map((r, i) => (
+          <Reveal as="figure" from="rise" delay={i * 60} class="m-0 flex flex-col gap-[18px] bg-v2-cream p-8 max-md:p-6">
+            <blockquote class="m-0 flex-1 text-[17px]/[28px] text-v2-navy max-md:text-[16px]/[26px]">
+              {r.quote}
+            </blockquote>
+            <figcaption class="flex flex-col gap-[3px]">
+              <span class="text-[15px]/[21px] text-v2-navy">{r.name}</span>
+              <span class="text-[13px]/[19px] text-[#65788c]">
+                {r.trip} · via {r.source}
+              </span>
+            </figcaption>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  )
+}

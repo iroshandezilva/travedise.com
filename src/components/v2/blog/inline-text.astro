@@ -1,0 +1,21 @@
+---
+import type { Inline } from "@/data/blog";
+
+/** A run of note text: plain strings, with any links in it. */
+interface Props {
+  parts: Inline[];
+}
+const { parts } = Astro.props;
+---
+
+{
+  parts.map((part) =>
+    typeof part === "string" ? (
+      part
+    ) : (
+      <a href={part.href} class="underline decoration-v2-navy/35 underline-offset-4 hover:decoration-v2-navy">
+        {part.text}
+      </a>
+    ),
+  )
+}

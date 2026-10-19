@@ -1,0 +1,66 @@
+---
+import Section from "@/components/v2/section.astro";
+import { islandPath } from "@/data/v2/journeys";
+import { places, regionByKey, type Place } from "@/data/v2/places";
+import { cn } from "@/lib/cn";
+
+const heading =
+  "m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]";
+
+/** The story of the place beside a small map of where it sits. */
+interface Props {
+  place: Place;
+}
+const { place } = Astro.props;
+
+// The locator map: the island with this place marked, and every other place as a faint dot.
+const { cx, cy } = place.map;
+const anchor = place.locatorAnchor ?? place.map.anchor;
+const label =
+  anchor === "end"
+    ? { x: cx - 22, y: cy + 6 }
+    : anchor === "start"
+      ? { x: cx + 22, y: cy + 6 }
+      : { x: cx, y: cy > 500 ? cy + 36 : cy - 24 };
+---
+
+<Section class="py-[110px] max-md:py-14">
+  <div class="flex items-start gap-[100px] max-lg:flex-col max-lg:gap-12">
+    <div class="flex min-w-0 flex-1 flex-col gap-7 max-md:gap-5">
+      <h2 class={cn(heading, "max-w-[620px]")}>{place.intro.heading}</h2>
+      {place.intro.paragraphs.map((p) => <p class="m-0 text-[18px]/[29px] text-[#344458] max-md:text-[16px]/[26px]">{p}</p>)}
+    </div>
+    <figure
+      class="m-0 flex w-[420px] shrink-0 flex-col gap-3.5 bg-v2-cream px-7 pt-7 pb-[22px] max-lg:w-full max-lg:max-w-[480px] max-md:px-5 max-md:pt-5"
+    >
+      <svg
+        viewBox="-10 -10 420 690"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label={`Map of Sri Lanka with ${place.name} marked, in the ${regionByKey[place.region].name}`}
+        class="block h-[420px] w-full max-md:h-[340px]"
+      >
+        <path d={islandPath} fill="#fff" stroke="rgba(16,27,46,0.3)" stroke-width="1.4"></path>
+        {
+          places
+            .filter((p) => p.slug !== place.slug)
+            .map((p) => <circle cx={p.map.cx} cy={p.map.cy} r="3" fill="rgba(16,27,46,0.22)" />)
+        }
+        <circle cx={cx} cy={cy} r="16" fill="var(--color-v2-sky)" opacity="0.25"></circle>
+        <circle cx={cx} cy={cy} r="7" fill="var(--color-v2-sky)" stroke="#101b2e" stroke-width="2"></circle>
+        <text
+          x={label.x}
+          y={label.y}
+          text-anchor={anchor}
+          font-size="18"
+          font-weight="600"
+          fill="#101b2e"
+          class="font-heading"
+        >
+          {place.name}
+        </text>
+      </svg>
+      <figcaption class="text-[14px]/[21px] text-[#65788c]">{place.mapCaption}</figcaption>
+    </figure>
+  </div>
+</Section>

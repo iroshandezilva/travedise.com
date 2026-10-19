@@ -1,0 +1,41 @@
+{
+  "contactEmail": {
+    "icon": "/assets/6a90445eb2a6e026c5f88276_mail-02.png",
+    "label": "Email",
+    "value": "Contact@travedise.com"
+  },
+  "contactPhones": {
+    "icon": "/assets/6a9046c754ba39fc887786ef_call-02.png",
+    "label": "Call Us",
+    "numbers": [
+      {
+        "number": "+61426965569",
+        "region": "(Au)"
+      },
+      {
+        "number": "+94763972171",
+        "region": "(Global)"
+      }
+    ]
+  },
+  "contactOffices": [
+    {
+      "icon": "/assets/6a904683726d85c1e0f2e58d_location-06.png",
+      "label": "Au Office",
+      "lines": [
+        "5/22-30 Brighton St, ",
+        "Bundeena NSW 2230, ",
+        "Australia"
+      ]
+    },
+    {
+      "icon": "/assets/6a904683726d85c1e0f2e58d_location-06.png",
+      "label": "Sri Lanka Office",
+      "lines": [
+        "212A Inland Hill Road,",
+        "Karapitiya,",
+        "Galle."
+      ]
+    }
+  ]
+}

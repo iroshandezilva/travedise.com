@@ -1,0 +1,62 @@
+{
+  "order": 11,
+  "slug": "trincomalee",
+  "name": "Trincomalee",
+  "region": "east",
+  "line": "A deep harbour, calm water and empty beaches when the south is wet.",
+  "image": {
+    "src": "/places/quiet-bay.jpg",
+    "alt": "A long, quiet beach with clear water and palms",
+    "position": "50% 70%"
+  },
+  "map": {
+    "cx": 276.9,
+    "cy": 221.9,
+    "tx": 288.9,
+    "ty": 226.4,
+    "anchor": "start"
+  },
+  "locatorAnchor": "end",
+  "summary": "A deep natural harbour on the north east coast, with calm water and empty beaches in the months the south is wet.",
+  "nights": "3 nights",
+  "goodFor": "Families, snorkellers",
+  "intro": {
+    "heading": "The other coast.",
+    "paragraphs": [
+      "Trincomalee has one of the largest natural harbours in the world, and a small, busy town around it. North of the town, the beaches at Uppuveli and Nilaveli run for miles, with warm, shallow water and very few people.",
+      "From May to September, while the south west monsoon soaks the other coast, the sea here is flat and clear. That is when we send people east: to swim, to snorkel off Pigeon Island, and to go out looking for whales and dolphins."
+    ]
+  },
+  "mapCaption": "On the north east coast. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Trincomalee is for the months the south is wet. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "Snorkelling at Pigeon Island",
+        "body": "A small marine park off Nilaveli, with reef, turtles and blacktip reef sharks in shallow water. Go early, before the boats."
+      },
+      {
+        "title": "Koneswaram temple",
+        "body": "A Hindu temple on Swami Rock, high above the sea at the end of the old fort. The view is as much the reason to go as the shrine."
+      },
+      {
+        "title": "Whales and dolphins",
+        "body": "Blue whales pass close to this coast from around March to August, and dolphins are about for most of the season."
+      },
+      {
+        "title": "Nilaveli beach",
+        "body": "Miles of soft sand and warm water with almost nobody on it. The best swimming on the island in July."
+      }
+    ]
+  },
+  "season": "The east coast runs the other way to the south: calm and dry from May to September, and wet while the north east monsoon blows from November to January. It is the answer to a summer trip.",
+  "nearby": {
+    "heading": "Nearby, and on the way.",
+    "slugs": [
+      "arugam-bay",
+      "polonnaruwa",
+      "sigiriya"
+    ]
+  },
+  "ctaBody": "Tell us your dates. If they fall in the summer, we will build the route around this coast."
+}

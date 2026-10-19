@@ -1,0 +1,34 @@
+---
+/** Copy link, email and WhatsApp, for the note at `url`. */
+interface Props {
+  title: string;
+  url: string;
+}
+const { title, url } = Astro.props;
+
+const PILL =
+  "flex h-11 cursor-pointer items-center rounded-full border border-v2-navy/20 bg-transparent px-[18px] text-[14px] text-v2-navy transition-colors duration-150 hover:border-v2-navy/45";
+const text = encodeURIComponent(`${title} ${url}`);
+---
+
+<div class="flex flex-wrap gap-2">
+  <button type="button" class={PILL} data-copy-link={url}>
+    <span aria-live="polite">Copy link</span>
+  </button>
+  <a class={PILL} href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`}>Email</a>
+  <a class={PILL} href={`https://wa.me/?text=${text}`} target="_blank" rel="noreferrer">WhatsApp</a>
+</div>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy-link]")) {
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyLink!);
+        button.querySelector("[aria-live]")!.textContent = "Link copied";
+      } catch {
+        // Clipboard can be blocked (insecure origin, denied permission); the other
+        // two options still work.
+      }
+    });
+  }
+</script>
