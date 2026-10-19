@@ -1,0 +1,74 @@
+import { useEffect, useRef } from 'react';
+import type { usePreview } from '../preview/usePreview';
+
+export interface CursorChatControls {
+  readonly preview: ReturnType<typeof usePreview>;
+  readonly disabled: boolean;
+}
+
+export function CursorChatButton({
+  preview,
+  disabled,
+  close,
+}: CursorChatControls & { readonly close: () => void }) {
+  const current = useRef(preview);
+  current.current = preview;
+  useEffect(() => {
+    if (disabled) {
+      return;
+    }
+    const key = (event: KeyboardEvent) => {
+      if (
+        event.key !== '/' ||
+        event.defaultPrevented ||
+        event.isComposing ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey
+      ) {
+        return;
+      }
+      if (
+        event.target instanceof Element &&
+        event.target.closest(
+          'input, textarea, select, [contenteditable=true], .cm-editor, [role=dialog]',
+        )
+      ) {
+        return;
+      }
+      if (document.querySelector('[role=dialog], [role=listbox]')) {
+        return;
+      }
+      event.preventDefault();
+      close();
+      current.current.send({ type: 'studio:cursor-chat' });
+    };
+    window.addEventListener('keydown', key);
+    return () => window.removeEventListener('keydown', key);
+  }, [disabled, close]);
+  return (
+    <button
+      className="studio-cursor-chat"
+      title="Cursor chat (/)"
+      aria-label="Cursor chat"
+      aria-keyshortcuts="/"
+      disabled={disabled}
+      onClick={() => {
+        close();
+        preview.send({ type: 'studio:cursor-chat' });
+      }}
+    >
+      <span>Cursor chat</span>
+      <kbd aria-hidden="true">/</kbd>
+    </button>
+  );
+}
+export function useCursorScale(preview: ReturnType<typeof usePreview>, scale: number) {
+  const { subscribeLoad } = preview;
+  const current = useRef(preview);
+  current.current = preview;
+  useEffect(() => {
+    const send = () => current.current.send({ type: 'studio:cursor-scale', scale });
+    return subscribeLoad(send);
+  }, [scale, preview.url, preview.frame, subscribeLoad]);
+}

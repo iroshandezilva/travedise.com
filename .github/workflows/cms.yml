@@ -1,0 +1,67 @@
+name: CMS publish → PR
+
+# The Stacki Studio editor (studio/, docs/cms.md) publishes by fast-forwarding the `cms` branch.
+#  - Push to cms: open a cms → dev PR if none is open (later publishes just add commits to it).
+#  - Push to dev: merge dev into cms, so the editor keeps building on the latest site. Publish
+#    refuses to run if cms history diverges, so cms is never reset or force-pushed, only merged forward.
+# Pushes made with GITHUB_TOKEN don't trigger workflows, so the dev → cms merge can't loop.
+
+on:
+  push:
+    branches: [cms, dev]
+  workflow_dispatch:
+
+concurrency:
+  group: cms-branch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  open-pr:
+    if: github.ref == 'refs/heads/cms'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or reuse the cms → dev PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          open=$(gh pr list --head cms --base dev --state open --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            echo "PR #$open already open; the new publish is on it."
+            exit 0
+          fi
+          ahead=$(gh api "repos/$GH_REPO/compare/dev...cms" --jq .ahead_by)
+          if [ "$ahead" = "0" ]; then
+            echo "cms has nothing that dev doesn't."
+            exit 0
+          fi
+          gh pr create --base dev --head cms \
+            --title "Content updates from the CMS" \
+            --body "Edits published from the Stacki Studio editor. Each publish is one commit on \`cms\`; this PR collects them until it is merged. Check the changed JSON and images under \`src/content/\` and \`public/\`, then merge as usual. See docs/cms.md."
+
+  sync-from-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create cms or merge dev into it
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git ls-remote --exit-code --heads origin cms >/dev/null; then
+            git push origin "HEAD:refs/heads/cms"
+            echo "Created cms from dev."
+            exit 0
+          fi
+          git checkout -B cms origin/cms
+          # A conflict here means someone edited the same lines on dev and in the CMS; the job
+          # fails and the owner resolves it by hand (merge dev into cms locally, then push cms).
+          git merge --no-edit origin/dev
+          git push origin cms

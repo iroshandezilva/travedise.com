@@ -7,7 +7,10 @@
     "build": "astro build && node scripts/agent-files.mjs",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "node --test \"tests/*.test.mjs\""
+    "test": "node --test \"tests/*.test.mjs\"",
+    "studio:install": "npm --prefix studio ci --no-audit --no-fund",
+    "studio": "STUDIO_SITE_NAME=Travedise npm --prefix studio run dev",
+    "studio:stop": "cd studio/.studio/workspace && node node_modules/astro/bin/astro.mjs dev stop"
   },
   "dependencies": {
     "@astrojs/react": "7.1.0",
