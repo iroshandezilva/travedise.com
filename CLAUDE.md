@@ -30,7 +30,8 @@ owner asks to merge a PR, Claude merges it for them:
 2. CI no longer builds pull requests, so there is no check to read. Confirm instead that
    `pnpm build` and `pnpm test` pass on the PR branch locally; if either fails, say so and stop.
 3. `gh pr merge <n> --admin --squash --delete-branch` (for a `dev` → `main` release PR use `--merge`
-   and keep the branch). `--admin` skips the approval rule, which the owner may do only when
+   and keep the branch; for the `cms` → `dev` PR from the content editor, leave out `--delete-branch` —
+   `cms` must never be deleted, see `docs/cms.md`). `--admin` skips the approval rule, which the owner may do only when
    merging a PR — not for direct pushes. Share what was merged and where it deploys.
 
 Never merge on your own initiative or for anyone else.
