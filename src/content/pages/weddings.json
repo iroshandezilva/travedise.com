@@ -2,7 +2,7 @@
   "hero": {
     "eyebrow": "Travedise Weddings",
     "title": "Weddings in Sri Lanka",
-    "body": "Grand celebrations, quiet beach ceremonies and mornings for just the two of you. We look after the guests, the venues and the days, so you can be at your own wedding.",
+    "body": "Barefoot ceremonies on the sand, mornings for just the two of you, and anniversaries worth flying for. We look after the guests, the venue and the days, so you can be at your own wedding.",
     "image": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
     "alt": "A couple walking a palm-lined beach at sunset"
   },
@@ -29,10 +29,10 @@
     }
   ],
   "why": {
-    "heading": "A short flight. A setting nobody has seen before.",
+    "heading": "A wedding and a holiday in one trip.",
     "paragraphs": [
-      "Sri Lanka is a short direct flight from India's major cities and an easy stop between Europe and Australia. Your guests arrive on a single flight, and the island feels a world away when they land.",
-      "Beaches without crowds, colonial mansions, temples lit at night and tea estates in the clouds, all within a few hours of each other, and hosts who have looked after visitors for generations."
+      "Sri Lanka is an easy journey from Australia and the UK, and far enough to feel like an occasion. Your guests land somewhere that feels a world away, and the wedding becomes the start of their own holiday.",
+      "Beaches without crowds, colonial villas, temples lit at night and tea estates in the clouds, all within a few hours of each other, and hosts who have looked after visitors for generations."
     ],
     "facts": [
       {
@@ -40,7 +40,7 @@
         "detail": "Dry season on the west and south coasts"
       },
       {
-        "value": "2 to 400",
+        "value": "2 to 80",
         "detail": "Guests we plan for"
       },
       {
@@ -60,7 +60,7 @@
       {
         "key": "bentota",
         "name": "Bentota and the west coast",
-        "line": "Wide beaches and river lawns an hour from the airport. Our most-asked setting for pheras on the sand.",
+        "line": "Wide beaches and river lawns an hour from the airport. Our most-asked setting for a ceremony on the sand.",
         "image": "/places/beach-walk.jpg",
         "alt": "A lone walker on a wide, empty beach",
         "href": "/places/bentota"
@@ -84,7 +84,7 @@
       {
         "key": "kandy",
         "name": "Kandy",
-        "line": "The hill capital, its lake and the Temple of the Tooth. Grand hotels and Kandyan drummers.",
+        "line": "The hill capital, its lake and the Temple of the Tooth. Heritage hotels and Kandyan drummers.",
         "image": "/v2/a330488cea582574b523136d4e00efa4.jpg",
         "alt": "The Temple of the Tooth across the lake in Kandy at dusk",
         "href": "/places/kandy"
@@ -117,7 +117,7 @@
       },
       {
         "title": "Local suppliers",
-        "body": "Décor, flowers, lighting, sound, photography, caterers, dhol players and Kandyan drummers."
+        "body": "Décor, flowers, lighting, sound, photography, caterers, a band and Kandyan drummers."
       },
       {
         "title": "Before and after",
@@ -127,15 +127,15 @@
   },
   "timeline": {
     "heading": "How planning works.",
-    "body": "Grand weddings need the most time. Smaller ones can come together in a few months.",
+    "body": "Most beach weddings come together in six to nine months. An elopement or a vow renewal can be ready in three.",
     "items": [
       {
-        "when": "12 to 18 months before",
+        "when": "9 to 12 months before",
         "title": "The brief and the venue",
         "body": "We talk through the vision, guest numbers and dates, then shortlist venues and arrange site visits."
       },
       {
-        "when": "9 to 12 months before",
+        "when": "6 to 9 months before",
         "title": "Rooms and the plan",
         "body": "Room blocks are held, suppliers are booked, and the schedule of events takes shape."
       },
@@ -162,7 +162,7 @@
     },
     {
       "q": "How many guests can you look after?",
-      "a": "From two to several hundred. The larger the wedding, the earlier we need to start, because venues for big parties book up first."
+      "a": "From two to about eighty. Smaller weddings give us the widest choice of villas and beaches, and keep the days relaxed."
     },
     {
       "q": "When is the best time of year?",
@@ -235,7 +235,7 @@
         "id": "guests",
         "label": "How many guests?",
         "type": "chips",
-        "options": ["Just the two of us", "Under 30", "30 to 80", "80 to 200", "Over 200"]
+        "options": ["Just the two of us", "Under 20", "20 to 50", "50 to 80", "More than 80"]
       },
       {
         "id": "settings",
@@ -256,13 +256,11 @@
         "type": "multi",
         "aside": "Choose as many as you like",
         "options": [
-          "Welcome dinner",
-          "Mehndi",
-          "Haldi",
-          "Sangeet",
+          "Welcome drinks",
           "Ceremony",
-          "Reception",
-          "Guest excursions"
+          "Dinner or reception",
+          "Photographs at sunset",
+          "A day out with guests"
         ]
       },
       {
@@ -270,7 +268,7 @@
         "label": "Ceremony and traditions",
         "type": "text",
         "optional": true,
-        "placeholder": "e.g. Hindu, Christian, Buddhist, civil, or a blend"
+        "placeholder": "e.g. civil, Christian, Buddhist blessing, or a blend"
       },
       {
         "id": "legal",
