@@ -22,8 +22,9 @@ the owner included, so every change goes through a PR. Releases (`dev` → `main
 
 ## Merging — only for the owner
 
-PRs need the owner's approval, and GitHub doesn't let anyone approve their own PR. So when the
-owner asks to merge a PR, Claude merges it for them:
+GitHub no longer requires an approving review on `dev` or `main`, so anyone with write access
+*could* merge. The rule here is that only the owner does. When the owner asks to merge a PR,
+Claude merges it for them:
 
 1. Confirm it's the owner: `gh api user --jq .login` must print `iroshandezilva`. If it prints
    anything else, don't merge — say the owner has to review and merge it.
@@ -31,8 +32,9 @@ owner asks to merge a PR, Claude merges it for them:
    `pnpm build` and `pnpm test` pass on the PR branch locally; if either fails, say so and stop.
 3. `gh pr merge <n> --admin --squash --delete-branch` (for a `dev` → `main` release PR use `--merge`
    and keep the branch; for the `cms` → `dev` PR from the content editor, leave out `--delete-branch` —
-   `cms` must never be deleted, see `docs/cms.md`). `--admin` skips the approval rule, which the owner may do only when
-   merging a PR — not for direct pushes. Share what was merged and where it deploys.
+   `cms` must never be deleted, see `docs/cms.md`). `--admin` is still needed for `main`, whose `build`
+   check only runs after a push and so never reports on the PR; the owner may use it only when merging
+   a PR — not for direct pushes. Share what was merged and where it deploys.
 
 Never merge on your own initiative or for anyone else.
 
