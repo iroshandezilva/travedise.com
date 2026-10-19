@@ -1,0 +1,91 @@
+---
+import ContainedCta from "@/components/v2/contained-cta.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import Questions from "@/components/v2/questions.astro";
+import Section from "@/components/v2/section.astro";
+import FactsBar from "@/components/v2/services/facts-bar.astro";
+import PhotoCard from "@/components/v2/services/photo-card.astro";
+import PhotoHero from "@/components/v2/services/photo-hero.astro";
+import SplitText from "@/components/v2/services/split-text.astro";
+import Timeline from "@/components/v2/services/timeline.astro";
+import TitledGrid from "@/components/v2/services/titled-grid.astro";
+import WeddingNav from "@/components/v2/weddings/wedding-nav.astro";
+import { settingsFor, weddingsContent as page, weddingStyles, type WeddingStyle } from "@/data/v2/services";
+import Base from "@/layouts/base.astro";
+
+/** Static build: one page per wedding style in `src/content/weddings/`. */
+export function getStaticPaths() {
+  return weddingStyles.map((style) => ({ params: { slug: style.slug }, props: { style } }));
+}
+
+/**
+ * A wedding style: how the days run, what we arrange, the settings that suit it, its
+ * questions, and the way into the brief with this style already chosen.
+ */
+const { style } = Astro.props as { style: WeddingStyle };
+const brief = `/weddings/plan?style=${style.slug}`;
+const settings = settingsFor(style);
+const others = weddingStyles.filter((s) => s.slug !== style.slug);
+---
+
+<Base title={`${style.name} in Sri Lanka | Travedise`} description={style.summary} canonical={`/weddings/${style.slug}`} image={style.image.src} ogType="website">
+  <div class="v2 flex flex-col bg-white">
+    <PhotoHero
+      eyebrow="Travedise Weddings"
+      title={style.name}
+      body={style.summary}
+      image={style.image.src}
+      alt={style.image.alt}
+      position={style.image.position}
+      current="/weddings"
+    />
+    <WeddingNav />
+    <main class="overflow-clip">
+      <FactsBar facts={style.facts} href={brief} action="Start your brief ↗" />
+      <SplitText heading={style.intro.heading} paragraphs={style.intro.paragraphs} />
+      <Timeline heading={style.schedule.heading} body={style.schedule.lede} items={style.schedule.items} surface="cream" />
+      <TitledGrid heading={style.includes.heading} body={style.includes.body} items={style.includes.items} columns={style.includes.items.length > 4 ? 3 : 2} />
+
+      <Section surface="cream" class="py-24 max-md:py-14">
+        <h2 class="m-0 mb-12 font-display text-[40px]/[48px] font-normal tracking-[-0.01em] text-v2-navy max-md:mb-8 max-md:text-[28px]/[36px]">
+          Settings that suit it.
+        </h2>
+        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+          {
+            settings.map((s) => (
+              <PhotoCard href={s.href} image={s.image} alt={s.alt} title={s.name} body={s.line} action="About the place" compact />
+            ))
+          }
+        </div>
+      </Section>
+
+      <Section class="py-24 max-md:py-14">
+        <h2 class="m-0 mb-12 font-display text-[40px]/[48px] font-normal tracking-[-0.01em] text-v2-navy max-md:mb-8 max-md:text-[28px]/[36px]">
+          Other ways to marry here.
+        </h2>
+        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+          {
+            others.map((s) => (
+              <PhotoCard
+                href={`/weddings/${s.slug}`}
+                image={s.image.src}
+                alt={s.image.alt}
+                tag={/\d/.test(s.facts[0].value) ? `${s.facts[0].value} guests` : s.facts[0].value}
+                title={s.name}
+                body={s.short}
+                compact
+              />
+            ))
+          }
+        </div>
+      </Section>
+
+      <Questions items={style.questions} heading="Before you decide." body="The questions we hear most about this kind of wedding." action="Start your brief ↗" href={brief} />
+
+      <ContainedCta href={brief} action="Start your brief" body="Tell us roughly when, who is coming and what you imagine. We will reply within a day.">
+        <Fragment slot="heading">Does this sound like <em class="italic">your day?</em></Fragment>
+      </ContainedCta>
+    </main>
+    <FooterWide statement="The guests are met, the venue is ready and the day runs to time. All you have to do is be there." />
+  </div>
+</Base>

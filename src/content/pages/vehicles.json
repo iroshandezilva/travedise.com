@@ -1,0 +1,203 @@
+{
+  "hero": {
+    "title": "Vehicles with a driver, for every size of party",
+    "body": "From a quiet car for two to a coach for a wedding party. Every vehicle comes with a licensed driver who knows the roads, and a quote within a day.",
+    "image": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
+    "alt": "A Travedise jeep on the red road south",
+    "position": "50% 60%"
+  },
+  "intro": {
+    "heading": "Choose by the size of your party.",
+    "body": "Six classes of vehicle, each with its own driver. Tell us how many of you there are and we will show what fits.",
+    "filterLabel": "How many of you?",
+    "filters": [
+      {
+        "label": "All",
+        "min": 1,
+        "max": 999
+      },
+      {
+        "label": "1 to 2",
+        "min": 1,
+        "max": 2
+      },
+      {
+        "label": "3 to 4",
+        "min": 3,
+        "max": 4
+      },
+      {
+        "label": "5 to 8",
+        "min": 5,
+        "max": 8
+      },
+      {
+        "label": "9 to 22",
+        "min": 9,
+        "max": 22
+      },
+      {
+        "label": "23 or more",
+        "min": 23,
+        "max": 999
+      }
+    ],
+    "empty": "No single vehicle seats that many. Ask us for two or more."
+  },
+  "hires": {
+    "heading": "Four ways to hire.",
+    "body": "Every hire comes with a driver. Most travellers book one of these, and many combine two.",
+    "items": [
+      {
+        "title": "Airport transfers",
+        "body": "Met in arrivals with your name on a board, any hour of the day or night, at a fixed price."
+      },
+      {
+        "title": "Multi-day tours",
+        "body": "The same chauffeur-guide for your whole journey, with their meals and rooms included in the quote."
+      },
+      {
+        "title": "Day hire",
+        "body": "A car and driver for a day trip, a day in Colombo, or a run between two stays."
+      },
+      {
+        "title": "Events and weddings",
+        "body": "Guest arrivals, shuttles between hotels and venues, and the car that takes the couple away."
+      }
+    ]
+  },
+  "steps": {
+    "heading": "How a quote works.",
+    "items": [
+      {
+        "title": "Tell us the plan",
+        "body": "The vehicle, the dates, where you start and finish, and how many of you are travelling."
+      },
+      {
+        "title": "We reply within a day",
+        "body": "With a fixed price that includes the driver, fuel, tolls and parking, and anything we need to check."
+      },
+      {
+        "title": "Confirm and travel",
+        "body": "We confirm the booking and send your driver's name and number before you arrive."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "Can we drive ourselves?",
+      "a": "We only hire vehicles with a driver. Sri Lanka's roads are busy and the rules are local, and a good driver also knows where to stop."
+    },
+    {
+      "q": "What does the price include?",
+      "a": "The vehicle, the driver, fuel, tolls and parking. On multi-day hires, the driver's meals and rooms are included too. Park entry and your own meals are not."
+    },
+    {
+      "q": "Can you combine vehicles?",
+      "a": "Yes. A wedding might use a coach for guests, an SUV for the couple and vans for the families. We plan them as one booking."
+    },
+    {
+      "q": "Do the drivers speak English?",
+      "a": "Every driver speaks English. Tell us if you would prefer Hindi, Tamil, German or another language, and we will try to match you."
+    },
+    {
+      "q": "How far ahead should we book?",
+      "a": "A few days is enough for a car or a van out of season. For December to March, coaches and wedding dates, book as early as you can."
+    }
+  ],
+  "form": {
+    "id": "enquire",
+    "heading": "Ask for a vehicle quote.",
+    "body": "Two short steps. We reply within a day with a fixed price.",
+    "stepOne": {
+      "title": "Tell us about the hire.",
+      "body": "Share what you know. Dates and places can change."
+    },
+    "stepTwo": {
+      "title": "How can we reach you?",
+      "body": "We will use these details to reply to this enquiry, nothing else."
+    },
+    "sent": {
+      "title": "Thank you. We will be in touch within a day.",
+      "body": "Your enquiry is with us and a copy is on its way to your inbox. We will reply with a quote, or a question or two first."
+    },
+    "back": {
+      "label": "Back to the vehicles",
+      "href": "/vehicles"
+    },
+    "fields": [
+      {
+        "id": "vehicle",
+        "label": "Which vehicle?",
+        "type": "select",
+        "source": "vehicles",
+        "placeholder": "Not sure yet, suggest one"
+      },
+      {
+        "id": "hire",
+        "label": "What kind of hire?",
+        "type": "chips",
+        "options": ["Airport transfer", "Multi-day tour", "Day hire", "Event or wedding"]
+      },
+      {
+        "id": "pickup",
+        "label": "Pick-up",
+        "type": "text",
+        "placeholder": "e.g. Colombo airport, or your hotel",
+        "row": "route"
+      },
+      {
+        "id": "dropoff",
+        "label": "Drop-off",
+        "type": "text",
+        "placeholder": "e.g. Galle",
+        "optional": true,
+        "row": "route"
+      },
+      {
+        "id": "start",
+        "label": "Start date",
+        "type": "date",
+        "row": "when"
+      },
+      {
+        "id": "days",
+        "label": "Number of days",
+        "type": "number",
+        "min": 1,
+        "placeholder": "1",
+        "row": "when"
+      },
+      {
+        "id": "travellers",
+        "label": "Travellers",
+        "type": "number",
+        "min": 1,
+        "placeholder": "2",
+        "required": true,
+        "row": "when"
+      },
+      {
+        "id": "luggage",
+        "label": "How much luggage?",
+        "type": "chips",
+        "options": ["Light", "A case each", "More than a case each"]
+      },
+      {
+        "id": "language",
+        "label": "Driver's language",
+        "type": "select",
+        "optional": true,
+        "options": ["English", "Hindi", "Tamil", "German", "French", "Other"],
+        "placeholder": "English is fine"
+      },
+      {
+        "id": "notes",
+        "label": "Anything else we should know?",
+        "type": "textarea",
+        "optional": true,
+        "placeholder": "Flight numbers, child seats, surfboards, stops along the way."
+      }
+    ]
+  }
+}

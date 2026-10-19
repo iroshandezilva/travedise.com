@@ -1,0 +1,94 @@
+{
+  "order": 5,
+  "slug": "pilgrimage-and-heritage",
+  "name": "Pilgrimage and heritage",
+  "theme": "Buddhist sites, the Ramayana trail",
+  "size": "10 to 60 travellers",
+  "short": "The sacred sites of the island, visited with time, respect and a guide who knows them.",
+  "summary": "The island's sacred sites, from the Temple of the Tooth to the places of the Ramayana, visited with time, care and a guide who knows them.",
+  "image": {
+    "src": "/v2/d480fd5463c2a41899b5d4b1dcd83a9b.jpg",
+    "alt": "Gilded Buddhas in the Dambulla cave temples"
+  },
+  "facts": [
+    {
+      "value": "10 to 60",
+      "detail": "Travellers"
+    },
+    {
+      "value": "3 to 6 months",
+      "detail": "A comfortable lead time"
+    },
+    {
+      "value": "Quoted per group",
+      "detail": "After we hear your plans"
+    }
+  ],
+  "suits": {
+    "heading": "Sacred places, visited properly.",
+    "body": "We plan the visits around ceremony times and festival days, with guides who know the customs and the stories.",
+    "points": [
+      "Temple and community groups",
+      "Buddhist pilgrimage circuits",
+      "Ramayana trail groups from India",
+      "Heritage societies and study tours"
+    ]
+  },
+  "services": {
+    "heading": "What we look after.",
+    "body": "The visits, and the care around them.",
+    "items": [
+      {
+        "title": "Guides who know the sites",
+        "body": "Guides who speak your language and can explain the history and the practice."
+      },
+      {
+        "title": "Timed to ceremony",
+        "body": "Visits planned around pujas and festival days, such as the Esala Perahera in Kandy."
+      },
+      {
+        "title": "Group transport",
+        "body": "Coaches and vans sized to the group, with assistance for older travellers."
+      },
+      {
+        "title": "Food and stays",
+        "body": "Vegetarian and sattvic menus, and stays close to the sites."
+      },
+      {
+        "title": "Offerings and dress",
+        "body": "Guidance on what to wear and bring, and flowers or offerings arranged where they are needed."
+      }
+    ]
+  },
+  "shapes": {
+    "heading": "Shapes we often plan.",
+    "lede": "Starting points, each planned around your group's practice.",
+    "items": [
+      {
+        "title": "The Cultural Triangle",
+        "length": "6 nights",
+        "body": "Anuradhapura, Polonnaruwa, Dambulla and Kandy, with time at each and no rushing."
+      },
+      {
+        "title": "The Ramayana trail",
+        "length": "7 to 9 nights",
+        "body": "The sites linked to the Ramayana, from the hill country to the south."
+      },
+      {
+        "title": "Kandy at festival time",
+        "length": "4 nights",
+        "body": "The Temple of the Tooth and the Esala Perahera, with seats arranged ahead."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "Can you arrange vegetarian food throughout?",
+      "a": "Yes. We agree vegetarian, Jain or sattvic menus with every hotel and restaurant on the route."
+    },
+    {
+      "q": "When is the Esala Perahera?",
+      "a": "It is usually in July or August, set by the lunar calendar. Ask us and we will confirm the dates for your year."
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "order": 3,
+  "slug": "elopements",
+  "name": "Elopements",
+  "short": "Just the two of you, a photographer, and somewhere unforgettable at first light.",
+  "summary": "Just the two of you, a photographer and a place worth getting up for: the ramparts of Galle Fort at sunrise, a tea estate in the clouds, an empty beach.",
+  "image": {
+    "src": "/v2/49c9ea8f6d4c74abde92d705e38b45e5.jpg",
+    "alt": "An avenue of palms running down to the coast"
+  },
+  "facts": [
+    {
+      "value": "Just you two",
+      "detail": "Plus a photographer and a celebrant"
+    },
+    {
+      "value": "One day",
+      "detail": "Inside a longer journey"
+    },
+    {
+      "value": "3 to 4 months",
+      "detail": "For a legal ceremony"
+    }
+  ],
+  "intro": {
+    "heading": "The wedding, without the guest list.",
+    "paragraphs": [
+      "An elopement here usually sits inside a longer journey: a few days in the hill country, a morning that is yours alone, then the coast to finish.",
+      "We find the place and the hour, arrange the celebrant and the photographer, and make sure the rest of the trip feels like the honeymoon it is."
+    ]
+  },
+  "schedule": {
+    "heading": "How the day might go.",
+    "lede": "One example. Yours will be built around the place you choose.",
+    "items": [
+      {
+        "when": "First light",
+        "title": "The walk up",
+        "body": "A short drive and a walk to a tea-estate ridge or the fort ramparts, before anyone else is there."
+      },
+      {
+        "when": "Sunrise",
+        "title": "The ceremony",
+        "body": "Vows with a celebrant, two witnesses if it is a legal ceremony, and a photographer who knows when to step back."
+      },
+      {
+        "when": "Breakfast",
+        "title": "Breakfast for two",
+        "body": "Set somewhere private, with the photographs still to come and nowhere else to be."
+      },
+      {
+        "when": "After",
+        "title": "The journey goes on",
+        "body": "Your driver takes you on to the next stay, and the honeymoon starts that afternoon."
+      }
+    ]
+  },
+  "includes": {
+    "heading": "What we arrange.",
+    "body": "The few things that matter, done properly.",
+    "items": [
+      {
+        "title": "The place and the permission",
+        "body": "Estates, forts and beaches that allow a ceremony, booked for the hour you want."
+      },
+      {
+        "title": "Celebrant or registrar",
+        "body": "A symbolic ceremony, or the registrar, witnesses and paperwork for a legal one."
+      },
+      {
+        "title": "Photographer, flowers, hair and make-up",
+        "body": "People we have worked with, briefed on the plan and the timing."
+      },
+      {
+        "title": "The journey around it",
+        "body": "Stays and a private driver for the rest of the trip, written out day by day."
+      }
+    ]
+  },
+  "settings": ["nuwara-eliya", "galle", "tangalle"],
+  "questions": [
+    {
+      "q": "Do we need witnesses?",
+      "a": "For a legal ceremony, yes, and we can provide them. A symbolic ceremony needs none."
+    },
+    {
+      "q": "Can we elope during a journey we have already booked with you?",
+      "a": "Yes. Tell us the date and the place you have in mind and we will build the morning into your route."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+---
+import Section from "../section.astro";
+
+/**
+ * Stages in order along a line: when, what, and a line of detail. Across the page on
+ * desktop, down it on a phone. Used for the wedding planning timeline and a wedding's
+ * schedule of events.
+ */
+interface Props {
+  id?: string;
+  heading: string;
+  body?: string;
+  items: { when: string; title: string; body: string }[];
+  surface?: "white" | "cream";
+}
+const { id, heading, body, items, surface = "white" } = Astro.props;
+---
+
+<Section id={id} surface={surface} class="scroll-mt-20 py-24 max-md:py-14">
+  <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
+    <h2 class="m-0 max-w-[640px] font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+      {heading}
+    </h2>
+    {body && <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{body}</p>}
+  </div>
+  <ol
+    class="m-0 grid list-none gap-x-8 p-0 max-lg:grid-cols-1 max-lg:gap-y-0"
+    style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+  >
+    {
+      items.map((item, i) => (
+        <li class="relative flex flex-col gap-3 pt-10 max-lg:border-l max-lg:border-v2-navy/16 max-lg:pt-0 max-lg:pb-10 max-lg:pl-8 max-lg:last:pb-0">
+          <span
+            aria-hidden="true"
+            class:list={["absolute top-[7px] left-0 h-px bg-v2-navy/16 max-lg:hidden", i === items.length - 1 ? "right-0" : "right-[-32px]"]}
+          />
+          <span
+            aria-hidden="true"
+            class="absolute top-0 left-0 size-[15px] rounded-full border-2 border-v2-sand bg-white max-lg:top-1 max-lg:left-[-8px]"
+          />
+          <span class="text-[13px]/[18px] tracking-[0.04em] text-[#8a7a5c] uppercase">{item.when}</span>
+          <h3 class="m-0 font-display text-[23px]/[30px] font-normal text-v2-navy max-md:text-[20px]/[26px]">{item.title}</h3>
+          <p class="m-0 text-[15px]/[24px] text-[#42586a]">{item.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

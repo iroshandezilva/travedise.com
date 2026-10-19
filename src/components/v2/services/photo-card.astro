@@ -1,0 +1,54 @@
+---
+/**
+ * A card with a photo, used for wedding styles, wedding settings and group types. The
+ * same shape and hover as the journey cards on `/packages`.
+ */
+interface Props {
+  href: string;
+  image: string;
+  alt: string;
+  position?: string;
+  tag?: string;
+  title: string;
+  body: string;
+  meta?: string;
+  action?: string;
+  compact?: boolean;
+}
+const { href, image, alt, position, tag, title, body, meta, action = "Read more", compact = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex flex-col bg-v2-cream transition-shadow duration-200 hover:shadow-[0_16px_36px_rgba(16,27,46,0.10)] motion-reduce:transition-none"
+>
+  <div class:list={["relative w-full overflow-clip", compact ? "h-[220px] max-md:h-[200px]" : "h-[268px] max-md:h-[220px]"]}>
+    <img
+      src={image}
+      alt={alt}
+      loading="lazy"
+      class="v2-card-img block size-full object-cover"
+      style={position ? { objectPosition: position } : undefined}
+    />
+    {
+      tag && (
+        <span class="absolute top-4 left-4 border border-white/24 bg-v2-navy/72 px-3.5 py-2 text-[13px]/[17px] text-white backdrop-blur-[12px]">
+          {tag}
+        </span>
+      )
+    }
+  </div>
+  <div class="flex flex-1 flex-col gap-3.5 px-7 pt-7 pb-[30px] max-md:px-5 max-md:pt-5 max-md:pb-6">
+    <h3 class="m-0 text-[25px]/[32px] font-medium text-v2-navy max-md:text-[22px]/[28px]">{title}</h3>
+    <p class="m-0 text-[15px]/[24px] text-[#52687b]">{body}</p>
+    <div class="mt-auto flex items-center justify-between gap-[18px] pt-[22px]">
+      <span class="text-[14px]/[20px] text-[#8192a3]">{meta ?? action}</span>
+      <span
+        aria-hidden="true"
+        class="flex size-11 shrink-0 items-center justify-center rounded-full border border-v2-navy/25 text-[15px] text-v2-navy transition-colors duration-150 group-hover:border-v2-navy group-hover:bg-v2-navy group-hover:text-white motion-reduce:transition-none"
+      >
+        ↗
+      </span>
+    </div>
+  </div>
+</a>

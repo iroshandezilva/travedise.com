@@ -9,8 +9,16 @@
       "label": "Places"
     },
     {
-      "href": "/#how",
-      "label": "How it works"
+      "href": "/group-vacations",
+      "label": "Groups"
+    },
+    {
+      "href": "/weddings",
+      "label": "Weddings"
+    },
+    {
+      "href": "/vehicles",
+      "label": "Vehicles"
     },
     {
       "href": "/blog",
@@ -25,6 +33,18 @@
     {
       "href": "/places",
       "label": "Places"
+    },
+    {
+      "href": "/group-vacations",
+      "label": "Group vacations"
+    },
+    {
+      "href": "/weddings",
+      "label": "Weddings"
+    },
+    {
+      "href": "/vehicles",
+      "label": "Vehicles"
     },
     {
       "href": "/#how",

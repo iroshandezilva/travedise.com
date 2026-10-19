@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process";
 import { notes } from "@/data/blog";
 import { packageV2Slugs } from "@/data/v2/packages";
 import { placeSlugs } from "@/data/v2/places";
+import { groupTypes, vehicles, weddingStyles } from "@/data/v2/services";
 import { SITE_URL } from "@/lib/site";
 
 /** Each URL with the files its content comes from — `lastmod` is their latest commit date. */
@@ -55,6 +56,65 @@ const ENTRIES: { path: string; sources: string[] }[] = [
     ],
   },
   { path: "/privacy", sources: ["src/pages/privacy.astro", "src/content/pages/privacy.json"] },
+  {
+    path: "/vehicles",
+    sources: [
+      "src/pages/vehicles/index.astro",
+      "src/components/v2/services",
+      "src/content/pages/vehicles.json",
+      "src/content/vehicles",
+    ],
+  },
+  ...vehicles.map((v) => ({
+    path: `/vehicles/${v.slug}`,
+    sources: [
+      "src/pages/vehicles/[slug].astro",
+      "src/components/v2/services",
+      `src/content/vehicles/${v.slug}.json`,
+    ],
+  })),
+  {
+    path: "/weddings",
+    sources: [
+      "src/pages/weddings/index.astro",
+      "src/components/v2/weddings",
+      "src/content/pages/weddings.json",
+      "src/content/weddings",
+    ],
+  },
+  {
+    path: "/weddings/plan",
+    sources: [
+      "src/pages/weddings/plan.astro",
+      "src/components/v2/services/service-enquiry.astro",
+      "src/content/pages/weddings.json",
+    ],
+  },
+  ...weddingStyles.map((w) => ({
+    path: `/weddings/${w.slug}`,
+    sources: [
+      "src/pages/weddings/[slug].astro",
+      "src/components/v2/weddings",
+      `src/content/weddings/${w.slug}.json`,
+    ],
+  })),
+  {
+    path: "/group-vacations",
+    sources: [
+      "src/pages/group-vacations/index.astro",
+      "src/components/v2/services",
+      "src/content/pages/groups.json",
+      "src/content/groups",
+    ],
+  },
+  ...groupTypes.map((g) => ({
+    path: `/group-vacations/${g.slug}`,
+    sources: [
+      "src/pages/group-vacations/[slug].astro",
+      "src/components/v2/services",
+      `src/content/groups/${g.slug}.json`,
+    ],
+  })),
   ...packageV2Slugs.map((slug) => ({
     path: `/packages/${slug}`,
     sources: [

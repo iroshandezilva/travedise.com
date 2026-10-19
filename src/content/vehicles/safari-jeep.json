@@ -1,0 +1,51 @@
+{
+  "order": 6,
+  "slug": "safari-jeep",
+  "name": "Safari jeep",
+  "silhouette": "jeep",
+  "seats": {
+    "min": 1,
+    "max": 6
+  },
+  "seatsLabel": "Up to 6 travellers",
+  "bags": "Day bags only",
+  "models": "Open-top 4x4, park registered",
+  "short": "An open-top 4x4 for game drives in Yala, Udawalawe, Minneriya and Wilpattu.",
+  "summary": "An open-top 4x4 with a park-registered driver and tracker, booked for morning, afternoon or full-day game drives.",
+  "suits": [
+    "Leopards in Yala",
+    "Elephants in Udawalawe and Minneriya",
+    "Quieter drives in Wilpattu",
+    "Photographers who need room"
+  ],
+  "features": [
+    {
+      "title": "Registered for the parks",
+      "body": "Only registered jeeps may drive the park tracks. We book drivers we know, who keep a respectful distance from the animals."
+    },
+    {
+      "title": "A private jeep, not a shared one",
+      "body": "Your party has the jeep to itself, so you choose when to wait and when to move on."
+    },
+    {
+      "title": "Timed to the light",
+      "body": "Morning drives leave before dawn, when the animals are moving. Full days include a packed breakfast and lunch."
+    }
+  ],
+  "included": [
+    "A park-registered driver and tracker",
+    "Park entry tickets, on request",
+    "Binoculars and a field guide",
+    "Bottled water and a packed breakfast on morning drives"
+  ],
+  "questions": [
+    {
+      "q": "Can our own driver take us into the park?",
+      "a": "No. Park rules allow only registered safari jeeps on the tracks. Your driver waits at the gate and takes you on afterwards."
+    },
+    {
+      "q": "Morning or afternoon?",
+      "a": "Mornings are cooler and usually busier with animals. Afternoons have softer light for photographs. A full day gives you both."
+    }
+  ]
+}

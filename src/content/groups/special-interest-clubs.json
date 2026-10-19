@@ -1,0 +1,94 @@
+{
+  "order": 4,
+  "slug": "special-interest-clubs",
+  "name": "Special-interest clubs",
+  "theme": "Birding, cycling, cricket, photography",
+  "size": "8 to 30 travellers",
+  "short": "A club, a society or a team, travelling for the thing they love most.",
+  "summary": "Birders, cyclists, photographers, cricket teams and yoga groups, with a trip planned around the thing that brings you together.",
+  "image": {
+    "src": "/v2/11945aa7861c13c1884485b6e4e5b3b6.jpg",
+    "alt": "An elephant at close range on a morning drive"
+  },
+  "facts": [
+    {
+      "value": "8 to 30",
+      "detail": "Travellers"
+    },
+    {
+      "value": "4 to 6 months",
+      "detail": "A comfortable lead time"
+    },
+    {
+      "value": "Quoted per group",
+      "detail": "After we hear your plans"
+    }
+  ],
+  "suits": {
+    "heading": "Planned around the reason you travel.",
+    "body": "We plan the specialist days with people who know them, and the rest of the trip so it does not get in the way.",
+    "points": [
+      "Birding and wildlife photography",
+      "Cycling clubs and charity rides",
+      "Cricket tours and matches against local clubs",
+      "Yoga, wellness and Ayurveda retreats"
+    ]
+  },
+  "services": {
+    "heading": "What we look after.",
+    "body": "The specialist parts, and everything around them.",
+    "items": [
+      {
+        "title": "Specialist guides",
+        "body": "Bird guides for Sinharaja and Kumana, cycling support vehicles, a yoga teacher or a cricket fixture secretary."
+      },
+      {
+        "title": "Timings that suit",
+        "body": "Dawn starts for birders, rest days for riders, match days for the team."
+      },
+      {
+        "title": "Group transport",
+        "body": "A mini coach with room for kit, and a support van for cycling groups."
+      },
+      {
+        "title": "Stays that understand",
+        "body": "Lodges near the reserves, hotels with space for bikes, retreats with a shala."
+      },
+      {
+        "title": "A leader for the group",
+        "body": "A Travedise tour leader with you throughout, alongside your own club leader."
+      }
+    ]
+  },
+  "shapes": {
+    "heading": "Shapes we often plan.",
+    "lede": "Starting points for your club.",
+    "items": [
+      {
+        "title": "Endemic birds",
+        "length": "10 nights",
+        "body": "Sinharaja rainforest, Horton Plains and the dry-zone parks, with a specialist guide."
+      },
+      {
+        "title": "Cricket tour",
+        "length": "8 nights",
+        "body": "Fixtures against local clubs in Colombo, Kandy and Galle, with a day at an international ground."
+      },
+      {
+        "title": "Hill-country ride",
+        "length": "7 nights",
+        "body": "Supported cycling through tea country, with a van for bags and tired legs."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "Can you arrange matches against local cricket clubs?",
+      "a": "Yes. Tell us the standard of your side and the dates, and we approach clubs that will give you a good game."
+    },
+    {
+      "q": "Will the guides know our interest as well as we do?",
+      "a": "We work with specialist guides for birding, wildlife photography and cycling. For a very specific interest, tell us and we will find the right person."
+    }
+  ]
+}

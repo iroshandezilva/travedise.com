@@ -1,0 +1,94 @@
+{
+  "order": 1,
+  "slug": "friends-and-milestones",
+  "name": "Friends and milestones",
+  "theme": "Birthdays, reunions, bachelor weeks",
+  "size": "8 to 24 travellers",
+  "short": "A 40th, a reunion or a last trip before the wedding, with one villa and everyone in it.",
+  "summary": "A 40th, a university reunion, a last week away before the wedding. One villa, one plan, and nobody stuck organising it.",
+  "image": {
+    "src": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+    "alt": "Palms on a red headland above the sea at Mirissa"
+  },
+  "facts": [
+    {
+      "value": "8 to 24",
+      "detail": "Travellers"
+    },
+    {
+      "value": "2 to 4 months",
+      "detail": "A comfortable lead time"
+    },
+    {
+      "value": "Quoted per group",
+      "detail": "After we hear your plans"
+    }
+  ],
+  "suits": {
+    "heading": "For the trip someone always ends up organising.",
+    "body": "We take that job. You tell us who is coming, what you are celebrating and what the group would argue about, and we plan around it.",
+    "points": [
+      "A milestone birthday or anniversary",
+      "A university or old-friends reunion",
+      "Bachelor and bachelorette weeks",
+      "Surf, dive or yoga weeks with friends"
+    ]
+  },
+  "services": {
+    "heading": "What we look after.",
+    "body": "Pick what you need. We quote for the whole, with nothing added later.",
+    "items": [
+      {
+        "title": "One house for everyone",
+        "body": "Whole-villa buyouts on the south coast or a bungalow in tea country, with a cook and staff."
+      },
+      {
+        "title": "Group transport",
+        "body": "A van or a mini coach for the group, with a driver who stays for the week."
+      },
+      {
+        "title": "The big night",
+        "body": "A private dinner on the beach or the fort ramparts, with music, a cake and someone to clear up."
+      },
+      {
+        "title": "Days out",
+        "body": "Whale watching from Mirissa, a surf lesson, a safari morning, or a tuk-tuk tour of Galle."
+      },
+      {
+        "title": "One bill, split fairly",
+        "body": "A clear quote per person, so the organiser is not chasing everyone for money."
+      }
+    ]
+  },
+  "shapes": {
+    "heading": "Shapes we often plan.",
+    "lede": "Ideas to react to, not fixed tours. Every one is changed for the group.",
+    "items": [
+      {
+        "title": "The south coast villa",
+        "length": "5 to 7 nights",
+        "body": "One house above the sea near Tangalle or Galle, a chef, and a boat day in the middle."
+      },
+      {
+        "title": "Surf week",
+        "length": "7 nights",
+        "body": "Arugam Bay from June to September, with lessons for the beginners and the reef breaks for the rest."
+      },
+      {
+        "title": "Hills and coast",
+        "length": "8 to 10 nights",
+        "body": "Tea country by train, a safari morning, then a villa on the coast to finish."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "What is the smallest group you plan for?",
+      "a": "Eight travellers. For fewer, one of our journeys tailored to you usually works better."
+    },
+    {
+      "q": "Can people join for part of the trip?",
+      "a": "Yes. We plan arrivals and departures for each traveller and adjust rooms and transport around them."
+    }
+  ]
+}

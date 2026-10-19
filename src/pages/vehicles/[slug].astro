@@ -1,0 +1,136 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import HeroScrim from "@/components/v2/hero-scrim.astro";
+import Questions from "@/components/v2/questions.astro";
+import Section from "@/components/v2/section.astro";
+import FactsBar from "@/components/v2/services/facts-bar.astro";
+import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
+import VehicleCard from "@/components/v2/services/vehicle-card.astro";
+import VehicleSilhouette from "@/components/v2/services/vehicle-silhouette.astro";
+import SiteNav from "@/components/v2/site-nav.astro";
+import { vehicles, vehiclesContent as page, type Vehicle } from "@/data/v2/services";
+import Base from "@/layouts/base.astro";
+
+/** Static build: one page per vehicle class in `src/content/vehicles/`. */
+export function getStaticPaths() {
+  return vehicles.map((vehicle) => ({ params: { slug: vehicle.slug }, props: { vehicle } }));
+}
+
+/**
+ * A vehicle class: the drawing over a dark hero, its seats and bags, what it suits and
+ * includes, its own questions, the quote form with this vehicle chosen, and the others.
+ */
+const { vehicle } = Astro.props as { vehicle: Vehicle };
+const others = vehicles.filter((v) => v.slug !== vehicle.slug).slice(0, 3);
+const title = `${vehicle.name} with a driver in Sri Lanka | Travedise`;
+---
+
+<Base title={title} description={vehicle.summary} canonical={`/vehicles/${vehicle.slug}`} image={page.hero.image} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <header
+      class="relative h-[600px] w-full shrink-0 overflow-clip bg-[#0c1526] gutter-v2 max-lg:h-[560px] max-md:h-[540px]"
+      style={{
+        backgroundImage:
+          "radial-gradient(900px 480px at 8% 0%, rgba(71,205,255,0.22), rgba(0,0,0,0) 62%), radial-gradient(760px 460px at 92% 12%, rgba(196,175,140,0.2), rgba(0,0,0,0) 62%), linear-gradient(180deg, rgb(21,36,60) 0%, rgb(12,21,38) 70%)",
+      }}
+    >
+      <HeroScrim desktop="linear-gradient(0deg, rgb(12,21,38) 0%, rgba(12,21,38,0) 42%)" />
+      <div class="relative mx-auto h-full w-full max-w-[1280px]">
+        <SiteNav current="/vehicles" />
+        <VehicleSilhouette
+          kind={vehicle.silhouette}
+          ground="#0f1b30"
+          class="absolute right-0 bottom-[150px] w-[560px] text-v2-sky max-lg:w-[420px] max-md:top-[118px] max-md:right-auto max-md:bottom-auto max-md:left-0 max-md:w-[260px]"
+        />
+        <div class="absolute inset-x-0 bottom-[58px] flex max-w-[620px] flex-col gap-[18px] max-md:bottom-8 max-md:gap-3">
+          <a href="/vehicles" class="text-[14px]/[20px] text-v2-sand hover:text-white">← All vehicles</a>
+          <h1 class="m-0 font-display text-[62px]/[68px] font-medium tracking-[-0.02em] text-white max-lg:text-[48px]/[54px] max-md:text-[34px]/[40px]">
+            {vehicle.name}
+          </h1>
+          <p class="m-0 text-[19px]/[29px] text-[#e8eef1] max-md:text-[15px]/[24px]">{vehicle.summary}</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <FactsBar
+        facts={[
+          { value: vehicle.seatsLabel, detail: "In comfort" },
+          { value: vehicle.bags, detail: "Luggage" },
+          { value: vehicle.models, detail: "Typical models" },
+        ]}
+        href={`#${page.form.id}`}
+        action="Ask for a quote ↗"
+      />
+
+      <Section class="py-24 max-md:py-14" innerClass="flex items-start justify-between gap-24 max-lg:flex-col max-lg:gap-10">
+        <div class="flex w-[420px] shrink-0 flex-col gap-6 max-lg:w-full">
+          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+            Good for
+          </h2>
+          <ul class="m-0 flex list-none flex-col p-0">
+            {
+              vehicle.suits.map((s) => (
+                <li class="flex items-center gap-3 border-t border-v2-navy/14 py-4 text-[17px]/[25px] text-v2-navy last:border-b max-md:text-[15px]/[23px]">
+                  <span aria-hidden="true" class="size-1.5 shrink-0 rounded-full bg-v2-sand" />
+                  {s}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="flex min-w-0 flex-1 flex-col gap-[30px] max-md:gap-6">
+          {
+            vehicle.features.map((f) => (
+              <div class="flex flex-col gap-[7px]">
+                <h3 class="m-0 font-display text-[24px]/[30px] font-normal text-v2-navy max-md:text-[20px]/[26px]">{f.title}</h3>
+                <p class="m-0 text-[16px]/[25px] text-[#42586a] max-md:text-[15px]/[24px]">{f.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </Section>
+
+      <Section surface="cream" class="py-20 max-md:py-12" innerClass="flex items-start justify-between gap-24 max-lg:flex-col max-lg:gap-8">
+        <h2 class="m-0 w-[420px] shrink-0 font-display text-[36px]/[44px] font-normal tracking-[-0.01em] text-v2-navy max-lg:w-full max-md:text-[28px]/[36px]">
+          Always in the price.
+        </h2>
+        <ul class="m-0 grid min-w-0 flex-1 list-none grid-cols-2 gap-x-10 gap-y-4 p-0 max-md:grid-cols-1">
+          {
+            vehicle.included.map((item) => (
+              <li class="flex items-start gap-3 text-[16px]/[24px] text-v2-navy max-md:text-[15px]/[23px]">
+                <span aria-hidden="true" class="mt-[3px] text-v2-sky">✓</span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </Section>
+
+      <ServiceEnquiry service="vehicle" form={page.form} preset={vehicle.slug} />
+
+      <Questions
+        items={[...vehicle.questions, ...page.questions.slice(0, 3)]}
+        heading={`About the ${vehicle.name.toLowerCase()}.`}
+        body="If your question is not here, ask it in the form and we will answer with your quote."
+        action="Ask for a quote ↗"
+        href={`#${page.form.id}`}
+      />
+
+      <Section class="py-24 max-md:py-14">
+        <div class="mb-12 flex items-end justify-between gap-10 max-md:mb-8 max-md:flex-col max-md:items-start max-md:gap-4">
+          <h2 class="m-0 font-display text-[40px]/[48px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[28px]/[36px]">
+            Other vehicles.
+          </h2>
+          <a href="/vehicles" class="text-[15px]/[22px] font-medium text-v2-navy underline decoration-v2-sky decoration-2 underline-offset-[6px]">
+            See the whole fleet ↗
+          </a>
+        </div>
+        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+          {others.map((v) => <VehicleCard vehicle={v} />)}
+        </div>
+      </Section>
+    </main>
+    <FooterWide statement="The right vehicle, a driver who knows the road, and nothing to think about between one stay and the next." />
+  </div>
+</Base>

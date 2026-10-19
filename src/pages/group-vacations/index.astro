@@ -1,0 +1,73 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import Questions from "@/components/v2/questions.astro";
+import Section from "@/components/v2/section.astro";
+import FactsBar from "@/components/v2/services/facts-bar.astro";
+import PhotoCard from "@/components/v2/services/photo-card.astro";
+import PhotoHero from "@/components/v2/services/photo-hero.astro";
+import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
+import SplitText from "@/components/v2/services/split-text.astro";
+import TitledGrid from "@/components/v2/services/titled-grid.astro";
+import { groupsContent as page, groupTypes } from "@/data/v2/services";
+import { cn } from "@/lib/cn";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "Group vacations in Sri Lanka | Travedise";
+
+/**
+ * Group vacations: a package type sold as services around a group, not as a fixed
+ * route. The five group types, the service menu, how planning works, and the group form.
+ * Words in `src/content/pages/groups.json`, group types in `src/content/groups/`.
+ */
+const { hero, intro, types, catalog, steps, questions, form } = page;
+---
+
+<Base title={TITLE} description={hero.body} canonical="/group-vacations" image={hero.image} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PhotoHero {...hero} current="/group-vacations" />
+    <main>
+      <FactsBar facts={intro.facts} href={`#${form.id}`} action="Tell us about your group ↗" />
+      <SplitText heading={intro.heading} paragraphs={intro.paragraphs} />
+
+      <Section surface="cream" class="py-24 max-md:py-14">
+        <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
+          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+            {types.heading}
+          </h2>
+          <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{types.body}</p>
+        </div>
+        {/* Three across, then two wider cards: five types without an orphan. */}
+        <div class="grid grid-cols-6 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+          {
+            groupTypes.map((g, i) => (
+              <div class={cn(i < 3 ? "col-span-2" : "col-span-3", "flex max-lg:col-span-1 [&>a]:flex-1")}>
+                <PhotoCard
+                  href={`/group-vacations/${g.slug}`}
+                  image={g.image.src}
+                  alt={g.image.alt}
+                  position={g.image.position}
+                  tag={g.theme}
+                  title={g.name}
+                  body={g.short}
+                  meta={g.size}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </Section>
+
+      <TitledGrid heading={catalog.heading} body={catalog.body} items={catalog.items} columns={4} />
+      <TitledGrid heading={steps.heading} items={steps.items} columns={4} numbered surface="cream" />
+      <ServiceEnquiry service="group" form={form} />
+      <Questions
+        items={questions}
+        heading="Before you plan a group trip."
+        body="The questions organisers ask us first."
+        action="Tell us about your group ↗"
+        href={`#${form.id}`}
+      />
+    </main>
+    <FooterWide statement="Everyone in the right place, at the right time, with nobody in the group stuck organising it." />
+  </div>
+</Base>

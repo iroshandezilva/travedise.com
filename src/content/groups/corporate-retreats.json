@@ -1,0 +1,95 @@
+{
+  "order": 3,
+  "slug": "corporate-retreats",
+  "name": "Corporate retreats and incentives",
+  "theme": "Offsites, incentives, conferences",
+  "size": "15 to 200 travellers",
+  "short": "An offsite with room to think, or a reward trip your team will talk about for years.",
+  "summary": "An offsite with room to think, an incentive trip that feels earned, or a conference with a few good days around it.",
+  "image": {
+    "src": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+    "alt": "A lit café street inside Galle Fort at night",
+    "position": "50% 45%"
+  },
+  "facts": [
+    {
+      "value": "15 to 200",
+      "detail": "Travellers"
+    },
+    {
+      "value": "4 to 9 months",
+      "detail": "A comfortable lead time"
+    },
+    {
+      "value": "One invoice",
+      "detail": "Quoted after the brief"
+    }
+  ],
+  "suits": {
+    "heading": "Work, and the time around it.",
+    "body": "We plan the logistics and the downtime so your team can concentrate on the reason they came.",
+    "points": [
+      "Leadership offsites and strategy days",
+      "Sales incentives and reward trips",
+      "Conferences and product launches",
+      "Team weeks for remote companies"
+    ]
+  },
+  "services": {
+    "heading": "What we look after.",
+    "body": "One point of contact from the first call to the last transfer.",
+    "items": [
+      {
+        "title": "Meeting spaces",
+        "body": "Hotel meeting rooms, a tea-estate lawn or a heritage hall, with screens, sound and reliable internet."
+      },
+      {
+        "title": "Rooms for everyone",
+        "body": "Room blocks in one hotel or several, with a rooming list we keep up to date."
+      },
+      {
+        "title": "Group transport",
+        "body": "Coaches timed to flights, and smaller vehicles for leadership or guests."
+      },
+      {
+        "title": "The reward",
+        "body": "A private dinner in Galle Fort, a safari morning, a cricket match, a cooking class."
+      },
+      {
+        "title": "On-site coordination",
+        "body": "A coordinator with your group throughout, handling changes before anyone notices them."
+      }
+    ]
+  },
+  "shapes": {
+    "heading": "Shapes we often plan.",
+    "lede": "Starting points for a brief.",
+    "items": [
+      {
+        "title": "Hill-country offsite",
+        "length": "3 to 4 nights",
+        "body": "Meeting days in Kandy, an afternoon on a tea estate, and a dinner by the lake."
+      },
+      {
+        "title": "Coastal incentive",
+        "length": "4 to 5 nights",
+        "body": "A resort on the south coast, a safari morning in Yala, and a gala night in Galle Fort."
+      },
+      {
+        "title": "Conference and extension",
+        "length": "Flexible",
+        "body": "Your event in Colombo, with optional two- and three-night extensions for delegates."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "Can you invoice our company?",
+      "a": "Yes. We send one quote and one invoice for the whole trip, in the currency you need."
+    },
+    {
+      "q": "Can you handle a conference in Colombo?",
+      "a": "We arrange the venue, rooms, transport and the days around it. For large production, we work with your events agency."
+    }
+  ]
+}
