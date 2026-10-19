@@ -1,0 +1,12 @@
+node_modules
+.studio
+.git
+.env*
+.dev.vars*
+*.pem
+*.key
+cloudflare/*.local.jsonc
+dist
+test-results
+.wrangler
+cloudflare/test-results

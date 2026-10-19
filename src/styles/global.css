@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source not "../../public";
+@source not "../../studio"; /* the CMS editor (docs/cms.md), not part of the site */
 
 /* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
    write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
