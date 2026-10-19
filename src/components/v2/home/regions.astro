@@ -1,0 +1,215 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import Section from "@/components/v2/section.astro";
+import { regions } from "@/data/v2/home";
+import { cn } from "@/lib/cn";
+
+import IntroText from "./intro-text.astro";
+import SectionIntro from "./section-intro.astro";
+
+/**
+ * "Five corners of a small island" — a row of region pills, and the picked region's
+ * photos and facts beneath them.
+ *
+ * The photo that is showing is in the page, plus any region already opened, so a
+ * switch can still cross-fade. The other regions stay out until they are picked: the
+ * script adds their images from the JSON block the first time they are chosen.
+ */
+
+const PILL =
+  "shrink-0 rounded-full border px-[22px] py-[13px] text-[15px]/[20px] transition-[background-color,color,border-color,scale] duration-200 ease-out-quart active:scale-[0.97] motion-reduce:transition-none max-md:px-[18px] max-md:py-[11px] max-md:text-[14px]";
+const PILL_ON = "border-v2-navy bg-v2-navy text-white";
+const PILL_OFF = "border-v2-navy/22 bg-white text-v2-navy hover:border-v2-navy/50";
+const IMG =
+  "absolute inset-0 block size-full object-cover transition-opacity duration-[260ms] ease-out-quart motion-reduce:transition-none";
+
+const region = regions[0];
+const facts = [
+  ["Best months", "months"],
+  ["Give it", "nights"],
+  ["Known for", "known"],
+  ["Getting there", "access"],
+] as const;
+
+const data = regions.map((r) => ({
+  name: r.name,
+  short: r.short,
+  body: r.body,
+  image: r.image,
+  inset: r.inset,
+  alt: r.alt,
+  months: r.months,
+  nights: r.nights,
+  known: r.known,
+  access: r.access,
+}));
+---
+
+<Section id="regions" class="py-[90px] max-md:py-14" data-regions>
+  <script type="application/json" data-regions-data set:html={JSON.stringify({ data, PILL, PILL_ON, PILL_OFF, IMG })} />
+
+  <SectionIntro heading="Five corners of a small island." headingClass="max-w-[760px]" class="mb-11 max-md:mb-7">
+    <IntroText slot="aside">
+      These five are where most routes are built, not the whole island. Pick one to see what it is for, when to
+      go and how long to give it.
+    </IntroText>
+  </SectionIntro>
+
+  <Reveal
+    role="group"
+    aria-label="Regions"
+    from="rise"
+    delay={90}
+    class="v2-rail mb-9 flex flex-wrap gap-2.5 max-md:-mx-5 max-md:mb-7 max-md:flex-nowrap max-md:overflow-x-auto max-md:px-5"
+  >
+    {
+      regions.map((r, i) => (
+        <button
+          type="button"
+          aria-pressed={i === 0 ? "true" : "false"}
+          data-region-button={i}
+          class={cn(PILL, i === 0 ? PILL_ON : PILL_OFF)}
+        >
+          {r.name}
+        </button>
+      ))
+    }
+  </Reveal>
+
+  <Reveal from="rise" delay={150} class="flex items-start gap-16 max-xl:gap-12 max-lg:flex-col max-md:gap-12">
+    <div
+      class="relative h-[520px] w-[720px] shrink-0 max-xl:w-[56%] max-lg:h-[440px] max-lg:w-full max-md:h-[280px]"
+      data-region-photos
+    >
+      <img
+        src={region.image}
+        alt={region.alt}
+        aria-hidden="false"
+        loading="lazy"
+        data-region-image="0"
+        class={cn(IMG, "opacity-100")}
+      />
+      <div
+        class="absolute -right-7 -bottom-9 h-[170px] w-[236px] border-8 border-white bg-white max-md:right-3 max-md:-bottom-7 max-md:h-[96px] max-md:w-[132px] max-md:border-[5px]"
+        data-region-insets
+      >
+        <img
+          src={region.inset}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          data-region-image="0"
+          class={cn(IMG, "opacity-100")}
+        />
+      </div>
+    </div>
+
+    <div
+      data-region-text
+      class="flex min-w-0 flex-1 flex-col gap-[26px] pt-1.5 transition-[opacity,translate] duration-[260ms] ease-out-quint motion-reduce:transition-none starting:translate-y-2 starting:opacity-0 max-md:gap-5 max-md:pt-0"
+    >
+      <h3
+        data-region-field="name"
+        class="m-0 text-[32px]/[40px] font-semibold tracking-[-0.01em] text-v2-navy max-md:text-[24px]/[32px]"
+      >
+        {region.name}
+      </h3>
+      <p data-region-field="body" class="m-0 text-[17px]/[27px] text-[#344458] max-md:text-[15px]/[24px]">
+        {region.body}
+      </p>
+      <dl
+        class="m-0 grid grid-cols-[130px_1fr] gap-x-6 gap-y-4 pt-1.5 max-md:grid-cols-[112px_1fr] max-md:gap-x-4 max-md:gap-y-3"
+      >
+        {
+          facts.map(([term, field]) => (
+            <div class="contents">
+              <dt class="text-[14px]/[22px] text-[#8192a3]">{term}</dt>
+              <dd data-region-field={field} class="m-0 text-[16px]/[22px] text-v2-navy max-md:text-[15px]/[22px]">
+                {region[field]}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+      <a
+        href="/packages"
+        data-region-link
+        class="mt-2 inline-flex items-center gap-2.5 self-start rounded-full border border-v2-navy/30 px-[22px] py-[13px] text-[15px]/[20px] text-v2-navy transition-[border-color,scale] duration-150 ease-out-quad hover:border-v2-navy active:scale-[0.97] motion-reduce:transition-none"
+      >
+        See {region.short} on the map <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </Reveal>
+</Section>
+
+<script>
+  type RegionData = Record<"name" | "short" | "body" | "image" | "inset" | "alt" | "months" | "nights" | "known" | "access", string>;
+
+  for (const root of document.querySelectorAll<HTMLElement>("[data-regions]")) {
+    const { data, PILL, PILL_ON, PILL_OFF, IMG } = JSON.parse(
+      root.querySelector("[data-regions-data]")!.textContent!,
+    ) as { data: RegionData[]; PILL: string; PILL_ON: string; PILL_OFF: string; IMG: string };
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>("[data-region-button]")];
+    const photos = root.querySelector<HTMLElement>("[data-region-photos]")!;
+    const insets = root.querySelector<HTMLElement>("[data-region-insets]")!;
+    let current = 0;
+
+    // Adds a region's image to a frame (once), keeping the images in region order so the
+    // stacking matches a fresh render.
+    function ensure(frame: HTMLElement, index: number, src: string) {
+      const existing = [...frame.querySelectorAll<HTMLImageElement>(":scope > img[data-region-image]")];
+      if (existing.some((img) => Number(img.dataset.regionImage) === index)) return;
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      img.loading = "lazy";
+      img.dataset.regionImage = String(index);
+      img.setAttribute("aria-hidden", "true");
+      img.className = `${IMG} opacity-0`;
+      const after = existing.find((other) => Number(other.dataset.regionImage) > index);
+      if (after) frame.insertBefore(img, after);
+      else if (frame === photos) frame.insertBefore(img, insets);
+      else frame.append(img);
+      // Commit the hidden state before it is switched on, so it fades in.
+      void img.offsetWidth;
+    }
+
+    function show(index: number) {
+      if (index === current) return;
+      ensure(photos, index, data[index].image);
+      ensure(insets, index, data[index].inset);
+      current = index;
+      const region = data[index];
+
+      buttons.forEach((button, i) => {
+        button.setAttribute("aria-pressed", String(i === index));
+        button.className = `${PILL} ${i === index ? PILL_ON : PILL_OFF}`;
+      });
+
+      for (const img of photos.querySelectorAll<HTMLImageElement>(":scope > img[data-region-image]")) {
+        const on = Number(img.dataset.regionImage) === index;
+        img.alt = on ? data[Number(img.dataset.regionImage)].alt : "";
+        img.setAttribute("aria-hidden", String(!on));
+        img.classList.toggle("opacity-100", on);
+        img.classList.toggle("opacity-0", !on);
+      }
+      for (const img of insets.querySelectorAll<HTMLImageElement>(":scope > img[data-region-image]")) {
+        const on = Number(img.dataset.regionImage) === index;
+        img.classList.toggle("opacity-100", on);
+        img.classList.toggle("opacity-0", !on);
+      }
+
+      // A fresh element, as React's `key` gave it, so the text rises in again.
+      const text = root.querySelector<HTMLElement>("[data-region-text]")!;
+      const next = text.cloneNode(true) as HTMLElement;
+      for (const field of next.querySelectorAll<HTMLElement>("[data-region-field]")) {
+        field.textContent = region[field.dataset.regionField as keyof RegionData];
+      }
+      // The link's first text node is "See … on the map ".
+      next.querySelector("[data-region-link]")!.firstChild!.textContent = `See ${region.short} on the map `;
+      text.replaceWith(next);
+    }
+
+    buttons.forEach((button, i) => button.addEventListener("click", () => show(i)));
+  }
+</script>

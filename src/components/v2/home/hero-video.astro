@@ -1,0 +1,47 @@
+---
+/**
+ * The homepage film. The poster paints first. The file itself loads only on a wide
+ * screen, and only after the browser is idle enough to start playback, so a phone
+ * keeps the still and never downloads the video.
+ */
+interface Props {
+  src: string;
+  poster: string;
+}
+const { src, poster } = Astro.props;
+---
+
+<video
+  poster={poster}
+  muted
+  loop
+  playsinline
+  preload="none"
+  aria-label="Sri Lankan landscapes in motion"
+  data-hero-video={src}
+  class="absolute inset-0 block size-full object-cover"></video>
+
+<script>
+  for (const video of document.querySelectorAll<HTMLVideoElement>("video[data-hero-video]")) {
+    const src = video.dataset.heroVideo!;
+    const wide = window.matchMedia("(min-width: 768px)");
+
+    function sync() {
+      if (!wide.matches) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+        return;
+      }
+      if (!video.currentSrc) {
+        video.preload = "metadata";
+        video.src = src;
+        video.load();
+      }
+      void video.play().catch(() => {});
+    }
+
+    sync();
+    wide.addEventListener("change", sync);
+  }
+</script>

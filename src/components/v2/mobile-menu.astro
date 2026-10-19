@@ -1,0 +1,160 @@
+---
+import { images } from "@/data/v2/images";
+import { menuFeature, mobileNavLinks } from "@/data/v2/shared";
+import { SOCIALS } from "@/lib/socials";
+
+import LogoMark from "./logo-mark.astro";
+
+/**
+ * The phone menu: a hamburger in the hero's nav pill that opens a full-screen panel.
+ * Only shown below the `md` breakpoint — the desktop bar lists its links inline.
+ *
+ * The script moves the panel to the end of `<body>` on load. The nav pill it is written
+ * in carries a backdrop-filter, and that makes the pill the containing block for any
+ * `position: fixed` descendant, which would pin the panel inside the pill.
+ */
+---
+
+<button
+  type="button"
+  aria-label="Open menu"
+  aria-expanded="false"
+  data-menu-open
+  class="hidden size-[46px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-full bg-white/14 max-md:flex"
+>
+  <span aria-hidden="true" class="block h-[1.5px] w-[18px] bg-white"></span>
+  <span aria-hidden="true" class="block h-[1.5px] w-3 bg-white"></span>
+</button>
+
+<div
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu"
+  data-open="false"
+  data-menu
+  inert
+  class="v2-menu fixed inset-0 z-50 overflow-y-auto bg-[#0c1526] md:hidden"
+>
+  <img src={images.honeymoon} alt="" class="absolute inset-0 block size-full object-cover opacity-[0.32]" />
+  <div
+    class="absolute inset-0"
+    style={{
+      backgroundImage:
+        "linear-gradient(180deg, oklab(0.16 -0.01 -0.02 / 0.86) 0%, oklab(0.13 -0.01 -0.02 / 0.94) 62%, oklab(0.12 -0.01 -0.02 / 0.98) 100%)",
+    }}
+  >
+  </div>
+
+  <div class="relative flex min-h-dvh flex-col px-5 pt-[18px] pb-7">
+    <div class="flex h-13 shrink-0 items-center justify-between">
+      <a href="/" aria-label="Travedise home" data-menu-link class="flex items-center gap-2">
+        <LogoMark class="h-6 w-[34px]" />
+        <span class="font-display text-[21px]/[26px] font-medium text-white">Travedise</span>
+      </a>
+      <button
+        type="button"
+        aria-label="Close menu"
+        data-menu-close
+        class="flex size-[46px] items-center justify-center rounded-full border border-white/24 bg-white/14"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="size-[18px]">
+          <path d="M5 5 L19 19 M19 5 L5 19" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav aria-label="Menu" class="mt-[34px] flex flex-col">
+      {
+        mobileNavLinks.map(({ href, label }, i) => (
+          <a
+            href={href}
+            data-menu-link
+            style={{ "--i": i }}
+            class="v2-menu-item flex items-center justify-between py-[13px]"
+          >
+            <span class="font-display text-[34px]/[42px] text-white">{label}</span>
+            <span aria-hidden="true" class="text-[17px] text-white/50">
+              ↗
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={menuFeature.href}
+      data-menu-link
+      style={{ "--i": mobileNavLinks.length }}
+      class="v2-menu-item mt-[26px] flex items-center gap-3.5 rounded-[18px] border border-white/16 bg-white/8 p-3"
+    >
+      <img src={menuFeature.image} alt="" class="block size-[76px] shrink-0 rounded-xl object-cover" />
+      <span class="flex flex-col gap-[5px]">
+        <span class="font-display text-[17px]/[22px] font-medium text-white">
+          {menuFeature.title}
+        </span>
+        <span class="text-[13px]/[19px] text-[#d9e4e9e6]">{menuFeature.body}</span>
+      </span>
+    </a>
+
+    <div class="mt-auto flex flex-col gap-[18px] pt-10">
+      <a
+        href="/plan-your-trip"
+        data-menu-link
+        class="flex h-[54px] items-center justify-center rounded-[27px] bg-v2-sky text-[16px] font-semibold text-[#10212b]"
+      >
+        Plan your trip ↗
+      </a>
+      <div class="flex items-center gap-[18px]">
+        {
+          SOCIALS.map((social) => (
+            <a href={social.href} target="_blank" rel="noopener noreferrer" class="text-[14px] text-[#e2eaeed9]">
+              {social.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const openButton = document.querySelector<HTMLButtonElement>("[data-menu-open]");
+  const panel = document.querySelector<HTMLElement>("[data-menu]");
+
+  if (openButton && panel) {
+    document.body.append(panel);
+    const closeButton = panel.querySelector<HTMLButtonElement>("[data-menu-close]")!;
+    let restoreOverflow = "";
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+
+    // While the panel is up: hold the page still behind it, close on Escape, and move
+    // focus into the panel so a keyboard lands on the close button rather than the page.
+    const open = () => {
+      panel.dataset.open = "true";
+      panel.inert = false;
+      openButton.setAttribute("aria-expanded", "true");
+      restoreOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      closeButton.focus();
+      document.addEventListener("keydown", onKey);
+    };
+
+    // Returning focus to the hamburger belongs to closing, not to opening.
+    function close() {
+      panel!.dataset.open = "false";
+      panel!.inert = true;
+      openButton!.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = restoreOverflow;
+      document.removeEventListener("keydown", onKey);
+      openButton!.focus();
+    }
+
+    openButton.addEventListener("click", open);
+    closeButton.addEventListener("click", close);
+    for (const link of panel.querySelectorAll("[data-menu-link]")) link.addEventListener("click", close);
+  }
+</script>

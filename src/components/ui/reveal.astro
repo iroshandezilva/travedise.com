@@ -1,0 +1,29 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+/**
+ * Fades an element in (and slides it) the first time it scrolls into view. Renders the
+ * element itself, no wrapper: `<Reveal as="h2" delay={100} class="…">`. The distance,
+ * duration and curve belong to the preset — see `[data-reveal]` in global.css. The
+ * observer that shows it is `src/scripts/reveal.ts`, loaded once by the base layout.
+ *
+ * `from`: `bottom` / `left` are Webflow's slideInBottom and slideInLeft (1s, 100px);
+ * `rise` is the shorter, closer one the v2 pages use; `fade` only fades.
+ */
+type Props<Tag extends HTMLTag = "div"> = Polymorphic<{ as: Tag }> & {
+  from?: "bottom" | "left" | "rise" | "fade";
+  /** Milliseconds before the animation starts once in view. */
+  delay?: number;
+};
+
+const { as: Tag = "div", from = "bottom", delay = 0, style, ...props } = Astro.props;
+const delayStyle = delay ? `--reveal-delay: ${delay}ms;` : "";
+const merged =
+  typeof style === "string" || style == null
+    ? `${delayStyle}${style ?? ""}` || undefined
+    : delay
+      ? { ...style, "--reveal-delay": `${delay}ms` }
+      : style;
+---
+
+<Tag data-reveal={from} style={merged} {...props}><slot /></Tag>

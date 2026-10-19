@@ -1,0 +1,132 @@
+---
+import { Font } from "astro:assets";
+
+import WebMcpData from "@/components/site/webmcp-data.astro";
+import "@/styles/global.css";
+import { SITE_URL } from "@/lib/site";
+import { jsonLdScript, siteJsonLd } from "@/lib/structured-data";
+
+type ShareImage = string | { url: string; width?: number; height?: number; alt?: string };
+
+/**
+ * Every page's <html>: favicons, the meta tags each page passes in, the site-wide JSON-LD,
+ * the live chat (production only) and the scripts every page shares.
+ *
+ * `canonical` is a path ("/about"); the home page passes "/". Pages left out of search
+ * pass `noindex` and no canonical.
+ */
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  image?: ShareImage;
+  ogType?: "website" | "article";
+  /** An article's publication date, `YYYY-MM-DD`. */
+  publishedTime?: string;
+  noindex?: boolean;
+}
+
+const DEFAULT_DESCRIPTION =
+  "Whether you seek adventure, culture, or calm — we’ve got the perfect experience for every kind of traveler.";
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  canonical,
+  image,
+  ogType = "website",
+  publishedTime,
+  noindex = false,
+} = Astro.props;
+
+const absolute = (path: string) => (path.startsWith("http") ? path : `${SITE_URL}${path}`);
+const canonicalUrl = canonical && (canonical === "/" ? SITE_URL : absolute(canonical));
+const share = typeof image === "string" ? { url: image } : image;
+
+const FAVICONS = [
+  { href: "6a3375a38fce14ddb37ecc20", rel: "icon", sizes: "32x32" },
+  { href: "6a3375a3e1977d34c6b33475", rel: "icon", sizes: "48x48" },
+  { href: "6a3375a3576c9849d0332f6b", rel: "icon", sizes: "192x192" },
+  { href: "6a3375a31e3fd9ef9da7e4ff", rel: "icon", sizes: "512x512" },
+  { href: "6a3375a351ef67e160de31e4", rel: "apple-touch-icon", sizes: "180x180" },
+];
+
+const TAWK = `(function(){
+  function load(){
+    if (window.__tawkLoaded) return;
+    window.__tawkLoaded = true;
+    var Tawk_API=window.Tawk_API||{}, Tawk_LoadStart=new Date();
+    window.Tawk_API=Tawk_API;
+    window.Tawk_LoadStart=Tawk_LoadStart;
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a8bd90e5d2e283449285f96/1k0p4foar';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  }
+  if ('requestIdleCallback' in window) requestIdleCallback(load, {timeout: 5000});
+  else setTimeout(load, 3000);
+})();`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {
+      FAVICONS.map((f) => (
+        <link
+          href={`/assets/${f.href}_69e71a6f589fe83624cd3faf_travedise-logo.png`}
+          rel={f.rel}
+          type={f.rel === "icon" ? "image/png" : undefined}
+          sizes={f.sizes}
+        />
+      ))
+    }
+    <Font cssVariable="--font-inter-tight" preload />
+    <Font cssVariable="--font-ragmont" preload />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {
+      !noindex && (
+        <>
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          {share && <meta property="og:image" content={absolute(share.url)} />}
+          {share?.width && <meta property="og:image:width" content={String(share.width)} />}
+          {share?.height && <meta property="og:image:height" content={String(share.height)} />}
+          {share?.alt && <meta property="og:image:alt" content={share.alt} />}
+          <meta property="og:type" content={ogType} />
+          {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          {share && <meta name="twitter:image" content={absolute(share.url)} />}
+          {share?.alt && <meta name="twitter:image:alt" content={share.alt} />}
+          {share?.width && <meta name="twitter:image:width" content={String(share.width)} />}
+          {share?.height && <meta name="twitter:image:height" content={String(share.height)} />}
+        </>
+      )
+    }
+
+    {/* Page-specific head tags, e.g. a hero image preload: <Fragment slot="head">…</Fragment>. */}
+    <slot name="head" />
+
+    {/* Live chat is production-only — no support widget in local dev. */}
+    {import.meta.env.PROD && <script is:inline set:html={TAWK} />}
+  </head>
+  <body>
+    <script type="application/ld+json" is:inline set:html={jsonLdScript(siteJsonLd)} />
+    <slot />
+    <WebMcpData />
+    <script>
+      import "@/scripts/reveal";
+      import "@/scripts/webmcp-tools";
+    </script>
+  </body>
+</html>

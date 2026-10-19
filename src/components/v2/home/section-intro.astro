@@ -1,0 +1,39 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import { cn } from "@/lib/cn";
+
+/**
+ * The heading row most home sections open with: a display heading on the left and a
+ * short paragraph (or a link) bottom-aligned on the right. On narrower screens the two
+ * stack.
+ *
+ * The row rises into place the first time it is scrolled to, which is what tells the
+ * reader a new section has started — the section that follows it comes in just behind.
+ *
+ * Slot `aside` is what sits opposite the heading.
+ */
+interface Props {
+  heading: string;
+  class?: string;
+  headingClass?: string;
+}
+const { heading, class: className, headingClass } = Astro.props;
+---
+
+<Reveal
+  from="rise"
+  class={cn(
+    "flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4",
+    className,
+  )}
+>
+  <h2
+    class={cn(
+      "m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]",
+      headingClass,
+    )}
+  >
+    {heading}
+  </h2>
+  <slot name="aside" />
+</Reveal>

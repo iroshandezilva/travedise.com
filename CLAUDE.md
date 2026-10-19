@@ -2,7 +2,7 @@
 
 # travedise.com
 
-Static Next.js site on Cloudflare Pages: https://travedise.com. More background in `README.md`.
+Static Astro site on Cloudflare Pages: https://travedise.com. More background in `README.md`.
 
 ## Git — Claude does it, the person doesn't have to
 
@@ -43,7 +43,10 @@ Never merge on your own initiative or for anyone else.
 
 ## Build constraints
 
-- `output: "export"` — the site is fully static. No route handlers reading the request,
-  middleware/proxy, server actions, `cookies()`/`headers()`, or dynamic routes without `generateStaticParams`.
-- Preview a production build with `pnpm build && npx serve out` (`pnpm start` doesn't work with a static export).
-- Forms have no backend yet.
+- `output: "static"` — the site is fully static. No on-demand rendering, no server adapter,
+  no `Astro.request` headers/cookies, and dynamic routes must list their pages in `getStaticPaths`.
+- Server code lives only in `functions/` (Cloudflare Pages Functions): the enquiry form
+  (`functions/api/enquiry.js`, sends through Zoho Mail) and the Markdown middleware.
+- Words and photos live in `src/content/**` as JSON, so they can be changed without touching components
+  (and by the CMS, once it is added) — don't hardcode copy in components.
+- Preview a production build with `pnpm build && pnpm preview`.

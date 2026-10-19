@@ -1,0 +1,12 @@
+---
+import type { Social } from "@/lib/socials";
+
+/** A 16×17 social glyph (viewBox of the Webflow icons). */
+interface Props {
+  social: Social;
+  class?: string;
+}
+const { social, class: className } = Astro.props;
+---
+
+<svg viewBox="0 0 16 17" fill="none" aria-hidden="true" class={className} set:html={social.icon} />

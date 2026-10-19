@@ -1,0 +1,95 @@
+{
+  "packages": {
+    "simply-srilanka": {
+      "slug": "simply-srilanka",
+      "title": "Simply Sri Lanka",
+      "priceLine": "$3000 PP / 10 Nights",
+      "image": "/assets/6a6d9f9f00db30d38bd252e1_d6f4a52ad327b383ba0943fdf8286174.jpg",
+      "categories": [],
+      "href": "/packages/simply-srilanka"
+    },
+    "best-of-sri-lanka": {
+      "slug": "best-of-sri-lanka",
+      "title": "Sri lanka With Little Ones",
+      "priceLine": "$3200 PP / 11 Nights",
+      "image": "/assets/6a41dd7eab34901277d0a2df_6.jpg",
+      "categories": [],
+      "href": "/packages/best-of-sri-lanka"
+    },
+    "scenic-sri-lanka": {
+      "slug": "scenic-sri-lanka",
+      "title": "Scenic Sri Lanka ",
+      "priceLine": "$2600 PP / 8 Days",
+      "image": "/assets/6a31a10cd01707ff15b90bad_lou-lou-b-photo-xSI-8hwyUzE-unsplash-1.jpg",
+      "categories": [
+        "seasonal"
+      ],
+      "href": "/packages/scenic-sri-lanka"
+    },
+    "hillcountry": {
+      "slug": "hillcountry",
+      "title": "Hill Country & Beach",
+      "priceLine": "$2500 PP / 8 Nights",
+      "image": "/assets/6a41dca96291ea3120748b1b_R806lZ8a9OCcxaRnHAtBY8t7F3ZIFpQdlaRoFCYK.jpg",
+      "categories": [
+        "family"
+      ],
+      "href": "/packages/hillcountry"
+    },
+    "wildlife-package": {
+      "slug": "wildlife-package",
+      "title": "Wildlife Package ",
+      "priceLine": "$ 3000 PP / 8 Nights",
+      "image": "/assets/6a41db4b8d4186c694daefc8_protect-the-environment-on-your-sri-lanka-wildlife-safari-header.jpg",
+      "categories": [
+        "adventure"
+      ],
+      "href": "/packages/wildlife-package"
+    },
+    "dream-honeymoon-in-sri-lanka": {
+      "slug": "dream-honeymoon-in-sri-lanka",
+      "title": "Honeymoon In Sri Lanka",
+      "priceLine": "$4000 PP / 10 NIGHTS",
+      "image": "/assets/6a41d8a9f90b0844dda793bf_Couple-on-Bentota-Beach.webp",
+      "categories": [
+        "honeymoon"
+      ],
+      "href": "/packages/dream-honeymoon-in-sri-lanka"
+    }
+  },
+  "packageListings": {
+    "home": [
+      "simply-srilanka",
+      "best-of-sri-lanka",
+      "scenic-sri-lanka"
+    ],
+    "packagesPage": [
+      "best-of-sri-lanka",
+      "scenic-sri-lanka",
+      "hillcountry",
+      "wildlife-package",
+      "dream-honeymoon-in-sri-lanka"
+    ]
+  },
+  "packageTabs": [
+    {
+      "label": "All"
+    },
+    {
+      "label": "Honeymoon",
+      "category": "honeymoon"
+    },
+    {
+      "label": "Family toures",
+      "category": "family"
+    },
+    {
+      "label": "Seasonal Tours",
+      "category": "seasonal"
+    },
+    {
+      "label": "Adventure",
+      "category": "adventure"
+    }
+  ]
+}

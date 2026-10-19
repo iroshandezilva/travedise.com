@@ -1,0 +1,52 @@
+{
+  "images": {
+    "heroVideo": "/v2/930215efa40428fd9f8d0f63024f2fb6.mp4",
+    "heroPoster": "/v2/00f1ff4407e11b759d4f26d644519daa.jpg",
+    "livingCulture": "/v2/f26bc30518ebd238ece8cf61450c8ebe.jpg",
+    "wildlifeEncounters": "/v2/b40791bd0b77588784c9b501ad5ab76d.jpg",
+    "quietMoments": "/v2/45e72851c404eb37de3c32b346aab1e2.jpg",
+    "sacredPlaces": "/v2/d480fd5463c2a41899b5d4b1dcd83a9b.jpg",
+    "scenic": "/v2/e77a66899f34c2489eb802df5e80cac9.jpg",
+    "teaEstate": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+    "wildlifePackage": "/v2/3276de156e35f2243c312d74076e3b41.jpg",
+    "simply": "/v2/a330488cea582574b523136d4e00efa4.jpg",
+    "littleOnes": "/v2/1260892ee6b033b2f8f08368d097bbc4.jpg",
+    "honeymoon": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+    "cloudForest": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+    "southCoast": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+    "quietStop": "/v2/49c9ea8f6d4c74abde92d705e38b45e5.jpg",
+    "optionalDays": "/v2/11945aa7861c13c1884485b6e4e5b3b6.jpg",
+    "noteFamily": "/v2/09d95dc68e65357e5e1c3fd7f705b12f.jpg",
+    "noteDates": "/v2/2666b322c67fd187300b1a0855435be6.jpg",
+    "ctaBand": "/v2/0a72b04674868246806c566e0bca4df0.jpg"
+  },
+  "placeImages": {
+    "teaBungalow": "/places/nuwara-tea-bungalow.jpg",
+    "teaMist": "/places/nuwara-tea-mist.jpg",
+    "teaPickers": "/places/nuwara-tea-pickers.jpg",
+    "ellaLookout": "/places/ella-lookout.jpg",
+    "ellaWaterfall": "/places/ella-waterfall.jpg",
+    "hillTrain": "/places/hill-country-train.jpg",
+    "sigiriyaRock": "/places/sigiriya-rock.jpg",
+    "sigiriyaFromAbove": "/places/sigiriya-from-above.jpg",
+    "dambullaCave": "/places/dambulla-cave.jpg",
+    "polonnaruwaRuins": "/places/polonnaruwa-ruins.jpg",
+    "minneriyaElephants": "/places/minneriya-elephants.jpg",
+    "weligamaHeadland": "/places/weligama-headland.jpg",
+    "beachWalk": "/places/beach-walk.jpg",
+    "reefFromAbove": "/places/reef-from-above.jpg",
+    "quietBay": "/places/quiet-bay.jpg",
+    "yalaLeopard": "/places/yala-leopard.jpg",
+    "udawalaweElephants": "/places/udawalawe-elephants.jpg",
+    "udawalaweJeep": "/places/udawalawe-jeep.jpg"
+  },
+  "packageImages": {
+    "kandyLake": "/v2/1b2426204ca1bdc04d91da3ee8fce28b.jpg",
+    "sigiriyaStay": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
+    "daveTemple": "/v2/c1a3908123f2e026248328dafc946572.jpg",
+    "tangalle": "/v2/b83e7495c3eed589bc4f059b7e57dfd3.jpg",
+    "galleFort": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg",
+    "yalaStay": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+    "northRoad": "/v2/9706cd80e0a69d9f3a4d07c86cb2bd72.jpg"
+  }
+}

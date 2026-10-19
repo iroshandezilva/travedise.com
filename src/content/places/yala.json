@@ -1,0 +1,72 @@
+{
+  "order": 13,
+  "slug": "yala",
+  "name": "Yala",
+  "region": "parks",
+  "line": "Leopard country. The park usually closes for a few weeks around September.",
+  "image": {
+    "src": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
+    "alt": "A safari jeep waiting under a tree on a red dirt track",
+    "position": "50% 60%"
+  },
+  "map": {
+    "cx": 309.6,
+    "cy": 571.9,
+    "tx": 321.6,
+    "ty": 576.4,
+    "anchor": "start"
+  },
+  "journeyStop": "yala",
+  "summary": "Scrub, lagoons and rocky outcrops on the south east coast, and one of the best chances of seeing a leopard anywhere.",
+  "nights": "2 nights",
+  "goodFor": "Wildlife, families",
+  "intro": {
+    "heading": "Leopard country.",
+    "paragraphs": [
+      "Yala has one of the highest densities of leopards in the world, along with elephants, sloth bears, crocodiles and more birds than most people can name. The park runs down to the sea, and its dry scrub, water holes and huge boulders are worth the drive on their own.",
+      "It is also busy. We book two drives with guides who know how to avoid the crowds, go out as the gates open and again in the late afternoon, and stay close enough to rest in the middle of the day."
+    ]
+  },
+  "mapCaption": "In the dry south east. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Yala is planned around the hours the animals are out. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "A drive at first light",
+        "body": "The gates open at six, and the first hour is the best of the day. Leopards are never promised, only made likely."
+      },
+      {
+        "title": "An afternoon drive",
+        "body": "Back out in the late afternoon, when the animals come down to the water. The light is kinder for photographs too."
+      },
+      {
+        "title": "Sithulpawwa",
+        "body": "A rock temple inside the wider park, where monks have lived and prayed for more than two thousand years."
+      },
+      {
+        "title": "Kirinda and the coast",
+        "body": "A temple on a rock above the sea, and a beach with nobody on it, between drives."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/v2/3276de156e35f2243c312d74076e3b41.jpg",
+      "alt": "A leopard crossing the track ahead of a safari jeep"
+    },
+    {
+      "src": "/places/yala-leopard.jpg",
+      "alt": "A leopard walking over dry ground"
+    }
+  ],
+  "season": "Yala is dry for most of the year and at its best from February to August, when the water holes shrink and the animals gather at them. The park usually closes for a few weeks from September into October.",
+  "nearby": {
+    "heading": "Near the park.",
+    "slugs": [
+      "udawalawe",
+      "tangalle",
+      "ella"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will book the drives, with guides who know when the animals are out."
+}

@@ -1,0 +1,185 @@
+{
+  "order": 4,
+  "slug": "wildlife-package",
+  "title": "Wild Sri Lanka",
+  "summary": "Nature end to end, from elephant country around Sigiriya to the leopards of Yala.",
+  "shots": [
+    {
+      "src": "/assets/6a41db4b8d4186c694daefc8_protect-the-environment-on-your-sri-lanka-wildlife-safari-header.jpg",
+      "label": "A leopard crossing ahead of a safari jeep"
+    },
+    {
+      "src": "/assets/6a85d63ef68aae9b0e8e1026_geoff-brooks-3TwThGdEUZA-unsplash.jpg",
+      "label": "A leopard on the red earth"
+    },
+    {
+      "src": "/assets/6a85cac80bfd2279b9056d22_silver-ringvee-Za2tulPaa_M-unsplash.jpg",
+      "label": "A safari jeep under the trees"
+    },
+    {
+      "src": "/assets/6a85ccb9e2f9e4f6f4c7cb3f_adam-vandermeer-IoNtLptRy0o-unsplash-2.jpg",
+      "label": "Nine Arches Bridge above the tea"
+    }
+  ],
+  "facts": [
+    {
+      "value": "9 days",
+      "detail": "Private, tailor-made"
+    },
+    {
+      "value": "Five stops",
+      "detail": "Sigiriya · Kandy · Ella · Yala · Galle"
+    },
+    {
+      "value": "Best months",
+      "detail": "February to July for Yala; November to April for whales off Mirissa"
+    }
+  ],
+  "includes": {
+    "heading": "What the journey includes.",
+    "body": "Everything below is arranged before you land, planned around the hours the animals are actually out. Flights and visas sit outside the plan, and we will say so clearly in the proposal.",
+    "items": [
+      {
+        "title": "Accommodation",
+        "body": "Eight nights, from Jetwing Lake near Sigiriya and Cinnamon Kandy to DoubleTree by Hilton for the park and Jetwing Lighthouse in Galle."
+      },
+      {
+        "title": "Activities",
+        "body": "The climb at Sigiriya, a jeep drive in Minneriya, the walks around Ella, two days of safaris in Yala, and whale watching off Mirissa in season."
+      },
+      {
+        "title": "Meals",
+        "body": "Breakfast every day, plus the meals that are part of a stay or an early safari. The rest stays open."
+      },
+      {
+        "title": "Transfers and driver",
+        "body": "Airport pick-up and drop-off, and the same driver and vehicle throughout, with park entry and jeeps arranged ahead."
+      }
+    ]
+  },
+  "itinerary": {
+    "heading": "The island, on the wild side.",
+    "lede": "Open a day to see what it holds and where you sleep.",
+    "days": [
+      {
+        "meta": "Days 1–2 · Sigiriya",
+        "title": "Rock Fortress and Wildlife",
+        "body": "Day one, the climb up Sigiriya, the rock fortress above the plain. Day two, a jeep drive in Minneriya National Park, where elephants gather at the water.",
+        "stay": {
+          "name": "Jetwing Lake",
+          "thumb": "/assets/6a97db693e8b196e3ca74e68_jetwing-lake.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a97dc9551f90341d964a424_209329-sigiriya-rock-fortress-sri-lanka.jpg",
+            "caption": "Sigiriya rock fortress"
+          },
+          {
+            "src": "/assets/6a97dc9a2011f106f35dfd8b_Sigiriya-4.jpg",
+            "caption": "Sigiriya"
+          },
+          {
+            "src": "/assets/6a97dca45af87a267af356ae_Minneriya-National-Park.jpg",
+            "caption": "Minneriya National Park"
+          }
+        ]
+      },
+      {
+        "meta": "Day 3 · Kandy",
+        "title": "The Last Kingdom in Sri Lanka",
+        "body": "Discover Sri Lanka’s cultural heart with the Temple of the Sacred Tooth Relic, scenic Kandy Lake, lush hills, and rich traditions.",
+        "stay": {
+          "name": "Cinnamon Kandy",
+          "thumb": "/assets/6a97dd5991c3c6b5f19a4a98_Cinnamon-Citadel-Kandy-800x520-1.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a97dd12dc2bb83ea205120f_a_realistic_high_detail_travel_photograph_of_kandy-2.jpeg",
+            "caption": "Kandy"
+          }
+        ]
+      },
+      {
+        "meta": "Day 4 · Ella",
+        "title": "Where the Train Threads the Jungle",
+        "body": "An active hill day: Little Adam’s Peak, the Nine Arches Bridge and Ravana Falls, alive with birds and butterflies.",
+        "stay": {
+          "name": "98 Acres Resort & Spa",
+          "thumb": "/assets/6a85d552540f9e4ab4d3965d_matt-dany-KhVYyckCj_8-unsplash.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85ccb9e2f9e4f6f4c7cb3f_adam-vandermeer-IoNtLptRy0o-unsplash-2.jpg",
+            "caption": "Nine Arches Bridge above the tea"
+          },
+          {
+            "src": "/assets/6a85d552540f9e4ab4d3965d_matt-dany-KhVYyckCj_8-unsplash.jpg",
+            "caption": "Ella"
+          },
+          {
+            "src": "/assets/6a85d55282af03360bc76fcf_praveen-maleesha-Qjbu8uEnyeo-unsplash.jpg",
+            "caption": "Ella"
+          }
+        ]
+      },
+      {
+        "meta": "Days 5–6 · Yala",
+        "title": "The Highest Leopard Density on Earth",
+        "body": "The heart of the trip. Two days of safaris for leopards, elephants, sloth bears and dazzling birdlife.",
+        "stay": {
+          "name": "DoubleTree by Hilton",
+          "thumb": "/assets/6a82193321e7807773ab692c_Double-Tree-by-Hilton.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cac8651239f2620f7e4b_chanuka-nimsara-vJTKWsDIkQA-unsplash.jpg",
+            "caption": "Yala"
+          },
+          {
+            "src": "/assets/6a85cac8713ce401890787c4_mahesh-prabahath-J9H0_zTJerE-unsplash.jpg",
+            "caption": "Yala"
+          },
+          {
+            "src": "/assets/6a85cac80bfd2279b9056d22_silver-ringvee-Za2tulPaa_M-unsplash.jpg",
+            "caption": "A safari jeep under the trees"
+          }
+        ]
+      },
+      {
+        "meta": "Days 7–8 · Galle",
+        "title": "Fort, Beach and Blue Whales",
+        "body": "Wind down at the fort and the beach. In season (November to April), add blue whale watching off nearby Mirissa.",
+        "stay": {
+          "name": "Jetwing Lighthouse",
+          "thumb": "/assets/6a8207692602657800f43eea_Jetwing-Lighthouse.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cbb01b8277b4a2ab0b2b_hans-peter-traunig-PDI6nRWumto-unsplash.jpg",
+            "caption": "Galle"
+          },
+          {
+            "src": "/assets/6a85cbb0098812002ea3549a_polina-kneis-MYYdBGDS3AI-unsplash-2.jpg",
+            "caption": "A shopfront inside the fort"
+          },
+          {
+            "src": "/assets/6a85cbb0f5891fc6f10f6ead_stanislav-rozhkov-mMm4RyQ0R_c-unsplash.jpg",
+            "caption": "Galle"
+          }
+        ]
+      },
+      {
+        "meta": "Day 9 · Airport",
+        "title": "Home Bound",
+        "body": "This morning you’ll be driven to the airport at Colombo to board your flight home. Time to revel in the memories and plan your next trip.",
+        "stay": {
+          "name": "Private transfer",
+          "note": "Colombo airport, timed to your flight.",
+          "thumb": "/assets/6a85d63ef68aae9b0e8e1026_geoff-brooks-3TwThGdEUZA-unsplash.jpg"
+        },
+        "photos": []
+      }
+    ]
+  },
+  "timeAnswer": "Nine days gives Yala two full days, which is what finding a leopard usually takes. Shorter trips usually mean dropping a stop, not a safari."
+}

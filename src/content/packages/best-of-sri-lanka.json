@@ -1,0 +1,193 @@
+{
+  "order": 1,
+  "slug": "best-of-sri-lanka",
+  "title": "Sri Lanka With Little Ones",
+  "summary": "Family-paced and full of things to point at, from the hills around Kandy to a week on the south coast.",
+  "shots": [
+    {
+      "src": "/assets/6a41dd7eab34901277d0a2df_6.jpg",
+      "label": "Watching an elephant from the jeep"
+    },
+    {
+      "src": "/assets/6a85d049dd0c867f75bb1fb0_tom-paisley-v2zEiziFb44-unsplash.jpg",
+      "label": "An elephant crossing ahead of a safari jeep"
+    },
+    {
+      "src": "/assets/6a34fe1ef0bb9659676e77e8_pexels-naveen-3885421-5780322-1.jpg",
+      "label": "A safari jeep under an old tree"
+    },
+    {
+      "src": "/assets/6a85cab5c4122ac2f546505a_heshan-weeramanthri-ytNk5s_4Wys-unsplash.jpg",
+      "label": "Waterfalls in the hill country"
+    }
+  ],
+  "facts": [
+    {
+      "value": "10 days",
+      "detail": "Private, paced for children"
+    },
+    {
+      "value": "Five stops",
+      "detail": "Kandy · Nuwara Eliya · Weerawila · Galle · Colombo"
+    },
+    {
+      "value": "Best months",
+      "detail": "December to April, when the south coast is dry"
+    }
+  ],
+  "includes": {
+    "heading": "What the journey includes.",
+    "body": "Everything below is arranged before you land, with shorter drives and rooms that have space to spread out. Flights and visas sit outside the plan, and we will say so clearly in the proposal.",
+    "items": [
+      {
+        "title": "Accommodation",
+        "body": "Nine nights in family-friendly stays, from Myst by Cinnamon in Kandy to Jetwing Lighthouse in Galle and a last night at the Hilton Colombo."
+      },
+      {
+        "title": "Activities",
+        "body": "A dance show in Kandy, the Botanical Gardens, pedal boats and pony rides at Lake Gregory, a tea factory visit and jeep safaris."
+      },
+      {
+        "title": "Meals",
+        "body": "Breakfast every day, plus the meals that are part of a stay or a long drive. The rest stays open for wherever the children want to eat."
+      },
+      {
+        "title": "Transfers and driver",
+        "body": "Airport pick-up and drop-off, and the same driver and vehicle throughout, with the drives kept short and the stops frequent."
+      }
+    ]
+  },
+  "itinerary": {
+    "heading": "The island, at their pace.",
+    "lede": "Open a day to see what it holds and where you sleep.",
+    "days": [
+      {
+        "meta": "Days 1–2 · Kandy",
+        "title": "An Easy Start for the Family",
+        "body": "The dance show’s fire-walkers thrill the kids; the Botanical Gardens have lawns to run on and a treetop bat colony.",
+        "stay": {
+          "name": "Myst by Cinnamon",
+          "thumb": "/assets/6a8205a7578bf13b655eb832_mystbycinnomon.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85caa2930e02b5d0264fbc_arto-suraj-g2VBsOPD4T8-unsplash-2.jpg",
+            "caption": "Fire dancers after dark"
+          },
+          {
+            "src": "/assets/6a85caa3b24274cca9f6b538_chathura-anuradha-subasinghe-isdvqf04MDk-unsplash-2.jpg",
+            "caption": "The Temple of the Tooth, Kandy"
+          },
+          {
+            "src": "/assets/6a85caa28a3782248e1325cc_promodhya-abeysekara-gjd-7_3Ek_w-unsplash.jpg",
+            "caption": "Kandy"
+          }
+        ]
+      },
+      {
+        "meta": "Days 3–4 · Nuwara Eliya",
+        "title": "Boats, Ponies and Cool Green Air",
+        "body": "Lake Gregory brings pedal boats and pony rides, plus a tea factory visit, all at a family pace.",
+        "stay": {
+          "name": "Araliya Green",
+          "thumb": "/assets/6a821a5ef8c5e1a53bcbcfb8_Araliya-Green.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cab5c4122ac2f546505a_heshan-weeramanthri-ytNk5s_4Wys-unsplash.jpg",
+            "caption": "Waterfalls in the hill country"
+          },
+          {
+            "src": "/assets/6a85cab51c8f537ecd5c1d22_juho-s-uDk9n1yKxTw-unsplash-2.jpg",
+            "caption": "Around Nuwara Eliya"
+          },
+          {
+            "src": "/assets/6a85cab545d11fde2087318e_yasasi-rajapakse-poadBPsShxg-unsplash.jpg",
+            "caption": "Around Nuwara Eliya"
+          }
+        ]
+      },
+      {
+        "meta": "Days 5–6 · Weerawila",
+        "title": "The Bit They’ll Never Forget",
+        "body": "Safari. Jeep drives for elephants, deer and crocodiles, with pool time in between.",
+        "stay": {
+          "name": "DoubleTree by Hilton",
+          "thumb": "/assets/6a82193321e7807773ab692c_Double-Tree-by-Hilton.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85d04945d11fde208b9d2e_kanchana-amilani-fSf4hHZVA5E-unsplash.jpg",
+            "caption": "On safari"
+          },
+          {
+            "src": "/assets/6a85d049729f85529f8e8328_paul-kapischka-43fXBR3mqoY-unsplash-2.jpg",
+            "caption": "On safari"
+          },
+          {
+            "src": "/assets/6a85d049dd0c867f75bb1fb0_tom-paisley-v2zEiziFb44-unsplash.jpg",
+            "caption": "An elephant ahead of the jeep"
+          }
+        ]
+      },
+      {
+        "meta": "Days 7–8 · Galle",
+        "title": "Beach Days on the Coast",
+        "body": "An easy, walkable fort with ice-cream stops one day, the beach and pool the next.",
+        "stay": {
+          "name": "Jetwing Lighthouse",
+          "thumb": "/assets/6a8207692602657800f43eea_Jetwing-Lighthouse.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cbb01b8277b4a2ab0b2b_hans-peter-traunig-PDI6nRWumto-unsplash.jpg",
+            "caption": "Galle"
+          },
+          {
+            "src": "/assets/6a85cbb0098812002ea3549a_polina-kneis-MYYdBGDS3AI-unsplash-2.jpg",
+            "caption": "A shopfront inside the fort"
+          },
+          {
+            "src": "/assets/6a85cbb0f5891fc6f10f6ead_stanislav-rozhkov-mMm4RyQ0R_c-unsplash.jpg",
+            "caption": "Galle"
+          }
+        ]
+      },
+      {
+        "meta": "Day 9 · Colombo",
+        "title": "One Last City Night",
+        "body": "A final city night for shopping, a good meal and a quick look around the capital.",
+        "stay": {
+          "name": "Hilton Colombo",
+          "thumb": "/assets/6a821ae61c4e4e5a87d3db02_Hilton-Colombo.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85d08e49debf4a9d6c9a77_alex-azabache-8weolGgaa9w-unsplash.jpg",
+            "caption": "Colombo"
+          },
+          {
+            "src": "/assets/6a85d08e5a0e4c58b8c2b47b_igor-savelev-K2iffxrHpjk-unsplash.jpg",
+            "caption": "Colombo"
+          },
+          {
+            "src": "/assets/6a85d08e29a3907af03f4843_jalitha-hewage-Dw2QYtzSNn0-unsplash.jpg",
+            "caption": "Colombo"
+          }
+        ]
+      },
+      {
+        "meta": "Day 10 · Airport",
+        "title": "Time to Fly Home",
+        "body": "Short transfer to the airport for your flight home.",
+        "stay": {
+          "name": "Private transfer",
+          "note": "Colombo airport, timed to your flight.",
+          "thumb": "/assets/6a85d08e49debf4a9d6c9a77_alex-azabache-8weolGgaa9w-unsplash.jpg"
+        },
+        "photos": []
+      }
+    ]
+  },
+  "timeAnswer": "Ten days covers this route at a child’s pace. Shorter trips usually mean dropping a stop rather than adding driving."
+}

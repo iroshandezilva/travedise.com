@@ -1,0 +1,35 @@
+---
+import HeroScrim from "@/components/v2/hero-scrim.astro";
+import SiteNav from "@/components/v2/site-nav.astro";
+import { placesHero } from "@/data/v2/places";
+
+const SCRIM =
+  "linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.86) 0%, oklab(0 0 0 / 0) 62%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)";
+
+/** The places index hero: one photo, the title and a line. */
+---
+
+<header class="relative h-[560px] w-full shrink-0 overflow-clip gutter-v2 max-lg:h-[500px] max-md:h-[460px]">
+  <img
+    src={placesHero.image}
+    alt={placesHero.alt}
+    class="absolute inset-0 block size-full object-cover object-[50%_22%]"
+  />
+  <HeroScrim desktop={SCRIM} />
+
+  <div class="relative mx-auto h-full w-full max-w-[1280px]">
+    <SiteNav current="/places" />
+    <div class="absolute inset-x-0 bottom-[58px] flex max-w-[820px] flex-col gap-[18px] max-md:bottom-8 max-md:gap-3">
+      <h1
+        class="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] text-white max-lg:text-[48px]/[54px] max-md:text-[34px]/[40px]"
+      >
+        {placesHero.title}
+      </h1>
+      <p
+        class="m-0 max-w-[660px] text-[19px]/[29px] text-[#e8eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:text-[15px]/[24px]"
+      >
+        {placesHero.body}
+      </p>
+    </div>
+  </div>
+</header>

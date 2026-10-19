@@ -1,0 +1,47 @@
+---
+import ContainedCta from "@/components/v2/contained-cta.astro";
+import CtaBand from "@/components/v2/cta-band.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import PackageFacts from "@/components/v2/package/facts.astro";
+import PackageHero from "@/components/v2/package/hero.astro";
+import PackageIncludes from "@/components/v2/package/includes.astro";
+import PackageItinerary from "@/components/v2/package/itinerary.astro";
+import Questions from "@/components/v2/questions.astro";
+import { packageQuestions, packagesV2, packageV2Slugs, type PackageV2 } from "@/data/v2/packages";
+import Base from "@/layouts/base.astro";
+
+/** Static build: every journey with an itinerary in `packagesV2` gets a page. */
+export function getStaticPaths() {
+  return packageV2Slugs.map((slug) => ({ params: { slug } }));
+}
+
+/**
+ * The package template. Everything on the page comes from `packagesV2`, so a new
+ * journey is a content entry rather than a new page. The nav, the questions and the
+ * closing band are the same components the v2 home page uses.
+ */
+const { slug } = Astro.params;
+const pkg = packagesV2[slug as keyof typeof packagesV2] as PackageV2;
+const title = `${pkg.title} — Travedise`;
+---
+
+<Base
+  title={title}
+  description={pkg.summary}
+  canonical={`/packages/${slug}`}
+  image={pkg.shots[0].src}
+  ogType="article"
+>
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PackageHero title={pkg.title} summary={pkg.summary} shots={pkg.shots} />
+    <main>
+      <PackageFacts facts={pkg.facts} />
+      <PackageIncludes includes={pkg.includes} />
+      <PackageItinerary itinerary={pkg.itinerary} />
+      <ContainedCta />
+      <Questions items={packageQuestions(pkg)} />
+      <CtaBand />
+    </main>
+    <FooterWide />
+  </div>
+</Base>

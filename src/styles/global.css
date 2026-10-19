@@ -1,0 +1,585 @@
+@import "tailwindcss";
+
+@source not "../../public";
+
+/* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
+   write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1920px;
+
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-navy: #091733; /* primary — headings, dark sections, primary buttons */
+  --color-navy-800: #122242;
+  --color-ink: #0e0e0d;
+  --color-slate: #656e7f; /* body text */
+  --color-slate-400: #848b99;
+  --color-slate-300: #9ea7b8;
+  --color-lime: #a0f751; /* accent */
+  --color-surface: #f7f7f7;
+  --color-surface-2: #f8f8f8;
+  --color-surface-3: #f3f1f1;
+  --color-line: #0917331a; /* hairline borders on light backgrounds */
+  --color-line-strong: #09173326;
+
+  /* v2 home page (/) — a separate palette from the rest of the site. */
+  --color-v2-navy: #101b2e; /* dark sections, headings, primary buttons */
+  --color-v2-cream: #f7f5ef; /* warm alternate section background */
+  --color-v2-sky: #47cdff; /* accent — CTAs */
+  --color-v2-sand: #c4af8c; /* step numerals, the dot between card facts */
+  --color-v2-ember: #c96a45; /* the arrow disc on the closing CTA */
+  --color-v2-body: #545c63; /* body copy on light backgrounds */
+  --color-v2-muted: #cbd8df; /* body copy on navy */
+
+  /* Headings shrink at each breakpoint — see the overrides in @layer base. */
+  --text-h1: 70px;
+  --text-h1--line-height: 109%;
+  --text-h2: 52px;
+  --text-h2--line-height: 112%;
+  --text-h3: 40px;
+  --text-h3--line-height: 112.5%;
+  --text-h4: 32px;
+  --text-h4--line-height: 144%;
+  --text-h5: 24px;
+  --text-h5--line-height: 133%;
+  --text-h6: 20px;
+  --text-h6--line-height: 150%;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 150%;
+
+  --radius-card: 20px;
+  --radius-panel: 25px;
+
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* button press feedback */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1); /* looping motion — no snap at the ends */
+
+  --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Astro's <Font> sets these variables on :root; `inline` resolves them where they're used. */
+@theme inline {
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+  --font-heading: var(--font-inter-tight), system-ui, sans-serif;
+  --font-serif: Georgia, Times, "Times New Roman", serif;
+  --font-display: var(--font-ragmont), Georgia, serif;
+}
+
+@layer base {
+  @media (width < 992px) {
+    :root {
+      --text-h1: 60px;
+      --text-h2: 45px;
+      --text-h3: 36px;
+      --text-h4: 28px;
+    }
+  }
+  @media (width < 768px) {
+    :root {
+      --text-h1: 45px;
+      --text-h2: 36px;
+      --text-h3: 32px;
+      --text-h6: 18px;
+      --text-body-lg: 16px;
+    }
+  }
+  @media (width < 480px) {
+    :root {
+      --text-h1: 36px;
+      --text-h2: 32px;
+      --text-h3: 28px;
+      --text-h4: 25px;
+      --text-h5: 22px;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-base/[150%] text-slate;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h6 {
+    @apply font-heading;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium text-navy;
+  }
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5 {
+    @apply text-h5;
+  }
+  h6 {
+    @apply text-h6;
+  }
+  img {
+    @apply inline-block max-w-full align-middle;
+  }
+}
+
+@utility container-site {
+  @apply mx-auto w-full max-w-[1271px] px-[15px];
+}
+
+/* <Reveal> — see components/ui/reveal.tsx */
+@layer components {
+  [data-reveal] {
+    transition:
+      opacity 1s var(--ease-out-quart) var(--reveal-delay, 0ms),
+      translate 1s var(--ease-out-quart) var(--reveal-delay, 0ms);
+  }
+  [data-reveal]:not([data-shown]) {
+    opacity: 0;
+  }
+  [data-reveal="bottom"]:not([data-shown]) {
+    translate: 0 100px;
+  }
+  [data-reveal="left"]:not([data-shown]) {
+    translate: -100px 0;
+  }
+  /* The v2 preset. Shorter and closer than `bottom` (1s / 100px) on purpose: the v2
+     home has nine sections, and a long slide on each one adds up to a page that feels
+     like it is catching up with the reader rather than keeping pace. */
+  [data-reveal="rise"] {
+    transition:
+      opacity 560ms var(--ease-out-quint) var(--reveal-delay, 0ms),
+      translate 560ms var(--ease-out-quint) var(--reveal-delay, 0ms);
+  }
+  [data-reveal="rise"]:not([data-shown]) {
+    translate: 0 18px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      transition: none;
+      opacity: 1 !important;
+      translate: none !important;
+    }
+  }
+}
+
+/* v2 pages: Ragmont for display type, Inter Tight for everything else. `.v2` sets the
+   body face so a page can opt into it. */
+@utility container-v2 {
+  @apply mx-auto w-full max-w-[1280px];
+}
+
+/* Horizontal page padding for every v2 section — 54px on the 1440 canvas. */
+@utility gutter-v2 {
+  @apply px-[54px] max-lg:px-8 max-md:px-5;
+}
+
+@layer components {
+  .v2 {
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
+  }
+
+  /* Every in-page jump on this page — the hero's scroll cue, "How a quote is built",
+     the footer's section links — travels there instead of teleporting, so the reader
+     keeps their place. `:has` scopes it to v2; the rest of the site jumps as before. */
+  @media (prefers-reduced-motion: no-preference) {
+    html:has(.v2) {
+      scroll-behavior: smooth;
+    }
+  }
+  .v2 section[id] {
+    scroll-margin-top: 24px;
+  }
+
+  /* The quiet text links fade between their two states rather than snapping. The pill
+     buttons name their own transition in a utility class, which wins over this. */
+  .v2 a {
+    transition:
+      opacity 150ms var(--ease-out-quad),
+      color 150ms var(--ease-out-quad);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2 a {
+      transition: none;
+    }
+  }
+
+  /* The photo strip scrolls one full copy of the images, then loops. The track holds two
+     copies, so -50% lands exactly where it started. Hover holds it still. */
+  .v2-gallery-track {
+    display: flex;
+    width: max-content;
+    gap: 14px;
+    /* A wide strip of large photos moving without pause: holding it on its own layer
+       keeps the browser from re-rasterising it mid-loop, which is where the judder in
+       a long marquee comes from. */
+    will-change: transform;
+    animation: v2-gallery-slide 80s linear infinite;
+  }
+  /* Only where there is a cursor to hover with. On a phone a tap latches :hover on,
+     which would leave the strip stopped with nothing left to un-hover it. */
+  @media (hover: hover) and (pointer: fine) {
+    .v2-gallery-track:hover {
+      animation-play-state: paused;
+    }
+  }
+  /* Smaller frames on a phone, so the strip still moves at a readable pace. */
+  @media (width < 768px) {
+    .v2-gallery-track {
+      gap: 10px;
+      animation-duration: 60s;
+    }
+  }
+  @keyframes v2-gallery-slide {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-gallery-track {
+      animation: none;
+    }
+  }
+}
+
+@layer components {
+  /* On phones the wide card grids become one horizontal, snapping row. The layout
+     itself is utility classes on the element; this only hides the scrollbar, which
+     Tailwind has no utility for. */
+  .v2-rail {
+    scrollbar-width: none;
+  }
+  .v2-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Each step of the trip-planning form rises in as it replaces the last. A keyframe is
+     fine here: the step is a fresh element, so there is nothing to retarget from. */
+  .v2-step-in {
+    animation: v2-step-in 450ms var(--ease-out-quint);
+  }
+  @keyframes v2-step-in {
+    from {
+      opacity: 0;
+      translate: 0 12px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-step-in {
+      animation: none;
+    }
+  }
+
+  /* The phone menu and its items. Transitions rather than keyframes, so opening and
+     closing in quick succession retargets from wherever the motion got to instead of
+     restarting — and so there is a real exit rather than a pop-out. */
+  .v2-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 180ms var(--ease-out-quart),
+      visibility 0s linear 180ms;
+  }
+  .v2-menu[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 240ms var(--ease-out-quart),
+      visibility 0s;
+  }
+  .v2-menu-item {
+    opacity: 0;
+    translate: 0 14px;
+    transition:
+      opacity 220ms var(--ease-out-quint),
+      translate 220ms var(--ease-out-quint);
+  }
+  /* Opening, each item follows the one above it. Closing, they all leave together and
+     quicker — an exit the user has already decided on should get out of the way. */
+  .v2-menu[data-open="true"] .v2-menu-item {
+    opacity: 1;
+    translate: none;
+    transition-duration: 300ms;
+    transition-delay: calc(var(--i, 0) * 40ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-menu,
+    .v2-menu-item {
+      transition-duration: 1ms;
+      translate: none;
+    }
+  }
+}
+
+@layer components {
+  /* An accordion panel. The row stays mounted and its height is transitioned through
+     a grid track, which gives an interruptible open *and* close for free. `inert` on
+     the closed panel keeps its links out of the tab order. */
+  .v2-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    /* Closing is the shorter of the two: the reader is already on their way to the
+       next question. */
+    transition:
+      grid-template-rows 190ms var(--ease-out-quart),
+      opacity 140ms var(--ease-out-quart);
+  }
+  .v2-panel[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition-duration: 260ms, 200ms;
+  }
+  .v2-panel > * {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* Card photos lift a little under the cursor. Gated on a real pointer, because a
+     tap would otherwise latch the scale on with nothing to un-hover it. */
+  .v2-card-img {
+    transition: transform 400ms var(--ease-out-quart);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .v2-card-img {
+      transform: scale(1.02);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-panel,
+    .v2-card-img {
+      transition-duration: 1ms;
+    }
+    .group:hover .v2-card-img {
+      transform: none;
+    }
+  }
+}
+
+@layer components {
+  /* The hero's scroll cue. A 900px full-bleed header gives no other sign that the
+     page continues, so the arrow carries that on its own. */
+  .v2-scroll-cue {
+    animation: v2-scroll-cue 1.8s var(--ease-in-out-sine) infinite alternate;
+  }
+  @keyframes v2-scroll-cue {
+    to {
+      translate: 0 6px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-scroll-cue {
+      animation: none;
+    }
+  }
+}
+
+@layer components {
+  /* Four photo columns that share a row. Hovering the row narrows every column, and
+     the one under the cursor takes the room; its note fades up under the place name.
+     The other captions step back while one column is open. Gated on a real pointer —
+     on a phone the columns become a 2×2 grid with every note showing. */
+  .v2-reveal {
+    /* The column and the photo inside it are one moving thing, so they share a
+       duration and a curve — a photo that keeps zooming after its column has stopped
+       is what makes an expander feel loose. The captions only fade, so they are
+       quicker: at the column's pace they would lag behind the room they sit in. */
+    --v2-reveal-dur: 540ms;
+    --v2-reveal-text: 300ms;
+    display: flex;
+    gap: 8px;
+  }
+  .v2-reveal-col {
+    position: relative;
+    margin: 0;
+    flex: 1 1 0%;
+    min-width: 0;
+    overflow: hidden;
+    transition: flex-grow var(--v2-reveal-dur) var(--ease-out-quint);
+  }
+  .v2-reveal-col img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92);
+    transition:
+      transform var(--v2-reveal-dur) var(--ease-out-quint),
+      filter var(--v2-reveal-dur) var(--ease-out-quint);
+  }
+  .v2-reveal-col figcaption {
+    position: absolute;
+    inset: auto 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 20px 20px;
+    background-image: linear-gradient(0deg, rgb(12 21 38 / 0.82) 0%, rgb(12 21 38 / 0) 100%);
+    transition: opacity var(--v2-reveal-text) var(--ease-out-quart);
+  }
+  .v2-reveal-place {
+    font-size: 15px;
+    line-height: 21px;
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+  .v2-reveal-note {
+    font-size: 13px;
+    line-height: 19px;
+    color: rgb(255 255 255 / 0.78);
+    opacity: 0;
+    translate: 0 7px;
+    transition:
+      opacity var(--v2-reveal-text) var(--ease-out-quart) 120ms,
+      translate var(--v2-reveal-text) var(--ease-out-quint) 120ms;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .v2-reveal:hover .v2-reveal-col {
+      flex-grow: 0.62;
+    }
+    .v2-reveal .v2-reveal-col:hover {
+      flex-grow: 2.14;
+    }
+    .v2-reveal .v2-reveal-col:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.04);
+    }
+    .v2-reveal:hover .v2-reveal-col figcaption {
+      opacity: 0;
+    }
+    .v2-reveal .v2-reveal-col:hover figcaption {
+      opacity: 1;
+    }
+    .v2-reveal .v2-reveal-col:hover .v2-reveal-note {
+      opacity: 1;
+      translate: none;
+    }
+  }
+  @media (width < 768px) {
+    .v2-reveal {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .v2-reveal-col {
+      aspect-ratio: 4 / 5;
+    }
+    .v2-reveal-col figcaption {
+      padding: 14px;
+    }
+    .v2-reveal-place {
+      white-space: normal;
+    }
+    .v2-reveal-note {
+      opacity: 1;
+      translate: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-reveal-col,
+    .v2-reveal-col img,
+    .v2-reveal-col figcaption,
+    .v2-reveal-note {
+      transition: none;
+    }
+  }
+
+  /* About page: photos cut as postage stamps. The mask punches a scalloped edge into a
+     hairline frame and again into the white face inside it, so the frame shows as a thin
+     rim. Each stamp sets its own `--tilt`; hovering the cluster straightens them all. */
+  .v2-stamp {
+    --r: 9px;
+    --stamp-edge:
+      radial-gradient(var(--r) at 50% 0, #0000 98%, #000) 50% 0 / calc(4 * var(--r)) 100%,
+      radial-gradient(var(--r) at 50% 100%, #0000 98%, #000) 50% 0 / calc(4 * var(--r)) 100%,
+      radial-gradient(var(--r) at 0 50%, #0000 98%, #000) 0 50% / 100% calc(4 * var(--r)),
+      radial-gradient(var(--r) at 100% 50%, #0000 98%, #000) 0 50% / 100% calc(4 * var(--r));
+    position: absolute;
+    margin: 0;
+    padding: 1px;
+    background-color: rgb(16 27 46 / 0.1);
+    filter: drop-shadow(0 1px 1px rgb(16 27 46 / 0.05)) drop-shadow(0 14px 28px rgb(16 27 46 / 0.14));
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+    mask: var(--stamp-edge);
+    mask-composite: intersect;
+  }
+  .v2-stamp-face {
+    width: 100%;
+    height: 100%;
+    padding: 13px 13px 44px;
+    background-color: #fff;
+    mask: var(--stamp-edge);
+    mask-composite: intersect;
+  }
+  .v2-stamp img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .v2-stamp figcaption {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 14px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(129 146 163);
+  }
+  .v2-stamps:hover .v2-stamp {
+    transform: rotate(0deg) translateY(-4px);
+  }
+  @media (width < 768px) {
+    .v2-stamp {
+      --r: 6px;
+    }
+    .v2-stamp-face {
+      padding: 8px 8px 30px;
+    }
+    .v2-stamp figcaption {
+      bottom: 9px;
+      font-size: 9px;
+      line-height: 12px;
+      letter-spacing: 0.06em;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-stamp {
+      transition: none;
+    }
+    .v2-stamps:hover .v2-stamp {
+      transform: rotate(var(--tilt, 0deg));
+    }
+  }
+}

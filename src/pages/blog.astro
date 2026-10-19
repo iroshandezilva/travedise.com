@@ -1,0 +1,27 @@
+---
+import FeaturedNote from "@/components/v2/blog/featured-note.astro";
+import NotesBrowser from "@/components/v2/blog/notes-browser.astro";
+import NotesHero from "@/components/v2/blog/notes-hero.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import { noteCategories, notes } from "@/data/blog";
+import { images } from "@/data/v2/images";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "Travel notes — Travedise";
+const DESCRIPTION =
+  "What we have learned from running these routes: when to go, where to slow down, and the small decisions that make a trip feel unhurried.";
+
+/** The notes index: the newest note up top, then every other note behind topic filters. */
+const [featured, ...rest] = notes;
+---
+
+<Base title={TITLE} description={DESCRIPTION} canonical="/blog" image={images.heroPoster} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <NotesHero />
+    <main>
+      <FeaturedNote note={featured} />
+      <NotesBrowser notes={rest} categories={noteCategories} />
+    </main>
+    <FooterWide />
+  </div>
+</Base>

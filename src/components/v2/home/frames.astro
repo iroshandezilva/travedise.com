@@ -1,0 +1,84 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import { frames } from "@/data/v2/home";
+
+/**
+ * "Frames from the road" — a captioned photo strip that scrolls on its own. It moves
+ * for longer than five seconds, so it carries a pause button as well as holding still
+ * under the cursor. The track holds the frames twice so the loop lands where it began;
+ * the second copy is hidden from assistive tech.
+ */
+---
+
+<section id="gallery" class="w-full shrink-0 overflow-clip bg-v2-navy py-[60px] max-md:py-14" data-frames>
+  <Reveal
+    from="rise"
+    class="container-v2 mb-10 flex items-end justify-between gap-[60px] gutter-v2 max-lg:flex-col max-lg:items-start max-lg:gap-5 max-md:mb-[26px]"
+  >
+    <h2
+      class="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-white max-md:text-[30px]/[38px]"
+    >
+      Frames from the road.
+    </h2>
+    <div
+      class="flex shrink-0 items-end gap-[26px] max-lg:w-full max-lg:justify-between max-md:flex-col max-md:items-start max-md:gap-4"
+    >
+      <p
+        class="m-0 w-[320px] text-[16px]/[25px] text-[#b8c8d1] max-lg:w-auto max-lg:max-w-[520px] max-md:text-[15px]/[23px]"
+      >
+        Ordered the way a day runs, from first light on the water to the lamps coming on in Kandy. Each frame says
+        where it was taken and which journey goes there.
+      </p>
+      {/* With reduced motion the strip never moves, so there is nothing to pause. */}
+      <button
+        type="button"
+        aria-pressed="false"
+        data-frames-toggle
+        class="flex h-11 shrink-0 items-center gap-2.5 rounded-full border border-white/40 bg-transparent px-[18px] text-[14px] text-white transition-[background-color,scale] duration-150 ease-out-quad hover:bg-white/8 active:scale-[0.97] motion-reduce:hidden"
+      >
+        Pause
+      </button>
+    </div>
+  </Reveal>
+
+  <div class="w-full overflow-hidden">
+    {/* Only set when paused: an inline "running" would beat the hover rule. */}
+    <div class="v2-gallery-track" data-frames-track>
+      {
+        [false, true].map((copy) =>
+          frames.map((frame) => (
+            <figure
+              aria-hidden={copy ? "true" : undefined}
+              class="m-0 flex w-[400px] shrink-0 flex-col gap-3 max-md:w-[260px] max-md:gap-2.5"
+            >
+              <img
+                src={frame.src}
+                alt={copy ? "" : frame.alt}
+                loading="lazy"
+                class="block h-[300px] w-full object-cover max-md:h-[195px]"
+              />
+              <figcaption class="flex flex-col gap-[3px]">
+                <span class="text-[15px]/[21px] text-white max-md:text-[14px]/[20px]">{frame.place}</span>
+                <span class="text-[13px]/[19px] text-[#8a9eac]">On {frame.journey}</span>
+              </figcaption>
+            </figure>
+          )),
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>("[data-frames]")) {
+    const button = root.querySelector<HTMLButtonElement>("[data-frames-toggle]")!;
+    const track = root.querySelector<HTMLElement>("[data-frames-track]")!;
+    button.addEventListener("click", () => {
+      const paused = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(paused));
+      button.textContent = paused ? "Play" : "Pause";
+      if (paused) track.style.animationPlayState = "paused";
+      else track.style.removeProperty("animation-play-state");
+    });
+  }
+</script>

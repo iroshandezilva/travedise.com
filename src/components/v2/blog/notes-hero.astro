@@ -1,0 +1,40 @@
+---
+import { images } from "@/data/v2/images";
+
+import HeroScrim from "../hero-scrim.astro";
+import SiteNav from "../site-nav.astro";
+
+/** The /blog hero: one wide photo, the title, a line about the notes and who writes them. */
+---
+
+<header class="relative h-[520px] w-full shrink-0 overflow-clip gutter-v2 max-lg:h-[480px] max-md:h-[420px]">
+  <img
+    src={images.heroPoster}
+    alt="Mist lifting off forest and water in the early morning"
+    class="absolute inset-0 block size-full object-cover"
+    style={{ objectPosition: "50% 60%" }}
+  />
+  <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.86) 0%, oklab(0 0 0 / 0) 66%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
+
+  <div class="relative mx-auto h-full w-full max-w-[1280px]">
+    <SiteNav current="/blog" />
+    <div
+      class="absolute inset-x-0 bottom-[58px] flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:bottom-8"
+    >
+      <div class="flex max-w-[760px] flex-col gap-[18px] max-md:gap-3">
+        <h1
+          class="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] text-white max-lg:text-[48px]/[54px] max-md:text-[34px]/[40px]"
+        >
+          Travel notes
+        </h1>
+        <p
+          class="m-0 max-w-[620px] text-[19px]/[29px] text-[#e8eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:text-[15px]/[24px]"
+        >
+          What we have learned from running these routes: when to go, where to slow down, and the small decisions
+          that make a trip feel unhurried.
+        </p>
+      </div>
+      <p class="m-0 shrink-0 text-[15px]/[22px] text-[#c4d2db] max-md:hidden">Written by the team, from the road.</p>
+    </div>
+  </div>
+</header>

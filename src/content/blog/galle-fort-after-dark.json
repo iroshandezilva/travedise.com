@@ -1,0 +1,73 @@
+{
+  "slug": "galle-fort-after-dark",
+  "title": "Galle Fort after dark",
+  "titleEm": "after dark",
+  "standfirst": "The day-trippers leave by six. That is when the old fort is at its best.",
+  "dek": "The day-trippers leave by six. That is when the old fort is at its best.",
+  "category": "Coast",
+  "date": "2026-05-19",
+  "author": {
+    "name": "The Travedise team",
+    "role": "Travel designers in Galle and Bundeena"
+  },
+  "image": {
+    "src": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+    "alt": "A lantern-lit street in Galle"
+  },
+  "body": [
+    {
+      "type": "lead",
+      "text": [
+        "Galle Fort is a walled town on a headland: first Portuguese, then Dutch, then British, and lived in the whole time. By day it is full of coaches from Colombo. By evening it belongs to the people who stayed."
+      ]
+    },
+    {
+      "type": "h2",
+      "id": "stay",
+      "text": "Stay inside the walls"
+    },
+    {
+      "type": "p",
+      "text": [
+        "Most visitors see the fort in a couple of hours and drive on. We suggest two nights inside it. The streets are small enough to walk end to end in fifteen minutes, and once the traffic has gone you can hear the sea from almost anywhere."
+      ]
+    },
+    {
+      "type": "h2",
+      "id": "ramparts",
+      "text": "The ramparts at sunset"
+    },
+    {
+      "type": "p",
+      "text": [
+        "Walk the walls from the old gate towards the lighthouse in the last hour of light. Families come out, cricket games start on the grass below the clock tower, and the divers at Flag Rock jump for anyone watching."
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "Arrive at five, not at ten. The fort is a different place once the coaches have gone."
+    },
+    {
+      "type": "h2",
+      "id": "eat",
+      "text": "Dinner, and after"
+    },
+    {
+      "type": "p",
+      "text": [
+        "The fort has more good places to eat than anywhere else on the south coast, from rice and curry in a courtyard to seafood on a rooftop. It is quiet by eleven. Most people are up early for the beaches, and the walls are at their best again at first light."
+      ]
+    },
+    {
+      "type": "figure",
+      "src": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg",
+      "alt": "An empty stretch of sand on the south coast",
+      "caption": "Twenty minutes east of the fort, the beaches start. Most routes spend a few days on them next."
+    },
+    {
+      "type": "note",
+      "label": "When to go",
+      "text": "The south coast is at its best from December to April. The fort itself is worth a visit all year: rain here comes in short bursts, and the streets are lovely wet."
+    }
+  ]
+}
