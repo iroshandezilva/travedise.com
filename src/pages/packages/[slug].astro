@@ -22,12 +22,12 @@ export function getStaticPaths() {
  */
 const { slug } = Astro.params;
 const pkg = packagesV2[slug as keyof typeof packagesV2] as PackageV2;
-const title = `${pkg.title} — Travedise`;
+const title = `${pkg.seo?.title ?? pkg.title} — Travedise`;
 ---
 
 <Base
   title={title}
-  description={pkg.summary}
+  description={pkg.seo?.description ?? pkg.summary}
   canonical={`/packages/${slug}`}
   image={pkg.shots[0].src}
   ogType="article"

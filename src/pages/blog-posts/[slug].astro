@@ -18,10 +18,10 @@ export function getStaticPaths() {
  * `src/content/blog`, so a new note is a content entry rather than a new page.
  */
 const note = getNote(Astro.params.slug) as Note;
-const title = `${note.title} — Travedise`;
+const title = `${note.seo?.title ?? note.title} — Travedise`;
 ---
 
-<Base title={title} description={note.dek} canonical={note.href} image={note.image.src} ogType="article" publishedTime={note.date}>
+<Base title={title} description={note.seo?.description ?? note.dek} canonical={note.href} image={note.image.src} ogType="article" publishedTime={note.date}>
   <div class="v2 flex flex-col overflow-clip bg-white">
     <PostHero note={note} />
     <main>
