@@ -164,7 +164,7 @@ const weddings = defineCollection({
     summary: z.string(),
     image: photo,
     facts: z.array(z.object({ value: z.string(), detail: z.string() })),
-    intro: z.object({ heading: z.string(), paragraphs: z.tuple([z.string(), z.string()]) }),
+    intro: z.object({ heading: z.string(), paragraphs: z.array(z.string()).length(2) }),
     schedule: z.object({
       heading: z.string(),
       lede: z.string(),
