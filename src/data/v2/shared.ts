@@ -11,3 +11,6 @@ export const questionsIntro = data.questionsIntro;
 
 /** One question and its answer, in the open-one-at-a-time lists. */
 export type QuestionItem = { q: string; a: string };
+
+/** The footer's words that live in content: the accreditations in the legal row. */
+export const footer = data.footer as { accreditations: string[] };

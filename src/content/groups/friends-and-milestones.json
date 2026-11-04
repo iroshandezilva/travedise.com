@@ -3,7 +3,7 @@
   "slug": "friends-and-milestones",
   "name": "Friends and milestones",
   "theme": "Birthdays, reunions, bachelor weeks",
-  "size": "8 to 24 travellers",
+  "size": "6 to 24 travellers",
   "short": "A 40th, a reunion or a last trip before the wedding, with one villa and everyone in it.",
   "summary": "A 40th, a university reunion, a last week away before the wedding. One villa, one plan, and nobody stuck organising it.",
   "image": {
@@ -12,7 +12,7 @@
   },
   "facts": [
     {
-      "value": "8 to 24",
+      "value": "6 to 24",
       "detail": "Travellers"
     },
     {
@@ -84,7 +84,7 @@
   "questions": [
     {
       "q": "What is the smallest group you plan for?",
-      "a": "Eight travellers. For fewer, one of our journeys tailored to you usually works better."
+      "a": "Six travellers. For fewer, one of our journeys tailored to you usually works better."
     },
     {
       "q": "Can people join for part of the trip?",

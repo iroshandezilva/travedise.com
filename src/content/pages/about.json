@@ -5,6 +5,24 @@
     "image": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
     "alt": "A Travedise jeep on the red road south"
   },
+  "proofPoints": [
+    {
+      "title": "Our own vehicles and drivers",
+      "detail": "On every journey, airport to airport"
+    },
+    {
+      "title": "An office in Australia",
+      "detail": "In Bundeena, NSW, as well as Galle"
+    },
+    {
+      "title": "A reply within a day",
+      "detail": "From the person who plans your trip"
+    },
+    {
+      "title": "SLTDA registered, ATAS accredited",
+      "detail": "Licensed in Sri Lanka, accredited in Australia"
+    }
+  ],
   "opening": {
     "heading": "We kept meeting people who had seen the island without ever stopping in it.",
     "paragraphs": [
@@ -39,6 +57,7 @@
       "caption": "Tangalle · 17:40"
     }
   ],
+  "showTeam": false,
   "team": {
     "heading": "Five of us, and the drivers who make it work.",
     "intro": "You will deal with one of us from the first message to the flight home. The others are who we ask when a question is outside what we know well.",

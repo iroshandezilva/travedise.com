@@ -145,5 +145,11 @@
     "body": "A few practical questions are worth settling early. We can talk through the rest together.",
     "action": "Talk to a travel designer ↗",
     "href": "/plan-your-trip"
+  },
+  "footer": {
+    "accreditations": [
+      "SLTDA registered",
+      "ATAS accredited"
+    ]
   }
 }

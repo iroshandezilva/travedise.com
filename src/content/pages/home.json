@@ -5,20 +5,20 @@
   },
   "proofPoints": [
     {
-      "title": "Private driver and vehicle",
+      "title": "Our own vehicles and drivers",
       "detail": "On every journey, airport to airport"
+    },
+    {
+      "title": "An office in Australia",
+      "detail": "In Bundeena, NSW, as well as Galle"
+    },
+    {
+      "title": "A reply within a day",
+      "detail": "From the person who plans your trip"
     },
     {
       "title": "Stays we have slept in",
       "detail": "Chosen in person, never from a list"
-    },
-    {
-      "title": "One planner throughout",
-      "detail": "The same person answers while you travel"
-    },
-    {
-      "title": "[RATING] from [N] travellers",
-      "detail": "[REVIEW SOURCE]. Verify before publishing"
     }
   ],
   "regions": [

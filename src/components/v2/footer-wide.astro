@@ -1,4 +1,5 @@
 ---
+import { footer } from "@/data/v2/shared";
 import { cn } from "@/lib/cn";
 import { SOCIALS } from "@/lib/socials";
 
@@ -7,7 +8,8 @@ const PACKAGE_STATEMENT =
 
 /**
  * The wide v2 footer: a closing statement, a newsletter signup, four columns of links
- * and the legal row, over a gradient lit from both top corners and the bottom edge.
+ * and the legal row with our accreditations, over a gradient lit from both top corners
+ * and the bottom edge.
  *
  * Each page closes on its own statement. The home page sets it in the body face, as
  * its design does; the package pages set theirs in the display face.
@@ -152,6 +154,8 @@ const legal = [
         {legal.map((l) => <a href={l.href} class={muted}>{l.label}</a>)}
       </nav>
       <div class="flex gap-7 max-md:flex-col max-md:gap-1.5">
+        {/* Text only until we have the logos to show beside it. */}
+        <span class="text-[14px]/[20px] text-[#c1c9d2]">{footer.accreditations.join(" · ")}</span>
         <span class="text-[14px]/[20px] text-[#8a9eac]">© Travedise 2026</span>
         <span class="text-[14px]/[20px] text-[#8a9eac]">Design and developed by Haux Studio</span>
       </div>

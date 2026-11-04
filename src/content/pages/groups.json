@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Group vacations in Sri Lanka",
-    "body": "For eight or more people travelling together. Tell us who you are and why you are coming, and we look after everything around it: rooms, transport, guides and the moments that bring a group together.",
+    "body": "For six or more people travelling together. Tell us who you are and why you are coming, and we look after everything around it: rooms, transport, guides and the moments that bring a group together.",
     "image": "/v2/e77a66899f34c2489eb802df5e80cac9.jpg",
     "alt": "Two travellers looking across the forest to Sigiriya rock at first light"
   },
@@ -13,7 +13,7 @@
     ],
     "facts": [
       {
-        "value": "8 to 200",
+        "value": "6 to 200",
         "detail": "Travellers in a group"
       },
       {
@@ -93,7 +93,7 @@
   "questions": [
     {
       "q": "What counts as a group?",
-      "a": "Eight travellers or more. For smaller parties, one of our journeys, tailored to you, usually works better."
+      "a": "Six travellers or more. For smaller parties, one of our journeys, tailored to you, usually works better."
     },
     {
       "q": "Is there a fixed itinerary?",
@@ -144,7 +144,7 @@
         "id": "size",
         "label": "How many travellers?",
         "type": "number",
-        "min": 8,
+        "min": 6,
         "placeholder": "12",
         "required": true,
         "row": "when"
