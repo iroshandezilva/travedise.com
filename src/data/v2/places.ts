@@ -73,6 +73,8 @@ export type Place = {
   nearby: { heading: string; slugs: [string, string, string] };
   /** The line under "Want {name} in your route?". */
   ctaBody: string;
+  /** Optional search overrides: `title` replaces the name in <title>, `description` the meta description. */
+  seo?: { title?: string; description?: string };
 };
 
 export const places: Place[] = Object.values(

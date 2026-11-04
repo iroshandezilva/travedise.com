@@ -44,6 +44,8 @@ export type PackageV2 = {
   };
   /** The answer to "How much time should we allow?" in this page's questions. */
   timeAnswer: string;
+  /** Optional search overrides: `title` replaces the name in <title>, `description` the meta description. */
+  seo?: { title?: string; description?: string };
 };
 
 const all = Object.values(

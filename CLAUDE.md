@@ -53,3 +53,16 @@ Never merge on your own initiative or for anyone else.
 - Words and photos live in `src/content/**` as JSON, so they can be changed without touching components
   (and by the CMS, once it is added) — don't hardcode copy in components.
 - Preview a production build with `pnpm build && pnpm preview`.
+
+## Sub-agents and skills
+
+Project agents are in `.claude/agents/`, their skills in `.claude/skills/`. The usual flow:
+
+```
+web-designer (canvas, until the owner approves) → design-porter → build-verifier → astro-reviewer → pr-shipper
+content-writer (src/content JSON, SEO, shot lists) ─────────────┘
+```
+
+Also: `motion-polisher`, `agent-readiness-checker`, `infra-guard` (workflows, Cloudflare,
+Functions — asks first), `cms-keeper` (Stacki Studio). The design reference is `docs/design.html`;
+open it in a browser.

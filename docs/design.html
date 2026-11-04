@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travedise design system</title>
+<!--
+  The visual reference for the v2 design language. Open this file in a browser from the
+  repository (the fonts and photos load from ../src/assets and ../public).
+  Source of truth for every value is src/styles/global.css — update both together.
+  Rules and the component catalogue: .claude/skills/travedise-design-system/SKILL.md
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: Ragmont; src: url("../src/assets/fonts/Ragmont-Variable.woff2") format("woff2"); font-weight: 100 900; font-stretch: 75% 150%; font-style: normal; }
+  @font-face { font-family: Ragmont; src: url("../src/assets/fonts/Ragmont-Variable-Italic.woff2") format("woff2"); font-weight: 100 900; font-stretch: 75% 150%; font-style: italic; }
+
+  :root {
+    --v2-navy: #101b2e; --v2-cream: #f7f5ef; --v2-sky: #47cdff; --v2-sand: #c4af8c;
+    --v2-ember: #c96a45; --v2-body: #545c63; --v2-muted: #cbd8df;
+    --hair: #101b2e1a;
+    --display: Ragmont, Georgia, serif; --sans: "Inter Tight", system-ui, sans-serif;
+    --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94); --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1); --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--v2-body); font: 16px/1.5 var(--sans); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 54px; }
+  @media (width < 768px) { .wrap { padding: 0 20px; } }
+  header.top { background: var(--v2-navy); color: var(--v2-muted); padding: 72px 0 56px; }
+  header.top h1 { font: 400 clamp(40px, 7vw, 70px)/1.09 var(--display); color: #fff; margin: 0 0 12px; }
+  header.top h1 em { font-style: italic; }
+  nav.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  nav.toc a { color: #fff; text-decoration: none; font-size: 14px; padding: 6px 14px; border: 1px solid #ffffff33; border-radius: 999px; }
+  section { padding: 64px 0; border-bottom: 1px solid var(--hair); }
+  section.cream { background: var(--v2-cream); }
+  h2.sec { font: 500 32px/1.3 var(--sans); color: var(--v2-navy); margin: 0 0 6px; }
+  p.note { margin: 0 0 32px; max-width: 70ch; }
+  code { font: 13px/1.4 ui-monospace, Menlo, monospace; background: #101b2e0d; padding: 1px 5px; border-radius: 4px; color: var(--v2-navy); }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
+  .sw { border-radius: 20px; overflow: hidden; border: 1px solid var(--hair); background: #fff; }
+  .sw .chip { height: 110px; }
+  .sw .meta { padding: 12px 14px; font-size: 13px; }
+  .sw .meta b { display: block; color: var(--v2-navy); font-weight: 600; }
+  .legacy .sw .chip { height: 56px; }
+
+  .spec { display: grid; grid-template-columns: 160px 1fr; gap: 6px 24px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--hair); }
+  .spec .lab { font-size: 13px; }
+  .spec .lab b { display: block; color: var(--v2-navy); }
+  .d { font-family: var(--display); color: var(--v2-navy); font-weight: 400; margin: 0; }
+  .s { font-family: var(--sans); color: var(--v2-navy); font-weight: 500; margin: 0; }
+  @media (width < 768px) { .spec { grid-template-columns: 1fr; } }
+
+  .row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; }
+  .radius { width: 160px; height: 110px; background: var(--v2-cream); border: 1px solid var(--hair); display: grid; place-items: end start; padding: 12px; font-size: 13px; }
+  .bp { display: grid; gap: 8px; }
+  .bp div { height: 34px; background: var(--v2-navy); color: #fff; border-radius: 6px; font-size: 13px; display: flex; align-items: center; padding: 0 12px; }
+
+  .ease { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: center; padding: 10px 0; }
+  .track { height: 36px; background: var(--v2-cream); border-radius: 999px; position: relative; overflow: hidden; }
+  .dot { position: absolute; top: 6px; left: 6px; width: 24px; height: 24px; border-radius: 50%; background: var(--v2-navy); }
+  .ease:hover .dot, .ease:focus-within .dot { left: calc(100% - 30px); }
+  @media (prefers-reduced-motion: reduce) { .dot { transition: none !important; } }
+
+  .btns { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .pill { font: 500 16px/1 var(--sans); padding: 16px 26px; border-radius: 999px; border: 1px solid transparent; text-decoration: none; display: inline-flex; gap: 10px; align-items: center; }
+  .pill.sky { background: var(--v2-sky); color: var(--v2-navy); }
+  .pill.navy { background: var(--v2-navy); color: #fff; }
+  .pill.outline { border-color: var(--v2-navy); color: var(--v2-navy); }
+  .pill.glass { background: #ffffff1f; color: #fff; border-color: #ffffff40; }
+  .quiet { color: var(--v2-navy); text-decoration: underline; text-underline-offset: 4px; }
+  .dark { background: var(--v2-navy); border-radius: 25px; padding: 28px; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (width < 992px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (width < 768px) { .cards { grid-template-columns: 1fr; } }
+  .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; display: block; }
+  .card .k { font-size: 13px; margin: 12px 0 4px; }
+  .card .k i { color: var(--v2-sand); font-style: normal; padding: 0 6px; }
+  .card h3 { font: 500 24px/1.33 var(--sans); color: var(--v2-navy); margin: 0; }
+
+  .cta { background: var(--v2-navy); border-radius: 25px; padding: 56px; color: var(--v2-muted); display: flex; justify-content: space-between; gap: 32px; align-items: center; flex-wrap: wrap; }
+  .cta h3 { font: 400 52px/1.12 var(--display); color: #fff; margin: 0 0 10px; }
+  .disc { width: 56px; height: 56px; border-radius: 50%; background: var(--v2-ember); color: #fff; display: grid; place-items: center; font-size: 22px; }
+  @media (width < 768px) { .cta { padding: 32px; } .cta h3 { font-size: 36px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Travedise, <em>by design</em></h1>
+    <p>The v2 design language: tokens, type, layout, motion and the core components. Values mirror <code style="background:#ffffff1a;color:#fff">src/styles/global.css</code>.</p>
+    <nav class="toc">
+      <a href="#colour">Colour</a><a href="#type">Type</a><a href="#layout">Layout</a>
+      <a href="#motion">Motion</a><a href="#components">Components</a>
+    </nav>
+  </div>
+</header>
+
+<section id="colour">
+  <div class="wrap">
+    <h2 class="sec">Colour</h2>
+    <p class="note">Live pages sit inside <code>.v2</code> and use only these. Sections pick one surface: white, cream or navy. One sky button per view.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#101b2e"></div><div class="meta"><b>v2-navy</b>#101b2e · dark sections, headings, primary buttons</div></div>
+      <div class="sw"><div class="chip" style="background:#f7f5ef"></div><div class="meta"><b>v2-cream</b>#f7f5ef · warm alternate surface</div></div>
+      <div class="sw"><div class="chip" style="background:#ffffff"></div><div class="meta"><b>white</b>#ffffff · default surface</div></div>
+      <div class="sw"><div class="chip" style="background:#47cdff"></div><div class="meta"><b>v2-sky</b>#47cdff · accent, the CTA fill</div></div>
+      <div class="sw"><div class="chip" style="background:#c4af8c"></div><div class="meta"><b>v2-sand</b>#c4af8c · step numerals, fact dots</div></div>
+      <div class="sw"><div class="chip" style="background:#c96a45"></div><div class="meta"><b>v2-ember</b>#c96a45 · closing CTA arrow disc only</div></div>
+      <div class="sw"><div class="chip" style="background:#545c63"></div><div class="meta"><b>v2-body</b>#545c63 · body copy on light</div></div>
+      <div class="sw"><div class="chip" style="background:#cbd8df"></div><div class="meta"><b>v2-muted</b>#cbd8df · body copy on navy</div></div>
+    </div>
+    <p class="note" style="margin:40px 0 16px">Legacy Webflow palette — still in <code>@theme</code>, not for new work.</p>
+    <div class="swatches legacy">
+      <div class="sw"><div class="chip" style="background:#091733"></div><div class="meta"><b>navy</b>#091733</div></div>
+      <div class="sw"><div class="chip" style="background:#656e7f"></div><div class="meta"><b>slate</b>#656e7f</div></div>
+      <div class="sw"><div class="chip" style="background:#a0f751"></div><div class="meta"><b>lime</b>#a0f751</div></div>
+      <div class="sw"><div class="chip" style="background:#f7f7f7"></div><div class="meta"><b>surface</b>#f7f7f7</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="type" class="cream">
+  <div class="wrap">
+    <h2 class="sec">Type</h2>
+    <p class="note">Ragmont for display and the italic ending; Inter Tight 400/500/600 for everything else. Heading sizes shrink by themselves at each breakpoint (desktop sizes shown).</p>
+    <div class="spec"><div class="lab"><b>Display h1</b>Ragmont · 70 / 109%<br>60 · 45 · 36</div><p class="d" style="font-size:70px;line-height:1.09">Which coast, <em>and when</em></p></div>
+    <div class="spec"><div class="lab"><b>Display h2</b>Ragmont · 52 / 112%<br>45 · 36 · 32</div><p class="d" style="font-size:52px;line-height:1.12">Want Ella <em>in your</em> route?</p></div>
+    <div class="spec"><div class="lab"><b>h3</b>40 / 112.5%<br>36 · 32 · 28</div><p class="s" style="font-size:40px;line-height:1.125">Two monsoons, two coasts</p></div>
+    <div class="spec"><div class="lab"><b>h4</b>32 / 144%<br>28 · 28 · 25</div><p class="s" style="font-size:32px;line-height:1.44">A town for walking.</p></div>
+    <div class="spec"><div class="lab"><b>h5</b>24 / 133%</div><p class="s" style="font-size:24px;line-height:1.33">Hill Country &amp; Beach</p></div>
+    <div class="spec"><div class="lab"><b>h6</b>20 / 150%</div><p class="s" style="font-size:20px;line-height:1.5">Best months</p></div>
+    <div class="spec"><div class="lab"><b>body-lg</b>Inter Tight 400 · 18 / 150%</div><p style="font-size:18px;margin:0;max-width:62ch">There are two rainy seasons in Sri Lanka, and they take turns. That is good news: in almost any month, one side of the island is dry.</p></div>
+    <div class="spec"><div class="lab"><b>body</b>Inter Tight 400 · 16 / 150%</div><p style="margin:0;max-width:62ch">Ella is a single street of cafés and guesthouses in a gap between two ridges, looking south over the lowlands.</p></div>
+  </div>
+</section>
+
+<section id="layout">
+  <div class="wrap">
+    <h2 class="sec">Layout</h2>
+    <p class="note"><code>&lt;Section surface&gt;</code> = background + <code>gutter-v2</code> (54px at 1440) + <code>container-v2</code> (1280px). Desktop-first: write desktop, override with <code>max-lg:</code> <code>max-md:</code> <code>max-sm:</code>.</p>
+    <div class="row" style="margin-bottom:32px">
+      <div class="radius" style="border-radius:20px"><span><b style="color:var(--v2-navy)">rounded-card</b><br>20px · cards, photos</span></div>
+      <div class="radius" style="border-radius:25px;width:220px"><span><b style="color:var(--v2-navy)">rounded-panel</b><br>25px · big panels</span></div>
+      <div class="radius" style="border-radius:999px;height:56px;place-items:center"><span><b style="color:var(--v2-navy)">pill</b> · buttons</span></div>
+    </div>
+    <div class="bp">
+      <div style="width:100%">default — desktop, column 1280px</div>
+      <div style="width:77%">max-lg: ≤ 991px</div>
+      <div style="width:60%">max-md: ≤ 767px · card grids become a .v2-rail</div>
+      <div style="width:37%">max-sm: ≤ 479px</div>
+    </div>
+  </div>
+</section>
+
+<section id="motion" class="cream">
+  <div class="wrap">
+    <h2 class="sec">Motion</h2>
+    <p class="note">Hover a row to play its curve (600ms). Scroll-in uses <code>&lt;Reveal from="rise"&gt;</code>. Hover lifts only with a real pointer; larger motion respects reduced motion.</p>
+    <div class="ease"><span><b style="color:var(--v2-navy)">ease-out-quart</b><br>entrances</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-out-quart)"></div></div></div>
+    <div class="ease"><span><b style="color:var(--v2-navy)">ease-out-quint</b><br>entrances, longer</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-out-quint)"></div></div></div>
+    <div class="ease"><span><b style="color:var(--v2-navy)">ease-out-quad</b><br>button press</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-out-quad)"></div></div></div>
+    <div class="ease"><span><b style="color:var(--v2-navy)">ease-in-out-quart</b><br>moves on screen</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-in-out-quart)"></div></div></div>
+    <div class="ease"><span><b style="color:var(--v2-navy)">ease-in-out-sine</b><br>loops</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-in-out-sine)"></div></div></div>
+  </div>
+</section>
+
+<section id="components">
+  <div class="wrap">
+    <h2 class="sec">Components</h2>
+    <p class="note">Samples of the core parts in <code>src/components/v2/</code>. Reuse them before writing new markup.</p>
+
+    <p class="note" style="margin-bottom:12px"><b style="color:var(--v2-navy)">buttons/pill-link</b> — sky, navy, outline; glass on photos · <b style="color:var(--v2-navy)">quiet-link</b></p>
+    <div class="btns" style="margin-bottom:20px">
+      <a class="pill sky" href="#">Plan your trip ↗</a>
+      <a class="pill navy" href="#">See the itinerary</a>
+      <a class="pill outline" href="#">All journeys</a>
+      <a class="quiet" href="#">Browse journeys ↗</a>
+    </div>
+    <div class="dark btns" style="margin-bottom:48px">
+      <a class="pill glass" href="#">Travel notes</a>
+      <span style="color:var(--v2-muted)">On navy, body copy is v2-muted.</span>
+    </div>
+
+    <p class="note" style="margin-bottom:12px"><b style="color:var(--v2-navy)">Cards</b> — photo with rounded-card, a fact line with a sand dot, the title</p>
+    <div class="cards" style="margin-bottom:48px">
+      <div class="card"><img src="../public/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg" alt="Coconut palms on a red headland above the sea"><p class="k">Planning<i>•</i>6 min read</p><h3>Which coast, and when</h3></div>
+      <div class="card"><img src="../public/v2/c5670454fa292ca33ce909311116223f.jpg" alt="A blue train crossing the Nine Arch Bridge through the trees"><p class="k">Hill country<i>•</i>2 nights</p><h3>Ella</h3></div>
+      <div class="card"><div style="aspect-ratio:4/3;border-radius:20px;background:var(--v2-cream);display:grid;place-items:center;font-size:13px">photo slot · 4:3</div><p class="k">9 days<i>•</i>Private, tailor-made</p><h3>Hill Country &amp; Beach</h3></div>
+    </div>
+
+    <p class="note" style="margin-bottom:12px"><b style="color:var(--v2-navy)">contained-cta</b> — navy panel; italic ending in the heading; ember disc only on the closing CTA</p>
+    <div class="cta">
+      <div><h3>Tell us your dates, <em>we will pick</em> the coast.</h3><p style="margin:0;max-width:52ch">A travel designer comes back with a first route shaped around the weather you will actually get.</p></div>
+      <div class="btns"><a class="pill sky" href="#">Plan your trip</a><span class="disc">↗</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
