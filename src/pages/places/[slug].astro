@@ -22,10 +22,10 @@ export function getStaticPaths() {
  */
 const { slug } = Astro.params;
 const place = placeBySlug[slug!];
-const title = `${place.name}, Sri Lanka — Travedise`;
+const title = `${place.seo?.title ?? `${place.name}, Sri Lanka`} — Travedise`;
 ---
 
-<Base title={title} description={place.summary} canonical={`/places/${slug}`} image={place.image.src} ogType="article">
+<Base title={title} description={place.seo?.description ?? place.summary} canonical={`/places/${slug}`} image={place.image.src} ogType="article">
   <div class="v2 flex flex-col overflow-clip bg-white">
     <PlaceHero place={place} />
     <main>

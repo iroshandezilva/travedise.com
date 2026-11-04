@@ -59,4 +59,6 @@ export type BlogPost = {
   next?: { label: string; href: string };
   /** The navy panel after "Keep reading". The italic part is `em`. */
   cta?: { heading: string; em?: string; body: string };
+  /** Optional search overrides: `title` replaces the name in <title>, `description` the meta description. */
+  seo?: { title?: string; description?: string };
 };

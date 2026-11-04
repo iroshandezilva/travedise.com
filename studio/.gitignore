@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.studio/
+.env
+.env.*
+!.env.example
+.dev.vars*
+cloudflare/*.local.jsonc
+test-results/
+.wrangler/
+*.tgz
+
+.DS_Store
+
+.studio-image/

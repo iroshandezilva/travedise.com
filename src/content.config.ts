@@ -11,6 +11,10 @@ import { z } from "astro/zod";
 
 const photo = z.object({ src: z.string(), alt: z.string(), position: z.string().optional() });
 const anchor = z.enum(["start", "middle", "end"]);
+/** Optional overrides for the page's <title> and meta description; the page falls back to its own title and summary. */
+const seo = z
+  .object({ title: z.string().optional(), description: z.string().max(160).optional() })
+  .optional();
 
 const places = defineCollection({
   loader: glob({ pattern: "*.json", base: "./src/content/places" }),
@@ -27,20 +31,21 @@ const places = defineCollection({
     summary: z.string(),
     nights: z.string(),
     goodFor: z.string(),
-    intro: z.object({ heading: z.string(), paragraphs: z.tuple([z.string(), z.string()]) }),
+    intro: z.object({ heading: z.string(), paragraphs: z.array(z.string()).length(2) }),
     mapCaption: z.string(),
     doing: z.object({
       lede: z.string(),
       items: z.array(z.object({ title: z.string(), body: z.string() })),
     }),
-    gallery: z.tuple([photo, photo]).optional(),
+    gallery: z.array(photo).length(2).optional(),
     season: z.string(),
     journeysHeading: z.string().optional(),
     nearby: z.object({
       heading: z.string(),
-      slugs: z.tuple([z.string(), z.string(), z.string()]),
+      slugs: z.array(z.string()).length(3),
     }),
     ctaBody: z.string(),
+    seo,
   }),
 });
 
@@ -72,6 +77,7 @@ const packages = defineCollection({
       ),
     }),
     timeAnswer: z.string(),
+    seo,
   }),
 });
 
@@ -118,6 +124,7 @@ const blog = defineCollection({
     ),
     next: z.object({ label: z.string(), href: z.string() }).optional(),
     cta: z.object({ heading: z.string(), em: z.string().optional(), body: z.string() }).optional(),
+    seo,
   }),
 });
 
