@@ -18,6 +18,13 @@ export type Review = {
 };
 
 export const aboutHero = data.aboutHero;
+/** The band under the hero: what sets us apart, and our accreditations (text only, no logos yet). */
+export const proofPoints = data.proofPoints as { title: string; detail: string }[];
+/**
+ * Whether the team section shows. It is off until the team is ready to be introduced;
+ * set `showTeam` to true in about.json to bring it back, with no code change.
+ */
+export const showTeam = (data as { showTeam?: boolean }).showTeam ?? true;
 export const opening = data.opening;
 export const stamps = data.stamps;
 export const team = data.team as {

@@ -6,9 +6,10 @@ import Reviews from "@/components/v2/about/reviews.astro";
 import Team from "@/components/v2/about/team.astro";
 import FooterWide from "@/components/v2/footer-wide.astro";
 import HeroScrim from "@/components/v2/hero-scrim.astro";
+import ProofStrip from "@/components/v2/home/proof-strip.astro";
 import ReadyBand from "@/components/v2/home/ready-band.astro";
 import SiteNav from "@/components/v2/site-nav.astro";
-import { aboutHero } from "@/data/v2/about";
+import { aboutHero, proofPoints, showTeam } from "@/data/v2/about";
 import Base from "@/layouts/base.astro";
 
 const TITLE = "About us — Travedise";
@@ -17,7 +18,8 @@ const TITLE = "About us — Travedise";
  * The About page, from the "About The team" design: why Travedise exists, who you will
  * deal with, how the team thinks, what travellers said, and where the two offices are.
  * Sections waiting on material from the team (portraits, reviews) stay out until it
- * arrives — see `src/data/v2/about.ts`.
+ * arrives, and the team section stays off while `showTeam` is false — see
+ * `src/data/v2/about.ts`.
  */
 ---
 
@@ -48,8 +50,9 @@ const TITLE = "About us — Travedise";
     </header>
 
     <main>
+      <ProofStrip points={proofPoints} />
       <Opening />
-      <Team />
+      {showTeam && <Team />}
       <Principles />
       <Reviews />
       <Offices />

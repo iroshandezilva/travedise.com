@@ -54,6 +54,14 @@ const drawings: Record<Silhouette, Drawing> = {
     wheels: [66, 192],
     r: 15,
   },
+  // Shorter than the others on purpose: a three-wheeler with a canvas canopy and open sides.
+  tuktuk: {
+    body: "M67 80 C62 76 60 68 61 62 C62 54 66 49 73 46 L83 22 C85 17 89 14 96 14 L188 14 C199 14 206 21 206 32 L206 84 L196 84 A13 13 0 0 0 170 84 L94 84 A13 13 0 0 0 68 84 Z",
+    glass: ["M75 44 L84 24 C85 22 87 21 90 21 L98 21 L98 44 Z"],
+    lines: ["M106 66 V30 C106 25 109 22 114 22 H192 C196 22 199 25 199 29 V66 Z", "M184 30 V66", "M152 56 H184", "M124 48 V66", "M114 40 L124 48", "M62 60 H68", "M98 74 H168"],
+    wheels: [81, 183],
+    r: 13,
+  },
 };
 
 const d = drawings[kind];

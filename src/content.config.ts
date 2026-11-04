@@ -138,7 +138,7 @@ const vehicles = defineCollection({
     order: z.number(),
     slug: z.string(),
     name: z.string(),
-    silhouette: z.enum(["car", "suv", "van", "minibus", "coach", "jeep"]),
+    silhouette: z.enum(["car", "suv", "van", "minibus", "coach", "jeep", "tuktuk"]),
     /** Smallest and largest party the vehicle seats in comfort, for the size filter. */
     seats: z.object({ min: z.number(), max: z.number() }),
     seatsLabel: z.string(),

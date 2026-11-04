@@ -18,7 +18,7 @@ type Question = { q: string; a: string };
 type Photo = { src: string; alt: string; position?: string };
 type Fact = { value: string; detail: string };
 
-export type Silhouette = "car" | "suv" | "van" | "minibus" | "coach" | "jeep";
+export type Silhouette = "car" | "suv" | "van" | "minibus" | "coach" | "jeep" | "tuktuk";
 
 export type Vehicle = {
   order: number;

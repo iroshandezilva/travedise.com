@@ -3,7 +3,7 @@
   "slug": "special-interest-clubs",
   "name": "Special-interest clubs",
   "theme": "Birding, cycling, cricket, photography",
-  "size": "8 to 30 travellers",
+  "size": "6 to 30 travellers",
   "short": "A club, a society or a team, travelling for the thing they love most.",
   "summary": "Birders, cyclists, photographers, cricket teams and yoga groups, with a trip planned around the thing that brings you together.",
   "image": {
@@ -12,7 +12,7 @@
   },
   "facts": [
     {
-      "value": "8 to 30",
+      "value": "6 to 30",
       "detail": "Travellers"
     },
     {

@@ -1,0 +1,50 @@
+{
+  "order": 7,
+  "slug": "tuk-tuk",
+  "name": "Tuk-tuk",
+  "silhouette": "tuktuk",
+  "seats": {
+    "min": 1,
+    "max": 2
+  },
+  "seatsLabel": "1 to 2 travellers",
+  "bags": "Day bags only",
+  "models": "Three-wheeler or similar",
+  "short": "A three-wheeler with a driver, for short hops around town and along the coast.",
+  "summary": "A three-wheeler with a licensed driver, for short rides around Galle Fort, between the beach towns and out to dinner, where a car is more than you need.",
+  "suits": [
+    "Short hops around town",
+    "Galle Fort and around",
+    "Beach towns on the south coast",
+    "Dinner out and back to your stay"
+  ],
+  "features": [
+    {
+      "title": "Made for short distances",
+      "body": "Through the lanes of Galle Fort, between Unawatuna and the fort, or from your villa to dinner. It stops right at the door, wherever the door is."
+    },
+    {
+      "title": "Always with a driver",
+      "body": "You do not drive it yourself. A licensed driver who knows the town takes you there, and waits or comes back when you call."
+    },
+    {
+      "title": "Open to the air",
+      "body": "Open sides and no air conditioning, so it is warm in the middle of the day. Keep it for short rides, and take a car for the long drives between regions."
+    }
+  ],
+  "included": [
+    "A licensed, English-speaking driver",
+    "Fuel and parking",
+    "Bottled water on board"
+  ],
+  "questions": [
+    {
+      "q": "Can we take a tuk-tuk between regions?",
+      "a": "We would not suggest it. A tuk-tuk is slow on the main roads and has no air conditioning. For the drive from Colombo to Galle or up to the hills, the comfort car is the better fit."
+    },
+    {
+      "q": "Can we drive it ourselves?",
+      "a": "No. Every tuk-tuk comes with one of our drivers, who knows the town, the short cuts and where to stop."
+    }
+  ]
+}

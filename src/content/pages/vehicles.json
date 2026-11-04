@@ -8,7 +8,7 @@
   },
   "intro": {
     "heading": "Choose by the size of your party.",
-    "body": "Six classes of vehicle, each with its own driver. Tell us how many of you there are and we will show what fits.",
+    "body": "Seven classes of vehicle, each with its own driver. Tell us how many of you there are and we will show what fits.",
     "filterLabel": "How many of you?",
     "filters": [
       {
@@ -98,7 +98,7 @@
     },
     {
       "q": "Do the drivers speak English?",
-      "a": "Every driver speaks English. Tell us if you would prefer Hindi, Tamil, German or another language, and we will try to match you."
+      "a": "Yes. Every driver is licensed, speaks English and works for us."
     },
     {
       "q": "How far ahead should we book?",
@@ -182,14 +182,6 @@
         "label": "How much luggage?",
         "type": "chips",
         "options": ["Light", "A case each", "More than a case each"]
-      },
-      {
-        "id": "language",
-        "label": "Driver's language",
-        "type": "select",
-        "optional": true,
-        "options": ["English", "Hindi", "Tamil", "German", "French", "Other"],
-        "placeholder": "English is fine"
       },
       {
         "id": "notes",

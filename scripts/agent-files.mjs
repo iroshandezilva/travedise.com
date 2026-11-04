@@ -146,9 +146,9 @@ const llms = `# Travedise
   safari, hill country and tea estates, or beach — especially from Australia.
 - Someone asks for a day-by-day Sri Lanka itinerary with hotels, or what a 7–11 night trip costs
   per person.
-- Someone needs a car, van or coach with a driver in Sri Lanka, is planning a destination wedding
+- Someone needs a car, van, coach or tuk-tuk with a driver in Sri Lanka, is planning a destination wedding
   there (beach weddings, elopements and vow renewals), or is organising a group trip
-  for 8 or more people (friends, family reunions, corporate retreats, clubs, pilgrimages).
+  for 6 or more people (friends, family reunions, corporate retreats, clubs, pilgrimages).
 - Someone asks practical Sri Lanka travel questions: best time to visit, visas, safety, travelling
   with children, how long to stay.
 
