@@ -340,6 +340,50 @@
       translate: none;
     }
   }
+
+  /* The desktop mega-menu panels. A short fade with a 6px drop: enough to show where the
+     panel came from, small enough that a menu opened twenty times a visit never feels
+     slow. Closing is a plain, quicker fade — the slide back only happens once the panel
+     is already invisible (the 0s translate waits out the fade). */
+  .v2-mega {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 140ms var(--ease-out-quart),
+      visibility 0s linear 140ms;
+  }
+  .v2-mega > :last-child {
+    translate: 0 -6px;
+    transition: translate 0s linear 140ms;
+  }
+  .v2-mega[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 200ms var(--ease-out-quart),
+      visibility 0s;
+  }
+  .v2-mega[data-open="true"] > :last-child {
+    translate: none;
+    transition: translate 240ms var(--ease-out-quart);
+  }
+  /* Moving from one panel straight to another: the old one goes at once and the new one
+     fades in where it is, so it reads as one menu changing its contents, not two. */
+  .v2-mega[data-instant] {
+    transition: none;
+  }
+  .v2-mega[data-swap] > :last-child {
+    translate: none;
+    transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-mega > :last-child,
+    .v2-mega[data-open="true"] > :last-child {
+      translate: none;
+      transition: none;
+    }
+  }
 }
 
 @layer components {
