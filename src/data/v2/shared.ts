@@ -1,8 +1,10 @@
-/** Words shared across pages: nav, menu, gallery, questions and the closing call to action. */
+/**
+ * Words shared across pages: nav, menu, gallery, questions and the closing call to action.
+ * The menu's panels are resolved against the collections in `nav.ts`.
+ */
 import data from "@/content/site/shared.json";
 
 export const navLinks = data.navLinks;
-export const mobileNavLinks = data.mobileNavLinks;
 export const menuFeature = data.menuFeature;
 export const galleryImages = data.galleryImages;
 export const questions = data.questions;

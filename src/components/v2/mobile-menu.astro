@@ -1,13 +1,18 @@
 ---
 import { images } from "@/data/v2/images";
-import { menuFeature, mobileNavLinks } from "@/data/v2/shared";
+import { menuLinks, menuPanels } from "@/data/v2/nav";
+import { menuFeature } from "@/data/v2/shared";
 import { SOCIALS } from "@/lib/socials";
 
+import AccordionRow from "./accordion-row.astro";
 import LogoMark from "./logo-mark.astro";
 
 /**
- * The phone menu: a hamburger in the hero's nav pill that opens a full-screen panel.
- * Only shown below the `md` breakpoint — the desktop bar lists its links inline.
+ * The phone and tablet menu: a hamburger in the hero's nav that opens a full-screen panel.
+ * Shown below `lg`, where the desktop pill and its mega menus are hidden.
+ *
+ * Journeys, Places and Services are accordions holding the same groups as the desktop
+ * panels (one open at a time, from `accordion-row`), then the plain links.
  *
  * The script moves the panel to the end of `<body>` on load. The nav pill it is written
  * in carries a backdrop-filter, and that makes the pill the containing block for any
@@ -20,7 +25,7 @@ import LogoMark from "./logo-mark.astro";
   aria-label="Open menu"
   aria-expanded="false"
   data-menu-open
-  class="hidden size-[46px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-full bg-white/14 max-md:flex"
+  class="hidden size-[46px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-full bg-white/14 max-lg:flex"
 >
   <span aria-hidden="true" class="block h-[1.5px] w-[18px] bg-white"></span>
   <span aria-hidden="true" class="block h-[1.5px] w-3 bg-white"></span>
@@ -33,7 +38,7 @@ import LogoMark from "./logo-mark.astro";
   data-open="false"
   data-menu
   inert
-  class="v2-menu fixed inset-0 z-50 overflow-y-auto bg-[#0c1526] md:hidden"
+  class="v2-menu fixed inset-0 z-50 overflow-y-auto bg-[#0c1526] lg:hidden"
 >
   <img src={images.honeymoon} alt="" class="absolute inset-0 block size-full object-cover opacity-[0.32]" />
   <div
@@ -65,12 +70,46 @@ import LogoMark from "./logo-mark.astro";
     </div>
 
     <nav aria-label="Menu" class="mt-[34px] flex flex-col">
+      {/* The same groups as the desktop panels. The sign is white here, on the dark menu. */}
+      <div data-accordion class="flex flex-col">
+        {
+          menuPanels.map((panel, i) => (
+            <div style={{ "--i": i }} class="v2-menu-item border-b border-white/12">
+              <AccordionRow
+                class="[&_[data-accordion-sign]]:text-white"
+                buttonClass="py-[13px]"
+                panelClass="grid grid-cols-2 gap-x-8 gap-y-6 pt-1 pb-6 max-sm:grid-cols-1 max-sm:gap-y-5"
+              >
+                <span slot="head" class="font-display text-[34px]/[42px] text-white">
+                  {panel.label}
+                </span>
+                {panel.columns.flat().map((group) => (
+                  <div class="flex flex-col gap-1">
+                    <p class="m-0 text-[12px]/[16px] font-semibold tracking-[0.08em] text-white/60 uppercase">
+                      {group.heading}
+                    </p>
+                    <ul class="m-0 flex list-none flex-col p-0">
+                      {group.links.map((link) => (
+                        <li>
+                          <a href={link.href} data-menu-link class="block py-[7px] text-[17px]/[1.35] text-white">
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </AccordionRow>
+            </div>
+          ))
+        }
+      </div>
       {
-        mobileNavLinks.map(({ href, label }, i) => (
+        menuLinks.map(({ href, label }, i) => (
           <a
             href={href}
             data-menu-link
-            style={{ "--i": i }}
+            style={{ "--i": menuPanels.length + i }}
             class="v2-menu-item flex items-center justify-between py-[13px]"
           >
             <span class="font-display text-[34px]/[42px] text-white">{label}</span>
@@ -85,7 +124,7 @@ import LogoMark from "./logo-mark.astro";
     <a
       href={menuFeature.href}
       data-menu-link
-      style={{ "--i": mobileNavLinks.length }}
+      style={{ "--i": menuPanels.length + menuLinks.length }}
       class="v2-menu-item mt-[26px] flex items-center gap-3.5 rounded-[18px] border border-white/16 bg-white/8 p-3"
     >
       <img src={menuFeature.image} alt="" class="block size-[76px] shrink-0 rounded-xl object-cover" />
@@ -156,5 +195,11 @@ import LogoMark from "./logo-mark.astro";
     openButton.addEventListener("click", open);
     closeButton.addEventListener("click", close);
     for (const link of panel.querySelectorAll("[data-menu-link]")) link.addEventListener("click", close);
+
+    // The menu is for narrow screens only; if the window widens past lg with it open,
+    // let the page scroll again.
+    window.matchMedia("(min-width: 992px)").addEventListener("change", (e) => {
+      if (e.matches && panel.dataset.open === "true") close();
+    });
   }
 </script>

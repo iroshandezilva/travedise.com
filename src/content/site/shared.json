@@ -1,66 +1,121 @@
 {
   "navLinks": [
     {
-      "href": "/packages",
-      "label": "Journeys"
-    },
-    {
-      "href": "/places",
-      "label": "Places"
-    },
-    {
-      "href": "/group-vacations",
-      "label": "Groups"
-    },
-    {
-      "href": "/weddings",
-      "label": "Weddings"
-    },
-    {
-      "href": "/vehicles",
-      "label": "Vehicles"
-    },
-    {
-      "href": "/blog",
-      "label": "Travel notes"
-    }
-  ],
-  "mobileNavLinks": [
-    {
-      "href": "/packages",
-      "label": "Journeys"
-    },
-    {
-      "href": "/places",
-      "label": "Places"
-    },
-    {
-      "href": "/group-vacations",
-      "label": "Group vacations"
-    },
-    {
-      "href": "/weddings",
-      "label": "Weddings"
-    },
-    {
-      "href": "/vehicles",
-      "label": "Vehicles"
-    },
-    {
-      "href": "/#how",
-      "label": "How it works"
-    },
-    {
       "href": "/blog",
       "label": "Travel notes"
     },
     {
       "href": "/about",
       "label": "About"
+    }
+  ],
+  "megaMenu": [
+    {
+      "key": "journeys",
+      "label": "Journeys",
+      "columns": [
+        [
+          {
+            "heading": "Our journeys",
+            "source": "packages",
+            "links": [{ "label": "All journeys", "href": "/packages" }]
+          }
+        ],
+        [
+          {
+            "heading": "By style",
+            "source": "packages",
+            "picks": [
+              { "label": "Honeymoon", "slug": "dream-honeymoon-in-sri-lanka" },
+              { "label": "Family", "slug": "best-of-sri-lanka" },
+              { "label": "Wildlife", "slug": "wildlife-package" },
+              { "label": "Hill country and beach", "slug": "hillcountry" }
+            ]
+          }
+        ],
+        [
+          {
+            "heading": "Plan your own",
+            "links": [
+              { "label": "Plan your trip", "href": "/plan-your-trip" },
+              { "label": "When to go", "href": "/when-to-go" }
+            ]
+          }
+        ]
+      ],
+      "feature": {
+        "eyebrow": "Featured journey",
+        "package": "hillcountry",
+        "action": "See the journey"
+      }
     },
     {
-      "href": "/#questions",
-      "label": "Questions"
+      "key": "places",
+      "label": "Places",
+      "columns": [
+        [
+          { "heading": "Hill country", "source": "places", "region": "hill" },
+          { "heading": "Cultural Triangle", "source": "places", "region": "triangle" }
+        ],
+        [
+          { "heading": "South and west coast", "source": "places", "region": "southwest" },
+          { "heading": "East coast", "source": "places", "region": "east" }
+        ],
+        [
+          {
+            "heading": "National parks",
+            "source": "places",
+            "region": "parks",
+            "links": [
+              { "label": "All {places} places", "href": "/places" },
+              { "label": "When to go", "href": "/when-to-go" }
+            ]
+          }
+        ]
+      ],
+      "feature": {
+        "eyebrow": "The island",
+        "title": "The island, mapped",
+        "body": "See where each stop sits, and which coast is at its best for your dates.",
+        "map": true,
+        "href": "/places",
+        "action": "Open the map"
+      }
+    },
+    {
+      "key": "services",
+      "label": "Services",
+      "columns": [
+        [
+          {
+            "heading": "Group vacations",
+            "source": "groups",
+            "links": [{ "label": "All group vacations", "href": "/group-vacations" }]
+          }
+        ],
+        [
+          {
+            "heading": "Weddings",
+            "source": "weddings",
+            "links": [{ "label": "Start your brief", "href": "/weddings/plan" }]
+          }
+        ],
+        [
+          {
+            "heading": "Vehicles",
+            "source": "vehicles",
+            "links": [{ "label": "See the fleet", "href": "/vehicles" }]
+          }
+        ]
+      ],
+      "feature": {
+        "eyebrow": "Weddings",
+        "title": "Married on the south coast",
+        "body": "Tell us the date and the guests. We look after the venue and the days around it.",
+        "image": "/assets/6a41d8a9f90b0844dda793bf_Couple-on-Bentota-Beach.webp",
+        "href": "/weddings/plan",
+        "action": "Start your brief"
+      }
     }
   ],
   "menuFeature": {
