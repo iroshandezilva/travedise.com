@@ -1,0 +1,110 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import Questions from "@/components/v2/questions.astro";
+import Section from "@/components/v2/section.astro";
+import FactsBar from "@/components/v2/services/facts-bar.astro";
+import PhotoHero from "@/components/v2/services/photo-hero.astro";
+import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
+import TitledGrid from "@/components/v2/services/titled-grid.astro";
+import VehicleCard from "@/components/v2/services/vehicle-card.astro";
+import { vehicles, vehiclesContent as page } from "@/data/v2/services";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "Vehicles with a driver in Sri Lanka | Travedise";
+
+/**
+ * The fleet: every vehicle class as a card, filtered by the size of the party, then the
+ * ways to hire, how a quote works, questions and the quote form. Each card opens the
+ * class's own page, where the form arrives with that vehicle chosen.
+ */
+const { hero, intro, hires, steps, questions, form } = page;
+---
+
+<Base title={TITLE} description={hero.body} canonical="/vehicles" image={hero.image} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PhotoHero {...hero} current="/vehicles" />
+    <main>
+      <FactsBar
+        facts={[
+          { value: `${vehicles.length} classes`, detail: "From a car for two to a 45-seat coach" },
+          { value: "With a driver", detail: "Licensed, English-speaking, local" },
+          { value: "Within a day", detail: "A fixed quote, no surprises" },
+        ]}
+        href={`#${form.id}`}
+        action="Ask for a quote ↗"
+      />
+
+      <Section class="py-24 max-md:py-14">
+        <div class="mb-12 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-6 max-md:mb-8">
+          <div class="flex max-w-[620px] flex-col gap-4">
+            <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+              {intro.heading}
+            </h2>
+            <p class="m-0 text-[16px]/[25px] text-[#52687b] max-md:text-[15px]/[24px]">{intro.body}</p>
+          </div>
+          <fieldset class="m-0 flex flex-col gap-3 border-0 p-0" data-size-filter>
+            <legend class="mb-3 p-0 text-[14px]/[20px] text-[#6e808e]">{intro.filterLabel}</legend>
+            <div class="flex flex-wrap gap-2">
+              {
+                intro.filters.map((f, i) => (
+                  <button
+                    type="button"
+                    aria-pressed={i === 0 ? "true" : "false"}
+                    data-min={f.min}
+                    data-max={f.max}
+                    class="h-11 rounded-full border border-v2-navy/24 bg-white px-[18px] text-[14px] text-v2-navy transition-colors duration-150 hover:border-v2-navy/50 aria-pressed:border-v2-navy aria-pressed:bg-v2-navy aria-pressed:text-white motion-reduce:transition-none"
+                  >
+                    {f.label}
+                  </button>
+                ))
+              }
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6" data-vehicle-grid>
+          {vehicles.map((v) => <VehicleCard vehicle={v} />)}
+        </div>
+        <p data-vehicle-empty hidden class="m-0 mt-8 text-[16px]/[25px] text-[#52687b]">{intro.empty}</p>
+        <p aria-live="polite" data-vehicle-count class="sr-only"></p>
+      </Section>
+
+      <TitledGrid heading={hires.heading} body={hires.body} items={hires.items} columns={4} surface="cream" />
+      <TitledGrid heading={steps.heading} items={steps.items} columns={3} numbered />
+      <Questions
+        items={questions}
+        heading="Before you book a vehicle."
+        body="The questions we are asked most about our vehicles and drivers."
+        action="Ask for a quote ↗"
+        href={`#${form.id}`}
+      />
+      <ServiceEnquiry service="vehicle" form={form} />
+    </main>
+    <FooterWide statement="The right vehicle, a driver who knows the road, and nothing to think about between one stay and the next." />
+  </div>
+</Base>
+
+<script>
+  // The size filter: a vehicle shows when its seating range overlaps the chosen range.
+  for (const filter of document.querySelectorAll<HTMLElement>("[data-size-filter]")) {
+    const section = filter.closest("section")!;
+    const cards = [...section.querySelectorAll<HTMLElement>("[data-vehicle-card]")];
+    const empty = section.querySelector<HTMLElement>("[data-vehicle-empty]")!;
+    const count = section.querySelector<HTMLElement>("[data-vehicle-count]")!;
+    filter.addEventListener("click", (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-min]");
+      if (!button) return;
+      filter.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+      const min = Number(button.dataset.min);
+      const max = Number(button.dataset.max);
+      let shown = 0;
+      for (const card of cards) {
+        const fits = Number(card.dataset.min) <= max && Number(card.dataset.max) >= min;
+        card.hidden = !fits;
+        if (fits) shown++;
+      }
+      empty.hidden = shown > 0;
+      count.textContent = `${shown} vehicle${shown === 1 ? "" : "s"} shown`;
+    });
+  }
+</script>

@@ -1,0 +1,60 @@
+---
+import HeroScrim from "../hero-scrim.astro";
+import SiteNav from "../site-nav.astro";
+
+/**
+ * The service sections' hero: one photo, an optional eyebrow, the title and a line. The
+ * same shape as the journeys hero, with the photo, words and nav highlight passed in.
+ */
+interface Props {
+  title: string;
+  body: string;
+  image: string;
+  alt: string;
+  position?: string;
+  eyebrow?: string;
+  current?: string;
+  tall?: boolean;
+}
+const { title, body, image, alt, position, eyebrow, current, tall = false } = Astro.props;
+---
+
+<header
+  class:list={[
+    "relative w-full shrink-0 overflow-clip gutter-v2",
+    tall ? "h-[640px] max-lg:h-[560px] max-md:h-[500px]" : "h-[560px] max-lg:h-[500px] max-md:h-[460px]",
+  ]}
+>
+  <img
+    src={image}
+    alt={alt}
+    fetchpriority="high"
+    class="absolute inset-0 block size-full object-cover"
+    style={position ? { objectPosition: position } : undefined}
+  />
+  <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.86) 0%, oklab(0 0 0 / 0) 62%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
+
+  <div class="relative mx-auto h-full w-full max-w-[1280px]">
+    <SiteNav current={current} />
+    <div class="absolute inset-x-0 bottom-[58px] flex max-w-[860px] flex-col gap-[18px] max-md:bottom-8 max-md:gap-3">
+      {
+        eyebrow && (
+          <span class="flex items-center gap-3 text-[14px]/[20px] font-medium tracking-[0.08em] text-white/90 uppercase max-md:text-[12px]/[18px]">
+            <span aria-hidden="true" class="h-px w-8 bg-v2-sky" />
+            {eyebrow}
+          </span>
+        )
+      }
+      <h1
+        class="m-0 font-display text-[62px]/[68px] font-medium tracking-[-0.02em] text-white max-lg:text-[48px]/[54px] max-md:text-[34px]/[40px]"
+      >
+        {title}
+      </h1>
+      <p
+        class="m-0 max-w-[680px] text-[19px]/[29px] text-[#e8eef1] transition-[opacity,translate] duration-[600ms] ease-out-quint motion-reduce:transition-none starting:translate-y-3 starting:opacity-0 max-md:text-[15px]/[24px]"
+      >
+        {body}
+      </p>
+    </div>
+  </div>
+</header>

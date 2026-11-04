@@ -112,7 +112,12 @@ const blog = defineCollection({
           columns: z.array(z.string()),
           rows: z.array(z.array(z.string())),
         }),
-        z.object({ type: z.literal("figure"), src: z.string(), alt: z.string(), caption: z.string() }),
+        z.object({
+          type: z.literal("figure"),
+          src: z.string(),
+          alt: z.string(),
+          caption: z.string(),
+        }),
         z.object({ type: z.literal("quote"), text: z.string() }),
         z.object({ type: z.literal("note"), label: z.string(), text: z.string() }),
       ]),
@@ -123,4 +128,76 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { places, packages, blog };
+const titled = z.object({ title: z.string(), body: z.string() });
+const question = z.object({ q: z.string(), a: z.string() });
+
+/** The fleet, one category per file. `silhouette` picks the drawing on its card and hero. */
+const vehicles = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/content/vehicles" }),
+  schema: z.object({
+    order: z.number(),
+    slug: z.string(),
+    name: z.string(),
+    silhouette: z.enum(["car", "suv", "van", "minibus", "coach", "jeep"]),
+    /** Smallest and largest party the vehicle seats in comfort, for the size filter. */
+    seats: z.object({ min: z.number(), max: z.number() }),
+    seatsLabel: z.string(),
+    bags: z.string(),
+    models: z.string(),
+    short: z.string(),
+    summary: z.string(),
+    suits: z.array(z.string()),
+    features: z.array(titled),
+    included: z.array(z.string()),
+    questions: z.array(question),
+  }),
+});
+
+/** The wedding styles, one per file. `settings` are keys of the settings in pages/weddings.json. */
+const weddings = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/content/weddings" }),
+  schema: z.object({
+    order: z.number(),
+    slug: z.string(),
+    name: z.string(),
+    short: z.string(),
+    summary: z.string(),
+    image: photo,
+    facts: z.array(z.object({ value: z.string(), detail: z.string() })),
+    intro: z.object({ heading: z.string(), paragraphs: z.array(z.string()).length(2) }),
+    schedule: z.object({
+      heading: z.string(),
+      lede: z.string(),
+      items: z.array(z.object({ when: z.string(), title: z.string(), body: z.string() })),
+    }),
+    includes: z.object({ heading: z.string(), body: z.string(), items: z.array(titled) }),
+    settings: z.array(z.string()),
+    questions: z.array(question),
+  }),
+});
+
+/** Group vacation types, one per file: services around a purpose, not a fixed route. */
+const groups = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/content/groups" }),
+  schema: z.object({
+    order: z.number(),
+    slug: z.string(),
+    name: z.string(),
+    theme: z.string(),
+    size: z.string(),
+    short: z.string(),
+    summary: z.string(),
+    image: photo,
+    facts: z.array(z.object({ value: z.string(), detail: z.string() })),
+    suits: z.object({ heading: z.string(), body: z.string(), points: z.array(z.string()) }),
+    services: z.object({ heading: z.string(), body: z.string(), items: z.array(titled) }),
+    shapes: z.object({
+      heading: z.string(),
+      lede: z.string(),
+      items: z.array(z.object({ title: z.string(), length: z.string(), body: z.string() })),
+    }),
+    questions: z.array(question),
+  }),
+});
+
+export const collections = { places, packages, blog, vehicles, weddings, groups };

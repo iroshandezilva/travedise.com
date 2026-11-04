@@ -1,0 +1,76 @@
+---
+import type { Silhouette } from "@/data/v2/services";
+
+/**
+ * A line drawing of each vehicle class, side on, facing left. They stand in for fleet
+ * photography until the vehicles are photographed, and they keep the class readable at a
+ * glance on the cards. Stroke and tint follow `currentColor`.
+ */
+interface Props {
+  kind: Silhouette;
+  class?: string;
+  /** The fill inside the tyres, matching what the drawing sits on. */
+  ground?: string;
+}
+const { kind, class: className, ground = "#fff" } = Astro.props;
+
+type Drawing = { body: string; glass: string[]; lines?: string[]; wheels: number[]; r?: number };
+
+const drawings: Record<Silhouette, Drawing> = {
+  car: {
+    body: "M20 84 L20 70 C20 64 24 61 32 60 L74 56 L98 38 C102 35 106 34 112 34 L162 34 C169 34 174 36 179 40 L198 56 L234 60 C241 61 244 65 244 72 L244 84 L214 84 A18 18 0 0 0 178 84 L84 84 A18 18 0 0 0 48 84 Z",
+    glass: ["M104 54 L115 41 L138 41 L138 54 Z", "M146 41 L162 41 C167 41 170 43 173 46 L182 54 L146 54 Z"],
+    lines: ["M142 58 L142 80", "M28 66 H38"],
+    wheels: [66, 196],
+  },
+  suv: {
+    body: "M18 84 L18 62 C18 56 22 53 30 52 L60 50 L80 24 C83 21 86 20 92 20 L206 20 C212 20 216 22 218 26 L230 50 C238 51 244 55 244 62 L244 84 L218 84 A18 18 0 0 0 182 84 L82 84 A18 18 0 0 0 46 84 Z",
+    glass: ["M88 46 L100 28 L140 28 L140 46 Z", "M148 28 L178 28 L178 46 L148 46 Z", "M186 28 L208 28 L216 46 L186 46 Z"],
+    lines: ["M96 15 L204 15", "M144 52 L144 80", "M26 58 H36"],
+    wheels: [64, 200],
+  },
+  van: {
+    body: "M16 84 L16 48 C16 40 19 32 26 26 L42 15 C46 12 50 11 56 11 L230 11 C238 11 244 17 244 25 L244 84 L222 84 A18 18 0 0 0 186 84 L80 84 A18 18 0 0 0 44 84 Z",
+    glass: ["M24 46 L34 26 L56 19 L56 46 Z", "M66 19 H100 V44 H66 Z", "M108 19 H142 V44 H108 Z", "M150 19 H184 V44 H150 Z", "M192 19 H234 V44 H192 Z"],
+    lines: ["M104 50 L104 80", "M60 50 L60 80", "M22 60 H32"],
+    wheels: [62, 204],
+  },
+  minibus: {
+    body: "M14 84 L14 30 C14 20 22 12 32 12 L234 12 C240 12 246 18 246 24 L246 84 L222 84 A18 18 0 0 0 186 84 L106 84 A18 18 0 0 0 70 84 Z",
+    glass: ["M20 50 L20 28 C20 22 26 18 32 18 L42 18 L42 50 Z", "M74 20 H104 V44 H74 Z", "M110 20 H140 V44 H110 Z", "M146 20 H176 V44 H146 Z", "M182 20 H212 V44 H182 Z", "M218 20 H240 V44 H218 Z"],
+    lines: ["M48 18 H66 V80 H48 Z", "M66 56 H246"],
+    wheels: [88, 204],
+  },
+  coach: {
+    body: "M10 84 L10 22 C10 14 16 8 24 8 L242 8 C248 8 252 12 252 18 L252 84 L224 84 A18 18 0 0 0 188 84 L100 84 A18 18 0 0 0 64 84 Z",
+    glass: ["M16 50 V20 C16 16 19 14 23 14 H34 V50 Z", "M62 16 H94 V42 H62 Z", "M98 16 H130 V42 H98 Z", "M134 16 H166 V42 H134 Z", "M170 16 H202 V42 H170 Z", "M206 16 H246 V42 H206 Z"],
+    lines: ["M40 16 H56 V80 H40 Z", "M108 58 H144 V76 H108 Z", "M148 58 H184 V76 H148 Z"],
+    wheels: [82, 206],
+  },
+  jeep: {
+    body: "M18 84 L18 56 C18 51 21 48 26 48 L84 48 L84 52 L234 52 L234 84 L210 84 A18 18 0 0 0 174 84 L84 84 A18 18 0 0 0 48 84 Z",
+    glass: [],
+    lines: ["M84 48 L92 22 L102 22", "M118 52 L122 20 L224 20 L228 52", "M172 20 L172 52", "M142 52 L142 38 L154 38", "M198 52 L198 38 L210 38", "M12 72 H18", "M24 56 H34"],
+    wheels: [66, 192],
+    r: 15,
+  },
+};
+
+const d = drawings[kind];
+const r = d.r ?? 14;
+---
+
+<svg viewBox="0 0 260 104" class={className} aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M4 99 H256" stroke-opacity="0.25" />
+  <path d={d.body} />
+  {d.glass.map((g) => <path d={g} fill="currentColor" fill-opacity="0.12" />)}
+  {d.lines?.map((l) => <path d={l} />)}
+  {
+    d.wheels.map((x) => (
+      <g>
+        <circle cx={x} cy="84" r={r} fill={ground} />
+        <circle cx={x} cy="84" r={r * 0.38} />
+      </g>
+    ))
+  }
+</svg>

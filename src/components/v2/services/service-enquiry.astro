@@ -1,0 +1,426 @@
+---
+import plan from "@/content/pages/plan.json";
+import { contactChoices, fieldRows, resolveFields, type FormConfig, type Service } from "@/data/v2/services";
+import { cn } from "@/lib/cn";
+
+/**
+ * The enquiry form shared by the three services: two steps (the service's own questions,
+ * then how to reach you) and a thank-you, posting to `/api/enquiry` with `service` and
+ * the answers as `details`. The questions come from the section's page file, so the
+ * words change without touching this component.
+ *
+ * It is plain HTML and the script below, not a React island: the fields are fixed at
+ * build time and only the steps, chips and sending need the browser.
+ *
+ * `preset` pre-picks a choice in the select filled from a collection (the vehicle on a
+ * vehicle's page). A link with `?vehicle=`, `?style=` or `?type=` does the same.
+ *
+ * The aside defaults to a panel with the form's heading and the ways to reach a person;
+ * pass `slot="aside"` to replace it.
+ */
+interface Props {
+  service: Service;
+  form: FormConfig;
+  preset?: string;
+  surface?: "white" | "cream";
+}
+const { service, form, preset, surface = "white" } = Astro.props;
+
+const rows = fieldRows(resolveFields(form));
+const { channels, countryCodes, countries, heardFrom, enquiryEmail } = contactChoices;
+const contacts = plan.planHelp.contacts;
+const hasAside = Astro.slots.has("aside");
+
+const field =
+  "h-14 w-full min-w-0 border border-v2-navy/22 bg-white px-[18px] text-[15px] text-v2-navy placeholder:text-v2-navy/42 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-v2-navy";
+const label = "text-[16px]/[24px] text-v2-navy";
+const hint = "m-0 text-[14px]/[21px] text-[#6e808e]";
+const chip =
+  "h-12 rounded-full border border-v2-navy/24 bg-white px-[22px] text-[15px] text-v2-navy transition-colors duration-150 ease-out-quad hover:border-v2-navy/50 aria-pressed:border-v2-navy aria-pressed:bg-v2-navy aria-pressed:text-white motion-reduce:transition-none max-md:h-11 max-md:px-[18px] max-md:text-[14px]";
+const panel =
+  "v2-step-in flex flex-col gap-10 bg-[#fcfbf9] px-12 pt-12 pb-10 max-md:gap-8 max-md:px-5 max-md:pt-8 max-md:pb-8";
+const heading =
+  "m-0 font-display text-[28px]/[36px] font-normal tracking-[-0.005em] text-v2-navy outline-none max-md:text-[24px]/[32px]";
+const primary =
+  "flex h-[60px] items-center justify-between gap-4 rounded-full bg-v2-sky pr-2.5 pl-7 transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] disabled:cursor-wait disabled:opacity-70 motion-reduce:transition-none";
+const secondary =
+  "h-[52px] shrink-0 rounded-full border border-v2-navy/30 bg-transparent px-[22px] text-[15px] text-v2-navy hover:bg-v2-navy/5";
+const uid = (id: string) => `${service}-${id}`;
+---
+
+<section
+  id={form.id}
+  class={cn("w-full shrink-0 scroll-mt-6 py-[76px] gutter-v2 max-md:py-10", surface === "cream" ? "bg-v2-cream" : "bg-white")}
+>
+  <div
+    class="container-v2 flex items-start gap-[60px] max-xl:gap-10 max-lg:flex-col-reverse max-lg:items-stretch max-lg:gap-10"
+  >
+    {
+      hasAside ? (
+        <slot name="aside" />
+      ) : (
+        <aside
+          class="flex w-[400px] shrink-0 flex-col gap-[26px] bg-v2-navy px-9 py-10 max-xl:w-[340px] max-lg:w-full max-md:px-5 max-md:py-8"
+          style={{
+            backgroundImage:
+              "radial-gradient(420px 300px at 15% 0%, rgba(71,205,255,0.24), rgba(0,0,0,0) 66%), radial-gradient(380px 280px at 95% 30%, rgba(196,175,140,0.2), rgba(0,0,0,0) 66%)",
+          }}
+        >
+          <h2 class="m-0 font-display text-[32px]/[40px] font-normal tracking-[-0.005em] text-white max-md:text-[26px]/[34px]">
+            {form.heading}
+          </h2>
+          {form.body && <p class="m-0 text-[15px]/[24px] text-v2-muted">{form.body}</p>}
+          <div class="flex flex-col gap-4">
+            {contacts.map((c) => (
+              <a href={c.href} class="flex flex-col gap-[3px] hover:opacity-80">
+                <span class="text-[13px]/[18px] text-[#8a9eac]">{c.label}</span>
+                <span class="text-[18px]/[26px] font-semibold text-white">{c.value}</span>
+              </a>
+            ))}
+          </div>
+        </aside>
+      )
+    }
+
+    <div class="min-w-0 flex-1">
+      <form data-service-form data-service={service} novalidate class="relative">
+        {/* Step 1: the service's own questions. */}
+        <div data-step="1" class={panel}>
+          <div class="flex flex-col gap-2.5">
+            <h2 data-step-heading tabindex="-1" class={heading}>{form.stepOne.title}</h2>
+            <p class="m-0 text-[16px]/[25px] text-[#42586a] max-md:text-[15px]/[24px]">{form.stepOne.body}</p>
+          </div>
+
+          {
+            rows.map((row) => (
+              <div class={cn(row.length > 1 && "flex gap-5 max-md:flex-col")}>
+                {row.map((f) =>
+                  f.type === "chips" || f.type === "multi" ? (
+                    <fieldset
+                      class="m-0 flex min-w-0 flex-1 flex-col gap-3.5 border-0 p-0"
+                      data-field={f.id}
+                      data-label={f.label}
+                      data-kind={f.type}
+                    >
+                      <legend class={cn(label, "mb-3.5 p-0")}>
+                        {f.label}
+                        {f.aside && <span class="text-[#6e808e]"> {f.aside}</span>}
+                        {f.optional && !f.aside && <span class="text-[#6e808e]"> Optional</span>}
+                      </legend>
+                      <div class="flex flex-wrap gap-2.5">
+                        {f.options.map((o) => (
+                          <button type="button" aria-pressed="false" data-chip={o.label} class={chip}>
+                            {o.label}
+                          </button>
+                        ))}
+                      </div>
+                      {f.note && <p class={hint}>{f.note}</p>}
+                    </fieldset>
+                  ) : (
+                    <div
+                      class="flex min-w-0 flex-1 flex-col gap-3"
+                      data-field={f.id}
+                      data-label={f.label}
+                      data-kind={f.type}
+                    >
+                      <label for={uid(f.id)} class={label}>
+                        {f.label}
+                        {f.required && <span aria-hidden="true"> *</span>}
+                        {f.optional && <span class="text-[#6e808e]"> Optional</span>}
+                      </label>
+                      {f.type === "select" ? (
+                        <select id={uid(f.id)} data-param={f.param} class={field}>
+                          <option value="">{f.placeholder ?? "Please select"}</option>
+                          {f.options.map((o) => (
+                            <option value={o.label} data-slug={o.slug} selected={!!preset && o.slug === preset}>
+                              {o.label}
+                            </option>
+                          ))}
+                        </select>
+                      ) : f.type === "textarea" ? (
+                        <textarea
+                          id={uid(f.id)}
+                          rows={4}
+                          maxlength={4000}
+                          placeholder={f.placeholder}
+                          class={cn(field, "h-auto resize-y py-4 leading-6")}
+                        />
+                      ) : (
+                        <input
+                          id={uid(f.id)}
+                          type={f.type}
+                          min={f.min}
+                          required={f.required}
+                          maxlength={f.type === "text" ? 400 : undefined}
+                          placeholder={f.placeholder}
+                          class={field}
+                        />
+                      )}
+                      {f.note && <p class={hint}>{f.note}</p>}
+                    </div>
+                  ),
+                )}
+              </div>
+            ))
+          }
+
+          <div class="flex items-center justify-between gap-[30px] pt-1.5 max-md:flex-col-reverse max-md:items-stretch max-md:gap-4">
+            <span class="text-[15px]/[22px] text-[#6e808e]">Step 1 of 2 · your details are next</span>
+            <button type="submit" class={primary}>
+              <span class="text-[16px] font-semibold text-[#10212b]">Continue to your details</span>
+              <span aria-hidden="true" class="flex size-[42px] items-center justify-center rounded-full border border-[#10212b]/40 text-[15px] text-[#10212b]">→</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Step 2: how to reach you, the same as Plan your trip. */}
+        <div data-step="2" hidden class={panel}>
+          <div class="flex flex-col gap-2.5">
+            <h2 data-step-heading tabindex="-1" class={heading}>{form.stepTwo.title}</h2>
+            <p class="m-0 text-[16px]/[25px] text-[#42586a] max-md:text-[15px]/[24px]">{form.stepTwo.body}</p>
+          </div>
+
+          <div class="flex items-center justify-between gap-6 bg-v2-cream px-[22px] py-[18px] max-md:flex-col max-md:items-start max-md:gap-3 max-md:px-4">
+            <span data-summary class="text-[15px]/[23px] text-[#42586a]"></span>
+            <button type="button" data-go="1" class={cn(secondary, "h-10 px-[18px] text-[14px]")}>Edit</button>
+          </div>
+
+          <div class="flex gap-5 max-md:flex-col">
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <label for={uid("first")} class={label}>First name<span aria-hidden="true"> *</span></label>
+              <input id={uid("first")} name="first" type="text" autocomplete="given-name" required maxlength={80} class={field} />
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <label for={uid("last")} class={label}>Last name<span aria-hidden="true"> *</span></label>
+              <input id={uid("last")} name="last" type="text" autocomplete="family-name" required maxlength={80} class={field} />
+            </div>
+          </div>
+
+          <div class="flex gap-5 max-md:flex-col">
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <label for={uid("email")} class={label}>Email address<span aria-hidden="true"> *</span></label>
+              <input id={uid("email")} name="email" type="email" autocomplete="email" required maxlength={200} class={field} />
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <label for={uid("phone")} class={label}>Phone number<span aria-hidden="true"> *</span></label>
+              <div class="flex gap-2.5">
+                <select name="code" aria-label="Country code" class={cn(field, "w-[120px] shrink-0 px-3.5 max-md:w-[96px]")}>
+                  {[...countryCodes.slice(0, -1), "+91", "Other"].map((c) => <option>{c}</option>)}
+                </select>
+                <input id={uid("phone")} name="phone" type="tel" autocomplete="tel-national" required maxlength={40} class={field} />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 max-md:flex-col">
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <label for={uid("country")} class={label}>Country or region</label>
+              <select id={uid("country")} name="country" class={field}>
+                <option value="">Select your country or region</option>
+                {[...countries.slice(0, -1), "India", "Other"].map((c) => <option>{c}</option>)}
+              </select>
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <label for={uid("heard")} class={label}>How did you hear about us?<span class="text-[#6e808e]"> Optional</span></label>
+              <select id={uid("heard")} name="heard" class={field}>
+                <option value="">Please select</option>
+                {heardFrom.map((h) => <option>{h}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <fieldset class="m-0 flex flex-col gap-3.5 border-0 p-0" data-channel>
+            <legend class={cn(label, "mb-3.5 p-0")}>How would you like us to reach you?</legend>
+            <div class="flex flex-wrap gap-2.5">
+              {channels.map((c, i) => (
+                <button type="button" aria-pressed={i === 0 ? "true" : "false"} data-chip={c} class={chip}>{c}</button>
+              ))}
+            </div>
+          </fieldset>
+
+          {/* Honeypot: hidden from people, filled in by bots. */}
+          <div aria-hidden="true" class="absolute -left-[9999px] h-px w-px overflow-hidden">
+            <label for={uid("website")}>Website</label>
+            <input id={uid("website")} name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <p class={hint}>
+            We will email you a copy of your enquiry. By sending it you agree that Travedise may contact you about it.
+            Your details are used to answer this request, nothing else.
+          </p>
+
+          <p data-error role="alert" hidden class="m-0 text-[15px]/[23px] text-[#a3342b]">
+            <span data-error-text></span> Please try again, or write to
+            <a href={`mailto:${enquiryEmail}`} class="underline">{enquiryEmail}</a>.
+          </p>
+
+          <div class="flex items-center justify-between gap-[30px] pt-1.5 max-md:flex-col-reverse max-md:items-stretch max-md:gap-4">
+            <button type="button" data-go="1" class={secondary}>← Back</button>
+            <button type="submit" data-send class={primary}>
+              <span data-send-label class="text-[16px] font-semibold text-[#10212b]">Send your enquiry</span>
+              <span aria-hidden="true" class="flex size-[42px] items-center justify-center rounded-full border border-[#10212b]/40 text-[15px] text-[#10212b]">→</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Sent. */}
+        <div
+          data-step="sent"
+          hidden
+          class="v2-step-in flex flex-col gap-7 bg-v2-navy px-12 py-16 max-md:px-5 max-md:py-10"
+          style={{
+            backgroundImage:
+              "radial-gradient(520px 340px at 12% 0%, rgba(71,205,255,0.22), rgba(0,0,0,0) 64%), radial-gradient(460px 320px at 92% 20%, rgba(196,175,140,0.2), rgba(0,0,0,0) 64%)",
+          }}
+        >
+          <h2
+            data-step-heading
+            tabindex="-1"
+            class="m-0 font-display text-[34px]/[42px] font-normal tracking-[-0.005em] text-white outline-none max-md:text-[28px]/[36px]"
+          >
+            {form.sent.title}
+          </h2>
+          <p class="m-0 max-w-[620px] text-[17px]/[27px] text-v2-muted max-md:text-[15px]/[24px]">
+            {form.sent.body} If the copy does not arrive, check your spam folder or write to
+            <a href={`mailto:${enquiryEmail}`} class="text-white underline">{enquiryEmail}</a>.
+          </p>
+          <div class="flex gap-3.5 max-md:flex-col">
+            <a href={form.back.href} class="flex h-[52px] items-center justify-center rounded-full bg-v2-sky px-6 text-[15px] font-semibold text-[#10212b]">
+              {form.back.label}
+            </a>
+            <button type="button" data-go="1" data-reset class="h-[52px] rounded-full border border-white/40 px-6 text-[15px] text-white">
+              Send another enquiry
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Step = "1" | "2" | "sent";
+
+  for (const form of document.querySelectorAll<HTMLFormElement>("[data-service-form]")) {
+    const steps = [...form.querySelectorAll<HTMLElement>("[data-step]")];
+    const stepEl = (s: Step) => steps.find((el) => el.dataset.step === s)!;
+    let current: Step = "1";
+
+    // A link such as /weddings/plan?style=elopements pre-picks that choice.
+    const params = new URLSearchParams(location.search);
+    for (const select of form.querySelectorAll<HTMLSelectElement>("select[data-param]")) {
+      const slug = params.get(select.dataset.param!);
+      const match = slug && [...select.options].find((o) => o.dataset.slug === slug);
+      if (match) match.selected = true;
+    }
+
+    // Chips: one pick in a `chips` group (click again to clear), many in a `multi` group.
+    form.addEventListener("click", (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-chip]");
+      if (!button) return;
+      const group = button.closest<HTMLElement>("[data-kind], [data-channel]")!;
+      const on = button.getAttribute("aria-pressed") === "true";
+      if (group.dataset.kind !== "multi") {
+        if (group.hasAttribute("data-channel") && on) return;
+        group.querySelectorAll("[data-chip]").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      }
+      button.setAttribute("aria-pressed", on ? "false" : "true");
+    });
+
+    const picked = (group: Element) =>
+      [...group.querySelectorAll<HTMLElement>('[data-chip][aria-pressed="true"]')].map((b) => b.dataset.chip!);
+
+    /** Step 1's answers, in the order they are asked. Notes travel separately. */
+    function details() {
+      return [...stepEl("1").querySelectorAll<HTMLElement>("[data-field]")]
+        .filter((el) => el.dataset.field !== "notes")
+        .map((el) => {
+          const kind = el.dataset.kind;
+          const value =
+            kind === "chips" || kind === "multi"
+              ? picked(el).join(", ")
+              : (el.querySelector<HTMLInputElement | HTMLSelectElement>("input, select")?.value ?? "").trim();
+          return { label: el.dataset.label!, value };
+        })
+        .filter((d) => d.value !== "");
+    }
+
+    const valid = (s: Step) =>
+      [...stepEl(s).querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("input, select, textarea")]
+        .filter((el) => !el.closest("[aria-hidden]"))
+        .every((el) => el.reportValidity());
+
+    function show(s: Step) {
+      current = s;
+      for (const el of steps) el.hidden = el.dataset.step !== s;
+      if (s === "2") {
+        const summary = details().slice(0, 4).map((d) => d.value);
+        form.querySelector("[data-summary]")!.textContent = summary.length ? summary.join(" · ") : "No details yet";
+      }
+      stepEl(s).querySelector<HTMLElement>("[data-step-heading]")?.focus({ preventScroll: true });
+      form.closest("section")?.scrollIntoView({ block: "start" });
+    }
+
+    form.querySelectorAll<HTMLButtonElement>("[data-go]").forEach((b) =>
+      b.addEventListener("click", () => {
+        if (b.hasAttribute("data-reset")) {
+          form.reset();
+          form
+            .querySelectorAll("[data-kind] [data-chip]")
+            .forEach((chip) => chip.setAttribute("aria-pressed", "false"));
+        }
+        show(b.dataset.go as Step);
+      }),
+    );
+
+    const error = form.querySelector<HTMLElement>("[data-error]")!;
+    const sendButton = form.querySelector<HTMLButtonElement>("[data-send]")!;
+    const sendLabel = form.querySelector<HTMLElement>("[data-send-label]")!;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (current === "1") {
+        if (valid("1")) show("2");
+        return;
+      }
+      if (current !== "2" || sendButton.disabled || !valid("2")) return;
+      const value = (name: string) =>
+        (form.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`)?.value ?? "").trim();
+      const notes = stepEl("1").querySelector<HTMLTextAreaElement>('[data-field="notes"] textarea')?.value ?? "";
+
+      sendButton.disabled = true;
+      sendLabel.textContent = "Sending…";
+      error.hidden = true;
+      try {
+        const res = await fetch("/api/enquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            service: form.dataset.service,
+            details: details(),
+            notes,
+            first: value("first"),
+            last: value("last"),
+            email: value("email"),
+            code: value("code"),
+            phone: value("phone"),
+            country: value("country"),
+            heard: value("heard"),
+            channel: picked(form.querySelector("[data-channel]")!)[0] ?? "",
+            website: value("website"),
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || "Your enquiry could not be sent.");
+        show("sent");
+      } catch (err) {
+        form.querySelector("[data-error-text]")!.textContent =
+          err instanceof Error ? err.message : "Your enquiry could not be sent.";
+        error.hidden = false;
+      } finally {
+        sendButton.disabled = false;
+        sendLabel.textContent = "Send your enquiry";
+      }
+    });
+  }
+</script>

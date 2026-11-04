@@ -1,0 +1,54 @@
+{
+  "order": 5,
+  "slug": "luxury-coach",
+  "name": "Luxury coach",
+  "silhouette": "coach",
+  "seats": {
+    "min": 23,
+    "max": 45
+  },
+  "seatsLabel": "25 to 45 travellers",
+  "bags": "One case per seat, in the hold",
+  "models": "35 to 45 seat touring coach",
+  "short": "A full-size coach for large groups, conferences and wedding guests.",
+  "summary": "A full-size touring coach for large groups, conference delegates and wedding guests arriving together.",
+  "suits": [
+    "Large wedding parties",
+    "Conference and incentive groups",
+    "Pilgrimage groups",
+    "School and university tours"
+  ],
+  "features": [
+    {
+      "title": "Arrivals in one move",
+      "body": "Meet a flight's worth of wedding guests at the airport and bring them to the hotel together, with the luggage in the hold."
+    },
+    {
+      "title": "Comfort for long transfers",
+      "body": "Reclining seats, air conditioning and a microphone for the guide on transfers of three hours or more."
+    },
+    {
+      "title": "Several coaches, one plan",
+      "body": "For the largest groups we run a small fleet with one coordinator, so every coach leaves on time and nobody is left behind."
+    }
+  ],
+  "included": [
+    "A licensed, English-speaking driver",
+    "Fuel, tolls and parking",
+    "Driver's meals and rooms on multi-day hires",
+    "Bottled water in the car",
+    "Air conditioning throughout",
+    "A driver's assistant for luggage",
+    "A coordinator for multi-coach groups"
+  ],
+  "questions": [
+    {
+      "q": "How many coaches do we need for 120 wedding guests?",
+      "a": "Usually three, timed to the main flights. Send us the arrival list when you have it and we will plan the runs."
+    },
+    {
+      "q": "Can a coach go anywhere a car can?",
+      "a": "No. Large coaches stay on the main roads, so some villas and estates need a transfer in smaller vehicles for the last stretch. We plan that for you."
+    }
+  ]
+}

@@ -13,11 +13,13 @@ import Section from "./section.astro";
 interface Props {
   body?: string;
   action?: string;
+  href?: string;
   class?: string;
 }
 const {
   body = "Tell us your dates and what you hope to see. We will shape the rest around you.",
   action = "Let’s get planning",
+  href = "/plan-your-trip",
   class: className,
 } = Astro.props;
 ---
@@ -32,7 +34,7 @@ const {
       </h2>
       <p class="m-0 text-[17px]/[26px] text-v2-muted max-md:text-[15px]/[24px]">{body}</p>
     </div>
-    <BadgeLink href="/plan-your-trip" class="max-md:w-full max-md:justify-between">
+    <BadgeLink href={href} class="max-md:w-full max-md:justify-between">
       {action}
     </BadgeLink>
   </div>

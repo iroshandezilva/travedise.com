@@ -1,0 +1,94 @@
+{
+  "order": 2,
+  "slug": "family-reunions",
+  "name": "Family reunions",
+  "theme": "Three generations, one trip",
+  "size": "10 to 40 travellers",
+  "short": "Grandparents, parents and children travelling together, at a pace that works for all of them.",
+  "summary": "Grandparents, parents, cousins and the youngest ones, travelling together at a pace that works for every age.",
+  "image": {
+    "src": "/v2/1260892ee6b033b2f8f08368d097bbc4.jpg",
+    "alt": "A child in a safari jeep watching an elephant in the long grass"
+  },
+  "facts": [
+    {
+      "value": "10 to 40",
+      "detail": "Travellers, every age"
+    },
+    {
+      "value": "4 to 8 months",
+      "detail": "A comfortable lead time"
+    },
+    {
+      "value": "Quoted per group",
+      "detail": "After we hear your plans"
+    }
+  ],
+  "suits": {
+    "heading": "Every generation, one journey.",
+    "body": "Multigenerational travel is something we plan often. It works when the drives are short, the rooms are close together and each age has something that is theirs.",
+    "points": [
+      "Families flying in from several countries",
+      "Diaspora families coming home together",
+      "Grandparents with limited mobility",
+      "Children of every age, from babies to teenagers"
+    ]
+  },
+  "services": {
+    "heading": "What we look after.",
+    "body": "Everything that makes a big family trip feel easy.",
+    "items": [
+      {
+        "title": "Rooms close together",
+        "body": "Estate bungalows, whole villas or connecting rooms, with ground-floor rooms for anyone who would rather avoid stairs."
+      },
+      {
+        "title": "Group transport",
+        "body": "Vans or a coach with child seats fitted, and drives kept under three hours."
+      },
+      {
+        "title": "Something for each age",
+        "body": "An elephant morning for the children, a cooking class for the teenagers, a temple visit for the grandparents."
+      },
+      {
+        "title": "A family occasion",
+        "body": "A birthday dinner, a blessing at a temple, or a photographer for the whole family."
+      },
+      {
+        "title": "Arrivals from everywhere",
+        "body": "Different flights from different countries, each met and brought to the same place."
+      }
+    ]
+  },
+  "shapes": {
+    "heading": "Shapes we often plan.",
+    "lede": "Starting points, each shaped to your family.",
+    "items": [
+      {
+        "title": "One base, many days out",
+        "length": "7 nights",
+        "body": "A large villa near Galle, with day trips planned so nobody is in the car for long."
+      },
+      {
+        "title": "Hills, safari and sea",
+        "length": "10 nights",
+        "body": "Kandy, a tea estate, Udawalawe for the elephants, then the south coast."
+      },
+      {
+        "title": "A homecoming",
+        "length": "Flexible",
+        "body": "Time with family in Colombo or the north, built around the visits, then a few days away together."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "Can you help grandparents with limited mobility?",
+      "a": "Yes. We choose stays with ground-floor rooms and step-free access, plan short walks, and arrange wheelchairs at the airport."
+    },
+    {
+      "q": "We are flying from three countries. Can you coordinate?",
+      "a": "Yes. Send us each family's flights and we meet everyone and bring them to the same first stay."
+    }
+  ]
+}

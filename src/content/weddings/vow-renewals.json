@@ -1,0 +1,82 @@
+{
+  "order": 4,
+  "slug": "vow-renewals",
+  "name": "Vow renewals",
+  "short": "Ten, twenty-five or forty years on, a morning to say it all again.",
+  "summary": "Ten, twenty-five or forty years on: a morning to say it again, with your children, your oldest friends, or nobody but each other.",
+  "image": {
+    "src": "/v2/9706cd80e0a69d9f3a4d07c86cb2bd72.jpg",
+    "alt": "Two travellers looking out towards Sigiriya rock"
+  },
+  "facts": [
+    {
+      "value": "2 to 40",
+      "detail": "Guests"
+    },
+    {
+      "value": "Half a day",
+      "detail": "Within a longer trip"
+    },
+    {
+      "value": "3 to 6 months",
+      "detail": "A comfortable planning window"
+    }
+  ],
+  "intro": {
+    "heading": "The same promise, somewhere new.",
+    "paragraphs": [
+      "A vow renewal needs no paperwork, which leaves room to choose the setting purely for the view: a hilltop above the Cultural Triangle, a temple garden, a beach at dusk.",
+      "We plan it as part of an anniversary journey, often for a couple and their grown-up children, and look after every detail on the day."
+    ]
+  },
+  "schedule": {
+    "heading": "A simple shape.",
+    "lede": "Short, unhurried, and planned around the light.",
+    "items": [
+      {
+        "when": "Late afternoon",
+        "title": "The renewal",
+        "body": "A celebrant or a Buddhist blessing ceremony, with seating and flowers for the family."
+      },
+      {
+        "when": "Sunset",
+        "title": "Photographs",
+        "body": "Half an hour with the photographer while the light is gold."
+      },
+      {
+        "when": "Evening",
+        "title": "Dinner",
+        "body": "A private table for two or for the whole family, with a menu built around the people at it."
+      }
+    ]
+  },
+  "includes": {
+    "heading": "What we arrange.",
+    "body": "The ceremony and the journey around it.",
+    "items": [
+      {
+        "title": "Setting and ceremony",
+        "body": "A celebrant, or a traditional blessing with monks or Kandyan drummers if you would like one."
+      },
+      {
+        "title": "Photographer and flowers",
+        "body": "People we trust, briefed on the plan."
+      },
+      {
+        "title": "The anniversary journey",
+        "body": "Stays, a private driver and the days around the ceremony, written out for you."
+      }
+    ]
+  },
+  "settings": ["kandy", "nuwara-eliya", "tangalle"],
+  "questions": [
+    {
+      "q": "Can our children come along?",
+      "a": "Of course. Many renewals we plan are family trips, and we shape the journey so it works for every generation."
+    },
+    {
+      "q": "Can we have a Buddhist blessing?",
+      "a": "Yes. A traditional blessing, called a pirith ceremony, can be arranged at a temple or at your hotel, with guidance on what to wear and expect."
+    }
+  ]
+}

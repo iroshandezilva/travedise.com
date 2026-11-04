@@ -1,0 +1,294 @@
+{
+  "hero": {
+    "eyebrow": "Travedise Weddings",
+    "title": "Weddings in Sri Lanka",
+    "body": "Barefoot ceremonies on the sand, mornings for just the two of you, and anniversaries worth flying for. We look after the guests, the venue and the days, so you can be at your own wedding.",
+    "image": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+    "alt": "A couple walking a palm-lined beach at sunset"
+  },
+  "subnav": [
+    {
+      "href": "/weddings#styles",
+      "label": "Styles"
+    },
+    {
+      "href": "/weddings#settings",
+      "label": "Settings"
+    },
+    {
+      "href": "/weddings#handle",
+      "label": "What we handle"
+    },
+    {
+      "href": "/weddings#timeline",
+      "label": "Planning"
+    },
+    {
+      "href": "/weddings#questions",
+      "label": "Questions"
+    }
+  ],
+  "why": {
+    "heading": "A wedding and a holiday in one trip.",
+    "paragraphs": [
+      "Sri Lanka is an easy journey from Australia and the UK, and far enough to feel like an occasion. Your guests land somewhere that feels a world away, and the wedding becomes the start of their own holiday.",
+      "Beaches without crowds, colonial villas, temples lit at night and tea estates in the clouds, all within a few hours of each other, and hosts who have looked after visitors for generations."
+    ],
+    "facts": [
+      {
+        "value": "Nov to Apr",
+        "detail": "Dry season on the west and south coasts"
+      },
+      {
+        "value": "2 to 80",
+        "detail": "Guests we plan for"
+      },
+      {
+        "value": "One team",
+        "detail": "On the ground, from arrival to farewell"
+      }
+    ]
+  },
+  "styles": {
+    "heading": "Four ways to marry here.",
+    "body": "Each one is a starting point. Tell us yours and we will shape it."
+  },
+  "settings": {
+    "heading": "Where it could happen.",
+    "body": "The settings our couples choose most, each a short drive from the next.",
+    "items": [
+      {
+        "key": "bentota",
+        "name": "Bentota and the west coast",
+        "line": "Wide beaches and river lawns an hour from the airport. Our most-asked setting for a ceremony on the sand.",
+        "image": "/places/beach-walk.jpg",
+        "alt": "A lone walker on a wide, empty beach",
+        "href": "/places/bentota"
+      },
+      {
+        "key": "galle",
+        "name": "Galle Fort and the south",
+        "line": "Ramparts above the sea, colonial villas and lantern-lit streets for the evening after.",
+        "image": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+        "alt": "A lit café street inside Galle Fort at night",
+        "href": "/places/galle"
+      },
+      {
+        "key": "tangalle",
+        "name": "Tangalle and the deep south",
+        "line": "Long, quiet beaches and private villas for smaller weddings that want the coast to themselves.",
+        "image": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg",
+        "alt": "A lone walker on an empty stretch of the south coast",
+        "href": "/places/tangalle"
+      },
+      {
+        "key": "kandy",
+        "name": "Kandy",
+        "line": "The hill capital, its lake and the Temple of the Tooth. Heritage hotels and Kandyan drummers.",
+        "image": "/v2/a330488cea582574b523136d4e00efa4.jpg",
+        "alt": "The Temple of the Tooth across the lake in Kandy at dusk",
+        "href": "/places/kandy"
+      },
+      {
+        "key": "nuwara-eliya",
+        "name": "Tea country",
+        "line": "Estate bungalows above the clouds, cool evenings and a fire after dinner. For elopements and small parties.",
+        "image": "/places/nuwara-tea-bungalow.jpg",
+        "alt": "Rows of tea around an estate bungalow on a hillside",
+        "href": "/places/nuwara-eliya"
+      }
+    ]
+  },
+  "handle": {
+    "heading": "What we handle.",
+    "body": "Your planner, or you, decide how it should feel. We make it happen on the ground.",
+    "items": [
+      {
+        "title": "Guest travel",
+        "body": "Flight advice, airport welcome desks, transfers and a room list kept current as RSVPs change."
+      },
+      {
+        "title": "Venues and stays",
+        "body": "Hotels, villas and beaches, with site visits and the permissions a ceremony needs."
+      },
+      {
+        "title": "Ceremony and paperwork",
+        "body": "Priests, celebrants and registrars, and the documents for a legal marriage."
+      },
+      {
+        "title": "Local suppliers",
+        "body": "Décor, flowers, lighting, sound, photography, caterers, a band and Kandyan drummers."
+      },
+      {
+        "title": "Before and after",
+        "body": "Guest excursions, a honeymoon journey, and transport for every part of the celebration."
+      }
+    ]
+  },
+  "timeline": {
+    "heading": "How planning works.",
+    "body": "Most beach weddings come together in six to nine months. An elopement or a vow renewal can be ready in three.",
+    "items": [
+      {
+        "when": "9 to 12 months before",
+        "title": "The brief and the venue",
+        "body": "We talk through the vision, guest numbers and dates, then shortlist venues and arrange site visits."
+      },
+      {
+        "when": "6 to 9 months before",
+        "title": "Rooms and the plan",
+        "body": "Room blocks are held, suppliers are booked, and the schedule of events takes shape."
+      },
+      {
+        "when": "3 to 6 months before",
+        "title": "Guests and paperwork",
+        "body": "Flights and arrivals are tracked, menus are tasted, and documents for a legal ceremony are prepared."
+      },
+      {
+        "when": "The week of the wedding",
+        "title": "On the ground",
+        "body": "Our team runs arrivals, transport and every event to time, and you get to enjoy it."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "Can foreign couples marry legally in Sri Lanka?",
+      "a": "Yes. A local registrar can register your marriage. You will need passports, birth certificates, proof that you are free to marry and a police clearance, certified and legalised at home. We send the current list for your nationality and handle the local side."
+    },
+    {
+      "q": "Do you replace our wedding planner?",
+      "a": "No. Many couples bring their own planner, and we work alongside them as the team on the ground. If you do not have one, we introduce suppliers we trust."
+    },
+    {
+      "q": "How many guests can you look after?",
+      "a": "From two to about eighty. Smaller weddings give us the widest choice of villas and beaches, and keep the days relaxed."
+    },
+    {
+      "q": "When is the best time of year?",
+      "a": "November to April is dry on the west and south coasts. From May to September, the hill country and the east coast are the better settings."
+    },
+    {
+      "q": "How is a wedding priced?",
+      "a": "Every wedding is quoted after the brief, with guest travel, venues and suppliers listed separately so you can see where the money goes."
+    }
+  ],
+  "plan": {
+    "title": "Tell us about your wedding",
+    "body": "A few questions about the celebration, then how to reach you. Nothing here is fixed. It just gives us a good place to begin.",
+    "image": "/assets/6a41d8a9f90b0844dda793bf_Couple-on-Bentota-Beach.webp",
+    "alt": "A couple walking along Bentota beach past a table set for dinner",
+    "help": {
+      "heading": "Talk to our wedding team.",
+      "body": "If you would rather talk it through first, call or write. We reply within a day.",
+      "next": [
+        "We read your brief and reply within a day, usually with questions first.",
+        "Then a call to talk through the vision, the guests and the dates.",
+        "Then a proposal with venues, a schedule and a clear quote."
+      ]
+    }
+  },
+  "form": {
+    "id": "brief",
+    "heading": "Your wedding brief.",
+    "body": "",
+    "stepOne": {
+      "title": "Tell us about the celebration.",
+      "body": "Share what you know. We can work out the rest together."
+    },
+    "stepTwo": {
+      "title": "How can we reach you?",
+      "body": "We will use these details to reply to this enquiry, nothing else."
+    },
+    "sent": {
+      "title": "Thank you. We cannot wait to hear more.",
+      "body": "Your brief is with our wedding team and a copy is on its way to your inbox. We will reply within a day, usually with a few questions before any ideas."
+    },
+    "back": {
+      "label": "Back to weddings",
+      "href": "/weddings"
+    },
+    "fields": [
+      {
+        "id": "style",
+        "label": "What kind of wedding?",
+        "type": "select",
+        "source": "weddings",
+        "placeholder": "Not sure yet"
+      },
+      {
+        "id": "when",
+        "label": "When are you thinking?",
+        "type": "month",
+        "row": "when"
+      },
+      {
+        "id": "nights",
+        "label": "How many days of events?",
+        "type": "select",
+        "optional": true,
+        "options": ["One day", "Two days", "Three days", "Four days or more"],
+        "placeholder": "Not sure yet",
+        "row": "when"
+      },
+      {
+        "id": "guests",
+        "label": "How many guests?",
+        "type": "chips",
+        "options": ["Just the two of us", "Under 20", "20 to 50", "50 to 80", "More than 80"]
+      },
+      {
+        "id": "settings",
+        "label": "Which settings appeal?",
+        "type": "multi",
+        "aside": "Choose as many as you like",
+        "options": [
+          "A beach",
+          "A colonial villa or the fort",
+          "The hill country",
+          "A tea estate",
+          "Not sure yet"
+        ]
+      },
+      {
+        "id": "events",
+        "label": "Which events are you planning?",
+        "type": "multi",
+        "aside": "Choose as many as you like",
+        "options": [
+          "Welcome drinks",
+          "Ceremony",
+          "Dinner or reception",
+          "Photographs at sunset",
+          "A day out with guests"
+        ]
+      },
+      {
+        "id": "traditions",
+        "label": "Ceremony and traditions",
+        "type": "text",
+        "optional": true,
+        "placeholder": "e.g. civil, Christian, Buddhist blessing, or a blend"
+      },
+      {
+        "id": "legal",
+        "label": "Legal or symbolic?",
+        "type": "chips",
+        "options": ["A legal ceremony", "A symbolic ceremony", "Not sure yet"]
+      },
+      {
+        "id": "planner",
+        "label": "Are you working with a planner?",
+        "type": "chips",
+        "options": ["Yes, we have one", "We would like suggestions", "Not decided"]
+      },
+      {
+        "id": "notes",
+        "label": "What would make it yours?",
+        "type": "textarea",
+        "optional": true,
+        "placeholder": "The feeling you want, the people who must be there, anything you have already booked."
+      }
+    ]
+  }
+}

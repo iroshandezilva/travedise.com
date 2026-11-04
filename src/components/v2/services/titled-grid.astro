@@ -1,0 +1,55 @@
+---
+import { cn } from "@/lib/cn";
+
+import Section from "../section.astro";
+
+/**
+ * A heading with a lede, then titled items in columns, each under a hairline. Used for
+ * "what we handle", the ways to hire and the service menus. `numbered` puts a sand
+ * numeral above each title, for steps in order.
+ */
+interface Props {
+  id?: string;
+  heading: string;
+  body?: string;
+  items: { title: string; body: string; href?: string }[];
+  columns?: 2 | 3 | 4;
+  numbered?: boolean;
+  surface?: "white" | "cream";
+}
+const { id, heading, body, items, columns = 3, numbered = false, surface = "white" } = Astro.props;
+---
+
+<Section id={id} surface={surface} class="scroll-mt-6 py-24 max-md:py-14">
+  <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
+    <h2 class="m-0 max-w-[640px] font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+      {heading}
+    </h2>
+    {body && <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{body}</p>}
+  </div>
+  <ol
+    class={cn(
+      "m-0 grid list-none gap-x-10 gap-y-12 p-0 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-y-8",
+      { 2: "grid-cols-2", 3: "grid-cols-3", 4: "grid-cols-4" }[columns],
+    )}
+  >
+    {
+      items.map((item, i) => (
+        <li class="flex flex-col gap-3 border-t border-v2-navy/14 pt-6 max-md:pt-5">
+          {numbered && (
+            <span class="font-display text-[30px]/[34px] text-v2-sand">{String(i + 1).padStart(2, "0")}</span>
+          )}
+          <h3 class="m-0 font-display text-[23px]/[30px] font-normal text-v2-navy max-md:text-[20px]/[26px]">
+            {item.title}
+          </h3>
+          <p class="m-0 text-[16px]/[25px] text-[#42586a] max-md:text-[15px]/[24px]">{item.body}</p>
+          {item.href && (
+            <a href={item.href} class="mt-1 text-[15px]/[22px] font-medium text-v2-navy underline decoration-v2-sky decoration-2 underline-offset-[6px]">
+              See the vehicles ↗
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</Section>
