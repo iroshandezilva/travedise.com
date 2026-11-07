@@ -35,8 +35,10 @@ merges into `dev`, `.github/workflows/cms.yml` merges `dev` back into `cms`.
 - Merge its PR with `gh pr merge <n> --admin --squash` — **no** `--delete-branch`.
 - Don't protect `cms`; the GitHub App pushes to it.
 - `tests/cms.test.mjs` fails if `EDITOR_ACCESS` in `studio/cloudflare/wrangler.jsonc` stops being
-  `"repository"` or the branch setting changes. Never set `EDITOR_ACCESS` to `"github"` — that lets
-  anyone with a GitHub account edit the site.
+  `"allowlist"`, the owner's ID leaves `EDITOR_GITHUB_IDS`, or the branch setting changes. Never set
+  `EDITOR_ACCESS` to `"github"` (anyone with a GitHub account could edit) or `"repository"` (editors
+  would need Write access, which also lets them merge PRs). Editors are added by numeric GitHub ID
+  in `EDITOR_GITHUB_IDS`, then the editor Worker is redeployed.
 
 ## CMS or PR?
 
@@ -65,15 +67,16 @@ The editor builds its forms from `src/content.config.ts`.
 
 - `studio/src/shared/validation.ts` — allow `[` and `]` in paths.
 - `studio/src/features/project/projectServer.ts` — site name from `STUDIO_SITE_NAME`.
-- `studio/cloudflare/wrangler.jsonc` — our repository, `cms` branch, `repository` access.
+- `studio/cloudflare/wrangler.jsonc` — our repository, `cms` branch, allowlist access, our origins.
+- `studio/Dockerfile`, `studio/scripts/siteCache.ts`, `studio/scripts/dependencies.ts`,
+  `studio/scripts/container.ts` — install the site with pnpm (`pnpm-lock.yaml`), not `npm ci`.
+- `studio/test/workspace.test.ts` — one added test for the pnpm case.
 
 Stacki's own suite: `npm --prefix studio test` — 207 of 210 pass; the 3 failures read Stacki's
 demo components and are expected.
 
 ## Not done yet — owner decisions
 
-The GitHub App, hosting on Cloudflare (Workers Paid, Container, R2, a route for
-`travedise.com/studio*`), the switch from `npm ci` to pnpm in `studio/Dockerfile`,
-`scripts/dependencies.ts` and `scripts/siteCache.ts`, and a `/__studio-deployment` Pages Function.
-Don't start any of them without the owner's go-ahead, and never create Cloudflare resources or
-change DNS yourself.
+The code for hosting is in place (pnpm image, `functions/studio/[[path]].js`, real origins). The
+owner's setup steps are in `docs/cms.md` → "Host the editor". Never create Cloudflare resources,
+GitHub Apps, secrets or DNS records yourself; prepare commands and let the owner run or approve them.

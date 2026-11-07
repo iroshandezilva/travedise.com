@@ -22,5 +22,5 @@ Typical jobs:
 - **Publish and hosting prep:** write the changes and the owner's dashboard steps; don't create the
   GitHub App, Cloudflare resources or routes yourself.
 
-Never delete, reset or force-push the `cms` branch, never set `EDITOR_ACCESS` to `"github"`, and
+Never delete, reset or force-push the `cms` branch, never set `EDITOR_ACCESS` to `"github"` or `"repository"`, and
 don't change website source just to make a Stacki test pass. You don't commit — `pr-shipper` does.

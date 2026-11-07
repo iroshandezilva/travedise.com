@@ -23,9 +23,12 @@
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PreviewContainer"] }],
   "r2_buckets": [{ "binding": "DRAFTS", "bucket_name": "stacki-studio-editor-drafts" }],
   "vars": {
-    "SITE_DEPLOYMENT_URL": "https://example.com/__studio-deployment",
-    "STUDIO_ORIGIN": "https://example.com",
-    "PREVIEW_ORIGIN": "https://preview.example.com",
+    // travedise: empty on purpose. Publish lands on the cms branch and reaches the site only after
+    // the owner merges the cms → dev PR and releases dev → main, so a "went live" check would
+    // never match the publish commit. The editor then reports Publish as done once the commit lands.
+    "SITE_DEPLOYMENT_URL": "",
+    "STUDIO_ORIGIN": "https://travedise.com",
+    "PREVIEW_ORIGIN": "https://preview.travedise.com",
     "GITHUB_REPOSITORY": "iroshandezilva/travedise.com",
     // travedise: Publish commits to `cms`; .github/workflows/cms.yml opens the cms → dev PR.
     // main and dev are branch-protected, so the editor must never target them.
@@ -33,9 +36,14 @@
     "GITHUB_APP_ID": "YOUR_GITHUB_APP_ID",
     "GITHUB_INSTALLATION_ID": "YOUR_GITHUB_INSTALLATION_ID",
     "GITHUB_CLIENT_ID": "YOUR_GITHUB_CLIENT_ID",
-    // travedise: only people with write access to the repository may edit or publish.
-    // Never use "github" here: it lets anyone with a GitHub account edit the shared draft.
-    "EDITOR_ACCESS": "repository",
-    "EDITOR_GITHUB_IDS": "YOUR_GITHUB_USER_ID",
+    // travedise: only the GitHub accounts listed in EDITOR_GITHUB_IDS may edit or publish.
+    // Editors need a GitHub account to sign in but no access to the repository: Publish goes
+    // through the GitHub App, so an editor can't push code or merge PRs.
+    // Any value other than "github" or "repository" means "use the list". Never use "github":
+    // it lets anyone with a GitHub account edit the shared draft.
+    "EDITOR_ACCESS": "allowlist",
+    // Numeric GitHub user IDs, comma-separated (find one with `gh api users/<username> --jq .id`).
+    // 55875936 = iroshandezilva (owner). Add each editor here and redeploy the editor Worker.
+    "EDITOR_GITHUB_IDS": "55875936",
   },
 }

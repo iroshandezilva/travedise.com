@@ -15,7 +15,11 @@ WORKDIR /opt/studio
 COPY package*.json ./
 RUN npm ci --cache /opt/npm-cache --no-audit --no-fund && chown -R node:node /opt/studio /opt/npm-cache
 COPY .studio-image/site /opt/site
-RUN if [ -f /opt/site/package-lock.json ]; then cd /opt/site && npm ci --cache /opt/npm-cache --no-audit --no-fund; fi && chown -R node:node /opt/site /opt/npm-cache
+# travedise: the site uses pnpm (version pinned by packageManager in its package.json).
+RUN npm install -g --no-audit --no-fund pnpm@11.24.0 && mkdir -p /opt/pnpm-store
+RUN if [ -f /opt/site/pnpm-lock.yaml ]; then cd /opt/site && pnpm install --frozen-lockfile --store-dir /opt/pnpm-store; \
+    elif [ -f /opt/site/package-lock.json ]; then cd /opt/site && npm ci --cache /opt/npm-cache --no-audit --no-fund; fi \
+    && chown -R node:node /opt/site /opt/npm-cache /opt/pnpm-store
 COPY src ./src
 COPY vendor ./vendor
 COPY scripts ./scripts

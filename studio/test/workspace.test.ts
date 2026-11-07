@@ -51,3 +51,23 @@ test('matching image dependencies are reused and changed lockfiles trigger an in
     await rm(root, { recursive: true, force: true });
   }
 });
+
+// travedise: the site uses pnpm, so its lockfile decides reuse and the install command.
+test('a pnpm site reuses image dependencies by pnpm-lock.yaml and installs with pnpm', async () => {
+  const { installCommand, linkImageDependencies } = await import('../scripts/dependencies');
+  const root = await mkdtemp(path.join(tmpdir(), 'studio-pnpm-'));
+  const site = path.join(root, 'site');
+  const cached = path.join(root, 'cached');
+  try {
+    await mkdir(site);
+    await mkdir(path.join(cached, 'node_modules'), { recursive: true });
+    await writeFile(path.join(cached, 'pnpm-lock.yaml'), 'original');
+    await writeFile(path.join(site, 'pnpm-lock.yaml'), 'changed');
+    assert.equal(await linkImageDependencies(site, cached), false);
+    assert.equal((await installCommand(site))[0], 'pnpm');
+    await writeFile(path.join(site, 'pnpm-lock.yaml'), 'original');
+    assert.equal(await linkImageDependencies(site, cached), true);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

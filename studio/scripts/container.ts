@@ -3,7 +3,7 @@ import { restoreAssetState } from '../src/features/assets/assetState';
 import { writeFile, mkdir, access } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
-import { linkImageDependencies } from './dependencies';
+import { installCommand, linkImageDependencies } from './dependencies';
 import { writeStudioConfig } from './workspace';
 import { Room } from '../src/features/collaboration/rooms';
 import { preparePath } from '../src/features/project/projectServer';
@@ -86,14 +86,7 @@ await restoreCmsDeletions(root);
 await restoreAssetState(root);
 if (!(await linkImageDependencies(root))) {
   console.log('Installing changed site dependencies from cache');
-  await command('npm', [
-    'ci',
-    '--prefer-offline',
-    '--no-audit',
-    '--no-fund',
-    '--cache',
-    '/opt/npm-cache',
-  ]);
+  await command(...(await installCommand(root)));
 }
 console.log('Starting Astro preview');
 await writeStudioConfig(root, '/opt/studio', 4350);

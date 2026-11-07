@@ -49,8 +49,13 @@ function markdownResponse(request, body, { status = 200, canonical } = {}) {
   return new Response(request.method === "HEAD" ? null : body, { status, headers });
 }
 
+export const isStudioPath = (pathname) => pathname === "/studio" || pathname.startsWith("/studio/");
+
 export async function onRequest({ request, next, env }) {
   const url = new URL(request.url);
+
+  // The content editor (functions/studio) answers for itself, including WebSockets.
+  if (isStudioPath(url.pathname)) return next();
 
   if (wantsMarkdown(request)) {
     const asset = await env.ASSETS.fetch(new URL(markdownPath(url.pathname), url));

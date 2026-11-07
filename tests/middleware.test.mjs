@@ -104,3 +104,13 @@ describe("HTML responses", () => {
     assert.equal(res.headers.get("Link"), null);
   });
 });
+
+describe("/studio", () => {
+  it("is passed through untouched, even for Markdown requests", async () => {
+    for (const path of ["/studio", "/studio/api/session"]) {
+      const response = await onRequest(context(path, { accept: "text/markdown" }));
+      assert.equal(response.headers.get("Content-Signal"), null);
+      assert.match(await response.text(), /<title>Travedise<\/title>/);
+    }
+  });
+});
