@@ -1,79 +1,60 @@
 ---
 name: travedise-cms
-description: Working with the Stacki Studio content editor in studio/ — running it, how Publish reaches the site through the cms branch, the rules that keep the cms branch safe, and which schema changes break the editor. Load before touching content JSON, src/content.config.ts, studio/, the cms branch or its PR.
+description: Editing travedise.com content with the Stacki Mac app — how it reads the project, what makes the content config unreadable, schema rules that keep Collections forms working, and how its edits reach the site (a normal PR, never Stacki's Publish). Load before touching content JSON, src/content.config.ts, the `dev` script or Node version, or when Stacki shows an error.
 ---
 
-# The content editor (Stacki Studio)
+# Editing content with Stacki (Mac app)
 
-Full docs: `docs/cms.md`. Upstream rules for code inside `studio/`: `studio/AGENTS.md` (its
-TypeScript and testing rules apply there, not to the site).
+Full guide: `docs/editing-with-stacki.md`. Stacki is an app installed from https://stacki.build, not
+code in this repo. Upstream: https://github.com/flowtricks/stacki, docs https://stacki.build/docs/.
 
-## Run it
+## What Stacki needs from this repo
 
-```bash
-pnpm studio:install   # once
-pnpm studio           # http://localhost:4350/studio
-pnpm studio:stop
+- `npm run dev` / `pnpm dev` starts Astro (`"dev": "astro dev"` in `package.json`). Stacki's rule:
+  if the dev script works in a terminal, the project opens.
+- Dependencies installed by the person (`pnpm install`). Stacki installs only for projects it
+  scaffolds, never a clone. A missing or half-installed `node_modules` gives "The content config
+  could not be read — needs the project dependencies installed."
+- Node 22.12+ (`engines.node`; Astro 7's floor). Stacki's docs only say 18+, so an old Node on
+  its PATH fails confusingly.
+- Collections in `src/content.config.ts` (`glob()` loaders, `astro/zod`); JSON data files are
+  read and written in their own format.
+
+`tests/content-schema.test.mjs` fails if the `dev` script, `engines.node` or the `z.tuple` rule
+breaks. Run `pnpm test`.
+
+## How edits reach the site
+
+```
+Stacki edits files in the checkout ─▶ Claude/pr-shipper: branch off dev, commit, PR into dev ─▶ owner merges ─▶ dev ─▶ main
 ```
 
-It edits a draft copy in `studio/.studio/workspace/` (ignored by Git). To throw a draft away:
-stop the editor, delete `studio/.studio/`. Start from an up-to-date `dev`: the editor publishes
-on top of the checkout's current commit.
+- Never use Stacki's Publish: `.stacki/publish.json` (git-ignored) holds a hosting target this
+  site does not use. Deploys are only `.github/workflows/deploy.yml`.
+- Stacki reformats files it opens (`<slot />` → `<slot></slot>`). Drop whitespace-only diffs.
+- Don't commit `.stacki/` or `package-lock.json`; the lockfile is `pnpm-lock.yaml`.
 
-## How Publish reaches the site
-
-```
-editor ─Publish─▶ cms branch ─(cms.yml opens PR)─▶ "Content updates from the CMS" PR into dev ─owner merges─▶ dev ─release─▶ main
-```
-
-Publish builds the draft first; a draft that fails the schema is never published. After anything
-merges into `dev`, `.github/workflows/cms.yml` merges `dev` back into `cms`.
-
-## The `cms` branch — never break it
-
-- Never delete, reset, rebase or force-push `cms`. Publish refuses to run on rewritten history.
-- Merge its PR with `gh pr merge <n> --admin --squash` — **no** `--delete-branch`.
-- Don't protect `cms`; the GitHub App pushes to it.
-- `tests/cms.test.mjs` fails if `EDITOR_ACCESS` in `studio/cloudflare/wrangler.jsonc` stops being
-  `"repository"` or the branch setting changes. Never set `EDITOR_ACCESS` to `"github"` — that lets
-  anyone with a GitHub account edit the site.
-
-## CMS or PR?
+## Stacki or PR?
 
 | Change | Route |
 |---|---|
-| Words or photos in an existing entry, by an editor | The editor → `cms` |
+| Words or photos in an existing entry | Stacki Collections panel (⌥C) or the JSON, then a PR |
 | New entries written by an agent, many files at once | A normal branch → PR into `dev` |
 | Schema, components, layout, code | Always a normal PR |
 
-Before an agent writes content JSON on a branch, check for an open CMS PR:
-`gh pr list --base dev --head cms --state open`. If one is open and touches the same files, say
-so and ask whether to wait for it to merge — two PRs editing one JSON file will conflict.
+Before an agent edits content JSON, check `gh pr list --base dev --state open` for a PR touching
+the same files; two PRs on one JSON file conflict.
 
-## Schema changes the editor must survive
+## Schema changes Stacki must survive
 
-The editor builds its forms from `src/content.config.ts`.
-
-- No `z.tuple(...)` — it crashed the Places view. Use `z.array(x).length(n)`.
+- No `z.tuple(...)` — it breaks the collection view. Use `z.array(x).length(n)`.
 - Add new fields as `.optional()` so every existing entry stays valid.
-- After a schema change, run the editor, open the changed collection and one entry, and check
-  the form still loads. Say in the PR that you checked it (or that you couldn't).
-- Paths with `[` `]` (dynamic routes) only work because of a patch in
-  `studio/src/shared/validation.ts` — keep it when upgrading.
+- Text bound as `{team.heading}` in a component shows as a chip in Stacki and is edited in the
+  data (`src/content/pages/*.json`), not in the Content field.
+- After a schema change, open the changed collection and one entry in Stacki and say in the PR
+  that the form loaded (or that you couldn't check).
 
-## Local patches to upstream (keep them on upgrade)
+## History
 
-- `studio/src/shared/validation.ts` — allow `[` and `]` in paths.
-- `studio/src/features/project/projectServer.ts` — site name from `STUDIO_SITE_NAME`.
-- `studio/cloudflare/wrangler.jsonc` — our repository, `cms` branch, `repository` access.
-
-Stacki's own suite: `npm --prefix studio test` — 207 of 210 pass; the 3 failures read Stacki's
-demo components and are expected.
-
-## Not done yet — owner decisions
-
-The GitHub App, hosting on Cloudflare (Workers Paid, Container, R2, a route for
-`travedise.com/studio*`), the switch from `npm ci` to pnpm in `studio/Dockerfile`,
-`scripts/dependencies.ts` and `scripts/siteCache.ts`, and a `/__studio-deployment` Pages Function.
-Don't start any of them without the owner's go-ahead, and never create Cloudflare resources or
-change DNS yourself.
+The old vendored editor (`studio/`, the `cms` branch, `cms.yml`, hosted-editor plans) was removed.
+Restore for reference with `git switch -c restore-studio studio-final`.

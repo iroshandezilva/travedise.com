@@ -15,6 +15,9 @@ pnpm build && pnpm preview        # preview the production (static) build
 pnpm test                         # checks the build in dist/ — run after pnpm build
 ```
 
+Needs **Node 22.12+** and pnpm. To edit words and photos visually, install the [Stacki](https://stacki.build)
+Mac app and open this folder after `pnpm install` — see [`docs/editing-with-stacki.md`](docs/editing-with-stacki.md).
+
 The site is fully static (`output: "static"`): every page is HTML at build time. Pages are written
 as `about.html`, not `about/index.html` (`build.format: "file"`), which is what Cloudflare Pages,
 `public/_routes.json` and the tests expect. Dynamic routes list their pages in `getStaticPaths`.

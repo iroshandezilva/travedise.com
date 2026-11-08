@@ -5,7 +5,7 @@ description: How this site is built on Astro 7 — content collections, data mod
 
 # Astro 7 on travedise.com
 
-Astro is pinned to 7.3.x because Stacki Studio (the CMS in `studio/`) is tested with it. Older
+Astro is pinned to 7.3.x. Older
 Astro and Next.js habits break here — this site was Next.js until PR #25, and some leftovers
 (`out/`, `.next/`, `next-env.d.ts`) are still lying around untracked. Ignore them.
 
@@ -33,7 +33,7 @@ Server code lives only in `functions/` (Cloudflare Pages Functions, outside Astr
 
 ## Content: schema and data module, always both
 
-Words and photos are JSON in `src/content/**`. Don't hardcode copy in components — the CMS can
+Words and photos are JSON in `src/content/**`. Don't hardcode copy in components — Stacki can
 only edit what lives in JSON.
 
 - `src/content.config.ts` declares the `places`, `packages` and `blog` collections with
@@ -48,7 +48,7 @@ So a new or renamed field needs **three** edits, or one of the layers is wrong:
 2. the type in `src/data/blog/types.ts`, `src/data/v2/places.ts` or `src/data/v2/packages.ts`,
 3. the JSON files and the component that reads the field.
 
-Schema rules that the CMS needs (see the `travedise-cms` skill): no `z.tuple` — use
+Schema rules that Stacki needs (see the `travedise-cms` skill): no `z.tuple` — use
 `z.array(...).length(n)`; prefer optional fields so existing entries stay valid.
 
 Page-level words are `src/content/pages/*.json`; words shared across pages and contact details
@@ -73,7 +73,7 @@ are `src/content/site/*.json`. These are plain imports, not collections.
   `<link>` font tags or `@font-face` by hand.
 - Styles: Tailwind v4 utilities only. The only CSS file is `src/styles/global.css` (tokens in
   `@theme`, component CSS in `@layer components`). See the `travedise-design-system` skill.
-- Tailwind scans every file that isn't excluded. `global.css` excludes `public/`, `studio/`,
+- Tailwind scans every file that isn't excluded. `global.css` excludes `public/`,
   `docs/` and `.claude/` with `@source not`. A new folder full of class-like words (docs,
   fixtures) needs the same, or its words become CSS in the site bundle.
 - Interactivity: a plain `<script>` in the component (menus, accordions, filters). React only
