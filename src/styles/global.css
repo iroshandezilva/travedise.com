@@ -4,6 +4,11 @@
 @source not "../../studio"; /* the CMS editor (docs/cms.md), not part of the site */
 @source not "../../docs"; /* docs and the design.html style guide use their own CSS */
 @source not "../../.claude"; /* agent and skill instructions quote class names as examples */
+@source not "../../node_modules"; /* a symlink in the CMS draft copy, which Tailwind does not skip by itself */
+@source not "../../.next"; /* leftover build output: its minified code makes junk class names */
+@source not "../../out";
+@source not "../../.wrangler";
+@source not "../../.vercel";
 
 /* Breakpoints mirror Webflow's (991 / 767 / 479). The design is desktop-first:
    write the desktop style bare, then override with max-lg: / max-md: / max-sm:. */
