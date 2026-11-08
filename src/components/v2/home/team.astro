@@ -31,9 +31,7 @@ import { team, teamFrames } from "@/data/v2/home";
   </Reveal>
 
   <Reveal from="rise" delay={100} class="flex min-w-0 flex-1 flex-col gap-7 max-md:gap-5">
-    <h2 class="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]">
-      {team.heading}
-    </h2>
+    <h2 class="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]">{team.heading}</h2>
     {team.paragraphs.map((p) => <p class="m-0 text-[17px]/[27px] text-[#344458] max-md:text-[15px]/[24px]">{p}</p>)}
     <div class="flex items-center gap-[26px] pt-2 max-md:flex-col max-md:items-stretch max-md:gap-3">
       <PillLink
