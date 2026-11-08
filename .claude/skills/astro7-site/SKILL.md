@@ -31,10 +31,27 @@ Server code lives only in `functions/` (Cloudflare Pages Functions, outside Astr
 `functions/api/enquiry.js` (Zoho Mail) and `functions/_middleware.js` (Markdown for
 `Accept: text/markdown`). Both have tests in `tests/`.
 
-## Content: schema and data module, always both
+## Where text lives (hybrid)
 
-Words and photos are JSON in `src/content/**`. Don't hardcode copy in components — Stacki can
-only edit what lives in JSON.
+Stacki edits literal text in a `.astro` file directly on the canvas. Text that comes from a
+variable (`{team.heading}`) shows as a chip and can only be changed in the data. So pick the home
+for each piece of text on purpose:
+
+| Text | Where | Why |
+|---|---|---|
+| One-off text on one page: headings, intro paragraphs, button labels, notes | **Hardcode in the `.astro` component** | Editable on the canvas; nothing else reads it |
+| Items in a list or loop (`.map`): regions, steps, FAQs, reviews, team members, stats | **JSON** | One layout, many entries |
+| Text used in more than one place, including the page `<meta description>`, JSON-LD and the hero that repeats it | **JSON**, read in both places | Edit once, stay in sync |
+| Collections: places, packages, blog, vehicles, weddings, groups | **JSON** (collection schema) | Many entries, forms, validation |
+| Site-wide: contact details, socials, nav and footer labels | **`src/content/site/*.json`** | Used on every page |
+| Photo paths and alt text | **JSON / data** | Picked in Stacki's Assets and Collections panels |
+
+Before moving text either way, `pnpm build` and compare the built HTML: a move must change no
+words. If a hardcoded string is later needed in a second place, move it into JSON then.
+
+## Content in JSON: schema and data module, always both
+
+The JSON in `src/content/**` is what the table above puts there.
 
 - `src/content.config.ts` declares the `places`, `packages` and `blog` collections with
   `glob()` from `astro/loaders` and `z` from `astro/zod` (not `zod`).

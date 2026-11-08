@@ -2,7 +2,7 @@
 import Reveal from "@/components/ui/reveal.astro";
 import PillLink from "@/components/v2/buttons/pill-link.astro";
 import Section from "@/components/v2/section.astro";
-import { team, teamFrames } from "@/data/v2/home";
+import { teamFrames } from "@/data/v2/home";
 
 /**
  * Who plans your trip: four narrow photos that widen under the cursor (see `.v2-reveal`
@@ -32,9 +32,14 @@ import { team, teamFrames } from "@/data/v2/home";
 
   <Reveal from="rise" delay={100} class="flex min-w-0 flex-1 flex-col gap-7 max-md:gap-5">
     <h2 class="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]">
-      {team.heading}
+      A small team in Galle, and one desk near Sydney.
     </h2>
-    {team.paragraphs.map((p) => <p class="m-0 text-[17px]/[27px] text-[#344458] max-md:text-[15px]/[24px]">{p}</p>)}
+    <p class="m-0 text-[17px]/[27px] text-[#344458] max-md:text-[15px]/[24px]">
+      Travedise is run by Chamara and a small team based in Galle, with a second desk on the coast south of Sydney for travellers coming from Australia. We keep the numbers small on purpose, so the person who draws your route is the same person you can message from the road.
+    </p>
+    <p class="m-0 text-[17px]/[27px] text-[#344458] max-md:text-[15px]/[24px]">
+      Chamara has worked in Sri Lanka’s hospitality and travel industry for more than 20 years. Everything on this site is a route we have driven, and the reasons a stop is in or out of a plan are reasons we can tell you.
+    </p>
     <div class="flex items-center gap-[26px] pt-2 max-md:flex-col max-md:items-stretch max-md:gap-3">
       <PillLink
         href="/about"

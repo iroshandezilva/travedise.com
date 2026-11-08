@@ -32,7 +32,7 @@ src/
   components/v2/      sections and shared pieces (nav, footer, buttons, CTAs, accordion)
   components/islands/ the two React components hydrated in the browser: trip form, journeys map
   components/ui/      Reveal (scroll-in animation)
-  content/            the words and photos, as JSON (see below)
+  content/            collections, lists, shared words and photo paths, as JSON (one-off page text is in the components; see below)
   content.config.ts   schemas for the places, journeys and travel notes collections
   data/               typed modules pages import; they read src/content and add derived fields
   scripts/            small browser scripts shared by every page (reveal, WebMCP)

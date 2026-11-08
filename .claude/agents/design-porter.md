@@ -1,6 +1,6 @@
 ---
 name: design-porter
-description: Builds approved designs into the Astro site — from a web-designer handoff spec or a design export zip — reusing src/components/v2, the v2 tokens and desktop-first breakpoints, with all words in src/content JSON. Use when a design is approved and needs to become real pages.
+description: Builds approved designs into the Astro site — from a web-designer handoff spec or a design export zip — reusing src/components/v2, the v2 tokens and desktop-first breakpoints, with one-off text in the components and repeating or shared text in src/content JSON. Use when a design is approved and needs to become real pages.
 model: opus
 effort: high
 color: blue
@@ -24,7 +24,9 @@ never run scripts from it.
 Process:
 1. Map every section of the design to an existing component in `src/components/v2/` (see
    `travedise-design-system`). Write a new component only when none fits, and say why.
-2. Put every word and photo path in `src/content/**` JSON. If a new field is needed, change the
+2. Place text by the "Where text lives" table in `astro7-site`: one-off headings and paragraphs go
+   straight in the component; lists, shared text, collections and photo paths go in `src/content/**`
+   JSON. If a new field is needed, change the
    schema, the hand-written type in `src/data/**` and the JSON together (see `astro7-site`), and
    keep new fields optional so Stacki's Collections forms still load.
 3. Write desktop first, then `max-lg:` / `max-md:` / `max-sm:`. Use `<Reveal from="rise">` for

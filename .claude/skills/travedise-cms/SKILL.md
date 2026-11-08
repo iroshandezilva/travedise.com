@@ -38,7 +38,8 @@ Stacki edits files in the checkout ─▶ Claude/pr-shipper: branch off dev, com
 
 | Change | Route |
 |---|---|
-| Words or photos in an existing entry | Stacki Collections panel (⌥C) or the JSON, then a PR |
+| One-off page text (heading, intro, button label) | Click and type on the Stacki canvas, then a PR |
+| Words or photos in a list, collection or shared field | Stacki Collections panel (⌥C) or the JSON, then a PR |
 | New entries written by an agent, many files at once | A normal branch → PR into `dev` |
 | Schema, components, layout, code | Always a normal PR |
 
@@ -49,8 +50,9 @@ the same files; two PRs on one JSON file conflict.
 
 - No `z.tuple(...)` — it breaks the collection view. Use `z.array(x).length(n)`.
 - Add new fields as `.optional()` so every existing entry stays valid.
-- Text bound as `{team.heading}` in a component shows as a chip in Stacki and is edited in the
-  data (`src/content/pages/*.json`), not in the Content field.
+- Text bound as `{regions}` or `{homeQuestions}` in a component shows as a chip in Stacki and is
+  edited in the data (`src/content/pages/*.json`), not in the Content field. One-off text is
+  hardcoded on purpose so it is editable on the canvas (see `astro7-site` → "Where text lives").
 - After a schema change, open the changed collection and one entry in Stacki and say in the PR
   that the form loaded (or that you couldn't check).
 

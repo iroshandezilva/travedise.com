@@ -26,7 +26,8 @@ Check, in this order of severity:
 2. **Breaks Stacki:** `z.tuple`, a new required field, a changed `dev` script or Node floor, or a
    change that makes the content config unreadable (see `travedise-cms`).
 3. **Security:** `functions/` input handling, secrets in code, new third-party scripts.
-4. **Copy in components** instead of `src/content/**`.
+4. **Text in the wrong place:** repeating, shared or collection text hardcoded in a component, or
+   one-off page text moved into JSON (see `astro7-site` → "Where text lives").
 5. **Design system:** hex values instead of tokens, mobile-first breakpoints, new components that
    duplicate `src/components/v2`, more than one sky button per view.
 6. **Accessibility and performance:** heading order, alt text, focus states, reduced motion,

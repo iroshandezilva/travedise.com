@@ -49,8 +49,12 @@ Never merge on your own initiative or for anyone else.
   no `Astro.request` headers/cookies, and dynamic routes must list their pages in `getStaticPaths`.
 - Server code lives only in `functions/` (Cloudflare Pages Functions): the enquiry form
   (`functions/api/enquiry.js`, sends through Zoho Mail) and the Markdown middleware.
-- Words and photos live in `src/content/**` as JSON, so they can be changed without touching components
-  (and by the Stacki Mac app, see `docs/editing-with-stacki.md`) — don't hardcode copy in components.
+- **Where text lives (hybrid).** One-off text on a page — headings, intro paragraphs, button labels,
+  notes — is written directly in the `.astro` component, so Stacki can edit it on the canvas.
+  Text goes in `src/content/**` JSON only when it repeats in a list or loop, is used in more than
+  one place (including `<meta description>` and structured data), belongs to a collection (places,
+  packages, blog, vehicles…), or is site-wide (contact, socials). Photo paths and alt text stay in
+  data. Full rule: `astro7-site` skill → "Where text lives"; Stacki guide: `docs/editing-with-stacki.md`.
 - Preview a production build with `pnpm build && pnpm preview`.
 
 ## Sub-agents and skills
