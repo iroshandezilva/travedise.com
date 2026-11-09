@@ -27,15 +27,20 @@ dependencies only for projects it scaffolds, never for a cloned one, so step 2 i
 
 ## Editing words
 
-Words live in JSON, not in the components. In Stacki a purple chip such as `team.heading` means
-"this text comes from data". The Content field swaps the binding; it does not type over the
-value. To change the words:
+Text lives in one of two places, and Stacki treats them differently:
 
-1. Open the **Collections** panel (⌥C).
-2. Go to `pages` → `home` (or `places`, `packages`, `blog`, `site`), then change the field.
+- **One-off text on a page** (headings, intro paragraphs, button labels) is written directly in
+  the page. Click it on the canvas and type.
+- **Repeating or shared text** comes from data, and Stacki shows it as a purple chip such as
+  `regions` or `homeQuestions`. The Content field swaps the binding; it does not type over the
+  value. Change it in the **Collections** panel (⌥C): `pages` → `home` / `about`, or `places`,
+  `packages`, `blog`, `site`. You can also edit the JSON in `src/content/**` in any editor.
 
-You can also edit the JSON in `src/content/**` in any editor. Never type copy straight into a
-component: the next person editing the JSON would not see it.
+What goes where, and why, is the "Where text lives" table in the `astro7-site` skill: one-off
+text is hardcoded; lists, text used in more than one place (like the home hero paragraph, which
+is also the page's meta description), collections and photo paths are data. If you type copy into
+a component that is also used elsewhere, the other copy will not change; ask Claude to move it
+into data.
 
 Classes, tags and styles on an element are real attributes in the `.astro` file, so those edit
 directly on the canvas.

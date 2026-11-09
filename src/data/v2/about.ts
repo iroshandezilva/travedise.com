@@ -28,16 +28,12 @@ export const showTeam = (data as { showTeam?: boolean }).showTeam ?? true;
 export const opening = data.opening;
 export const stamps = data.stamps;
 export const team = data.team as {
-  heading: string;
-  intro: string;
   /** `portrait` and `quote` are left out until the team sends them. */
   lead: { name: string; role: string; portrait?: string; quote?: string; story: string };
   /** The rest of the team. Names and portraits to come. */
   members: TeamMember[];
 };
 export const principles = data.principles as {
-  heading: string;
-  intro: string;
   items: { title: string; body: string; tone: "sky" | "sand" | "ember" }[];
 };
 /**
@@ -45,7 +41,6 @@ export const principles = data.principles as {
  * exactly as they came. The section stays hidden while `items` is empty.
  */
 export const reviews = data.reviews as {
-  heading: string;
   /** e.g. { value: "4.9", count: 120, source: "Google", href: "https://…" } */
   rating?: { value: string; count: number; source: string; href: string };
   items: Review[];

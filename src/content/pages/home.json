@@ -1,6 +1,5 @@
 {
   "hero": {
-    "heading": "See Sri Lanka.\nKeep time for\nwhat matters.",
     "body": "Private journeys, planned end to end. We shape the route, choose the stays and arrange your driver, then leave you the hours in between."
   },
   "regions": [
@@ -179,13 +178,6 @@
       "note": "Close range, on a morning drive"
     }
   ],
-  "team": {
-    "heading": "A small team in Galle, and one desk near Sydney.",
-    "paragraphs": [
-      "Travedise is run by Chamara and a small team based in Galle, with a second desk on the coast south of Sydney for travellers coming from Australia. We keep the numbers small on purpose, so the person who draws your route is the same person you can message from the road.",
-      "Chamara has worked in Sri Lanka’s hospitality and travel industry for more than 20 years. Everything on this site is a route we have driven, and the reasons a stop is in or out of a plan are reasons we can tell you."
-    ]
-  },
   "planningSteps": [
     {
       "title": "You tell us what matters",
@@ -254,7 +246,6 @@
     }
   ],
   "readyBand": {
-    "body": "Two short steps on the planning page, and we come back with a first route for you to react to. Nothing is fixed until the plan feels right.",
     "image": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
     "alt": "A couple walking the south coast at sunset"
   }

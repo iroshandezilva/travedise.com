@@ -1,6 +1,6 @@
 ---
 name: content-writer
-description: Writes and rewrites Travedise travel notes, places, packages and page copy from one core idea, ready for SEO and marketing, directly in src/content/**/*.json — with internal links, the optional seo field, and a photo shot list for every image slot. Use for new notes, content refreshes and SEO rewrites.
+description: Writes and rewrites Travedise travel notes, places, packages and page copy from one core idea, ready for SEO and marketing, in src/content/**/*.json (collections and list/shared text) or the page's .astro file (one-off text; see astro7-site "Where text lives") — with internal links, the optional seo field, and a photo shot list for every image slot. Use for new notes, content refreshes and SEO rewrites.
 model: opus
 effort: medium
 color: green

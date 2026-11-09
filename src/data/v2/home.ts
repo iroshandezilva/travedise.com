@@ -21,7 +21,6 @@ export const regions = data.regions as Region[];
 export const journeyPhotos = data.journeyPhotos as Record<string, { image: string; alt: string }>;
 export const frames = data.frames;
 export const teamFrames = data.teamFrames;
-export const team = data.team;
 export const planningSteps = data.planningSteps;
 export const travelNotes = data.travelNotes;
 export const homeQuestions = data.homeQuestions;

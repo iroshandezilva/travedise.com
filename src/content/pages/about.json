@@ -1,6 +1,5 @@
 {
   "aboutHero": {
-    "title": "The people who draw your route",
     "body": "A small team in Galle and one desk near Sydney. Everything on this site is a route we have driven ourselves.",
     "image": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
     "alt": "A Travedise jeep on the red road south"
@@ -24,11 +23,6 @@
     }
   ],
   "opening": {
-    "heading": "We kept meeting people who had seen the island without ever stopping in it.",
-    "paragraphs": [
-      "Nine places in ten days, three hours in the car between each one, and a camera roll that all looks the same. Travedise started because the alternative was obvious and nobody was selling it: fewer stops, longer in each, and someone local deciding what is worth the early start.",
-      "Chamara has spent more than 20 years in Sri Lanka’s hospitality and travel industry. The team is small on purpose, and it stays small so the person who draws your route is the person who answers when you message from the road."
-    ],
     "stats": [
       {
         "value": "20+",
@@ -59,8 +53,6 @@
   ],
   "showTeam": false,
   "team": {
-    "heading": "Five of us, and the drivers who make it work.",
-    "intro": "You will deal with one of us from the first message to the flight home. The others are who we ask when a question is outside what we know well.",
     "lead": {
       "name": "Chamara",
       "role": "Founder, and the one who draws most of the routes",
@@ -69,8 +61,6 @@
     "members": []
   },
   "principles": {
-    "heading": "What we will tell you, even when it costs us the booking.",
-    "intro": "Most of what makes a trip here good is decided before you land. These are the four calls we make the same way every time.",
     "items": [
       {
         "title": "Fewer places, longer in each",
@@ -95,11 +85,9 @@
     ]
   },
   "reviews": {
-    "heading": "What travellers said afterwards.",
     "items": []
   },
   "offices": {
-    "heading": "One office on the island, one close to home.",
     "items": [
       {
         "place": "Galle, Sri Lanka",
@@ -123,7 +111,6 @@
           "href": "tel:+61426965569"
         }
       }
-    ],
-    "note": "Between the two we cover most waking hours in Australia, the UK and Sri Lanka. If you write overnight, someone picks it up in the morning of whichever place is awake."
+    ]
   }
 }
