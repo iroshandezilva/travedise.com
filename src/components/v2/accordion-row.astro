@@ -1,5 +1,6 @@
 ---
 import { cn } from "@/lib/cn";
+import { nextAccordionId } from "@/lib/accordion-id";
 
 /**
  * A disclosure row: a full-width button that reveals the default slot beneath it. Shared
@@ -22,7 +23,9 @@ interface Props {
 const { open = false, class: className, buttonClass, panelClass } = Astro.props;
 
 // Unique within the page; only ties the button to its panel for assistive tech.
-const id = `acc-${Math.random().toString(36).slice(2, 10)}`;
+// Counted per render, not random: the content editor compares two renderings of a page, and a
+// new random id in each one made them differ, so its live preview reloaded in a loop.
+const id = `acc-${nextAccordionId(Astro.request)}`;
 ---
 
 <div class={className} data-accordion-row>

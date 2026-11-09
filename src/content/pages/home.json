@@ -2,24 +2,6 @@
   "hero": {
     "body": "Private journeys, planned end to end. We shape the route, choose the stays and arrange your driver, then leave you the hours in between."
   },
-  "proofPoints": [
-    {
-      "title": "Our own vehicles and drivers",
-      "detail": "On every journey, airport to airport"
-    },
-    {
-      "title": "An office in Australia",
-      "detail": "In Bundeena, NSW, as well as Galle"
-    },
-    {
-      "title": "A reply within a day",
-      "detail": "From the person who plans your trip"
-    },
-    {
-      "title": "Stays we have slept in",
-      "detail": "Chosen in person, never from a list"
-    }
-  ],
   "regions": [
     {
       "name": "Cultural Triangle",

@@ -17,7 +17,6 @@ export type Region = {
 };
 
 export const hero = data.hero;
-export const proofPoints = data.proofPoints;
 export const regions = data.regions as Region[];
 export const journeyPhotos = data.journeyPhotos as Record<string, { image: string; alt: string }>;
 export const frames = data.frames;
