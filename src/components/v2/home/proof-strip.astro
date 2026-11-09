@@ -1,15 +1,14 @@
 ---
 import Section from "@/components/v2/section.astro";
-import { proofPoints as homePoints } from "@/data/v2/home";
 
 /**
- * Four short reasons to travel with us, in a cream band under the hero. The home page's
- * come from home.json; other pages (About) pass their own.
+ * Four short reasons to travel with us, in a cream band under the hero. Each page passes
+ * its own points (About does).
  */
 interface Props {
-  points?: { title: string; detail: string }[];
+  points: { title: string; detail: string }[];
 }
-const { points = homePoints } = Astro.props;
+const { points } = Astro.props;
 ---
 
 <Section
