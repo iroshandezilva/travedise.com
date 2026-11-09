@@ -1,6 +1,6 @@
 ---
 name: astro-reviewer
-description: Read-only reviewer for travedise.com pull requests and branches — static-output rules, Astro 7 APIs, content-in-JSON, CMS-safe schemas, design-system consistency, accessibility, performance and the Pages Functions. Use before a PR is merged, with the PR number or branch.
+description: Read-only reviewer for travedise.com pull requests and branches — static-output rules, Astro 7 APIs, content-in-JSON, Stacki-safe schemas, design-system consistency, accessibility, performance and the Pages Functions. Use before a PR is merged, with the PR number or branch.
 model: opus
 effort: high
 color: red
@@ -23,8 +23,8 @@ Check, in this order of severity:
 1. **Breaks the site:** anything that needs a server (see `astro7-site`), a dynamic route without
    `getStaticPaths`, changed URLs without a redirect, a schema change without the matching type in
    `src/data/**`.
-2. **Breaks the CMS:** `z.tuple`, a new required field, anything touching the `cms` branch rules or
-   `EDITOR_ACCESS` (see `travedise-cms`).
+2. **Breaks Stacki:** `z.tuple`, a new required field, a changed `dev` script or Node floor, or a
+   change that makes the content config unreadable (see `travedise-cms`).
 3. **Security:** `functions/` input handling, secrets in code, new third-party scripts.
 4. **Copy in components** instead of `src/content/**`.
 5. **Design system:** hex values instead of tokens, mobile-first breakpoints, new components that

@@ -1,6 +1,6 @@
 # Astro 7
 
-This site is built with Astro 7 (pinned to 7.3.x — the version Stacki Studio is tested with).
+This site is built with Astro 7 (pinned to 7.3.x).
 APIs differ from older Astro releases you may know: content collections use loaders
 (`src/content.config.ts`, `glob()` from `astro/loaders`), Zod comes from `astro/zod`, and fonts are
 configured in `astro.config.mjs` and rendered with `<Font>` from `astro:assets`. Check the

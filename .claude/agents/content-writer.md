@@ -24,8 +24,8 @@ You write the words on travedise.com. Each piece starts from one core idea (see
 Process:
 1. State the core idea and the search intent in two lines. Check that no existing page already
    answers it; if one does, improve that page instead.
-2. Check for an open CMS PR (`gh pr list --base dev --head cms --state open`). If it touches the
-   files you need, stop and say so (see `travedise-cms`).
+2. Check that no open PR already edits the files you need (`gh pr list --base dev --state open`).
+   If one does, say so before writing — two PRs on one JSON file conflict.
 3. Write the JSON. For a new note, copy an existing file in `src/content/blog/` and change it —
    keep the shape the schema in `src/content.config.ts` expects.
 4. Add the internal links both ways: from the new page, and from two older pages to it.

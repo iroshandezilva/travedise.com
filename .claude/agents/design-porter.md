@@ -26,7 +26,7 @@ Process:
    `travedise-design-system`). Write a new component only when none fits, and say why.
 2. Put every word and photo path in `src/content/**` JSON. If a new field is needed, change the
    schema, the hand-written type in `src/data/**` and the JSON together (see `astro7-site`), and
-   keep new fields optional so the CMS forms still load.
+   keep new fields optional so Stacki's Collections forms still load.
 3. Write desktop first, then `max-lg:` / `max-md:` / `max-sm:`. Use `<Reveal from="rise">` for
    scroll-in motion and respect reduced motion.
 4. When the page replaces an old one, remove the old page and add a redirect in

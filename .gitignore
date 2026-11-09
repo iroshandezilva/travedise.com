@@ -44,3 +44,9 @@ yarn-error.log*
 
 # Wrangler local dev state
 /.wrangler/
+
+# Stacki Mac app: its per-machine publish settings (it may point at a host this site doesn't use)
+/.stacki/
+
+# Stacki (and anything else) running `npm install` writes this; the lockfile here is pnpm-lock.yaml
+/package-lock.json
