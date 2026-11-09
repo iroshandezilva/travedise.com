@@ -1,0 +1,47 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import Frames from "@/components/v2/home/frames.astro";
+import Hero from "@/components/v2/home/hero.astro";
+import Journeys from "@/components/v2/home/journeys.astro";
+import PlanningSteps from "@/components/v2/home/planning-steps.astro";
+import ReadyBand from "@/components/v2/home/ready-band.astro";
+import Regions from "@/components/v2/home/regions.astro";
+import Team from "@/components/v2/home/team.astro";
+import TravelNotes from "@/components/v2/home/travel-notes.astro";
+import Questions from "@/components/v2/questions.astro";
+import { images } from "@/data/v2/images";
+import { hero, homeQuestions } from "@/data/v2/home";
+import Base from "@/layouts/base.astro";
+import { SHARE_IMAGE } from "@/lib/site";
+
+const TITLE = "Travedise — See Sri Lanka. Keep time for what matters.";
+const DESCRIPTION = hero.body;
+
+/**
+ * Home page — the "Home V8 Decision path" design, which lived at `/v2` while it was
+ * being built. It brings its own palette, Ragmont for display type, and its own nav and
+ * footer; the rest of the site still runs on the original design, so the links out of
+ * here (About, Travel notes, the journey pages) cross into it.
+ */
+---
+
+<Base title={TITLE} description={DESCRIPTION} canonical="/" image={SHARE_IMAGE} ogType="website">
+  <link slot="head" rel="preload" href={images.heroPoster} as="image" fetchpriority="high" />
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <Hero />
+    <main>
+      <Regions />
+      <Journeys />
+      <Frames />
+      <Team />
+      <PlanningSteps />
+      <TravelNotes />
+      <Questions items={homeQuestions} />
+      <ReadyBand />
+    </main>
+    <FooterWide
+      statement="A small island with long days in it. Plan it once, properly, and it stays with you for years."
+      statementFace="body"
+    />
+  </div>
+</Base>

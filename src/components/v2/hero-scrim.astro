@@ -1,0 +1,25 @@
+---
+/**
+ * The wash that makes hero text legible over a photo: a darkening gradient plus a blurred
+ * strip under the nav. The phone variant darkens from the bottom, where its headline sits.
+ */
+interface Props {
+  desktop: string;
+}
+const { desktop } = Astro.props;
+---
+
+<div class="absolute inset-0 max-md:hidden" style={{ backgroundImage: desktop }}></div>
+<div
+  class="absolute inset-0 hidden max-md:block"
+  style={{
+    backgroundImage:
+      "linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.82) 0%, oklab(0 0 0 / 0) 58%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.5) 0%, oklab(0 0 0 / 0) 34%)",
+  }}
+>
+</div>
+<div
+  class="absolute inset-x-0 top-0 h-[190px] bg-[#09161d21] backdrop-blur-[22px] max-md:hidden"
+  style={{ maskImage: "linear-gradient(black 0%, rgba(0,0,0,0.75) 45%, transparent 100%)" }}
+>
+</div>

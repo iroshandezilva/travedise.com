@@ -1,0 +1,30 @@
+---
+import type { QuestionItem } from "@/data/v2/shared";
+
+import AccordionRow from "./accordion-row.astro";
+
+/** The open-one-at-a-time list shared by the home questions band and the FAQ page. */
+interface Props {
+  items: QuestionItem[];
+}
+const { items } = Astro.props;
+---
+
+<div class="flex min-w-0 flex-col" data-accordion>
+  {
+    items.map((item, i) => (
+      <AccordionRow
+        open={i === 0}
+        buttonClass="gap-5 py-[19px] max-md:items-start max-md:py-4"
+        panelClass="pr-10 pb-5 max-md:pr-0 max-md:pb-[18px]"
+      >
+        <span slot="head" class="text-[17px]/[25px] text-v2-navy max-md:text-[16px]/[24px]">
+          {item.q}
+        </span>
+        <p class="m-0 text-[15px]/[24px] text-v2-navy max-md:text-[14px]/[23px] max-md:text-v2-body">
+          {item.a}
+        </p>
+      </AccordionRow>
+    ))
+  }
+</div>

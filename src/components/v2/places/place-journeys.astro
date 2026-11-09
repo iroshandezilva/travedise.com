@@ -1,0 +1,78 @@
+---
+import Section from "@/components/v2/section.astro";
+import { journeys } from "@/data/v2/journeys";
+import { places, type Place } from "@/data/v2/places";
+
+const heading =
+  "m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]";
+
+/**
+ * The journeys that stop here — those ending here first. A place none of our routes
+ * stops at borrows the journeys that stop elsewhere in its region, under a heading that
+ * says so; if there are none of those either, the section is left out.
+ */
+interface Props {
+  place: Place;
+}
+const { place } = Astro.props;
+
+const direct = place.journeyStop ? journeys.filter((j) => j.stops.includes(place.journeyStop!)) : [];
+const stopsInRegion = places
+  .filter((p) => p.region === place.region && p.journeyStop)
+  .map((p) => p.journeyStop!);
+const matches = direct.length
+  ? [...direct].sort(
+      (a, b) =>
+        Number(b.stops.at(-1) === place.journeyStop) - Number(a.stops.at(-1) === place.journeyStop),
+    )
+  : journeys.filter((j) => j.stops.some((s) => stopsInRegion.includes(s)));
+
+const title = direct.length
+  ? (place.journeysHeading ?? `Journeys through ${place.name}.`)
+  : "Journeys that pass close by.";
+---
+
+{
+  matches.length > 0 && (
+    <Section class="py-[110px] max-md:py-14">
+      <div class="flex flex-col gap-11 max-md:gap-7">
+        <div class="flex items-end justify-between gap-20 max-md:flex-col max-md:items-start max-md:gap-3">
+          <h2 class={heading}>{title}</h2>
+          <a
+            href="/packages"
+            class="inline-block shrink-0 text-[16px]/[1.2] text-v2-navy underline-offset-4 hover:underline"
+          >
+            All journeys ↗
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-8 max-lg:grid-cols-1 max-md:gap-5">
+          {matches.slice(0, 4).map((j) => (
+            <a href={j.href} class="group flex items-stretch bg-v2-cream max-md:flex-col">
+              <div class="w-[240px] shrink-0 overflow-clip max-md:h-[200px] max-md:w-full">
+                <img src={j.image} alt={j.alt} loading="lazy" class="v2-card-img block size-full object-cover" />
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-2.5 px-7 pt-7 pb-[26px] max-md:px-5 max-md:pt-5 max-md:pb-5">
+                <div class="text-[14px]/[20px] text-[#65788c]">{j.theme}</div>
+                <h3 class="m-0 text-[24px]/[32px] font-semibold tracking-[-0.01em] text-v2-navy transition-colors duration-300 group-hover:text-[#344458] max-md:text-[21px]/[28px]">
+                  {j.name}
+                </h3>
+                <p class="m-0 text-[14px]/[21px] text-[#52687b]">{j.route}</p>
+                <div class="mt-auto flex items-center justify-between gap-[18px] pt-3.5">
+                  <div class="text-[15px]/[22px] text-v2-navy">
+                    <span class="font-semibold">{j.price}</span> · {j.nights}
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    class="flex size-11 shrink-0 items-center justify-center rounded-full border border-v2-navy/25 text-[15px] text-v2-navy transition-colors duration-200 group-hover:border-v2-navy group-hover:bg-v2-navy group-hover:text-white"
+                  >
+                    ↗
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )
+}

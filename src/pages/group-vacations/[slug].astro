@@ -1,0 +1,125 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import Questions from "@/components/v2/questions.astro";
+import Section from "@/components/v2/section.astro";
+import FactsBar from "@/components/v2/services/facts-bar.astro";
+import PhotoCard from "@/components/v2/services/photo-card.astro";
+import PhotoHero from "@/components/v2/services/photo-hero.astro";
+import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
+import TitledGrid from "@/components/v2/services/titled-grid.astro";
+import { groupsContent as page, groupTypes, type GroupType } from "@/data/v2/services";
+import Base from "@/layouts/base.astro";
+
+/** Static build: one page per group type in `src/content/groups/`. */
+export function getStaticPaths() {
+  return groupTypes.map((group) => ({ params: { slug: group.slug }, props: { group } }));
+}
+
+/**
+ * A group type. No itinerary and no fixed price: who it suits, the services we bring
+ * together for it, shapes to start from, how planning works, and the group form with
+ * this type chosen.
+ */
+const { group } = Astro.props as { group: GroupType };
+const services = group.services.items.map((s) => (s.title === "Group transport" ? { ...s, href: "/vehicles" } : s));
+const others = groupTypes.filter((g) => g.slug !== group.slug).slice(0, 3);
+---
+
+<Base title={`${group.name} in Sri Lanka | Travedise`} description={group.summary} canonical={`/group-vacations/${group.slug}`} image={group.image.src} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PhotoHero
+      eyebrow="Group vacations"
+      title={group.name}
+      body={group.summary}
+      image={group.image.src}
+      alt={group.image.alt}
+      position={group.image.position}
+      current="/group-vacations"
+    />
+    <main>
+      <FactsBar facts={group.facts} href={`#${page.form.id}`} action="Tell us about your group ↗" />
+
+      <Section class="py-24 max-md:py-14" innerClass="flex items-start justify-between gap-24 max-lg:flex-col max-lg:gap-10">
+        <div class="flex w-[480px] shrink-0 flex-col gap-[22px] max-lg:w-full max-md:gap-4">
+          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+            {group.suits.heading}
+          </h2>
+          <p class="m-0 text-[17px]/[27px] text-[#42586a] max-md:text-[15px]/[24px]">{group.suits.body}</p>
+        </div>
+        <ul class="m-0 flex min-w-0 flex-1 list-none flex-col p-0">
+          {
+            group.suits.points.map((p) => (
+              <li class="flex items-center gap-3 border-t border-v2-navy/14 py-[18px] text-[18px]/[26px] text-v2-navy last:border-b max-md:text-[16px]/[24px]">
+                <span aria-hidden="true" class="size-1.5 shrink-0 rounded-full bg-v2-sand" />
+                {p}
+              </li>
+            ))
+          }
+        </ul>
+      </Section>
+
+      <TitledGrid heading={group.services.heading} body={group.services.body} items={services} surface="cream" />
+
+      <Section class="py-24 max-md:py-14">
+        <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
+          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
+            {group.shapes.heading}
+          </h2>
+          <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{group.shapes.lede}</p>
+        </div>
+        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-1 max-md:gap-5">
+          {
+            group.shapes.items.map((shape) => (
+              <div class="flex flex-col gap-4 bg-v2-navy px-8 pt-8 pb-9 max-md:px-6 max-md:pt-6 max-md:pb-7">
+                <span class="text-[13px]/[18px] tracking-[0.04em] text-v2-sand uppercase">{shape.length}</span>
+                <h3 class="m-0 font-display text-[26px]/[32px] font-normal text-white max-md:text-[22px]/[28px]">{shape.title}</h3>
+                <p class="m-0 text-[15px]/[24px] text-v2-muted">{shape.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </Section>
+
+      <TitledGrid heading={page.steps.heading} items={page.steps.items} columns={4} numbered surface="cream" />
+
+      <ServiceEnquiry service="group" form={page.form} preset={group.slug} />
+
+      <Questions
+        items={[...group.questions, ...page.questions.slice(1, 4)]}
+        heading="Before you plan."
+        body="The questions organisers of this kind of trip ask us first."
+        action="Tell us about your group ↗"
+        href={`#${page.form.id}`}
+      />
+
+      <Section class="py-24 max-md:py-14">
+        <div class="mb-12 flex items-end justify-between gap-10 max-md:mb-8 max-md:flex-col max-md:items-start max-md:gap-4">
+          <h2 class="m-0 font-display text-[40px]/[48px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[28px]/[36px]">
+            Other kinds of group.
+          </h2>
+          <a href="/group-vacations" class="text-[15px]/[22px] font-medium text-v2-navy underline decoration-v2-sky decoration-2 underline-offset-[6px]">
+            All group vacations ↗
+          </a>
+        </div>
+        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+          {
+            others.map((g) => (
+              <PhotoCard
+                href={`/group-vacations/${g.slug}`}
+                image={g.image.src}
+                alt={g.image.alt}
+                position={g.image.position}
+                tag={g.theme}
+                title={g.name}
+                body={g.short}
+                meta={g.size}
+                compact
+              />
+            ))
+          }
+        </div>
+      </Section>
+    </main>
+    <FooterWide statement="Everyone in the right place, at the right time, with nobody in the group stuck organising it." />
+  </div>
+</Base>

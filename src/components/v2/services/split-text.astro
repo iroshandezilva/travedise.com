@@ -1,0 +1,29 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+
+import Section from "../section.astro";
+
+/**
+ * A heading on the left and two or three paragraphs on the right: how each service
+ * section opens, before its cards.
+ */
+interface Props {
+  heading: string;
+  paragraphs: string[];
+  surface?: "white" | "cream";
+}
+const { heading, paragraphs, surface = "white" } = Astro.props;
+---
+
+<Section surface={surface} class="py-24 max-md:py-14" innerClass="flex items-start justify-between gap-24 max-lg:flex-col max-lg:gap-8">
+  <Reveal
+    as="h2"
+    from="rise"
+    class="m-0 w-[520px] shrink-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-lg:w-full max-md:text-[30px]/[38px]"
+  >
+    {heading}
+  </Reveal>
+  <Reveal from="rise" delay={100} class="flex min-w-0 max-w-[620px] flex-1 flex-col gap-5">
+    {paragraphs.map((p) => <p class="m-0 text-[18px]/[29px] text-[#42586a] max-md:text-[16px]/[26px]">{p}</p>)}
+  </Reveal>
+</Section>

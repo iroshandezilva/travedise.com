@@ -1,0 +1,95 @@
+{
+  "order": 2,
+  "slug": "beach-weddings",
+  "name": "Beach weddings",
+  "short": "An intimate ceremony on the sand, for the people you would actually miss.",
+  "summary": "A ceremony on a quiet beach, a long table under the palms, and a few days on the coast for the people you would actually miss.",
+  "image": {
+    "src": "/assets/6a41d8a9f90b0844dda793bf_Couple-on-Bentota-Beach.webp",
+    "alt": "A couple walking along Bentota beach past a table set for dinner"
+  },
+  "facts": [
+    {
+      "value": "10 to 80",
+      "detail": "Guests"
+    },
+    {
+      "value": "1 to 2 days",
+      "detail": "Ceremony, dinner, a day after"
+    },
+    {
+      "value": "6 to 9 months",
+      "detail": "A comfortable planning window"
+    }
+  ],
+  "intro": {
+    "heading": "A ceremony on the sand, and a table nobody wants to leave.",
+    "paragraphs": [
+      "The west and south coasts are at their best from November to April, when the sea is calm and the evenings are warm enough to eat outside until late.",
+      "We find the stretch of beach and the hotel or villa that suits your numbers, take care of the paperwork and the permits, and plan the days around it so your guests have a holiday too."
+    ]
+  },
+  "schedule": {
+    "heading": "A shape for the celebration.",
+    "lede": "Most beach weddings settle into something like this. Change any of it.",
+    "items": [
+      {
+        "when": "The day before",
+        "title": "Welcome drinks",
+        "body": "Sundowners on the terrace as guests arrive, and a chance for the families to meet."
+      },
+      {
+        "when": "Late afternoon",
+        "title": "The ceremony",
+        "body": "On the sand as the heat goes out of the day, with seating, flowers and a celebrant or registrar."
+      },
+      {
+        "when": "Evening",
+        "title": "Dinner under the palms",
+        "body": "A long table or round tables on the lawn, a menu built with the chef, and music for after."
+      },
+      {
+        "when": "The day after",
+        "title": "A day on the coast",
+        "body": "A boat trip, a walk around Galle Fort, or nothing at all by the pool."
+      }
+    ]
+  },
+  "includes": {
+    "heading": "What we arrange.",
+    "body": "Everything between your guests landing and your guests flying home.",
+    "items": [
+      {
+        "title": "The venue",
+        "body": "A hotel lawn, a private villa or a quiet beach, with the permissions a ceremony on the sand needs."
+      },
+      {
+        "title": "Ceremony and paperwork",
+        "body": "A celebrant for a symbolic ceremony, or the registrar and documents for a legal one."
+      },
+      {
+        "title": "Flowers, food and music",
+        "body": "Local florists, menus built with the chef, a band or a DJ, and a photographer."
+      },
+      {
+        "title": "Guests' stays and transfers",
+        "body": "Room blocks, airport pick-ups and transport between hotels and the venue."
+      }
+    ]
+  },
+  "settings": ["bentota", "galle", "tangalle"],
+  "questions": [
+    {
+      "q": "Can we marry legally in Sri Lanka?",
+      "a": "Yes. Foreign couples can register a marriage with a local registrar. You will need passports, birth certificates, proof that you are free to marry and a police clearance, legalised in your home country. We send the current list for your nationality and handle the local side."
+    },
+    {
+      "q": "Is a symbolic ceremony simpler?",
+      "a": "Much simpler. Many couples register at home and hold a symbolic ceremony here, which needs no paperwork in Sri Lanka at all."
+    },
+    {
+      "q": "What happens if it rains?",
+      "a": "Every beach wedding we plan has a covered option on the same property, agreed in advance, so the decision on the day takes minutes."
+    }
+  ]
+}

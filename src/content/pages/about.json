@@ -1,0 +1,116 @@
+{
+  "aboutHero": {
+    "body": "A small team in Galle and one desk near Sydney. Everything on this site is a route we have driven ourselves.",
+    "image": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
+    "alt": "A Travedise jeep on the red road south"
+  },
+  "proofPoints": [
+    {
+      "title": "Our own vehicles and drivers",
+      "detail": "On every journey, airport to airport"
+    },
+    {
+      "title": "An office in Australia",
+      "detail": "In Bundeena, NSW, as well as Galle"
+    },
+    {
+      "title": "A reply within a day",
+      "detail": "From the person who plans your trip"
+    },
+    {
+      "title": "SLTDA registered, ATAS accredited",
+      "detail": "Licensed in Sri Lanka, accredited in Australia"
+    }
+  ],
+  "opening": {
+    "stats": [
+      {
+        "value": "20+",
+        "label": "Years planning here"
+      },
+      {
+        "value": "2",
+        "label": "Desks, Galle and NSW"
+      }
+    ]
+  },
+  "stamps": [
+    {
+      "src": "/v2/e77a66899f34c2489eb802df5e80cac9.jpg",
+      "alt": "Travellers sitting above the Cultural Triangle at Pidurangala",
+      "caption": "Pidurangala · 06:14"
+    },
+    {
+      "src": "/v2/1260892ee6b033b2f8f08368d097bbc4.jpg",
+      "alt": "A child watching the road from the jeep",
+      "caption": "Udawalawe · 06:40"
+    },
+    {
+      "src": "/v2/49c9ea8f6d4c74abde92d705e38b45e5.jpg",
+      "alt": "An avenue of palms running down to the coast",
+      "caption": "Tangalle · 17:40"
+    }
+  ],
+  "showTeam": false,
+  "team": {
+    "lead": {
+      "name": "Chamara",
+      "role": "Founder, and the one who draws most of the routes",
+      "story": "Travedise was founded by Chamara after more than 20 years working inside Sri Lanka’s hospitality and travel industry. That experience shapes every journey: which stays are worth the price, which park to visit and when, and the roads most itineraries miss."
+    },
+    "members": []
+  },
+  "principles": {
+    "items": [
+      {
+        "title": "Fewer places, longer in each",
+        "body": "Four stops done properly beats nine done from the car window. If your dates only allow four, we will say so rather than sell you nine.",
+        "tone": "sky"
+      },
+      {
+        "title": "The month decides the coast",
+        "body": "If you are coming in July and you have set your heart on the south, we will tell you to go east instead. Weather is not something to be optimistic about.",
+        "tone": "sand"
+      },
+      {
+        "title": "We have slept in the rooms",
+        "body": "Every stay we put you in is one of us has stayed in, or someone on the team has. Where that is not true yet, we say so.",
+        "tone": "ember"
+      },
+      {
+        "title": "We will tell you what to skip",
+        "body": "There are famous things here that are not worth your morning. Ask us and you will get a straight answer, not a longer itinerary.",
+        "tone": "sky"
+      }
+    ]
+  },
+  "reviews": {
+    "items": []
+  },
+  "offices": {
+    "items": [
+      {
+        "place": "Galle, Sri Lanka",
+        "address": [
+          "212A Inland Hill Road",
+          "Karapitiya, Galle"
+        ],
+        "phone": {
+          "label": "+94 76 397 2171",
+          "href": "tel:+94763972171"
+        }
+      },
+      {
+        "place": "Bundeena, Australia",
+        "address": [
+          "5/22-30 Brighton St",
+          "Bundeena NSW 2230"
+        ],
+        "phone": {
+          "label": "+61 426 965 569",
+          "href": "tel:+61426965569"
+        }
+      }
+    ]
+  }
+}

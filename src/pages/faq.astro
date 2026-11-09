@@ -1,0 +1,33 @@
+---
+import PillLink from "@/components/v2/buttons/pill-link.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import PlainHero from "@/components/v2/plain-hero.astro";
+import QuestionList from "@/components/v2/question-list.astro";
+import Section from "@/components/v2/section.astro";
+import { faqHeading, faqPageFaqs } from "@/data/faqs";
+import { questionsIntro } from "@/data/v2/shared";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "Questions — Travedise";
+const DESCRIPTION = faqHeading.title;
+
+/** The questions page: the same answers as before, in the new page shell. */
+const items = faqPageFaqs.map((item) => ({ q: item.question, a: item.answer }));
+---
+
+<Base title={TITLE} description={DESCRIPTION} canonical="/faq" ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PlainHero title="Questions" body={faqHeading.title} current="/faq" />
+    <main>
+      <Section surface="cream" class="py-[90px] max-md:py-14">
+        <div class="mx-auto flex w-full max-w-[820px] flex-col items-start gap-10">
+          <QuestionList items={items} />
+          <PillLink href={questionsIntro.href} variant="navy">
+            {questionsIntro.action}
+          </PillLink>
+        </div>
+      </Section>
+    </main>
+    <FooterWide statementFace="body" />
+  </div>
+</Base>

@@ -33,9 +33,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: site
-          path: out
+          path: dist
           retention-days: 3
-          include-hidden-files: true # out/.well-known/
+          include-hidden-files: true # dist/.well-known/
 
   # main → travedise.com, dev → dev.travedise.pages.dev.
   # The ref guard matters for workflow_dispatch, which can be run from any branch.
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: site
-          path: out
+          path: dist
 
       # Run Wrangler directly: wrangler-action would try to install via pnpm (lockfile present).
       - uses: actions/setup-node@v4
@@ -63,5 +63,5 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: c875c02d0b617757f8c631be7664e6c5
         run: >-
-          npx --yes wrangler@4 pages deploy out --project-name travedise
+          npx --yes wrangler@4 pages deploy dist --project-name travedise
           --branch ${{ github.ref_name }} --commit-hash ${{ github.sha }}

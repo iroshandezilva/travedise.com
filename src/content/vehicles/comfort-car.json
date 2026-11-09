@@ -1,0 +1,53 @@
+{
+  "order": 1,
+  "slug": "comfort-car",
+  "name": "Comfort car",
+  "silhouette": "car",
+  "seats": {
+    "min": 1,
+    "max": 3
+  },
+  "seatsLabel": "1 to 3 travellers",
+  "bags": "2 large cases, 2 small bags",
+  "models": "Toyota Axio, Prius or similar",
+  "short": "A quiet, air-conditioned saloon for two, with room for a third.",
+  "summary": "A quiet, air-conditioned saloon for couples and small parties, from a single airport run to two weeks on the road.",
+  "suits": [
+    "Couples on a journey",
+    "Airport arrivals and departures",
+    "Business travellers in Colombo",
+    "A day trip from Galle or Kandy"
+  ],
+  "features": [
+    {
+      "title": "Comfortable on long days",
+      "body": "Reclining rear seats and steady air conditioning, so a four-hour drive to the hill country still leaves you ready for the afternoon."
+    },
+    {
+      "title": "Easy in the old towns",
+      "body": "Small enough for the narrow lanes inside Galle Fort and the streets around Kandy lake, where a van has to stop outside."
+    },
+    {
+      "title": "The same driver throughout",
+      "body": "On a multi-day hire your driver stays with you, knows the plan, and is a phone call away in the evening."
+    }
+  ],
+  "included": [
+    "A licensed, English-speaking driver",
+    "Fuel, tolls and parking",
+    "Driver's meals and rooms on multi-day hires",
+    "Bottled water in the car",
+    "Air conditioning throughout",
+    "Child seats, fitted before pick-up"
+  ],
+  "questions": [
+    {
+      "q": "Is a car enough for a two-week journey?",
+      "a": "For two people with normal luggage, yes. If you travel with golf clubs, surfboards or a lot of shopping, the premium SUV or the van gives you more room."
+    },
+    {
+      "q": "Can we book just an airport transfer?",
+      "a": "Yes. Tell us your flight number and where you are staying, and we confirm a fixed price for the transfer."
+    }
+  ]
+}

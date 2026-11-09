@@ -1,0 +1,62 @@
+{
+  "order": 12,
+  "slug": "arugam-bay",
+  "name": "Arugam Bay",
+  "region": "east",
+  "line": "A surf town on the east coast, with the season starting in June.",
+  "image": {
+    "src": "/places/reef-from-above.jpg",
+    "alt": "Waves breaking over the reef below a palm-lined beach",
+    "position": "50% 40%"
+  },
+  "map": {
+    "cx": 375,
+    "cy": 503.8,
+    "tx": 387,
+    "ty": 508.3,
+    "anchor": "start"
+  },
+  "locatorAnchor": "end",
+  "summary": "A surf town low on the east coast, with a long point break and a season that runs through the northern summer.",
+  "nights": "3 nights",
+  "goodFor": "Surfers, young couples",
+  "intro": {
+    "heading": "A surf town, and quieter bays beyond.",
+    "paragraphs": [
+      "Arugam Bay is one road of guesthouses and cafés behind a curve of sand, with a right-hand point break at the southern end that surfers travel a long way for. The season runs from about May to October.",
+      "It is relaxed, and busy in season, which suits some people more than others. We use it as a base for the quieter breaks and lagoons further south, and for Kumana, the national park most visitors never reach."
+    ]
+  },
+  "mapCaption": "Low on the south east coast. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Arugam Bay runs on the surf and the tides. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "The point at dawn",
+        "body": "The main break is best early, before the wind picks up. Beginners learn on the gentler waves at Baby Point."
+      },
+      {
+        "title": "Kumana National Park",
+        "body": "Birds in huge numbers around the lagoons, elephants, and the odd leopard, without the jeeps of Yala."
+      },
+      {
+        "title": "The lagoon by canoe",
+        "body": "Pottuvil lagoon at first light, through the mangroves, with herons and the occasional crocodile for company."
+      },
+      {
+        "title": "Muhudu Maha Viharaya",
+        "body": "An old temple half buried in the dunes at Pottuvil, a short ride north of the bay."
+      }
+    ]
+  },
+  "season": "Arugam Bay follows the east coast. The surf and the weather are best from June to September, and many places close from November to March, when the north east monsoon arrives.",
+  "nearby": {
+    "heading": "Nearby, and on the way.",
+    "slugs": [
+      "trincomalee",
+      "yala",
+      "ella"
+    ]
+  },
+  "ctaBody": "Tell us your dates and whether you surf, and we will build the rest of the route around the season."
+}

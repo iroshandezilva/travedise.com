@@ -96,6 +96,63 @@ describe("email content", () => {
   });
 });
 
+describe("service enquiries", () => {
+  const WEDDING = {
+    ...VALID,
+    journey: "",
+    service: "wedding",
+    details: [
+      { label: "Wedding style", value: "Indian destination wedding" },
+      { label: "Guests", value: "80 to 200" },
+      { label: "Empty answer", value: " " },
+    ],
+  };
+
+  it("accepts a service with its answers and drops empty ones", () => {
+    const { enquiry, error } = readEnquiry(WEDDING);
+    assert.equal(error, undefined);
+    assert.equal(enquiry.service, "wedding");
+    assert.equal(enquiry.details.length, 2);
+  });
+
+  it("rejects unknown services, too many answers and overlong answers", () => {
+    assert.match(readEnquiry({ ...WEDDING, service: "spaceflight" }).error, /not recognised/);
+    const many = Array.from({ length: 21 }, (_, i) => ({ label: `Q${i}`, value: "A" }));
+    assert.match(readEnquiry({ ...WEDDING, details: many }).error, /too many/);
+    const long = [{ label: "Guests", value: "x".repeat(600) }];
+    assert.match(readEnquiry({ ...WEDDING, details: long }).error, /too long/);
+    assert.match(readEnquiry({ ...WEDDING, details: "Guests: 80" }).error, /could not be read/);
+  });
+
+  it("strips line breaks from answers", () => {
+    const { enquiry } = readEnquiry({
+      ...WEDDING,
+      details: [{ label: "Venue\nBcc", value: "Galle\r\nFort" }],
+    });
+    assert.deepEqual(enquiry.details, [{ label: "Venue Bcc", value: "Galle Fort" }]);
+  });
+
+  it("names the service in both emails and lists every answer", () => {
+    const { enquiry } = readEnquiry(WEDDING);
+    const ours = teamEmail(enquiry);
+    assert.equal(ours.subject, "Wedding enquiry from Ada Lovelace");
+    assert.match(
+      ours.content,
+      /Enquiry: Wedding\nWedding style: Indian destination wedding\nGuests: 80 to 200/,
+    );
+    assert.doesNotMatch(ours.content, /Journey:/);
+    const theirs = travellerEmail(enquiry);
+    assert.equal(theirs.subject, "Your Travedise wedding enquiry (copy)");
+    assert.match(theirs.content, /Guests: 80 to 200/);
+  });
+
+  it("keeps a trip enquiry without a service exactly as before", () => {
+    const { enquiry } = readEnquiry(VALID);
+    assert.equal(enquiry.service, "");
+    assert.equal(teamEmail(enquiry).subject, "Trip enquiry from Ada Lovelace");
+  });
+});
+
 describe("POST /api/enquiry", () => {
   it("sends our copy, then the traveller's confirmation", async () => {
     const calls = stubZoho();

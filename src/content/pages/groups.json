@@ -1,0 +1,214 @@
+{
+  "hero": {
+    "title": "Group vacations in Sri Lanka",
+    "body": "For six or more people travelling together. Tell us who you are and why you are coming, and we look after everything around it: rooms, transport, guides and the moments that bring a group together.",
+    "image": "/v2/e77a66899f34c2489eb802df5e80cac9.jpg",
+    "alt": "Two travellers looking across the forest to Sigiriya rock at first light"
+  },
+  "intro": {
+    "heading": "Not a tour. A plan for your group.",
+    "paragraphs": [
+      "A group vacation is not a fixed itinerary with a departure date. It starts with your group: who is coming, what you are celebrating or studying, and how you like to travel.",
+      "From there we put together the services you need and draw a route around them. You can take one service or all of them, and the quote shows each one."
+    ],
+    "facts": [
+      {
+        "value": "6 to 200",
+        "detail": "Travellers in a group"
+      },
+      {
+        "value": "Your dates",
+        "detail": "No fixed departures"
+      },
+      {
+        "value": "One quote",
+        "detail": "Every service listed"
+      }
+    ]
+  },
+  "types": {
+    "heading": "Five kinds of group we plan for.",
+    "body": "Pick the closest, or tell us yours. Each one shows the services we usually bring together."
+  },
+  "catalog": {
+    "heading": "Services, not a set menu.",
+    "body": "Every group takes a different mix. These are the pieces we put together.",
+    "items": [
+      {
+        "title": "Trip design",
+        "body": "A route drawn around your group, with drives short enough for everyone."
+      },
+      {
+        "title": "Rooms and villas",
+        "body": "Room blocks, whole-villa buyouts and estate bungalows, with a rooming list we manage."
+      },
+      {
+        "title": "Group transport",
+        "body": "Vans, mini coaches and coaches, each with its own driver.",
+        "href": "/vehicles"
+      },
+      {
+        "title": "A tour leader",
+        "body": "A Travedise leader with the group, handling the day so you do not have to."
+      },
+      {
+        "title": "Activities and access",
+        "body": "Guides, park permits, cooking classes, matches, workshops and early entry where we can get it."
+      },
+      {
+        "title": "Private events",
+        "body": "Dinners on the beach or in Galle Fort, celebrations, blessings and gala nights."
+      },
+      {
+        "title": "Meeting spaces",
+        "body": "For offsites and conferences, rooms with screens, sound and reliable internet."
+      },
+      {
+        "title": "Support on the trip",
+        "body": "A coordinator on call throughout, for the changes that always come up."
+      }
+    ]
+  },
+  "steps": {
+    "heading": "How planning works.",
+    "items": [
+      {
+        "title": "Tell us about the group",
+        "body": "Who is coming, roughly when, and what the trip is for."
+      },
+      {
+        "title": "A call within a few days",
+        "body": "We ask the questions that shape the trip: ages, pace, budget, what matters most."
+      },
+      {
+        "title": "A plan and a quote",
+        "body": "A route, the services, and a price per person with every part listed."
+      },
+      {
+        "title": "We look after it",
+        "body": "Rooms, transport and every day of the trip, with one person to call."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q": "What counts as a group?",
+      "a": "Six travellers or more. For smaller parties, one of our journeys, tailored to you, usually works better."
+    },
+    {
+      "q": "Is there a fixed itinerary?",
+      "a": "No. We suggest shapes to start from, then draw the route around your group's dates, interests and pace."
+    },
+    {
+      "q": "How is a group trip priced?",
+      "a": "Per person, after we understand the group. The quote lists each service, so you can add or remove parts and see the difference."
+    },
+    {
+      "q": "Can people in the group pay separately?",
+      "a": "Yes. We can take payments from each traveller or family, so the organiser does not have to collect them."
+    },
+    {
+      "q": "How far ahead should we plan?",
+      "a": "Two to four months for most groups. For large groups, December to March, or festival dates, start six months or more ahead."
+    }
+  ],
+  "form": {
+    "id": "enquire",
+    "heading": "Tell us about your group.",
+    "body": "Two short steps. We reply within a day to arrange a call.",
+    "stepOne": {
+      "title": "Tell us about the group.",
+      "body": "Rough numbers and dates are fine."
+    },
+    "stepTwo": {
+      "title": "How can we reach you?",
+      "body": "We will use these details to reply to this enquiry, nothing else."
+    },
+    "sent": {
+      "title": "Thank you. We will be in touch within a day.",
+      "body": "Your enquiry is with us and a copy is on its way to your inbox. We will reply to set up a call."
+    },
+    "back": {
+      "label": "Back to group vacations",
+      "href": "/group-vacations"
+    },
+    "fields": [
+      {
+        "id": "type",
+        "label": "What kind of group?",
+        "type": "select",
+        "source": "groups",
+        "placeholder": "Something else"
+      },
+      {
+        "id": "size",
+        "label": "How many travellers?",
+        "type": "number",
+        "min": 6,
+        "placeholder": "12",
+        "required": true,
+        "row": "when"
+      },
+      {
+        "id": "when",
+        "label": "When would you like to go?",
+        "type": "month",
+        "row": "when"
+      },
+      {
+        "id": "length",
+        "label": "How long would you stay?",
+        "type": "chips",
+        "options": ["Under a week", "7 to 9 nights", "10 nights or more", "Not sure yet"]
+      },
+      {
+        "id": "occasion",
+        "label": "What brings you together?",
+        "type": "text",
+        "optional": true,
+        "placeholder": "e.g. a 40th birthday, a sales incentive, a birding club"
+      },
+      {
+        "id": "rooms",
+        "label": "Where would you like to stay?",
+        "type": "chips",
+        "options": ["One shared villa", "Boutique hotels", "A mix", "Not sure yet"]
+      },
+      {
+        "id": "services",
+        "label": "Which services do you need?",
+        "type": "multi",
+        "aside": "Choose as many as you like",
+        "options": [
+          "Trip design",
+          "Rooms and villas",
+          "Group transport",
+          "A tour leader",
+          "Activities",
+          "Private events",
+          "Meeting spaces"
+        ]
+      },
+      {
+        "id": "budget",
+        "label": "Budget per person",
+        "type": "chips",
+        "options": [
+          "Under $1,500",
+          "$1,500 to $3,000",
+          "$3,000 to $5,000",
+          "Over $5,000",
+          "Not sure yet"
+        ],
+        "note": "Excluding international flights. A guide is enough."
+      },
+      {
+        "id": "notes",
+        "label": "Anything else we should know?",
+        "type": "textarea",
+        "optional": true,
+        "placeholder": "Ages, mobility, dietary needs, anything already booked."
+      }
+    ]
+  }
+}

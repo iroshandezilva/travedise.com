@@ -1,0 +1,82 @@
+---
+import { TripForm } from "@/components/islands/trip-form";
+import { cn } from "@/lib/cn";
+
+const STEPS = ["1 · Your trip", "2 · Your details"];
+
+/**
+ * The progress rail and the form section under it. They share the form's step, so the
+ * rail lives here with the form; the help panel beside it is passed in as the `aside` slot.
+ *
+ * The form is a React island. It announces each step change with a bubbling
+ * `trip-form:step` event, and the script below moves the rail to match. The rail is
+ * rendered at step 1, which is where the form starts.
+ *
+ * On a phone and tablet the form comes first and the help panel follows it.
+ */
+const reached = 1;
+---
+
+<section
+  aria-label="Progress"
+  data-plan-rail
+  class="w-full shrink-0 bg-v2-cream py-[34px] gutter-v2 max-md:py-6"
+>
+  <ol class="container-v2 m-0 flex list-none gap-3 p-0">
+    {
+      STEPS.map((text, i) => {
+        const done = i < reached;
+        return (
+          <li aria-current={i === reached - 1 ? "step" : undefined} class="flex flex-1 flex-col gap-3">
+            <span
+              data-plan-bar
+              class={cn(
+                "h-[3px] transition-colors duration-300 motion-reduce:transition-none",
+                done ? "bg-v2-navy" : "bg-v2-navy/16",
+              )}
+            />
+            <span
+              data-plan-label
+              class={cn("text-[15px]/[22px] max-md:text-[14px]/[20px]", done ? "text-v2-navy" : "text-[#82909c]")}
+            >
+              {text}
+            </span>
+          </li>
+        );
+      })
+    }
+  </ol>
+</section>
+
+<section id="form" data-plan-form class="w-full shrink-0 bg-white py-[76px] gutter-v2 max-md:py-10">
+  <div
+    class="container-v2 flex items-start gap-[60px] max-xl:gap-10 max-lg:flex-col-reverse max-lg:items-stretch max-lg:gap-10"
+  >
+    <slot name="aside" />
+    <div class="min-w-0 flex-1">
+      <TripForm client:load />
+    </div>
+  </div>
+</section>
+
+<script>
+  const BAR = "h-[3px] transition-colors duration-300 motion-reduce:transition-none";
+  const LABEL = "text-[15px]/[22px] max-md:text-[14px]/[20px]";
+
+  for (const form of document.querySelectorAll<HTMLElement>("[data-plan-form]")) {
+    const rail = form.previousElementSibling;
+    if (!(rail instanceof HTMLElement) || !rail.hasAttribute("data-plan-rail")) continue;
+
+    form.addEventListener("trip-form:step", (event) => {
+      const step = (event as CustomEvent<1 | 2 | "sent">).detail;
+      const reached = step === 1 ? 1 : 2;
+      rail.querySelectorAll("li").forEach((li, i) => {
+        const done = i < reached;
+        if (i === reached - 1 && step !== "sent") li.setAttribute("aria-current", "step");
+        else li.removeAttribute("aria-current");
+        li.querySelector("[data-plan-bar]")!.className = `${BAR} ${done ? "bg-v2-navy" : "bg-v2-navy/16"}`;
+        li.querySelector("[data-plan-label]")!.className = `${LABEL} ${done ? "text-v2-navy" : "text-[#82909c]"}`;
+      });
+    });
+  }
+</script>

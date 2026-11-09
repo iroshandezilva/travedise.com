@@ -1,0 +1,70 @@
+{
+  "order": 6,
+  "slug": "polonnaruwa",
+  "name": "Polonnaruwa",
+  "region": "triangle",
+  "line": "A medieval royal city, flat enough to see by bicycle.",
+  "image": {
+    "src": "/v2/09d95dc68e65357e5e1c3fd7f705b12f.jpg",
+    "alt": "The carved moonstone and steps of the Polonnaruwa Vatadage at dusk"
+  },
+  "map": {
+    "cx": 237,
+    "cy": 325,
+    "tx": 249,
+    "ty": 329.5,
+    "anchor": "start"
+  },
+  "summary": "The island’s medieval capital, spread through shady parkland. We see it by bicycle, one ruin at a time.",
+  "nights": "A day",
+  "goodFor": "Families, cyclists",
+  "intro": {
+    "heading": "A city you can cycle.",
+    "paragraphs": [
+      "Polonnaruwa was the royal capital around nine hundred years ago. Its palaces, temples and stupas are spread over several kilometres of flat, shaded parkland beside a huge reservoir built by King Parakramabahu.",
+      "It is an hour from Sigiriya, so we treat it as a day out. Bicycles and a guide at the gate, an early start, and the stone Buddhas of the Gal Vihara saved for last."
+    ]
+  },
+  "mapCaption": "In the east of the Cultural Triangle. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Polonnaruwa is a morning on two wheels. These are the things we build the day around.",
+    "items": [
+      {
+        "title": "The ruins by bicycle",
+        "body": "Flat paths, shade most of the way, and a guide riding with you. We stop at the Quadrangle, the royal palace and the lotus pond."
+      },
+      {
+        "title": "The Gal Vihara",
+        "body": "Four Buddhas cut into a single granite face, one of them fourteen metres long and lying down. The finest carving on the island."
+      },
+      {
+        "title": "The reservoir at dusk",
+        "body": "Parakrama Samudra is big enough to look like a lake. Families come down to the bund to swim and watch the light go."
+      },
+      {
+        "title": "Elephants at Minneriya",
+        "body": "The national park is half an hour away. From July to September the gathering there is one of the great wildlife sights of Asia."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/minneriya-elephants.jpg",
+      "alt": "Elephants grazing on open grassland at Minneriya"
+    },
+    {
+      "src": "/places/polonnaruwa-ruins.jpg",
+      "alt": "Stone ruins among the trees at Polonnaruwa"
+    }
+  ],
+  "season": "Polonnaruwa follows the Cultural Triangle: dry for most of the year and at its best from February to April. The Minneriya gathering peaks in August and September, as the reservoir shrinks.",
+  "nearby": {
+    "heading": "Around the Triangle.",
+    "slugs": [
+      "sigiriya",
+      "dambulla",
+      "trincomalee"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with the bicycles waiting at the gate."
+}

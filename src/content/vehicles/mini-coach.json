@@ -1,0 +1,54 @@
+{
+  "order": 4,
+  "slug": "mini-coach",
+  "name": "Mini coach",
+  "silhouette": "minibus",
+  "seats": {
+    "min": 9,
+    "max": 22
+  },
+  "seatsLabel": "10 to 22 travellers",
+  "bags": "One case per seat",
+  "models": "Toyota Coaster or similar",
+  "short": "A small coach for group vacations, club tours and wedding shuttles.",
+  "summary": "A small, air-conditioned coach with a driver and, for longer tours, an assistant, for group vacations, club tours and wedding guest shuttles.",
+  "suits": [
+    "Group vacations",
+    "Club and special-interest tours",
+    "Wedding guest shuttles",
+    "Corporate offsites"
+  ],
+  "features": [
+    {
+      "title": "One group, one plan",
+      "body": "The whole party moves together, with a driver and an assistant who handles the luggage at each stop."
+    },
+    {
+      "title": "Microphone and reclining seats",
+      "body": "Your guide can talk the route as you drive, and the seats recline for the longer stretches."
+    },
+    {
+      "title": "Shuttles on a timetable",
+      "body": "For weddings and events we run fixed loops between hotels and venues, so guests never wait on the kerb."
+    }
+  ],
+  "included": [
+    "A licensed, English-speaking driver",
+    "Fuel, tolls and parking",
+    "Driver's meals and rooms on multi-day hires",
+    "Bottled water in the car",
+    "Air conditioning throughout",
+    "Child seats, fitted before pick-up",
+    "A driver's assistant for luggage on tours"
+  ],
+  "questions": [
+    {
+      "q": "Can the coach reach the hill country?",
+      "a": "Yes, on the main roads to Kandy, Nuwara Eliya and Ella. A few small estate roads are too narrow, and we plan around them."
+    },
+    {
+      "q": "Can it run wedding shuttles all evening?",
+      "a": "Yes. Give us the venue, the hotels and the times, and we build a shuttle timetable with the driver on standby between runs."
+    }
+  ]
+}

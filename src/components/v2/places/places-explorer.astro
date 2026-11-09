@@ -1,0 +1,371 @@
+---
+import Section from "@/components/v2/section.astro";
+import { islandPath } from "@/data/v2/journeys";
+import { placeRegions, places, placesGrid, placesMap, regionByKey, type RegionKey } from "@/data/v2/places";
+import { cn } from "@/lib/cn";
+
+/**
+ * The two halves of the places index, sharing one choice of region. Pick a region on the
+ * dark map section and its places light up on the island and the grid below narrows to
+ * them; the chips above the grid make the same choice from the other end.
+ *
+ * Only opacity and colour change on the map, so switching regions cross-fades.
+ *
+ * The page is rendered with nothing picked ("all"); the script below swaps the classes,
+ * `aria-pressed`, the blurb, the map and the cards when a region is picked. Every element
+ * whose classes depend on the choice carries both versions: `data-when` says which flag it
+ * follows (`on`: this region is the pick; `lit`: it is the pick or nothing is), and
+ * `data-yes` / `data-no` hold the class strings for each side.
+ */
+
+// Nothing is picked on load.
+const current: RegionKey | "all" = "all" as RegionKey | "all";
+const shown = places;
+
+const swap = (when: "on" | "lit", state: boolean, base: string, yes: string, no: string) => ({
+  class: cn(base, state ? yes : no),
+  "data-when": when,
+  "data-yes": cn(base, yes),
+  "data-no": cn(base, no),
+});
+
+const chipBase =
+  "h-11 shrink-0 rounded-full border px-5 text-[15px]/[1] transition-[background-color,color,border-color,scale] duration-200 ease-out-quart active:scale-[0.97] motion-reduce:transition-none max-md:h-10 max-md:px-4 max-md:text-[14px]";
+const chipOn = "border-v2-navy bg-v2-navy text-white";
+const chipOff = "border-v2-navy/20 bg-white text-v2-navy hover:border-v2-navy/50";
+---
+
+<section
+  id="map"
+  data-places-map
+  class="w-full shrink-0 bg-[#0c1526] py-[110px] gutter-v2 max-md:py-14"
+  style={{
+    backgroundImage:
+      "radial-gradient(900px 520px at 12% 4%, rgba(71,205,255,0.16), rgba(0,0,0,0) 60%), radial-gradient(700px 480px at 88% 70%, rgba(196,175,140,0.14), rgba(0,0,0,0) 62%)",
+  }}
+>
+  <div class="container-v2 flex flex-col">
+    <div
+      class="mb-[52px] flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8"
+    >
+      <h2
+        class="m-0 max-w-[620px] font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-white max-md:text-[30px]/[38px]"
+      >
+        {placesMap.heading}
+      </h2>
+      <p
+        class="m-0 w-[380px] shrink-0 text-[16px]/[25px] text-[#b8c8d1] max-lg:w-full max-md:text-[15px]/[24px]"
+      >
+        {placesMap.lede}
+      </p>
+    </div>
+
+    <div class="flex items-start gap-16 max-lg:flex-col max-lg:gap-10">
+      <div class="w-[520px] shrink-0 max-lg:mx-auto max-lg:w-full max-lg:max-w-[420px]">
+        {/* Every place as a dot; the picked region's get the accent ring and a full label. */}
+        <svg
+          viewBox="-95 -10 570 700"
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-label="Map of Sri Lanka with the places in every region highlighted"
+          data-map
+          class="block h-[700px] w-full max-lg:h-[560px] max-md:h-[440px]"
+        >
+          <path d={islandPath} fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"
+          ></path>
+          {places.map((p) => <circle cx={p.map.cx} cy={p.map.cy} r="3" fill="rgba(255,255,255,0.3)" />)}
+          {
+            places.map((p) => {
+              const on = current === "all" || p.region === current;
+              return (
+                <g data-region={p.region}>
+                  <g
+                    opacity={on ? 1 : 0}
+                    data-map-ring
+                    class="transition-opacity duration-[450ms] ease-out-quart motion-reduce:transition-none"
+                  >
+                    <circle cx={p.map.cx} cy={p.map.cy} r="13" fill="var(--color-v2-sky)" opacity="0.16" />
+                    <circle
+                      cx={p.map.cx}
+                      cy={p.map.cy}
+                      r="5.5"
+                      fill="var(--color-v2-sky)"
+                      stroke="#0c1526"
+                      stroke-width="2"
+                    />
+                  </g>
+                  <text
+                    x={p.map.tx}
+                    y={p.map.ty}
+                    text-anchor={p.map.anchor}
+                    font-size="13"
+                    font-weight="500"
+                    fill="#fff"
+                    opacity={on ? 1 : 0.32}
+                    data-map-label
+                    class="font-heading transition-opacity duration-[450ms] ease-out-quart motion-reduce:transition-none"
+                  >
+                    {p.name}
+                  </text>
+                </g>
+              );
+            })
+          }
+        </svg>
+      </div>
+
+      <div class="flex min-w-0 flex-1 flex-col gap-2 max-lg:w-full">
+        {
+          placeRegions.map((r) => {
+            const on = r.key === current;
+            const lit = on || current === "all";
+            return (
+              <button
+                type="button"
+                aria-pressed={on ? "true" : "false"}
+                data-region-button={r.key}
+                data-name={r.name}
+                data-blurb={r.blurb}
+                {...swap(
+                  "on",
+                  on,
+                  "flex w-full items-center justify-between gap-[30px] border-0 border-l-[3px] px-[26px] py-[22px] text-left transition-[background-color,border-color] duration-300 ease-out-quart motion-reduce:transition-none max-md:gap-4 max-md:px-4 max-md:py-4",
+                  "border-v2-sky bg-white/9",
+                  "border-transparent bg-white/2 hover:bg-white/6",
+                )}
+              >
+                <span class="flex min-w-0 flex-col gap-1.5">
+                  <span
+                    {...swap(
+                      "lit",
+                      lit,
+                      "text-[24px]/[32px] font-semibold tracking-[-0.01em] transition-colors duration-300 max-md:text-[19px]/[26px]",
+                      "text-white",
+                      "text-white/72",
+                    )}
+                  >
+                    {r.name}
+                  </span>
+                  <span
+                    {...swap(
+                      "lit",
+                      lit,
+                      "text-[14px]/[21px] transition-colors duration-300 max-md:text-[13px]/[19px]",
+                      "text-[#b8c8d1]",
+                      "text-[#b8c8d1]/55",
+                    )}
+                  >
+                    {places
+                      .filter((p) => p.region === r.key)
+                      .map((p) => p.name)
+                      .join(", ")}
+                  </span>
+                </span>
+                <span class="flex shrink-0 items-center gap-6 max-md:gap-3">
+                  <span class="flex flex-col gap-[3px] text-right">
+                    <span {...swap("lit", lit, "text-[13px]/[18px]", "text-[#b8c8d1]", "text-[#b8c8d1]/55")}>
+                      At its best
+                    </span>
+                    <span
+                      {...swap(
+                        "lit",
+                        lit,
+                        "text-[15px]/[21px] max-md:text-[13px]/[18px]",
+                        "text-white",
+                        "text-white/72",
+                      )}
+                    >
+                      {r.best}
+                    </span>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    {...swap(
+                      "on",
+                      on,
+                      "text-[17px]/[1] transition-colors duration-300 max-md:hidden",
+                      "text-v2-sky",
+                      "text-white/30",
+                    )}
+                  >
+                    →
+                  </span>
+                </span>
+              </button>
+            );
+          })
+        }
+
+        <div
+          class="mt-8 flex items-center justify-between gap-7 bg-white/6 px-7 py-[26px] max-md:mt-5 max-md:flex-col max-md:items-start max-md:gap-4 max-md:px-5 max-md:py-5"
+        >
+          <p
+            aria-live="polite"
+            data-blurb-all={placesMap.blurb}
+            class="m-0 text-[16px]/[25px] text-[#c4d2db] max-md:text-[15px]/[24px]"
+          >
+            {current === "all" ? placesMap.blurb : regionByKey[current].blurb}
+          </p>
+          <a
+            href="/when-to-go"
+            class="inline-flex shrink-0 items-center gap-2.5 rounded-full border border-white/40 px-5 py-[11px] text-[15px] text-white transition-colors duration-150 hover:bg-white/8"
+          >
+            Month guide <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Section class="py-[110px] max-md:py-14" data-places-grid>
+  <div
+    class="mb-11 flex items-end justify-between gap-[60px] border-b border-v2-navy/12 pb-7 max-lg:flex-col max-lg:items-start max-lg:gap-5 max-md:mb-8 max-md:pb-5"
+  >
+    <div class="flex flex-col gap-[22px] max-md:gap-4">
+      <h2
+        class="m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]"
+      >
+        {placesGrid.heading}
+      </h2>
+      <div
+        role="group"
+        aria-label="Filter places by region"
+        class="v2-rail flex flex-wrap gap-2 max-md:-mx-5 max-md:flex-nowrap max-md:overflow-x-auto max-md:px-5"
+      >
+        {
+          [{ key: "all" as const, name: "All places" }, ...placeRegions].map((r) => {
+            const on = r.key === current;
+            return (
+              <button
+                type="button"
+                aria-pressed={on ? "true" : "false"}
+                data-region-chip={r.key}
+                {...swap("on", on, chipBase, chipOn, chipOff)}
+              >
+                {r.name}
+              </button>
+            );
+          })
+        }
+      </div>
+    </div>
+    <div aria-live="polite" data-count class="shrink-0 text-[15px]/[22px] text-[#65788c]">
+      {shown.length} places
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-lg:gap-6 max-md:grid-cols-1 max-md:gap-5">
+    {
+      places.map((p) => {
+        const region = regionByKey[p.region];
+        return (
+          <a
+            href={`/places/${p.slug}`}
+            data-region={p.region}
+            hidden={!shown.includes(p)}
+            class="group flex flex-col bg-v2-cream"
+          >
+            <div class="relative h-[300px] w-full overflow-clip bg-[#e9e5da] max-md:h-[240px]">
+              <img
+                src={p.image.src}
+                alt={p.image.alt}
+                loading="lazy"
+                class="v2-card-img block size-full object-cover"
+                style={p.image.position ? { objectPosition: p.image.position } : undefined}
+              />
+              <span class="absolute top-4 left-4 border border-white/24 bg-v2-navy/72 px-3.5 py-2 text-[13px]/[17px] text-white backdrop-blur-[12px]">
+                {region.name}
+              </span>
+            </div>
+            <div class="flex flex-1 flex-col gap-3 px-7 pt-[26px] pb-7 max-md:px-5 max-md:pt-5 max-md:pb-6">
+              <h3 class="m-0 text-[28px]/[34px] font-medium tracking-[-0.005em] text-v2-navy transition-colors duration-300 group-hover:text-[#344458] max-md:text-[24px]/[30px]">
+                {p.name}
+              </h3>
+              <p class="m-0 text-[15px]/[24px] text-[#52687b]">{p.line}</p>
+              <div class="mt-auto flex items-center justify-between gap-[18px] pt-[18px]">
+                <div class="flex flex-col gap-[3px]">
+                  <span class="text-[13px]/[18px] text-[#65788c]">At its best</span>
+                  <span class="text-[16px]/[22px] font-semibold text-v2-navy">{region.best}</span>
+                </div>
+                <span
+                  aria-hidden="true"
+                  class="flex size-11 shrink-0 items-center justify-center rounded-full border border-v2-navy/25 text-[15px] text-v2-navy transition-colors duration-200 group-hover:border-v2-navy group-hover:bg-v2-navy group-hover:text-white"
+                >
+                  ↗
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
+</Section>
+
+<script>
+  /** Apply one choice of region ("all" for none) to a map section and the grid after it. */
+  function pick(map: HTMLElement, grid: HTMLElement, current: string) {
+    const flip = (el: HTMLElement, flags: { on: boolean; lit: boolean }) => {
+      const state = flags[el.dataset.when as "on" | "lit"];
+      el.className = (state ? el.dataset.yes : el.dataset.no) ?? el.className;
+    };
+
+    let label = "every region";
+    let blurb: string | undefined;
+    for (const button of map.querySelectorAll<HTMLElement>("[data-region-button]")) {
+      const on = button.dataset.regionButton === current;
+      const lit = on || current === "all";
+      if (on) {
+        label = button.dataset.name!;
+        blurb = button.dataset.blurb;
+      }
+      button.setAttribute("aria-pressed", String(on));
+      flip(button, { on, lit });
+      for (const el of button.querySelectorAll<HTMLElement>("[data-when]")) flip(el, { on, lit });
+    }
+
+    const blurbEl = map.querySelector<HTMLElement>("[data-blurb-all]")!;
+    blurbEl.textContent = blurb ?? blurbEl.dataset.blurbAll!;
+
+    map
+      .querySelector("[data-map]")!
+      .setAttribute("aria-label", `Map of Sri Lanka with the places in ${label} highlighted`);
+    for (const g of map.querySelectorAll<SVGGElement>("[data-map] > g[data-region]")) {
+      const on = current === "all" || g.dataset.region === current;
+      g.querySelector("[data-map-ring]")!.setAttribute("opacity", on ? "1" : "0");
+      g.querySelector("[data-map-label]")!.setAttribute("opacity", on ? "1" : "0.32");
+    }
+
+    for (const chip of grid.querySelectorAll<HTMLElement>("[data-region-chip]")) {
+      const on = chip.dataset.regionChip === current;
+      chip.setAttribute("aria-pressed", String(on));
+      flip(chip, { on, lit: on });
+    }
+
+    let count = 0;
+    for (const card of grid.querySelectorAll<HTMLElement>("a[data-region]")) {
+      const shown = current === "all" || card.dataset.region === current;
+      card.hidden = !shown;
+      if (shown) count++;
+    }
+    grid.querySelector("[data-count]")!.textContent = `${count} places`;
+  }
+
+  for (const map of document.querySelectorAll<HTMLElement>("[data-places-map]")) {
+    const grid = map.nextElementSibling as HTMLElement | null;
+    if (!grid?.hasAttribute("data-places-grid")) continue;
+
+    // A region in the list toggles: picking the one already picked goes back to all.
+    for (const button of map.querySelectorAll<HTMLElement>("[data-region-button]")) {
+      button.addEventListener("click", () => {
+        const on = button.getAttribute("aria-pressed") === "true";
+        pick(map, grid, on ? "all" : button.dataset.regionButton!);
+      });
+    }
+    // A chip always picks its own region (or all).
+    for (const chip of grid.querySelectorAll<HTMLElement>("[data-region-chip]")) {
+      chip.addEventListener("click", () => pick(map, grid, chip.dataset.regionChip!));
+    }
+  }
+</script>

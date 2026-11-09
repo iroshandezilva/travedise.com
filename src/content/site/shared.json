@@ -1,0 +1,210 @@
+{
+  "navLinks": [
+    {
+      "href": "/blog",
+      "label": "Travel notes"
+    },
+    {
+      "href": "/about",
+      "label": "About"
+    }
+  ],
+  "megaMenu": [
+    {
+      "key": "journeys",
+      "label": "Journeys",
+      "columns": [
+        [
+          {
+            "heading": "Our journeys",
+            "source": "packages",
+            "links": [{ "label": "All journeys", "href": "/packages" }]
+          }
+        ],
+        [
+          {
+            "heading": "By style",
+            "source": "packages",
+            "picks": [
+              { "label": "Honeymoon", "slug": "dream-honeymoon-in-sri-lanka" },
+              { "label": "Family", "slug": "best-of-sri-lanka" },
+              { "label": "Wildlife", "slug": "wildlife-package" },
+              { "label": "Hill country and beach", "slug": "hillcountry" }
+            ]
+          }
+        ],
+        [
+          {
+            "heading": "Plan your own",
+            "links": [
+              { "label": "Plan your trip", "href": "/plan-your-trip" },
+              { "label": "When to go", "href": "/when-to-go" }
+            ]
+          }
+        ]
+      ],
+      "feature": {
+        "eyebrow": "Featured journey",
+        "package": "hillcountry",
+        "action": "See the journey"
+      }
+    },
+    {
+      "key": "places",
+      "label": "Places",
+      "columns": [
+        [
+          { "heading": "Hill country", "source": "places", "region": "hill" },
+          { "heading": "Cultural Triangle", "source": "places", "region": "triangle" }
+        ],
+        [
+          { "heading": "South and west coast", "source": "places", "region": "southwest" },
+          { "heading": "East coast", "source": "places", "region": "east" }
+        ],
+        [
+          {
+            "heading": "National parks",
+            "source": "places",
+            "region": "parks",
+            "links": [
+              { "label": "All {places} places", "href": "/places" },
+              { "label": "When to go", "href": "/when-to-go" }
+            ]
+          }
+        ]
+      ],
+      "feature": {
+        "eyebrow": "The island",
+        "title": "The island, mapped",
+        "body": "See where each stop sits, and which coast is at its best for your dates.",
+        "map": true,
+        "href": "/places",
+        "action": "Open the map"
+      }
+    },
+    {
+      "key": "services",
+      "label": "Services",
+      "columns": [
+        [
+          {
+            "heading": "Group vacations",
+            "source": "groups",
+            "links": [{ "label": "All group vacations", "href": "/group-vacations" }]
+          }
+        ],
+        [
+          {
+            "heading": "Weddings",
+            "source": "weddings",
+            "links": [{ "label": "Start your brief", "href": "/weddings/plan" }]
+          }
+        ],
+        [
+          {
+            "heading": "Vehicles",
+            "source": "vehicles",
+            "links": [{ "label": "See the fleet", "href": "/vehicles" }]
+          }
+        ]
+      ],
+      "feature": {
+        "eyebrow": "Weddings",
+        "title": "Married on the south coast",
+        "body": "Tell us the date and the guests. We look after the venue and the days around it.",
+        "image": "/assets/6a41d8a9f90b0844dda793bf_Couple-on-Bentota-Beach.webp",
+        "href": "/weddings/plan",
+        "action": "Start your brief"
+      }
+    }
+  ],
+  "menuFeature": {
+    "title": "Hill Country & Beach",
+    "body": "Cool mornings in the tea estates, then the south coast.",
+    "image": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+    "href": "/packages/hillcountry"
+  },
+  "galleryImages": [
+    {
+      "src": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+      "alt": "Cloud forest in the hill country"
+    },
+    {
+      "src": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+      "alt": "Tea estate at first light"
+    },
+    {
+      "src": "/v2/a330488cea582574b523136d4e00efa4.jpg",
+      "alt": "A road through the interior"
+    },
+    {
+      "src": "/v2/1260892ee6b033b2f8f08368d097bbc4.jpg",
+      "alt": "Working tea slopes"
+    },
+    {
+      "src": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+      "alt": "Palms above the coast"
+    },
+    {
+      "src": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+      "alt": "The south coast in the afternoon"
+    },
+    {
+      "src": "/v2/3276de156e35f2243c312d74076e3b41.jpg",
+      "alt": "A beach with nobody on it"
+    },
+    {
+      "src": "/v2/e77a66899f34c2489eb802df5e80cac9.jpg",
+      "alt": "A stop along the way"
+    }
+  ],
+  "questions": [
+    {
+      "q": "How do you shape a journey around us?",
+      "a": "We begin with your dates, interests, and pace. From there, we discuss a route and refine it with you."
+    },
+    {
+      "q": "How much time should we allow for Sri Lanka?",
+      "a": "Ten days covers the island's highlights without rushing. Two weeks lets you add the east coast or stay longer where you want to."
+    },
+    {
+      "q": "Can we make the trip work for children?",
+      "a": "Yes. We shorten the drives, build in pool afternoons, and pick stays with room to spread out."
+    },
+    {
+      "q": "What happens after we get in touch?",
+      "a": "We reply with a few questions, then send a draft route to react to. Nothing is booked until the plan feels right."
+    },
+    {
+      "q": "Can the route change while we plan?",
+      "a": "As often as you like. Most itineraries go through two or three rounds before they settle."
+    },
+    {
+      "q": "What is included in a proposed trip?",
+      "a": "Stays, transport with a driver-guide, entrance fees for the sites you choose, and the day plans. We list anything optional separately."
+    },
+    {
+      "q": "How do we choose the right coast for our dates?",
+      "a": "The monsoons reach the two coasts at opposite times of year. Tell us your dates and we will point you at the one with the better weather."
+    }
+  ],
+  "closingCta": {
+    "heading": "Let’s make the\njourney yours.",
+    "body": "Tell us what you want to see, what you want to feel, and how you like to travel. We’ll shape the rest together.",
+    "action": "Plan your trip",
+    "href": "/plan-your-trip",
+    "image": "/v2/0a72b04674868246806c566e0bca4df0.jpg"
+  },
+  "questionsIntro": {
+    "heading": "Before the journey begins.",
+    "body": "A few practical questions are worth settling early. We can talk through the rest together.",
+    "action": "Talk to a travel designer ↗",
+    "href": "/plan-your-trip"
+  },
+  "footer": {
+    "accreditations": [
+      "SLTDA registered",
+      "ATAS accredited"
+    ]
+  }
+}

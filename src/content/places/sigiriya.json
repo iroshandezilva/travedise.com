@@ -1,0 +1,71 @@
+{
+  "order": 4,
+  "slug": "sigiriya",
+  "name": "Sigiriya",
+  "region": "triangle",
+  "line": "The rock fortress, and the quieter climb opposite that looks back at it.",
+  "image": {
+    "src": "/places/sigiriya-rock.jpg",
+    "alt": "Sigiriya rock rising out of the forest"
+  },
+  "map": {
+    "cx": 196.1,
+    "cy": 322.4,
+    "tx": 196.1,
+    "ty": 308.4,
+    "anchor": "middle"
+  },
+  "journeyStop": "sigiriya",
+  "summary": "A fifth-century palace on top of a 180 metre rock, and the best base for the Cultural Triangle.",
+  "nights": "3 nights",
+  "goodFor": "First visits, families",
+  "intro": {
+    "heading": "A palace on a rock.",
+    "paragraphs": [
+      "King Kashyapa built his palace on the summit of Sigiriya in the fifth century, with water gardens at its foot and painted women on the rock face halfway up. It is a UNESCO World Heritage Site and the most visited place on the island.",
+      "We climb it at opening time, before the heat and the coaches, and keep Pidurangala, the rock opposite, for a sunrise. Three nights here leaves time for Dambulla, Polonnaruwa and an elephant drive without hurrying any of them."
+    ]
+  },
+  "mapCaption": "In the dry north of the Cultural Triangle. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Sigiriya is a base as much as a sight. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "The rock at opening time",
+        "body": "Some twelve hundred steps, the frescoes and the lion’s paws, and the summit before nine. After that it is hot and crowded."
+      },
+      {
+        "title": "Pidurangala at sunrise",
+        "body": "A shorter, rougher climb to a boulder top with Sigiriya straight ahead. Quieter, and the better view of the two."
+      },
+      {
+        "title": "An elephant drive",
+        "body": "From July to September, hundreds of elephants gather on the grass by the Minneriya reservoir. Earlier in the year we use Kaudulla or Eco Park instead."
+      },
+      {
+        "title": "A village afternoon",
+        "body": "Lunch cooked in a farmhouse kitchen, a bullock cart and a canoe across the tank. Simple, and children love it."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/sigiriya-from-above.jpg",
+      "alt": "The ruins on the summit of Sigiriya from above"
+    },
+    {
+      "src": "/v2/e77a66899f34c2489eb802df5e80cac9.jpg",
+      "alt": "Two travellers looking across the forest to Sigiriya rock"
+    }
+  ],
+  "season": "The Cultural Triangle is dry for most of the year and at its best from February to April. It gets hot, so we keep the climbs for early morning whatever the month. October and November bring the heaviest rain.",
+  "nearby": {
+    "heading": "Around the Triangle.",
+    "slugs": [
+      "dambulla",
+      "polonnaruwa",
+      "kandy"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with the climb planned for the coolest hour."
+}

@@ -1,0 +1,229 @@
+---
+import { menuLinks, menuPanels } from "@/data/v2/nav";
+
+import LogoMark from "./logo-mark.astro";
+import MegaPanel from "./mega-panel.astro";
+import MobileMenu from "./mobile-menu.astro";
+
+/**
+ * The bar that floats over every v2 hero: wordmark, glass pill, and the trip CTA.
+ *
+ * From `lg` up the pill holds three mega-menu triggers (Journeys, Places, Services) and two
+ * plain links. Below `lg` the pill goes and the hamburger opens the full-screen menu; on a
+ * phone the whole bar becomes one glass pill.
+ *
+ * It expects to sit inside a `relative` container that is the hero's inner column.
+ * `current` is the href of the page's own section; its link, or the trigger whose panel
+ * lists that section's pages, gets the accent underline.
+ */
+interface Props {
+  current?: string;
+}
+const { current } = Astro.props;
+
+const underline =
+  "decoration-v2-sky decoration-2 underline-offset-[7px] data-current:underline aria-[current=page]:underline";
+const holdsCurrent = (panel: (typeof menuPanels)[number]) =>
+  !!current && panel.columns.flat().some((g) => g.links.some((l) => l.href.startsWith(`${current}/`)));
+---
+
+<div
+  data-site-nav
+  class="absolute inset-x-0 top-[22px] flex h-[70px] items-center justify-between max-md:top-3.5 max-md:right-4 max-md:left-4 max-md:h-15 max-md:rounded-full max-md:border max-md:border-white/22 max-md:bg-[#10253280] max-md:pr-2 max-md:pl-4 max-md:backdrop-blur-[16px]"
+>
+  <a href="/" aria-label="Travedise home" class="flex h-11 w-[205px] shrink-0 items-center gap-2 max-lg:w-auto">
+    <LogoMark class="h-[30px] w-[43px] max-md:h-6 max-md:w-[34px]" />
+    <span class="font-display text-[28px]/[34px] font-medium text-white max-md:text-[21px]/[26px]">
+      Travedise
+    </span>
+  </a>
+
+  {/* The glass is a layer behind the links, not the pill itself: a backdrop-filter on the
+      pill would make it the containing block of the fixed panels inside it. */}
+  <nav aria-label="Main" data-mega class="relative flex h-14 items-center px-[26px] max-lg:hidden">
+    <span
+      aria-hidden="true"
+      class="absolute inset-0 rounded-full border border-white/29 bg-[#102532a8] backdrop-blur-[18px]"></span>
+    <ul class="relative m-0 flex list-none items-center gap-[26px] p-0">
+      {
+        menuPanels.map((panel) => (
+          <li data-mega-item>
+            <button
+              type="button"
+              aria-expanded="false"
+              aria-controls={`mega-${panel.key}`}
+              data-mega-trigger
+              data-current={holdsCurrent(panel) ? "" : undefined}
+              class:list={[
+                "group flex items-center gap-1.5 rounded-sm text-[15px]/[1.2] text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
+                underline,
+              ]}
+            >
+              {panel.label}
+              <svg
+                viewBox="0 0 10 6"
+                aria-hidden="true"
+                class="mt-px size-2.5 transition-transform duration-200 ease-out-quart group-aria-expanded:rotate-180 motion-reduce:transition-none"
+              >
+                <path
+                  d="M1 1 L5 5 L9 1"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <MegaPanel id={`mega-${panel.key}`} panel={panel} />
+          </li>
+        ))
+      }
+      {
+        menuLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={href === current ? "page" : undefined}
+              class:list={[
+                "rounded-sm text-[15px]/[1.2] text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
+                underline,
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="flex w-[205px] shrink-0 items-center justify-end gap-3 max-lg:w-auto">
+    <a
+      href="/plan-your-trip"
+      class="rounded-[50px] border border-v2-sky bg-v2-sky px-[22px] py-[13px] text-[15px]/[1.2] font-medium text-[#10212b] max-md:hidden"
+    >
+      Plan your trip ↗
+    </a>
+    <MobileMenu />
+  </div>
+</div>
+
+<script>
+  // Desktop mega menu. A panel opens on hover after a short pause (so a pointer passing
+  // over the pill doesn't flash it open), on click, or on Enter/Space. One is open at a
+  // time; Escape, a click outside, or tabbing out of it closes it.
+  const OPEN_DELAY = 150;
+  const SWITCH_DELAY = 90; // moving between triggers while a panel is already open
+  const CLOSE_DELAY = 220; // time to cross from the trigger down into the panel
+
+  const nav = document.querySelector<HTMLElement>("[data-mega]");
+
+  if (nav) {
+    const items = [...nav.querySelectorAll<HTMLElement>("[data-mega-item]")];
+    const triggerOf = (item: HTMLElement) => item.querySelector<HTMLButtonElement>("[data-mega-trigger]")!;
+    const panelOf = (item: HTMLElement) => item.querySelector<HTMLElement>("[data-mega-panel]")!;
+
+    let current: HTMLElement | null = null;
+    let openedByHover = false;
+    let timer = 0;
+    let frame = 0;
+
+    // The panels are fixed to the viewport, so they follow the pill as the page scrolls.
+    const place = () => {
+      document.documentElement.style.setProperty("--mega-top", `${nav.getBoundingClientRect().bottom}px`);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(place);
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || !current) return;
+      const trigger = triggerOf(current);
+      close(current);
+      trigger.focus();
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      if (current && !current.contains(e.target as Node)) close(current);
+    };
+
+    function open(item: HTMLElement, byHover: boolean) {
+      clearTimeout(timer);
+      if (current === item) {
+        openedByHover &&= byHover;
+        return;
+      }
+      // Switching straight from one panel to another: the old one goes at once and the
+      // new one fades in without the slide, so it reads as one menu changing its contents.
+      const switching = current !== null;
+      if (current) close(current, true);
+
+      place();
+      const panel = panelOf(item);
+      panel.removeAttribute("data-instant");
+      panel.toggleAttribute("data-swap", switching);
+      panel.inert = false;
+      panel.dataset.open = "true";
+      triggerOf(item).setAttribute("aria-expanded", "true");
+      current = item;
+      openedByHover = byHover;
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      document.addEventListener("keydown", onKey);
+      document.addEventListener("pointerdown", onPointerDown);
+    }
+
+    function close(item: HTMLElement, instant = false) {
+      clearTimeout(timer);
+      const panel = panelOf(item);
+      panel.toggleAttribute("data-instant", instant);
+      panel.dataset.open = "false";
+      panel.inert = true;
+      triggerOf(item).setAttribute("aria-expanded", "false");
+      if (current !== item) return;
+      current = null;
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointerDown);
+    }
+
+    for (const item of items) {
+      // Hover intent is for a mouse only; a touch or pen tap arrives as a click.
+      item.addEventListener("pointerenter", (e) => {
+        if (e.pointerType !== "mouse") return;
+        clearTimeout(timer);
+        if (current === item) return;
+        timer = window.setTimeout(() => open(item, true), current ? SWITCH_DELAY : OPEN_DELAY);
+      });
+      item.addEventListener("pointerleave", (e) => {
+        if (e.pointerType !== "mouse") return;
+        clearTimeout(timer);
+        if (current === item && openedByHover) timer = window.setTimeout(() => close(item), CLOSE_DELAY);
+      });
+
+      triggerOf(item).addEventListener("click", (e) => {
+        if (current !== item) return open(item, false);
+        // A mouse click on a panel the hover just opened keeps it open (and stops the
+        // pointer leaving from closing it), rather than snapping it shut. A keyboard
+        // press (detail 0) always toggles.
+        if (openedByHover && e.detail > 0) openedByHover = false;
+        else close(item);
+      });
+
+      // Tabbing past the last link (or back before the trigger) closes the panel. A click
+      // on a blank part of the panel moves focus to nothing, which leaves it open.
+      item.addEventListener("focusout", (e) => {
+        const to = e.relatedTarget as Node | null;
+        if (current === item && to && !item.contains(to)) close(item);
+      });
+    }
+
+    // The pill is hidden below lg; don't leave a panel open behind it.
+    window.matchMedia("(max-width: 991px)").addEventListener("change", (e) => {
+      if (e.matches && current) close(current, true);
+    });
+  }
+</script>

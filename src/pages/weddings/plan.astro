@@ -1,0 +1,72 @@
+---
+import FooterWide from "@/components/v2/footer-wide.astro";
+import HeroScrim from "@/components/v2/hero-scrim.astro";
+import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
+import SiteNav from "@/components/v2/site-nav.astro";
+import WeddingNav from "@/components/v2/weddings/wedding-nav.astro";
+import plan from "@/content/pages/plan.json";
+import { weddingsContent as page } from "@/data/v2/services";
+import Base from "@/layouts/base.astro";
+
+/**
+ * The wedding brief: a short hero, the weddings bar, then the two-step form with the
+ * wedding team's contacts beside it. `?style=<slug>` from a style page pre-picks the style.
+ */
+const { plan: brief, form } = page;
+---
+
+<Base title="Plan your wedding in Sri Lanka | Travedise" description={brief.body} canonical="/weddings/plan" image={brief.image} ogType="website">
+  <div class="v2 flex flex-col bg-white">
+    <header class="relative h-[520px] w-full shrink-0 overflow-clip gutter-v2 max-md:h-[480px]">
+      <img src={brief.image} alt={brief.alt} fetchpriority="high" class="absolute inset-0 block size-full object-cover" />
+      <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.86) 0%, oklab(0 0 0 / 0) 62%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
+      <div class="relative mx-auto h-full w-full max-w-[1280px]">
+        <SiteNav current="/weddings" />
+        <div class="absolute inset-x-0 bottom-[58px] flex max-w-[820px] flex-col gap-[18px] max-md:bottom-8 max-md:gap-3">
+          <span class="flex items-center gap-3 text-[14px]/[20px] font-medium tracking-[0.08em] text-white/90 uppercase max-md:text-[12px]/[18px]"><span aria-hidden="true" class="h-px w-8 bg-v2-sky"></span>Travedise Weddings</span>
+          <h1 class="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] text-white max-lg:text-[52px]/[58px] max-md:text-[36px]/[42px]">
+            {brief.title}
+          </h1>
+          <p class="m-0 max-w-[640px] text-[19px]/[29px] text-[#e8eef1] max-md:text-[16px]/[25px]">{brief.body}</p>
+        </div>
+      </div>
+    </header>
+    <WeddingNav current="/weddings/plan" />
+
+    <main class="overflow-clip">
+      <ServiceEnquiry service="wedding" form={form}>
+        <aside slot="aside" class="flex w-[400px] shrink-0 flex-col gap-[22px] max-xl:w-[340px] max-lg:w-full">
+          <div
+            class="flex flex-col gap-[26px] bg-v2-navy px-9 py-10 max-md:px-5 max-md:py-8"
+            style={{
+              backgroundImage:
+                "radial-gradient(420px 300px at 15% 0%, rgba(71,205,255,0.24), rgba(0,0,0,0) 66%), radial-gradient(380px 280px at 95% 30%, rgba(196,175,140,0.2), rgba(0,0,0,0) 66%)",
+            }}
+          >
+            <h2 class="m-0 font-display text-[28px]/[36px] font-normal tracking-[-0.005em] text-white max-md:text-[24px]/[32px]">
+              {brief.help.heading}
+            </h2>
+            <p class="m-0 text-[15px]/[24px] text-v2-muted">{brief.help.body}</p>
+            <div class="flex flex-col gap-4">
+              {
+                plan.planHelp.contacts.map((c) => (
+                  <a href={c.href} class="flex flex-col gap-[3px] hover:opacity-80">
+                    <span class="text-[13px]/[18px] text-[#8a9eac]">{c.label}</span>
+                    <span class="text-[18px]/[26px] font-semibold text-white">{c.value}</span>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+          <div class="flex flex-col gap-[18px] bg-v2-cream p-9 max-md:px-5 max-md:py-8">
+            <h3 class="m-0 text-[20px]/[28px] font-semibold tracking-[-0.01em] text-v2-navy">What happens next</h3>
+            <div class="flex flex-col gap-3.5">
+              {brief.help.next.map((s) => <p class="m-0 text-[15px]/[23px] text-[#42586a]">{s}</p>)}
+            </div>
+          </div>
+        </aside>
+      </ServiceEnquiry>
+    </main>
+    <FooterWide statementFace="body" statement="The guests are met, the venue is ready and the day runs to time. All you have to do is be there." />
+  </div>
+</Base>

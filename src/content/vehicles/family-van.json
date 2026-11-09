@@ -1,0 +1,53 @@
+{
+  "order": 3,
+  "slug": "family-van",
+  "name": "Family van",
+  "silhouette": "van",
+  "seats": {
+    "min": 4,
+    "max": 8
+  },
+  "seatsLabel": "4 to 8 travellers",
+  "bags": "6 to 8 large cases",
+  "models": "Toyota HiAce (KDH), high roof",
+  "short": "The high-roof van most families and small groups travel the island in.",
+  "summary": "A high-roof van with forward-facing seats for families, friends and small groups who would rather travel together than in two cars.",
+  "suits": [
+    "Families with children",
+    "Friends travelling together",
+    "Small group vacations",
+    "Wedding guests between venues"
+  ],
+  "features": [
+    {
+      "title": "Everyone in one vehicle",
+      "body": "Up to eight travellers and their bags, so the conversation does not split across two cars and two drivers."
+    },
+    {
+      "title": "Easy for children",
+      "body": "A high roof to stand up in, wide sliding doors and child seats included, fitted before you arrive."
+    },
+    {
+      "title": "Space for the extras",
+      "body": "Pushchairs, surfboards and duty-free all fit. Tell us what you are bringing and we will confirm it rides inside."
+    }
+  ],
+  "included": [
+    "A licensed, English-speaking driver",
+    "Fuel, tolls and parking",
+    "Driver's meals and rooms on multi-day hires",
+    "Bottled water in the car",
+    "Air conditioning throughout",
+    "Child seats, fitted before pick-up"
+  ],
+  "questions": [
+    {
+      "q": "Are child seats included?",
+      "a": "Yes, in every van at no extra cost. Tell us the ages and weights when you enquire and the seats are fitted before pick-up."
+    },
+    {
+      "q": "We are nine people. Do we need two vehicles?",
+      "a": "Usually a mini coach is simpler and costs less than two vans. Tell us your numbers and luggage and we will suggest the right fit."
+    }
+  ]
+}

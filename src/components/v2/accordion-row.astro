@@ -1,0 +1,84 @@
+---
+import { cn } from "@/lib/cn";
+import { nextAccordionId } from "@/lib/accordion-id";
+
+/**
+ * A disclosure row: a full-width button that reveals the default slot beneath it. Shared
+ * by the FAQ lists and the day-by-day itinerary.
+ *
+ * Wrap a set of rows in an element with `data-accordion` and they open one at a time;
+ * clicking the open row closes it, so a reader can collapse everything. `open` is the
+ * row's state on load.
+ *
+ * Slots: `head` is whatever sits left of the sign — a plain question, or a stacked
+ * label-and-title for an itinerary day. `aside` sits between the head and the +/− sign,
+ * e.g. an itinerary day's numeral.
+ */
+interface Props {
+  open?: boolean;
+  class?: string;
+  buttonClass?: string;
+  panelClass?: string;
+}
+const { open = false, class: className, buttonClass, panelClass } = Astro.props;
+
+// Unique within the page; only ties the button to its panel for assistive tech.
+// Counted per render, not random: the content editor compares two renderings of a page, and a
+// new random id in each one made them differ, so its live preview reloaded in a loop.
+const id = `acc-${nextAccordionId(Astro.request)}`;
+---
+
+<div class={className} data-accordion-row>
+  <button
+    type="button"
+    aria-expanded={open ? "true" : "false"}
+    aria-controls={id}
+    data-accordion-button
+    class={cn(
+      "flex w-full items-center justify-between gap-10 border-0 bg-none text-left max-md:gap-4",
+      buttonClass,
+    )}
+  >
+    <slot name="head" />
+    <span class="flex shrink-0 items-center gap-[22px] max-md:gap-3">
+      <slot name="aside" />
+      <span
+        aria-hidden="true"
+        data-accordion-sign
+        class="text-[22px]/[25px] text-v2-navy max-md:text-[20px]/[24px]">{open ? "−" : "+"}</span
+      >
+    </span>
+  </button>
+  {/* Stays in the page so closing animates too; `inert` keeps it out of the tab
+      order and the accessibility tree while it is collapsed. */}
+  <div id={id} data-open={open ? "true" : "false"} inert={!open} class="v2-panel">
+    <div>
+      <div class={panelClass}><slot /></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setRow(row: Element, open: boolean) {
+    const button = row.querySelector(":scope > [data-accordion-button]")!;
+    const panel = row.querySelector<HTMLElement>(":scope > .v2-panel")!;
+    button.setAttribute("aria-expanded", String(open));
+    button.querySelector("[data-accordion-sign]")!.textContent = open ? "−" : "+";
+    panel.dataset.open = String(open);
+    panel.inert = !open;
+  }
+
+  document.addEventListener("click", (event) => {
+    const button = (event.target as Element).closest("[data-accordion-button]");
+    const row = button?.closest("[data-accordion-row]");
+    if (!button || !row) return;
+    const opening = button.getAttribute("aria-expanded") !== "true";
+    const group = row.closest("[data-accordion]");
+    if (opening && group) {
+      for (const other of group.querySelectorAll("[data-accordion-row]")) {
+        if (other !== row && other.closest("[data-accordion]") === group) setRow(other, false);
+      }
+    }
+    setRow(row, opening);
+  });
+</script>

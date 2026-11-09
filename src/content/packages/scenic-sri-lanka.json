@@ -1,0 +1,231 @@
+{
+  "order": 2,
+  "slug": "scenic-sri-lanka",
+  "title": "Scenic Sri Lanka",
+  "summary": "Eleven private days from the Sigiriya rock fortress to Yala National Park, ending with the slow part of the south coast.",
+  "shots": [
+    {
+      "src": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+      "label": "The hill country, on the way up"
+    },
+    {
+      "src": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+      "label": "Tea estates above Ella"
+    },
+    {
+      "src": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+      "label": "The south coast in the afternoon"
+    },
+    {
+      "src": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+      "label": "The road out to Tangalle"
+    }
+  ],
+  "facts": [
+    {
+      "value": "11 days",
+      "detail": "Private, tailor-made"
+    },
+    {
+      "value": "Six regions",
+      "detail": "Kandy · Cultural Triangle · Sigiriya · Yala · Tangalle · Galle"
+    },
+    {
+      "value": "Best months",
+      "detail": "December to April on this route, when the south coast is dry"
+    }
+  ],
+  "includes": {
+    "heading": "What the journey includes.",
+    "body": "Everything below is arranged before you land, so the days ask nothing of you beyond turning up. Flights and visas sit outside the plan, and we will say so clearly in the proposal.",
+    "items": [
+      {
+        "title": "Accommodation",
+        "body": "Ten nights, chosen for where they sit rather than how many stars they carry. A lake house in Kandy, a tented camp near the park, a fort room in Galle."
+      },
+      {
+        "title": "Activities",
+        "body": "Guided walks, two safaris, the climbs at Sigiriya and Dambulla, and whatever you want to add once we have talked."
+      },
+      {
+        "title": "Meals",
+        "body": "Breakfast every day, plus the meals that are part of a stay or a long drive. The rest stays open, because eating out is half the trip."
+      },
+      {
+        "title": "Transfers and driver",
+        "body": "Airport pick-up and drop-off, and the same driver and vehicle for the whole route, so you are not starting again every morning."
+      }
+    ]
+  },
+  "itinerary": {
+    "heading": "The island, at your pace.",
+    "lede": "Open a day to see what it holds and where you sleep.",
+    "days": [
+      {
+        "meta": "Day 1 · Kandy",
+        "title": "A City Around a Lake",
+        "body": "A gentle first day. The Temple of the Sacred Tooth Relic in the late afternoon, the Royal Botanical Gardens if you have the energy, and a viewpoint above the lake at dusk. Your driver meets you at the airport and the drive up is the first part of the trip, not a transfer to get through.",
+        "stay": {
+          "name": "Myst by Cinnamon",
+          "note": "Hillside rooms above the city, ten minutes from the temple.",
+          "thumb": "/v2/c1a3908123f2e026248328dafc946572.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/1b2426204ca1bdc04d91da3ee8fce28b.jpg",
+            "caption": "Kandy, above the lake"
+          },
+          {
+            "src": "/v2/a330488cea582574b523136d4e00efa4.jpg",
+            "caption": "The climb up from Colombo"
+          },
+          {
+            "src": "/v2/c1a3908123f2e026248328dafc946572.jpg",
+            "caption": "The stay"
+          }
+        ]
+      },
+      {
+        "meta": "Days 2–3 · Dambulla & Polonnaruwa",
+        "title": "Into the Cultural Triangle",
+        "body": "Two days of old ground. Dambulla’s golden cave temples early, before the heat and the crowds, then a slow cycle through the royal ruins of Polonnaruwa with a guide who can tell you what you are looking at.",
+        "stay": {
+          "name": "Jetwing Lake",
+          "note": "Low, quiet and built around the water, with the ruins within easy reach.",
+          "thumb": "/v2/1b2426204ca1bdc04d91da3ee8fce28b.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/c1a3908123f2e026248328dafc946572.jpg",
+            "caption": "The cave temples at Dambulla"
+          },
+          {
+            "src": "/v2/1260892ee6b033b2f8f08368d097bbc4.jpg",
+            "caption": "Open country on the way"
+          },
+          {
+            "src": "/v2/1b2426204ca1bdc04d91da3ee8fce28b.jpg",
+            "caption": "The stay"
+          }
+        ]
+      },
+      {
+        "meta": "Day 4 · Sigiriya",
+        "title": "The Rock That Rises From the Plain",
+        "body": "Climb the 200-metre fortress at first light for one of the great views in Asia. If the queue looks long, neighbouring Pidurangala gives you the rock itself framed against the sky, which is arguably the better photograph.",
+        "stay": {
+          "name": "Sigiriya King’s Resort",
+          "note": "Close enough for a dawn start without a drive in the dark.",
+          "thumb": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/b83e7495c3eed589bc4f059b7e57dfd3.jpg",
+            "caption": "Sigiriya from the plain"
+          },
+          {
+            "src": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+            "caption": "Forest below the rock"
+          },
+          {
+            "src": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
+            "caption": "The stay"
+          }
+        ]
+      },
+      {
+        "meta": "Days 5–7 · Yala National Park",
+        "title": "The Dry Zone at Its Most Dramatic",
+        "body": "Three days of scrub, granite and lagoon, with leopards, elephants and birdlife on morning and afternoon safaris. We keep one safari a day rather than two, so the middle of the day belongs to you.",
+        "stay": {
+          "name": "DoubleTree by Hilton",
+          "note": "A short run from the park gate, with a pool for the hours between drives.",
+          "thumb": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/fa30d3d8b35015f69c8469c60da9b498.jpg",
+            "caption": "Yala at first light"
+          },
+          {
+            "src": "/v2/f8a8b4efa2e0ef78b05c873af56b6205.webp",
+            "caption": "The lagoon edge"
+          },
+          {
+            "src": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+            "caption": "The stay"
+          }
+        ]
+      },
+      {
+        "meta": "Day 8 · Tangalle",
+        "title": "The Coast Arrives Like an Exhale",
+        "body": "The drive south ends at wide, quiet beaches. Nothing is scheduled. The Hummanaya blow hole is nearby if you want a reason to leave the sand.",
+        "stay": {
+          "name": "Anantara Peace Haven",
+          "note": "On its own headland above the water, with a path down to the beach.",
+          "thumb": "/v2/b83e7495c3eed589bc4f059b7e57dfd3.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg",
+            "caption": "Tangalle in the afternoon"
+          },
+          {
+            "src": "/v2/ef6d2ae748237034bb3ea6e04683759b.jpg",
+            "caption": "The coast road"
+          },
+          {
+            "src": "/v2/b83e7495c3eed589bc4f059b7e57dfd3.jpg",
+            "caption": "The stay"
+          }
+        ]
+      },
+      {
+        "meta": "Days 9–10 · Galle",
+        "title": "The Old Fort by the Ocean",
+        "body": "Ramparts, galleries and a lighthouse at the point. One day for the fort and its history, one for the beach, with dinner inside the walls when the day tourists have gone.",
+        "stay": {
+          "name": "Jetwing Lighthouse",
+          "note": "Just outside the walls, with the sea on three sides.",
+          "thumb": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/48c054b9508172d1e93e0f76327fcc8a.jpg",
+            "caption": "Galle Fort walls"
+          },
+          {
+            "src": "/v2/c5670454fa292ca33ce909311116223f.jpg",
+            "caption": "The way down from the hills"
+          },
+          {
+            "src": "/v2/bbad07df9d6271a6725305a6c5ab4472.jpg",
+            "caption": "The stay"
+          }
+        ]
+      },
+      {
+        "meta": "Day 11 · Airport",
+        "title": "The Full Sweep Behind You",
+        "body": "A private transfer to Colombo airport, with time built in for the traffic. Eleven days, six regions, and one route that never doubled back on itself.",
+        "stay": {
+          "name": "Private transfer",
+          "note": "Colombo airport, timed to your flight.",
+          "thumb": "/v2/9706cd80e0a69d9f3a4d07c86cb2bd72.jpg"
+        },
+        "photos": [
+          {
+            "src": "/v2/9706cd80e0a69d9f3a4d07c86cb2bd72.jpg",
+            "caption": "The last stretch north"
+          },
+          {
+            "src": "/v2/3276de156e35f2243c312d74076e3b41.jpg",
+            "caption": "The coast road to Colombo"
+          }
+        ]
+      }
+    ]
+  },
+  "timeAnswer": "Eleven days covers this route without rushing. Shorter trips usually mean dropping a region rather than moving faster."
+}

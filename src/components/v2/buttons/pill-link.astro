@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/lib/cn";
+
+/**
+ * The v2 pill button. One shape, four fills:
+ *
+ * - `sky` — the accent CTA ("Plan your trip"), navy text on #47cdff
+ * - `navy` — solid navy with white text, for a CTA on a light section
+ * - `outline` — navy text inside a navy hairline on white
+ * - `glass` — white text inside a translucent rim, for use over a photo
+ *
+ * `block` makes it full width, which is what every one of these does on a phone.
+ */
+type Props = HTMLAttributes<"a"> & {
+  variant?: "sky" | "navy" | "outline" | "glass";
+  block?: boolean;
+};
+
+const { variant = "sky", block = false, class: className, ...props } = Astro.props;
+---
+
+<a
+  class={cn(
+    "inline-flex h-[52px] items-center justify-center rounded-[26px] px-7 text-[15px]/[1.2] font-medium transition-[opacity,transform] duration-150 ease-out-quad hover:opacity-90 active:scale-[0.97] motion-reduce:transition-none max-md:text-[16px]",
+    {
+      sky: "bg-v2-sky text-[#10212b]",
+      navy: "bg-v2-navy text-white",
+      outline: "border border-v2-navy bg-white text-v2-navy",
+      glass: "border border-white/40 bg-white/12 text-white",
+    }[variant],
+    block ? "w-full" : "max-md:w-full",
+    className,
+  )}
+  {...props}><slot /></a
+>

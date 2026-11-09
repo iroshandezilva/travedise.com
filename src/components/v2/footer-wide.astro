@@ -1,0 +1,164 @@
+---
+import { footer } from "@/data/v2/shared";
+import { cn } from "@/lib/cn";
+import { SOCIALS } from "@/lib/socials";
+
+const PACKAGE_STATEMENT =
+  "Tell us what matters to you, and we will shape the days around it. The pace, the stops, the mornings worth getting up for, and the afternoons with nothing in them at all.";
+
+/**
+ * The wide v2 footer: a closing statement, a newsletter signup, four columns of links
+ * and the legal row with our accreditations, over a gradient lit from both top corners
+ * and the bottom edge.
+ *
+ * Each page closes on its own statement. The home page sets it in the body face, as
+ * its design does; the package pages set theirs in the display face.
+ *
+ * The signup has no backend yet — see the note on the form below.
+ */
+interface Props {
+  statement?: string;
+  statementFace?: "display" | "body";
+}
+const { statement = PACKAGE_STATEMENT, statementFace = "display" } = Astro.props;
+
+const link = "text-[16px]/[22px] text-white hover:opacity-80";
+const muted = "text-[14px]/[20px] text-[#c1c9d2] hover:text-white";
+const columnTitle = "text-[15px]/[20px] text-[#8a9eac]";
+
+const explore = [
+  { href: "/packages", label: "Journeys" },
+  { href: "/places", label: "Places" },
+  { href: "/when-to-go", label: "When to go" },
+  { href: "/blog", label: "Travel notes" },
+  { href: "/about", label: "About us" },
+];
+const services = [
+  { href: "/group-vacations", label: "Group vacations" },
+  { href: "/weddings", label: "Weddings" },
+  { href: "/vehicles", label: "Vehicles" },
+  { href: "/#how", label: "How it works" },
+];
+const talk = [
+  { href: "/plan-your-trip", label: "Plan your trip" },
+  { href: "mailto:contact@travedise.com", label: "contact@travedise.com" },
+  { href: "tel:+61426965569", label: "+61 426 965 569" },
+  { href: "tel:+94763972171", label: "+94 76 397 2171" },
+];
+const legal = [
+  { href: "/privacy", label: "Privacy policy" },
+  { href: "/faq", label: "Questions" },
+  { href: "/plan-your-trip", label: "Contact us" },
+];
+---
+
+<footer
+  class="relative w-full min-h-[760px] shrink-0 bg-[#0c1526] pt-0 pb-10 gutter-v2 max-lg:min-h-0 max-md:pb-8"
+  style={{
+    backgroundImage:
+      "radial-gradient(900px 480px at 8% 0%, rgba(71,205,255,0.22), rgba(0,0,0,0) 62%), radial-gradient(760px 460px at 92% 12%, rgba(196,175,140,0.2), rgba(0,0,0,0) 62%), radial-gradient(640px 400px at 54% 104%, rgba(201,106,69,0.22), rgba(0,0,0,0) 62%), linear-gradient(180deg, rgb(21,36,60) 0%, rgb(12,21,38) 58%)",
+  }}
+>
+  <div class="container-v2 flex h-full flex-col justify-between gap-16 max-md:gap-10">
+    <div class="flex flex-col gap-14 pt-[76px] max-md:gap-8 max-md:pt-12">
+      <p
+        class={cn(
+          "m-0 max-w-[940px] text-white max-lg:text-[28px]/[38px] max-md:text-[22px]/[32px]",
+          statementFace === "display"
+            ? "font-display text-[34px]/[46px] tracking-[-0.01em]"
+            : "text-[34px]/[42px]",
+        )}
+      >
+        {statement}
+      </p>
+
+      <div class="flex items-center justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-6">
+        <div class="flex flex-col gap-2.5">
+          <h2 class="m-0 font-display text-[30px]/[38px] font-normal text-white max-md:text-[24px]/[32px]">
+            Sign up for news and updates
+          </h2>
+          <p class="m-0 max-w-[520px] text-[15px]/[23px] text-[#b8c8d1]">
+            Field notes, route ideas and the months worth travelling in, once a month. No offers, no
+            noise.
+          </p>
+        </div>
+        {/* There is no newsletter backend yet, so this cannot submit anywhere.
+            It is disabled rather than silently dropping an address. */}
+        <form class="relative w-[460px] shrink-0 max-lg:w-full" aria-label="Newsletter signup">
+          <label for="v2-news" class="sr-only">Your email address</label>
+          <input
+            id="v2-news"
+            type="email"
+            disabled
+            placeholder="Newsletter signup coming soon"
+            class="h-16 w-full appearance-none rounded-full border border-white/34 bg-white/6 pr-[74px] pl-7 text-[16px] text-white placeholder:text-white/55 disabled:cursor-not-allowed max-md:h-14 max-md:pl-5 max-md:text-[15px]"
+          />
+          <button
+            type="submit"
+            disabled
+            aria-label="Sign up"
+            class="absolute top-[9px] right-[9px] flex size-[46px] items-center justify-center rounded-full border border-white/50 bg-none text-[16px] text-white disabled:cursor-not-allowed max-md:top-[7px] max-md:size-10"
+          >
+            →
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="flex justify-between gap-15 max-lg:flex-wrap max-lg:gap-10 max-md:gap-8">
+      <div class="flex flex-col gap-4">
+        <span class={columnTitle}>Explore</span>
+        {explore.map((l) => <a href={l.href} class={link}>{l.label}</a>)}
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <span class={columnTitle}>Services</span>
+        {services.map((l) => <a href={l.href} class={link}>{l.label}</a>)}
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <span class={columnTitle}>Talk to us</span>
+        {talk.map((l) => <a href={l.href} class={link}>{l.label}</a>)}
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <span class={columnTitle}>Find us</span>
+        <span class="w-[240px] text-[16px]/[24px] text-[#e2eaee]">
+          Australia
+          <br />
+          5/22-30 Brighton St, Bundeena NSW 2230
+        </span>
+        <span class="w-[240px] text-[16px]/[24px] text-[#e2eaee]">
+          Sri Lanka
+          <br />
+          212A Inland Hill Road, Karapitiya, Galle
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <span class={columnTitle}>Follow</span>
+        {
+          SOCIALS.map((social) => (
+            <a href={social.href} target="_blank" rel="noopener noreferrer" class={link}>
+              {social.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="flex items-center justify-between gap-10 pt-[26px] max-lg:flex-col max-lg:items-start max-lg:gap-5"
+    >
+      <nav aria-label="Legal" class="flex flex-wrap gap-7 max-md:gap-x-5 max-md:gap-y-2.5">
+        {legal.map((l) => <a href={l.href} class={muted}>{l.label}</a>)}
+      </nav>
+      <div class="flex gap-7 max-md:flex-col max-md:gap-1.5">
+        {/* Text only until we have the logos to show beside it. */}
+        <span class="text-[14px]/[20px] text-[#c1c9d2]">{footer.accreditations.join(" · ")}</span>
+        <span class="text-[14px]/[20px] text-[#8a9eac]">© Travedise 2026</span>
+        <span class="text-[14px]/[20px] text-[#8a9eac]">Design and developed by Haux Studio</span>
+      </div>
+    </div>
+  </div>
+</footer>

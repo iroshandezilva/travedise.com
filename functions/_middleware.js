@@ -2,7 +2,7 @@
  * Cloudflare Pages middleware (runs only for page routes — see public/_routes.json).
  *
  * - Markdown for agents: `Accept: text/markdown` returns the page's Markdown twin
- *   (generated into out/ by scripts/agent-files.mjs); browsers keep getting HTML.
+ *   (generated into dist/ by scripts/agent-files.mjs); browsers keep getting HTML.
  *   Unknown pages get a 404 with a Markdown body pointing at the site index.
  * - Discovery: `Link` headers (RFC 8288) pointing agents at machine-readable resources.
  */

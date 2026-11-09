@@ -1,0 +1,182 @@
+{
+  "order": 5,
+  "slug": "dream-honeymoon-in-sri-lanka",
+  "title": "Honeymoon In Sri Lanka",
+  "summary": "Slow, intimate and indulgent, written for two: tea country, a little wildness, then the south coast.",
+  "shots": [
+    {
+      "src": "/assets/6a41d8a9f90b0844dda793bf_Couple-on-Bentota-Beach.webp",
+      "label": "A couple on the beach at Bentota"
+    },
+    {
+      "src": "/assets/6a85ccb9e2f9e4f6f4c7cb3f_adam-vandermeer-IoNtLptRy0o-unsplash-2.jpg",
+      "label": "Nine Arches Bridge above the tea"
+    },
+    {
+      "src": "/assets/6a85cab5c4122ac2f546505a_heshan-weeramanthri-ytNk5s_4Wys-unsplash.jpg",
+      "label": "Waterfalls in the hill country"
+    },
+    {
+      "src": "/assets/6a85cadcae81d435ad91cca6_mika-wegelius-4myLzGehR-A-unsplash.jpg",
+      "label": "The south coast from above"
+    }
+  ],
+  "facts": [
+    {
+      "value": "10 days",
+      "detail": "Private, written for two"
+    },
+    {
+      "value": "Five stops",
+      "detail": "Kandy · Nuwara Eliya · Yala · Tangalle · Galle"
+    },
+    {
+      "value": "Best months",
+      "detail": "December to April, when the south coast is dry"
+    }
+  ],
+  "includes": {
+    "heading": "What the journey includes.",
+    "body": "Everything below is arranged before you land, so the days ask nothing of you beyond turning up. Flights and visas sit outside the plan, and we will say so clearly in the proposal.",
+    "items": [
+      {
+        "title": "Accommodation",
+        "body": "Nine nights with fewer stops and longer stays: Tharu Village, Ceylon Tea Trails, Hilton Yala, three nights at Anantara Peace Haven and Selenya Talpe."
+      },
+      {
+        "title": "Activities",
+        "body": "Tea country and Horton Plains, a safari in Yala, and couples’ treatments on the coast. The rest is time that belongs to the two of you."
+      },
+      {
+        "title": "Meals",
+        "body": "Breakfast every day, plus the meals that are part of a stay. Long dinners are left open so you can choose where to have them."
+      },
+      {
+        "title": "Transfers and driver",
+        "body": "Airport pick-up and drop-off, and the same private driver and vehicle for the whole route."
+      }
+    ]
+  },
+  "itinerary": {
+    "heading": "The island, for two.",
+    "lede": "Open a day to see what it holds and where you sleep.",
+    "days": [
+      {
+        "meta": "Days 1–2 · Kandy",
+        "title": "A Gentle Start for Two",
+        "body": "Arrival into Sri Lanka. Water buffalo walking the streets, monkeys alongside the road, bright tuk-tuks, displaying peacocks, palm trees and banana plantations keep the window busy as your private driver takes you from the airport to your hotel.",
+        "stay": {
+          "name": "Tharu Village",
+          "thumb": "/assets/6a821b5ca09db9b6fb389c89_Tharu-Village.jpeg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85caa2930e02b5d0264fbc_arto-suraj-g2VBsOPD4T8-unsplash-2.jpg",
+            "caption": "Fire dancers after dark"
+          },
+          {
+            "src": "/assets/6a85caa3b24274cca9f6b538_chathura-anuradha-subasinghe-isdvqf04MDk-unsplash-2.jpg",
+            "caption": "The Temple of the Tooth, Kandy"
+          },
+          {
+            "src": "/assets/6a85caa28a3782248e1325cc_promodhya-abeysekara-gjd-7_3Ek_w-unsplash.jpg",
+            "caption": "Kandy"
+          }
+        ]
+      },
+      {
+        "meta": "Days 3–4 · Nuwara Eliya",
+        "title": "Planter’s Bungalows, Just for You",
+        "body": "Explore endless tea plantations, misty mountains, scenic waterfalls, Gregory Lake, charming colonial buildings, and the breathtaking beauty of Horton Plains. A perfect escape for nature, adventure, relaxation, and unforgettable views.",
+        "stay": {
+          "name": "Ceylon Tea Trails",
+          "thumb": "/assets/6a82185461ff4081ebc3ae71_Ceylon-Tea-Trails.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cab5c4122ac2f546505a_heshan-weeramanthri-ytNk5s_4Wys-unsplash.jpg",
+            "caption": "Waterfalls in the hill country"
+          },
+          {
+            "src": "/assets/6a85cab51c8f537ecd5c1d22_juho-s-uDk9n1yKxTw-unsplash-2.jpg",
+            "caption": "Around Nuwara Eliya"
+          },
+          {
+            "src": "/assets/6a85cab545d11fde2087318e_yasasi-rajapakse-poadBPsShxg-unsplash.jpg",
+            "caption": "Around Nuwara Eliya"
+          }
+        ]
+      },
+      {
+        "meta": "Days 5–6 · Yala",
+        "title": "A Little Wildness Together",
+        "body": "Experience Sri Lanka’s wild side with a safari through Yala National Park, home to leopards, elephants, crocodiles, and incredible birdlife.",
+        "stay": {
+          "name": "Hilton Yala",
+          "thumb": "/assets/6a4694ef97b30cec1228a1ba_hilton-yala-resort.jpg"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cac8651239f2620f7e4b_chanuka-nimsara-vJTKWsDIkQA-unsplash.jpg",
+            "caption": "Yala"
+          },
+          {
+            "src": "/assets/6a85cac8713ce401890787c4_mahesh-prabahath-J9H0_zTJerE-unsplash.jpg",
+            "caption": "Yala"
+          },
+          {
+            "src": "/assets/6a85cac80bfd2279b9056d22_silver-ringvee-Za2tulPaa_M-unsplash.jpg",
+            "caption": "A safari jeep under the trees"
+          }
+        ]
+      },
+      {
+        "meta": "Days 7–9 · Tangalle",
+        "title": "The Heart of the Honeymoon",
+        "body": "Three nights on a quiet stretch of sand. Beach, pool, couples’ treatments and long dinners.",
+        "stay": {
+          "name": "Anantara Peace Haven",
+          "thumb": "/assets/6a8207271ef510e93459e0fc_Anantara-Peace-Haven.avif"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cadcb5e51023ec716dd9_jannes-jacobs-L9GKXQwpadw-unsplash.jpg",
+            "caption": "Tangalle"
+          },
+          {
+            "src": "/assets/6a85cadcae81d435ad91cca6_mika-wegelius-4myLzGehR-A-unsplash.jpg",
+            "caption": "The beach from above"
+          },
+          {
+            "src": "/assets/6a85cadc004b944edbd46b9c_pexels-esrageziyor-45760220-11490128.jpg",
+            "caption": "Tangalle"
+          }
+        ]
+      },
+      {
+        "meta": "Day 10 · Galle",
+        "title": "The Most Romantic Nights on the Coast",
+        "body": "Explore the iconic Galle Fort, stroll through charming colonial streets, enjoy beautiful beaches, and experience the perfect blend of history, culture, and coastal charm.",
+        "stay": {
+          "name": "Selenya Talpe",
+          "thumb": "/assets/6a97d8d83660a4acd16cb9ad_hero-poster.avif"
+        },
+        "photos": [
+          {
+            "src": "/assets/6a85cbb01b8277b4a2ab0b2b_hans-peter-traunig-PDI6nRWumto-unsplash.jpg",
+            "caption": "Galle"
+          },
+          {
+            "src": "/assets/6a85cbb0098812002ea3549a_polina-kneis-MYYdBGDS3AI-unsplash-2.jpg",
+            "caption": "A shopfront inside the fort"
+          },
+          {
+            "src": "/assets/6a85cbb0f5891fc6f10f6ead_stanislav-rozhkov-mMm4RyQ0R_c-unsplash.jpg",
+            "caption": "Galle"
+          }
+        ]
+      }
+    ]
+  },
+  "timeAnswer": "Ten days lets you stay put for three nights on the coast. Shorter trips usually mean dropping a stop rather than moving faster."
+}

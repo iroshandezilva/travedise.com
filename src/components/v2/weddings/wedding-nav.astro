@@ -1,0 +1,47 @@
+---
+import { weddingsContent } from "@/data/v2/services";
+
+/**
+ * The weddings section's own bar, under each wedding page's hero: the section's name, its
+ * parts, and the way into the brief. It sticks to the top of the window as you scroll,
+ * so the section reads as one place inside the site.
+ */
+interface Props {
+  /** The page's own link gets the underline; the brief page hides the button. */
+  current?: string;
+}
+const { current } = Astro.props;
+const links = [{ href: "/weddings", label: "Overview" }, ...weddingsContent.subnav];
+---
+
+<nav
+  aria-label="Weddings"
+  class="sticky top-0 z-30 w-full shrink-0 border-b border-v2-navy/10 bg-v2-cream/95 gutter-v2 backdrop-blur-[14px] max-md:px-0"
+>
+  <div class="container-v2 flex h-[68px] items-center justify-between gap-8 max-md:h-14">
+    <a href="/weddings" class="shrink-0 font-display text-[20px]/[26px] text-v2-navy max-md:hidden">Travedise Weddings</a>
+    <div class="v2-rail flex min-w-0 items-center gap-7 overflow-x-auto max-md:gap-5 max-md:px-5">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            aria-current={l.href === current ? "page" : undefined}
+            class="shrink-0 text-[15px]/[20px] whitespace-nowrap text-[#42586a] hover:text-v2-navy aria-[current=page]:text-v2-navy aria-[current=page]:underline aria-[current=page]:decoration-v2-sky aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-[7px] max-md:text-[14px]"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+    {
+      current !== "/weddings/plan" && (
+        <a
+          href="/weddings/plan"
+          class="shrink-0 rounded-full bg-v2-navy px-5 py-[11px] text-[14px]/[18px] font-medium text-white hover:opacity-90 max-md:hidden"
+        >
+          Start your brief ↗
+        </a>
+      )
+    }
+  </div>
+</nav>

@@ -1,0 +1,66 @@
+---
+import Reveal from "@/components/ui/reveal.astro";
+import Section from "@/components/v2/section.astro";
+import type { Place } from "@/data/v2/places";
+import { cn } from "@/lib/cn";
+
+const heading =
+  "m-0 font-display text-[44px]/[52px] font-medium tracking-[-0.005em] text-v2-navy max-md:text-[30px]/[38px]";
+
+/** Four numbered things we do there, then a wide photo and a narrow one. */
+interface Props {
+  place: Place;
+}
+const { place } = Astro.props;
+---
+
+<Section class="pb-[110px] max-md:pb-14">
+  <div class="flex flex-col gap-12 max-md:gap-8">
+    <div class="flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4">
+      <h2 class={heading}>How we spend the time there.</h2>
+      <p
+        class="m-0 w-[380px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]"
+      >
+        {place.doing.lede}
+      </p>
+    </div>
+
+    <ol class="m-0 grid list-none grid-cols-4 gap-8 p-0 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+      {
+        place.doing.items.map((item, i) => (
+          <Reveal
+            as="li"
+            from="rise"
+            delay={i * 70}
+            class="flex flex-col gap-3.5 border-t border-v2-navy/16 pt-6 max-md:gap-2.5 max-md:pt-5"
+          >
+            <div class="text-[14px]/[20px] text-[#65788c]">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="m-0 text-[24px]/[32px] font-semibold tracking-[-0.01em] text-v2-navy max-md:text-[20px]/[28px]">
+              {item.title}
+            </h3>
+            <p class="m-0 text-[15px]/[24px] text-[#52687b]">{item.body}</p>
+          </Reveal>
+        ))
+      }
+    </ol>
+
+    {
+      place.gallery && (
+        <div class="mt-4 grid grid-cols-3 gap-3.5 max-md:mt-0 max-md:grid-cols-1 max-md:gap-2.5">
+          {place.gallery.map((shot, i) => (
+            <img
+              src={shot.src}
+              alt={shot.alt}
+              loading="lazy"
+              class={cn(
+                "block h-[500px] w-full object-cover max-lg:h-[380px] max-md:h-[260px]",
+                i === 0 && "col-span-2 max-md:col-span-1",
+              )}
+              style={shot.position ? { objectPosition: shot.position } : undefined}
+            />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</Section>

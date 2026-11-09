@@ -1,0 +1,21 @@
+---
+/** Sets the last occurrence of `em` inside `text` in italics: "Which coast, *and when*". */
+interface Props {
+  text: string;
+  em?: string;
+}
+const { text, em } = Astro.props;
+const at = em ? text.lastIndexOf(em) : -1;
+---
+
+{
+  !em || at < 0 ? (
+    text
+  ) : (
+    <>
+      {text.slice(0, at)}
+      <em class="italic">{em}</em>
+      {text.slice(at + em.length)}
+    </>
+  )
+}

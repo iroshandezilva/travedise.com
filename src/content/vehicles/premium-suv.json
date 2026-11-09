@@ -1,0 +1,53 @@
+{
+  "order": 2,
+  "slug": "premium-suv",
+  "name": "Premium SUV",
+  "silhouette": "suv",
+  "seats": {
+    "min": 1,
+    "max": 4
+  },
+  "seatsLabel": "1 to 4 travellers",
+  "bags": "4 large cases",
+  "models": "Toyota Prado, Land Cruiser or similar",
+  "short": "Higher, roomier and calmer on the hill roads. Our choice for VIP guests.",
+  "summary": "A larger, higher vehicle for the hill-country bends and for guests who should arrive rested: honeymooners, families of four, wedding VIPs.",
+  "suits": [
+    "Families of four",
+    "Hill country and tea estates",
+    "Wedding couples and their parents",
+    "Guests who want more space"
+  ],
+  "features": [
+    {
+      "title": "Built for the climbs",
+      "body": "Four-wheel drive and a high seat make the roads up to Nuwara Eliya and Ella smoother, and the views better."
+    },
+    {
+      "title": "Room for real luggage",
+      "body": "Four large cases fit behind the rear seats, so nothing rides on your lap."
+    },
+    {
+      "title": "A quieter arrival",
+      "body": "The vehicle we send for wedding couples, their families and anyone who should arrive looking as if they have not travelled at all."
+    }
+  ],
+  "included": [
+    "A licensed, English-speaking driver",
+    "Fuel, tolls and parking",
+    "Driver's meals and rooms on multi-day hires",
+    "Bottled water in the car",
+    "Air conditioning throughout",
+    "Child seats, fitted before pick-up"
+  ],
+  "questions": [
+    {
+      "q": "Can the SUV take us into a national park?",
+      "a": "Not on the game drive itself. The parks only allow registered safari jeeps on their tracks, so we book a jeep for the drive and your SUV waits at the gate."
+    },
+    {
+      "q": "Is it worth the difference over a car?",
+      "a": "On a hill-country route or with four people, usually yes. On a coast-only trip for two, the comfort car does the job."
+    }
+  ]
+}

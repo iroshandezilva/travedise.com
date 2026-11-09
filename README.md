@@ -1,7 +1,7 @@
 # travedise.com
 
-Marketing site for Travedise — Sri Lanka tour packages. Next.js 16 (App Router), React 19,
-Tailwind CSS v4, deployed as a fully static export to Cloudflare Pages.
+Marketing site for Travedise — Sri Lanka tour packages. Astro 7, Tailwind CSS v4, two small React
+islands, deployed as a fully static site to Cloudflare Pages.
 
 - `main` → https://travedise.com
 - `dev` → https://dev.travedise.pages.dev
@@ -10,48 +10,65 @@ Tailwind CSS v4, deployed as a fully static export to Cloudflare Pages.
 
 ```bash
 pnpm install
-pnpm dev                          # http://localhost:3000
-pnpm build && npx serve out       # preview the production (static) build
+pnpm dev                          # http://localhost:4321
+pnpm build && pnpm preview        # preview the production (static) build
+pnpm test                         # checks the build in dist/ — run after pnpm build
 ```
 
-`next.config.ts` sets `output: "export"`, so everything must be static: no route handlers that read
-the request, middleware, server actions, `cookies()`/`headers()`, or dynamic routes without
-`generateStaticParams`. `pnpm start` doesn't work with a static export.
+Needs **Node 22.12+** and pnpm. To edit words and photos visually, install the [Stacki](https://stacki.build)
+Mac app and open this folder after `pnpm install` — see [`docs/editing-with-stacki.md`](docs/editing-with-stacki.md).
+
+The site is fully static (`output: "static"`): every page is HTML at build time. Pages are written
+as `about.html`, not `about/index.html` (`build.format: "file"`), which is what Cloudflare Pages,
+`public/_routes.json` and the tests expect. Dynamic routes list their pages in `getStaticPaths`.
+The only server code is the Cloudflare Pages Functions in `functions/`.
 
 ## Structure
 
 ```
-app/                  routes — each page.tsx composes sections and exports its metadata
-  globals.css         Tailwind import, design tokens (@theme), base typography, <Reveal> styles
-  fonts.ts            next/font: General Sans, Boska (local), Inter Tight (Google)
-components/
-  ui/                 primitives: ArrowButton, PillButton, OutlinePill, TextRoll, SectionTag, Reveal
-  site/               shared across pages: Navbar, Footer, FaqSection, PackageCard, BlogCard, …
-  home/ about/        page-specific sections (original design)
-  v2/                 the new design: shared nav, footer, CTAs; v2/blog is the travel notes
-content/              typed page content: packages, package details, blog posts, FAQs, …
-lib/cn.ts             className helper (clsx + tailwind-merge aware of our tokens)
-public/assets/        images and icons
+src/
+  pages/              routes — each .astro page composes sections and sets its <Base> metadata
+  layouts/base.astro  <html>, meta tags, fonts, JSON-LD, live chat, shared scripts
+  components/v2/      sections and shared pieces (nav, footer, buttons, CTAs, accordion)
+  components/islands/ the two React components hydrated in the browser: trip form, journeys map
+  components/ui/      Reveal (scroll-in animation)
+  content/            collections, lists, shared words and photo paths, as JSON (one-off page text is in the components; see below)
+  content.config.ts   schemas for the places, journeys and travel notes collections
+  data/               typed modules pages import; they read src/content and add derived fields
+  scripts/            small browser scripts shared by every page (reveal, WebMCP)
+  styles/global.css   Tailwind import, design tokens (@theme), base typography, component CSS
+  lib/                cn(), site constants, socials, structured data
+public/               images, video and the static files Cloudflare reads (_redirects, _headers…)
+functions/            Cloudflare Pages Functions: the enquiry form and the Markdown middleware
+scripts/agent-files.mjs  writes the Markdown copies of each page, llms.txt and .well-known after the build
 ```
 
-Copy lives in `content/`, not in JSX — to change a package, FAQ or blog post, edit the data file.
+Copy lives in `src/content/`, not in markup — to change a package, place, FAQ or travel note, edit
+its JSON file. `pnpm build` checks the places, journeys and notes against the schemas in
+`src/content.config.ts`, so a missing field fails the build instead of breaking a page.
 
-To add a travel note, add a file to `content/blog/posts/` (copy an existing one) and list it in
-`content/blog/index.ts`. The template at `app/blog-posts/[slug]/page.tsx` builds its page, and
-`/blog`, the sitemap and "Keep reading" pick it up. Reading time is counted from the text.
+- One file per place in `src/content/places/`, per journey in `src/content/packages/` (both
+  ordered by their `order` field), and per travel note in `src/content/blog/`.
+- Page-level words are in `src/content/pages/*.json`; words shared across pages (nav, menu,
+  gallery, questions) and contact details are in `src/content/site/*.json`.
+
+To add a travel note, copy a file in `src/content/blog/` and change it. The template at
+`src/pages/blog-posts/[slug].astro` builds its page, and `/blog`, the sitemap and "Keep reading"
+pick it up. Reading time is counted from the text.
 
 ## Styling
 
-- **Tailwind utilities only** — no CSS files beyond `app/globals.css`, no CSS modules.
+- **Tailwind utilities only** — no CSS files beyond `src/styles/global.css`.
 - **Desktop-first**, matching the original design: unprefixed classes are desktop, then override
   with `max-lg:` (≤991px), `max-md:` (≤767px), `max-sm:` (≤479px).
-- **Tokens** (`app/globals.css`): colors `navy`, `navy-800`, `slate`, `slate-300/400`, `lime`,
-  `surface`, `line`…; fonts `font-sans` (body), `font-heading`, `font-serif`, `font-boska`;
-  `text-h1`…`text-h6` (shrink per breakpoint automatically), `text-body-lg`; `rounded-card`,
-  `rounded-panel`; `container-site` for the 1271px page container; `ease-out-quart` etc.
+- **Tokens** (`src/styles/global.css`): the `v2-*` colours (`v2-navy`, `v2-cream`, `v2-sky`…),
+  `font-display` (Ragmont) and `font-sans` (Inter Tight), `container-v2` / `gutter-v2` for the
+  1280px page column, `ease-out-quart` etc. Fonts are configured in `astro.config.mjs`.
 - **Motion**: CSS transitions/keyframes. Scroll-in animations use `<Reveal from delay>`;
-  hover effects use `group-hover:`. Anything larger than a hover respects `prefers-reduced-motion`.
-- Reuse `components/ui` and `components/site` before writing new markup.
+  anything larger than a hover respects `prefers-reduced-motion`.
+- **Interactivity**: plain `<script>` tags in the component (menus, accordions, filters). React
+  is only for the trip form and the journeys map.
+- Reuse `src/components/v2` before writing new markup.
 
 ## Deploys and workflow
 

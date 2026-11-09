@@ -1,0 +1,48 @@
+---
+import Emphasis from "@/components/v2/blog/emphasis.astro";
+import KeepReading from "@/components/v2/blog/keep-reading.astro";
+import PostBody from "@/components/v2/blog/post-body.astro";
+import PostHero from "@/components/v2/blog/post-hero.astro";
+import ContainedCta from "@/components/v2/contained-cta.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import { getNote, noteSlugs, relatedNotes, type Note } from "@/data/blog";
+import Base from "@/layouts/base.astro";
+
+/** Static build: every note in `src/content/blog` gets a page. */
+export function getStaticPaths() {
+  return noteSlugs.map((slug) => ({ params: { slug } }));
+}
+
+/**
+ * The travel note template. Everything on the page comes from the note's file in
+ * `src/content/blog`, so a new note is a content entry rather than a new page.
+ */
+const note = getNote(Astro.params.slug) as Note;
+const title = `${note.seo?.title ?? note.title} — Travedise`;
+---
+
+<Base title={title} description={note.seo?.description ?? note.dek} canonical={note.href} image={note.image.src} ogType="article" publishedTime={note.date}>
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <PostHero note={note} />
+    <main>
+      <PostBody note={note} />
+      <KeepReading notes={relatedNotes(note)} />
+      {
+        note.cta ? (
+          <ContainedCta body={note.cta.body}>
+            <Fragment slot="heading">
+              <Emphasis text={note.cta.heading} em={note.cta.em} />
+            </Fragment>
+          </ContainedCta>
+        ) : (
+          <ContainedCta body="Tell us your dates and what you hope to see. We will shape the rest around you.">
+            <Fragment slot="heading">
+              Want this <em class="italic">in your route</em>?
+            </Fragment>
+          </ContainedCta>
+        )
+      }
+    </main>
+    <FooterWide />
+  </div>
+</Base>

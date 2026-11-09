@@ -1,0 +1,18 @@
+---
+import { cn } from "@/lib/cn";
+
+/** The paragraph that usually sits opposite a section heading. */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<p
+  class={cn(
+    "m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-lg:max-w-[520px] max-md:text-[15px]/[24px]",
+    className,
+  )}
+>
+  <slot />
+</p>

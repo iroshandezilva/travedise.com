@@ -1,0 +1,70 @@
+{
+  "order": 14,
+  "slug": "udawalawe",
+  "name": "Udawalawe",
+  "region": "parks",
+  "line": "Open grassland and elephants, and a good first safari for children.",
+  "image": {
+    "src": "/places/udawalawe-elephants.jpg",
+    "alt": "Elephants grazing on open grassland under the hills"
+  },
+  "map": {
+    "cx": 216.7,
+    "cy": 558.9,
+    "tx": 228.7,
+    "ty": 563.4,
+    "anchor": "start"
+  },
+  "summary": "Open grassland around a reservoir, with several hundred elephants and a first safari that almost never disappoints.",
+  "nights": "1 night",
+  "goodFor": "Families, first safaris",
+  "intro": {
+    "heading": "Elephants, every time.",
+    "paragraphs": [
+      "Udawalawe is flatter and more open than Yala: grassland and scrub around a large reservoir at the foot of the hills. Several hundred elephants live here, and you are all but certain to see them, often close to the jeep.",
+      "That makes it the park we suggest for children and for a first safari. It sits between the hills and the south coast, so it breaks up a long drive, and the elephant transit home beside the park is worth an hour."
+    ]
+  },
+  "mapCaption": "Between the hills and the south coast. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Udawalawe is a half day, not a week. These are the things we build it around.",
+    "items": [
+      {
+        "title": "An afternoon drive",
+        "body": "Three or four hours in an open jeep, with elephants at the water, buffalo, crocodiles and eagles overhead."
+      },
+      {
+        "title": "The elephant transit home",
+        "body": "Orphaned calves are raised here and later released into the park. Feeding time is short, and kept at a distance."
+      },
+      {
+        "title": "The reservoir from the dam",
+        "body": "The road along the dam looks out over the water, and elephants often come down to drink below it."
+      },
+      {
+        "title": "Birds, for the keen",
+        "body": "Bee-eaters, fish eagles and more than two hundred other species. We can book a guide who cares more about them than the elephants."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/udawalawe-jeep.jpg",
+      "alt": "An elephant beside a safari jeep on the grassland"
+    },
+    {
+      "src": "/v2/1260892ee6b033b2f8f08368d097bbc4.jpg",
+      "alt": "A child in a safari jeep watching an elephant in the long grass"
+    }
+  ],
+  "season": "Udawalawe has no long closure, and the elephants stay whatever the month. February to August is the driest time, and the easiest for seeing them at the water.",
+  "nearby": {
+    "heading": "Near the park.",
+    "slugs": [
+      "yala",
+      "ella",
+      "tangalle"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit a drive in on the way from the hills to the coast."
+}

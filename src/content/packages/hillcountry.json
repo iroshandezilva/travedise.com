@@ -1,0 +1,138 @@
+{
+  "order": 3,
+  "slug": "hillcountry",
+  "title": "Hill Country & Beach",
+  "summary": "Cool mountain scenery, tea plantations and waterfalls, then golden beaches on the south coast. The perfect blend of relaxation and adventure.",
+  "shots": [
+    {
+      "src": "/assets/6a41dca96291ea3120748b1b_R806lZ8a9OCcxaRnHAtBY8t7F3ZIFpQdlaRoFCYK.jpg",
+      "label": "The blue train on Nine Arches Bridge"
+    },
+    {
+      "src": "/assets/6a41dcaf0426a2d1ca0c18f8_rRQEdwLLHTRS2VchZxX9x2zoKTwSlevfwwWKqqPJ.jpg",
+      "label": "A waterfall in the forested hills"
+    },
+    {
+      "src": "/assets/6a41dcb30f8b718ed78a3194_aoE6iw4OzAGMm9KAx8xSM2gMjKZAwrWGRZ9JhgHm.jpg",
+      "label": "The view from the high ridges"
+    },
+    {
+      "src": "/assets/6a41dceae7f211ad542c5b87_ella-hill-country-tour-a-perfect-day-tour-in-sri-lanka-768x432.jpg",
+      "label": "On the train through the hills"
+    }
+  ],
+  "facts": [
+    {
+      "value": "9 days",
+      "detail": "Private, tailor-made"
+    },
+    {
+      "value": "Six stops",
+      "detail": "Kandy · Nuwara Eliya · Ella · Yala · Tangalle · Galle"
+    },
+    {
+      "value": "Best months",
+      "detail": "December to April, when the hills and south coast are dry"
+    }
+  ],
+  "includes": {
+    "heading": "What the journey includes.",
+    "body": "Everything below is arranged before you land, so the days ask nothing of you beyond turning up. Flights and visas sit outside the plan, and we will say so clearly in the proposal.",
+    "items": [
+      {
+        "title": "Accommodation",
+        "body": "Eight nights, from Myst by Cinnamon in Kandy and Araliya Green in the hills to Anantara Peace Haven and Jetwing Lighthouse on the coast."
+      },
+      {
+        "title": "Activities",
+        "body": "The Temple of the Tooth, Horton Plains, Little Adam’s Peak, the Nine Arches Bridge and Ravana Falls, and two days of jeep safaris in Yala."
+      },
+      {
+        "title": "Meals",
+        "body": "Breakfast every day, plus the meals that are part of a stay or a long drive. The rest stays open, because eating out is half the trip."
+      },
+      {
+        "title": "Transfers and driver",
+        "body": "Airport pick-up and drop-off, and the same driver and vehicle for the whole route, from the hills down to the sea."
+      }
+    ]
+  },
+  "itinerary": {
+    "heading": "From the tea to the sea.",
+    "lede": "Open a day to see what it holds and where you sleep.",
+    "days": [
+      {
+        "meta": "Day 1 · Kandy",
+        "title": "Sri Lanka’s Last Kingdom",
+        "body": "Discover Sri Lanka’s cultural heart with the Temple of the Sacred Tooth Relic, scenic Kandy Lake, lush hills, and rich traditions.",
+        "stay": {
+          "name": "Myst by Cinnamon",
+          "thumb": "/assets/6a8205a7578bf13b655eb832_mystbycinnomon.jpg"
+        },
+        "photos": []
+      },
+      {
+        "meta": "Day 2 · Nuwara Eliya",
+        "title": "Little England in the Clouds",
+        "body": "Explore endless tea plantations, misty mountains, scenic waterfalls, Gregory Lake, charming colonial buildings, and the breathtaking beauty of Horton Plains. A perfect escape for nature, adventure, relaxation, and unforgettable views.",
+        "stay": {
+          "name": "Araliya Green",
+          "thumb": "/assets/6a821a5ef8c5e1a53bcbcfb8_Araliya-Green.jpg"
+        },
+        "photos": []
+      },
+      {
+        "meta": "Day 3 · Ella",
+        "title": "Ridgelines and Railway Bridges",
+        "body": "A day on foot: Little Adam’s Peak, the Nine Arches Bridge and Ravana Falls, with cafe hopping to finish.",
+        "stay": {
+          "name": "Anasa Wellness Resort",
+          "thumb": "/assets/6a81fb7ea325af1ae46b6b37_Anasa_Wellness_Resort_logo.jpg"
+        },
+        "photos": []
+      },
+      {
+        "meta": "Days 4–5 · Yala",
+        "title": "Down to Leopard Country",
+        "body": "Two days of jeep safaris in leopard country, plus elephants and birdlife. Mornings for the animals, afternoons by the pool.",
+        "stay": {
+          "name": "Hilton Yala",
+          "thumb": "/assets/6a8206e661ff4081ebbfb01e_Hilton-Yala.webp"
+        },
+        "photos": []
+      },
+      {
+        "meta": "Day 6 · Tangalle",
+        "title": "Your First Taste of the Coast",
+        "body": "Slow days between the sea and the spa, with the Hummanaya blow hole nearby.",
+        "stay": {
+          "name": "Anantara Peace Haven",
+          "thumb": "/assets/6a8207271ef510e93459e0fc_Anantara-Peace-Haven.avif"
+        },
+        "photos": []
+      },
+      {
+        "meta": "Days 7–8 · Galle",
+        "title": "The Fort by the Sea",
+        "body": "Explore the iconic Galle Fort, stroll through charming colonial streets, enjoy beautiful beaches, and experience the perfect blend of history, culture, and coastal charm.",
+        "stay": {
+          "name": "Jetwing Lighthouse",
+          "thumb": "/assets/6a8207692602657800f43eea_Jetwing-Lighthouse.jpg"
+        },
+        "photos": []
+      },
+      {
+        "meta": "Day 9 · Airport",
+        "title": "Time to Fly Home",
+        "body": "Private transfer to Colombo airport for your flight home.",
+        "stay": {
+          "name": "Private transfer",
+          "note": "Colombo airport, timed to your flight.",
+          "thumb": "/assets/6a41dceae7f211ad542c5b87_ella-hill-country-tour-a-perfect-day-tour-in-sri-lanka-768x432.jpg"
+        },
+        "photos": []
+      }
+    ]
+  },
+  "timeAnswer": "Nine days covers the hills and the coast without rushing. Shorter trips usually mean dropping a stop rather than moving faster."
+}

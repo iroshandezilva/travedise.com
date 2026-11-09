@@ -2,7 +2,7 @@
 
 # travedise.com
 
-Static Next.js site on Cloudflare Pages: https://travedise.com. More background in `README.md`.
+Static Astro site on Cloudflare Pages: https://travedise.com. More background in `README.md`.
 
 ## Git — Claude does it, the person doesn't have to
 
@@ -22,16 +22,18 @@ the owner included, so every change goes through a PR. Releases (`dev` → `main
 
 ## Merging — only for the owner
 
-PRs need the owner's approval, and GitHub doesn't let anyone approve their own PR. So when the
-owner asks to merge a PR, Claude merges it for them:
+GitHub no longer requires an approving review on `dev` or `main`, so anyone with write access
+*could* merge. The rule here is that only the owner does. When the owner asks to merge a PR,
+Claude merges it for them:
 
 1. Confirm it's the owner: `gh api user --jq .login` must print `iroshandezilva`. If it prints
    anything else, don't merge — say the owner has to review and merge it.
 2. CI no longer builds pull requests, so there is no check to read. Confirm instead that
    `pnpm build` and `pnpm test` pass on the PR branch locally; if either fails, say so and stop.
 3. `gh pr merge <n> --admin --squash --delete-branch` (for a `dev` → `main` release PR use `--merge`
-   and keep the branch). `--admin` skips the approval rule, which the owner may do only when
-   merging a PR — not for direct pushes. Share what was merged and where it deploys.
+   and keep the branch). `--admin` is still needed for `main`, whose `build`
+   check only runs after a push and so never reports on the PR; the owner may use it only when merging
+   a PR — not for direct pushes. Share what was merged and where it deploys.
 
 Never merge on your own initiative or for anyone else.
 
@@ -43,7 +45,27 @@ Never merge on your own initiative or for anyone else.
 
 ## Build constraints
 
-- `output: "export"` — the site is fully static. No route handlers reading the request,
-  middleware/proxy, server actions, `cookies()`/`headers()`, or dynamic routes without `generateStaticParams`.
-- Preview a production build with `pnpm build && npx serve out` (`pnpm start` doesn't work with a static export).
-- Forms have no backend yet.
+- `output: "static"` — the site is fully static. No on-demand rendering, no server adapter,
+  no `Astro.request` headers/cookies, and dynamic routes must list their pages in `getStaticPaths`.
+- Server code lives only in `functions/` (Cloudflare Pages Functions): the enquiry form
+  (`functions/api/enquiry.js`, sends through Zoho Mail) and the Markdown middleware.
+- **Where text lives (hybrid).** One-off text on a page — headings, intro paragraphs, button labels,
+  notes — is written directly in the `.astro` component, so Stacki can edit it on the canvas.
+  Text goes in `src/content/**` JSON only when it repeats in a list or loop, is used in more than
+  one place (including `<meta description>` and structured data), belongs to a collection (places,
+  packages, blog, vehicles…), or is site-wide (contact, socials). Photo paths and alt text stay in
+  data. Full rule: `astro7-site` skill → "Where text lives"; Stacki guide: `docs/editing-with-stacki.md`.
+- Preview a production build with `pnpm build && pnpm preview`.
+
+## Sub-agents and skills
+
+Project agents are in `.claude/agents/`, their skills in `.claude/skills/`. The usual flow:
+
+```
+web-designer (canvas, until the owner approves) → design-porter → build-verifier → astro-reviewer → pr-shipper
+content-writer (src/content JSON, SEO, shot lists) ─────────────┘
+```
+
+Also: `motion-polisher`, `agent-readiness-checker`, `infra-guard` (workflows, Cloudflare,
+Functions — asks first). The design reference is `docs/design.html`;
+open it in a browser.

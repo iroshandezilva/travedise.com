@@ -1,0 +1,35 @@
+---
+import { MapExplorer } from "@/components/islands/map-explorer";
+import ContainedCta from "@/components/v2/contained-cta.astro";
+import FooterWide from "@/components/v2/footer-wide.astro";
+import Gallery from "@/components/v2/gallery.astro";
+import JourneysHero from "@/components/v2/packages/hero.astro";
+import JourneysIntro from "@/components/v2/packages/intro.astro";
+import JourneyGrid from "@/components/v2/packages/journey-grid.astro";
+import { journeysHero } from "@/data/v2/journeys";
+import Base from "@/layouts/base.astro";
+
+const TITLE = "Journeys across Sri Lanka — Travedise";
+
+/**
+ * The journeys index. Driven entirely by `src/data/v2/journeys.ts` — the map, the
+ * route list and the cards all read the same six entries, so a route can never appear
+ * in one and not the others.
+ */
+---
+
+<Base title={TITLE} description={journeysHero.body} canonical="/packages" image={journeysHero.image} ogType="website">
+  <div class="v2 flex flex-col overflow-clip bg-white">
+    <JourneysHero />
+    <main>
+      <JourneysIntro />
+      <Gallery heading="The island, between the stops." lede="Frames from journeys we ran this year." />
+      <MapExplorer client:visible />
+      <JourneyGrid />
+      <ContainedCta body="Tell us what you would change and we will redraw the route around you.">
+        <Fragment slot="heading">Not quite the journey <em class="italic">you had</em> in mind?</Fragment>
+      </ContainedCta>
+    </main>
+    <FooterWide />
+  </div>
+</Base>

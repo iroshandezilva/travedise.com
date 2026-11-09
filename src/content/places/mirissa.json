@@ -1,0 +1,70 @@
+{
+  "order": 8,
+  "slug": "mirissa",
+  "name": "Mirissa",
+  "region": "southwest",
+  "line": "A bay for whale watching from November to April, and slow evenings after.",
+  "image": {
+    "src": "/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg",
+    "alt": "Palms on a red headland above the sea at Mirissa"
+  },
+  "map": {
+    "cx": 144.5,
+    "cy": 641.5,
+    "tx": 144.5,
+    "ty": 664.5,
+    "anchor": "middle"
+  },
+  "summary": "A small bay on the south coast, and the best place on the island to go looking for blue whales.",
+  "nights": "2 nights",
+  "goodFor": "Couples, wildlife",
+  "intro": {
+    "heading": "Whales, then a slow evening.",
+    "paragraphs": [
+      "Mirissa is a curve of sand with a fishing harbour at one end. From November to April, blue whales and sperm whales pass close to the south coast, and the boats go out from here at dawn.",
+      "The beach itself has filled up with bars over the years. We book stays on the quieter headlands either side, so the whale morning is followed by a long lunch and not much else."
+    ]
+  },
+  "mapCaption": "On the south coast, east of Galle. The other dots are the places we pair it with.",
+  "doing": {
+    "lede": "Mirissa is a morning at sea and an afternoon off. These are the things we build the days around.",
+    "items": [
+      {
+        "title": "A whale watching morning",
+        "body": "Out at six, back by lunch. We use operators who keep their distance from the whales, and we only go in season."
+      },
+      {
+        "title": "Coconut Tree Hill",
+        "body": "A red headland crowded with palms, a short walk from the beach. Best at the end of the day."
+      },
+      {
+        "title": "A first surf lesson",
+        "body": "The small waves at the western end of the bay suit beginners. Boards and a patient instructor are easy to find."
+      },
+      {
+        "title": "Fish on the beach at night",
+        "body": "The day’s catch laid out on ice along the sand. Pick one, and it is grilled while you wait."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/places/weligama-headland.jpg",
+      "alt": "A headland and bay on the south coast from the air"
+    },
+    {
+      "src": "/v2/49c9ea8f6d4c74abde92d705e38b45e5.jpg",
+      "alt": "A walker among the palms on a red headland above the sea"
+    }
+  ],
+  "season": "Mirissa follows the south coast: calm and dry from December to April, rough and wet while the south west monsoon blows from May to September. The whales are here from November to April.",
+  "nearby": {
+    "heading": "Along the same coast.",
+    "slugs": [
+      "galle",
+      "tangalle",
+      "yala"
+    ]
+  },
+  "ctaBody": "Tell us your dates and we will fit it in, with the whale morning in the right month."
+}

@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/lib/cn";
+
+/**
+ * A label beside a round arrow badge, both inside a hairline rim. Used on dark panels
+ * where a solid fill would be too loud.
+ */
+type Props = HTMLAttributes<"a">;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<a
+  class={cn(
+    "flex h-16 shrink-0 items-center gap-[18px] rounded-full border border-white/45 pr-2.5 pl-[30px] transition-[background-color,transform] duration-150 ease-out-quad hover:bg-white/8 active:scale-[0.97] motion-reduce:transition-none max-md:h-14 max-md:gap-3 max-md:pl-6",
+    className,
+  )}
+  {...props}
+>
+  <span class="text-[16px]/[20px] text-white"><slot /></span>
+  <span
+    aria-hidden="true"
+    class="flex size-11 items-center justify-center rounded-full border border-white/45 text-[16px] text-white max-md:size-10"
+  >
+    →
+  </span>
+</a>

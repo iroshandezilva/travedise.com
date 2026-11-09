@@ -1,0 +1,48 @@
+{
+  "placesHero": {
+    "title": "Places we know well",
+    "body": "The towns, hills, parks and beaches our journeys pass through, what each one is really for, and the months it is at its best.",
+    "image": "/places/sigiriya-rock.jpg",
+    "alt": "Sigiriya rock rising out of the forest"
+  },
+  "placesMap": {
+    "heading": "Five parts of one small island.",
+    "lede": "Each region has its own weather and its own season. Pick one to see where it sits, and the places below narrow to match.",
+    "blurb": "Two monsoons take turns, so some part of the island is always in season. Pick a region to see its months."
+  },
+  "placesGrid": {
+    "heading": "Every place we send people."
+  },
+  "placeRegions": [
+    {
+      "key": "hill",
+      "name": "Hill Country",
+      "best": "January to March",
+      "blurb": "Tea estates, cool mornings and the train line. Where we put the early starts."
+    },
+    {
+      "key": "triangle",
+      "name": "Cultural Triangle",
+      "best": "February to April",
+      "blurb": "Rock fortresses, cave temples and ancient cities, best seen before the heat of the day."
+    },
+    {
+      "key": "southwest",
+      "name": "South and west coast",
+      "best": "December to April",
+      "blurb": "Fort towns, whale bays and long beaches, at their calmest through the northern winter."
+    },
+    {
+      "key": "east",
+      "name": "East coast",
+      "best": "May to September",
+      "blurb": "Calm water and empty beaches in the months the south is wet."
+    },
+    {
+      "key": "parks",
+      "name": "National parks",
+      "best": "February to August",
+      "blurb": "Leopards, elephants and birds, planned around the hours the animals are out."
+    }
+  ]
+}
