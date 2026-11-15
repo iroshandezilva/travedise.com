@@ -1,0 +1,24 @@
+---
+/** The closing call to action at the foot of most pages. */
+import Ar from "./Ar.astro";
+import Frame from "./Frame.astro";
+import { CONTACT, MICRO } from "@/data/site";
+import type { PhotoKey } from "@/data/photos";
+interface Props { photo?: PhotoKey; pos?: string; title?: string; cta?: string; href?: string }
+const { photo = "templeNight", pos, title = "Ready when <em>you are.</em>", cta = "Plan your trip", href = "/plan-your-trip" } = Astro.props;
+const phone = CONTACT.phones[1]!;
+---
+
+<section class="close-band">
+  <Frame bg photo={photo} pos={pos} />
+  <div class="scrim"></div>
+  <div class="close-in wrap">
+    <h2 class="d0" set:html={title} />
+    <div class="acts">
+      <a class="btn light big" href={href}>{cta} <Ar /></a>
+      <a class="btn ghost big" href={`tel:${phone.tel}`}>Call {phone.number}</a>
+    </div>
+    <p class="micro on-photo">{MICRO}</p>
+    <p class="contact">Or write to {CONTACT.email}</p>
+  </div>
+</section>

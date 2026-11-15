@@ -1,0 +1,235 @@
+---
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import Frame from "@/components/Frame.astro";
+import NoteCard from "@/components/NoteCard.astro";
+import PageHero from "@/components/PageHero.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import { LK } from "@/data/destinations";
+import { LEVEL, MONTHS, NOTES, SEASON_REGIONS, TOURS } from "@/data/site";
+
+const subs: [string, string][] = [
+  ["sl-overview", "Overview"],
+  ["sl-regions", "Regions"],
+  ["sl-culture", "Culture"],
+  ["sl-food", "Food"],
+  ["sl-wild", "Wildlife"],
+  ["sl-when", "When to go"],
+  ["sl-tours", "Tours"],
+  ["sl-notes", "Travel notes"],
+  ["sl-faq", "Questions"],
+];
+const notes = ["a-first-trip-to-sri-lanka", "which-coast-and-when", "the-kandy-perahera"].map((s) => NOTES.find((n) => n.slug === s)!).filter(Boolean);
+const cultureCrops = ["50% 50%", "50% 40%", "50% 35%", "50% 50%", "50% 55%"];
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: LK.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+};
+---
+
+<Base
+  title="Sri Lanka"
+  description="Sri Lanka by region, month and interest: ancient cities, tea country, two coasts, festivals, food and wildlife, with private tours to start from."
+  canonical="/destinations/sri-lanka"
+  section="destinations"
+  jsonLd={faqLd}
+>
+  <PageHero photo="sigAerial" title="Sri Lanka" lede="An island the size of Ireland, with eight World Heritage Sites, two monsoons and a different coast for every month.">
+    <a class="btn light" href="/packages">See Sri Lanka tours <Ar /></a>
+    <a class="btn ghost" href="/plan-your-trip">Plan a trip</a>
+  </PageHero>
+
+  <nav class="subnav" aria-label="On this page">
+    <div class="subnav-in wrap">
+      {subs.map(([id, t], i) => <button type="button" data-jump={id} aria-current={i === 0 ? "true" : "false"}>{t}</button>)}
+    </div>
+  </nav>
+
+  <section class="sect wrap anchor" id="sl-overview" aria-labelledby="sl-overview-h">
+    <h2 class="visually-hidden" id="sl-overview-h">Sri Lanka at a glance</h2>
+    <p class="statement" style="margin-bottom:clamp(48px,6vw,80px)">
+      Ancient cities, tea country, rainforest, two coasts and some of Asia’s best wildlife, on one island. We plan it so you see the best of it <em>without trying to see all of it.</em>
+    </p>
+    <dl class="facts" style="--fc:3">
+      {LK.facts.map(([k, v, s]) => <div><dt>{k}</dt><dd>{v}<small>{s}</small></dd></div>)}
+    </dl>
+  </section>
+
+  <section class="sect wrap top0 anchor" id="sl-regions">
+    <SecHead title="Six regions, <em>one small island.</em>"><p>Most first trips take in three or four. The month you travel decides which coast.</p></SecHead>
+    <div class="reg">
+      <div class="reg-list" role="tablist" data-tabs aria-orientation="vertical" aria-label="Regions">
+        {
+          LK.regions.map((r, i) => (
+            <button type="button" role="tab" id={`rt-${r.k}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} aria-controls={`rp-${r.k}`}>
+              {r.n}
+              {r.tag && <small>{r.tag}</small>}
+            </button>
+          ))
+        }
+      </div>
+      <div class="reg-view">
+        {
+          LK.regions.map((r, i) => (
+            <div id={`rp-${r.k}`} role="tabpanel" aria-labelledby={`rt-${r.k}`} hidden={i !== 0} style="display:grid;gap:24px">
+              <Frame photo={r.photo} sizes="(max-width: 900px) 100vw, 60vw" widths={[640, 960, 1400]} />
+              <div class="reg-txt">
+                <div style="display:grid;gap:14px;align-content:start">
+                  <h3 class="h2">{r.n}</h3>
+                  <p>{r.text}</p>
+                </div>
+                <dl>
+                  <div><dt>Places</dt><dd>{r.places.join(" · ")}</dd></div>
+                  <div><dt>Best months</dt><dd>{r.best}</dd></div>
+                  <div><dt>Time to allow</dt><dd>{r.stay}</dd></div>
+                </dl>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <p class="small" style="margin-top:32px"><a class="lnk" href="/places">All fourteen places we know well <Ar /></a></p>
+  </section>
+
+  <Band id="sl-culture" photo="fireDance" pos="50% 45%" title="Two thousand years, <em>still in use.</em>" text="Temples here are places of worship first. The Kandy perahera still walks the streets every July or August, as it has for centuries." />
+
+  <section class="sect wrap">
+    <h2 class="visually-hidden">Culture</h2>
+    <div class="culture">
+      {
+        LK.culture.map((c, i) => (
+          <div class="card">
+            <Frame photo={c.photo} pos={cultureCrops[i]} />
+            <h3 class="t h3" style="font-size:var(--fs-h3)">{c.t}</h3>
+            <p class="d">{c.d}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div style="margin-top:clamp(80px,10vw,140px)">
+      <SecHead title="Festivals, <em>month by month.</em>"><p>Dates follow the moon, so they move each year. We check them against your dates when we plan.</p></SecHead>
+      <ul class="fest">
+        {
+          LK.fest.map(([m, n, w, d]) => (
+            <li>
+              <span class="mo">{m}</span>
+              <span class="nm">{n}<span class="small" style="display:block;font-family:var(--sans);margin-top:4px">{w}</span></span>
+              <span class="ds">{d}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="sect wrap top0 anchor" id="sl-food">
+    <SecHead title="Rice and curry, <em>then curd and treacle.</em>"><p>Every tour includes breakfast. The rest stays open, because eating out is half the trip. Tell us about allergies and we brief every kitchen.</p></SecHead>
+    <div class="food">
+      <div class="food-ph">
+        <Frame photo="foodLeaf" sizes="(max-width: 860px) 100vw, 40vw" />
+        <Frame photo="foodBfast" pos="50% 40%" sizes="(max-width: 860px) 50vw, 20vw" />
+        <Frame photo="teaBowl" sizes="(max-width: 860px) 50vw, 20vw" />
+      </div>
+      <div>
+        {
+          LK.food.map(([h, items]) => (
+            <>
+              <h3 class="dish-h">{h}</h3>
+              <ul class="dish">
+                {items.map(([n, d, t]) => (
+                  <li>
+                    <span class="nm">{n}</span>
+                    <span class="ds">{d}</span>
+                    <span class="tags"><span class="tag">{t}</span></span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Band id="sl-wild" photo="whale" pos="50% 55%" title="Leopards, elephants <em>and blue whales.</em>" text="More than twenty national parks, and deep water close to the south coast. We plan around the animals’ calendar, not the other way round." />
+
+  <section class="sect wrap tight">
+    <h2 class="visually-hidden">Wildlife, where and when</h2>
+    <ul class="wild">
+      {
+        LK.wild.map(([p, n, w, s, d]) => (
+          <li>
+            <Frame photo={p} class="th" empty="" sizes="72px" widths={[160]} />
+            <span><span class="nm">{n}</span><span class="ds" style="display:block;margin-top:4px">{d}</span></span>
+            <span class="wh">{w}<small>Where</small></span>
+            <span class="wh">{s}<small>When</small></span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="sect wrap top0 anchor" id="sl-when">
+    <SecHead title="Which coast, <em>which month.</em>"><p>Two monsoons take turns, so in almost any month one side of the island is dry. <a class="lnk" href="/blog-posts/which-coast-and-when">Read the full guide</a></p></SecHead>
+    <div class="months" role="group" aria-label="Choose a month">
+      {MONTHS.map((m, i) => <button type="button" data-month aria-pressed={i === 0 ? "true" : "false"}>{m.name.slice(0, 3)}</button>)}
+    </div>
+    {
+      MONTHS.map((m, i) => (
+        <div class="month-view" data-mpanel hidden={i !== 0}>
+          <div>
+            <h3 class="h3">{m.name}: {m.title}</h3>
+            <p>{m.body}</p>
+          </div>
+          <ul class="rate" aria-label={`How each region is in ${m.name}`}>
+            {SEASON_REGIONS.map((r, j) => (
+              <li>
+                <span class="nm">{r.name}<small>{r.note}</small></span>
+                <span class="bar" aria-hidden="true">{[1, 2, 3].map((n) => <i class:list={[{ on: n <= (m.ratings[j] ?? 0) }]} />)}</span>
+                <span class="lv">{LEVEL[m.ratings[j] ?? 2]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+
+  <Band photo="stilt2" title="Pick a tour, <em>then change it.</em>" text="Five routes to start from, written by the people who drive them. Add a night, swap a stay or join two together.">
+    <a class="btn light" href="/packages">All Sri Lanka tours <Ar /></a>
+  </Band>
+
+  <section class="sect wrap anchor" id="sl-tours">
+    <SecHead title="Sri Lanka <em>tours.</em>"><a class="lnk" href="/packages">Filter all tours <Ar /></a></SecHead>
+    <ul class="tlist">
+      {
+        TOURS.map((t) => (
+          <li>
+            <a href={t.href}>
+              <Frame photo={t.photo} sizes="200px" widths={[400]} />
+              <span><span class="t">{t.title}</span><span class="d" style="display:block">{t.summary}</span></span>
+              <span class="m">{t.days} days · {t.stops.length} stops<br />from <b>US$ {t.price}</b></span>
+              <Ar />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="sect wrap top0 anchor" id="sl-notes">
+    <SecHead title="Read this <em>before you go.</em>"><a class="lnk" href="/blog">All travel notes <Ar /></a></SecHead>
+    <div class="cardgrid" style="--n:3">{notes.map((n) => <NoteCard note={n} />)}</div>
+  </section>
+
+  <div class="anchor" id="sl-faq">
+    <Faq title="Questions <em>we get asked.</em>" items={LK.faq} />
+  </div>
+
+  <CloseBand photo="teaMist" title="Plan your <em>Sri Lanka.</em>" cta="Plan a Sri Lanka trip" />
+</Base>

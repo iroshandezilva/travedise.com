@@ -1,0 +1,52 @@
+---
+/** The site header: transparent over a photo hero, white once you scroll past it (see site.ts). */
+import Wordmark from "./Wordmark.astro";
+import { SOON } from "@/data/site";
+
+interface Props {
+  /** Which top-level section the page belongs to, for aria-current. */
+  section?: "destinations" | "tours" | "services" | "notes" | "about" | "plan" | "";
+}
+const { section = "" } = Astro.props;
+const cur = (s: string) => (section === s ? "page" : undefined);
+const chev = `<svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+---
+
+<header class="hdr" id="hdr">
+  <a href="/" aria-label="Travedise home"><Wordmark /></a>
+  <div class="hdr-r">
+    <nav class="navpill" aria-label="Main">
+      <div class="nav-i" data-dd>
+        <button type="button" aria-expanded="false" aria-controls="dd-dest" class:list={[{ cur: section === "destinations" }]}>Destinations <Fragment set:html={chev} /></button>
+        <div class="dd" id="dd-dest">
+          <a href="/destinations/sri-lanka"><b>Sri Lanka</b><span>Culture, hills, two coasts and the parks</span></a>
+          <a href="/destinations/maldives"><b>The Maldives</b><span>Atolls, reefs and a villa over the water</span></a>
+          <a href="/destinations"><b>All destinations</b><span>Including how to combine them</span></a>
+          <div class="soon">Coming soon: {SOON.join(", ")}</div>
+        </div>
+      </div>
+      <div class="nav-i"><a href="/packages" aria-current={cur("tours")}>Tours</a></div>
+      <div class="nav-i" data-dd>
+        <button type="button" aria-expanded="false" aria-controls="dd-svc" class:list={[{ cur: section === "services" }]}>Services <Fragment set:html={chev} /></button>
+        <div class="dd" id="dd-svc">
+          <a href="/services"><b>All services</b><span>What we plan, and how</span></a>
+          <a href="/packages"><b>Tailor-made trips</b><span>Private tours, changed to suit you</span></a>
+          <a href="/weddings"><b>Weddings</b><span>Beach weddings, elopements, vow renewals</span></a>
+          <a href="/group-vacations"><b>Group trips</b><span>Retreats, reunions and clubs</span></a>
+          <a href="/vehicles"><b>Vehicles and drivers</b><span>From a tuk-tuk to a 45-seat coach</span></a>
+        </div>
+      </div>
+      <div class="nav-i"><a href="/blog" aria-current={cur("notes")}>Travel notes</a></div>
+      <div class="nav-i"><a href="/about" aria-current={cur("about")}>About</a></div>
+    </nav>
+    <a class="btn ink" href="/plan-your-trip">Plan your trip</a>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menu</button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Menu" hidden>
+  <div><p class="mnav-h">Destinations</p><a href="/destinations/sri-lanka">Sri Lanka</a><a href="/destinations/maldives">The Maldives</a><a href="/destinations">All destinations</a></div>
+  <div><p class="mnav-h">Tours</p><a href="/packages">All tour packages</a><a href="/when-to-go">When to go</a></div>
+  <div><p class="mnav-h">Services</p><a href="/services">All services</a><a href="/weddings">Weddings</a><a href="/group-vacations">Group trips</a><a href="/vehicles">Vehicles and drivers</a></div>
+  <div><p class="mnav-h">Travedise</p><a href="/blog">Travel notes</a><a href="/about">About us</a><a href="/faq">Questions</a></div>
+  <div class="acts"><a class="btn ink" href="/plan-your-trip">Plan your trip <span class="ar" aria-hidden="true">→</span></a></div>
+</nav>

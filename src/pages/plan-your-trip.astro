@@ -1,93 +1,198 @@
 ---
-import FooterWide from "@/components/v2/footer-wide.astro";
-import HeroScrim from "@/components/v2/hero-scrim.astro";
-import PlanSteps from "@/components/v2/plan/plan-steps.astro";
-import SiteNav from "@/components/v2/site-nav.astro";
-import { planHelp, planHero } from "@/data/v2/plan";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import PageHead from "@/components/PageHead.astro";
+import Base from "@/layouts/Base.astro";
+import planPage from "@/content/pages/plan.json";
+import { CONTACT, MICRO, PLAN } from "@/data/site";
 
-const TITLE = "Plan your trip — Travedise";
-
-/**
- * The trip-planning page, which replaced the old contact page: a short hero, a two-step
- * enquiry form, and the ways to reach a person beside it.
- */
+const where = ["Sri Lanka", "The Maldives", "Both", "Not sure yet"];
+const months = ["Not sure yet", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const now = new Date();
+const thisYear = now.getFullYear();
+const years = [thisYear, thisYear + 1, thisYear + 2];
+const defaultYear = now.getMonth() >= 9 ? thisYear + 1 : thisYear;
+const codes = planPage.countryCodes as string[];
+const countries = planPage.countries as string[];
+const who: [id: string, label: string, min: number, value: number][] = [
+  ["adults", "Adults", 1, 2],
+  ["children", "Children", 0, 0],
+];
 ---
 
-<Base title={TITLE} description={planHero.body} canonical="/plan-your-trip" image={planHero.image} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <header class="relative h-[620px] w-full shrink-0 overflow-clip gutter-v2 max-md:h-[560px] max-md:px-0">
-      <img src={planHero.image} alt={planHero.alt} class="absolute inset-0 block size-full object-cover" />
-      <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.86) 0%, oklab(0 0 0 / 0) 62%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
-      <div class="relative mx-auto h-full w-full max-w-[1280px]">
-        <SiteNav />
-        <div
-          class="absolute inset-x-0 bottom-[58px] flex max-w-[820px] flex-col gap-[18px] max-md:right-5 max-md:bottom-8 max-md:left-5 max-md:gap-3"
-        >
-          <h1
-            class="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] text-white max-lg:text-[52px]/[58px] max-md:text-[38px]/[44px]"
-          >
-            {planHero.title}
-          </h1>
-          <p class="m-0 max-w-[620px] text-[19px]/[29px] text-[#e8eef1] max-md:text-[16px]/[25px]">
-            {planHero.body}
-          </p>
-        </div>
-      </div>
-    </header>
+<Base
+  title="Plan your trip"
+  description="Tell us where, when and who is coming. A travel designer in Galle or Bundeena replies within a day, with a free first route and price."
+  canonical="/plan-your-trip"
+  section="plan"
+>
+  <PageHead title="Plan your <em>trip.</em>" lede="Tell us what you are considering. A travel designer reads every message and replies within a day, with questions before suggestions." />
 
-    <main>
-      <PlanSteps>
-        {/* The help panel: ways to reach a person, what happens next, and the offices. */}
-        <aside slot="aside" class="flex w-[400px] shrink-0 flex-col gap-[22px] max-xl:w-[340px] max-lg:w-full">
-          <div
-            class="flex flex-col gap-[26px] bg-v2-navy px-9 py-10 max-md:px-5 max-md:py-8"
-            style={{
-              backgroundImage:
-                "radial-gradient(420px 300px at 15% 0%, rgba(71,205,255,0.24), rgba(0,0,0,0) 66%), radial-gradient(380px 280px at 95% 30%, rgba(196,175,140,0.2), rgba(0,0,0,0) 66%)",
-            }}
-          >
-            <h2 class="m-0 font-display text-[28px]/[36px] font-normal tracking-[-0.005em] text-white max-md:text-[24px]/[32px]">
-              {planHelp.heading}
-            </h2>
-            <p class="m-0 text-[15px]/[24px] text-v2-muted">{planHelp.body}</p>
-            <div class="flex flex-col gap-4">
+  <section class="wrap" style="padding-bottom:clamp(88px,11vw,160px)">
+    <div class="plan-l">
+      <div>
+        <form id="planForm" class="form" novalidate>
+          <fieldset class="fs">
+            <legend>Where would you like to go?</legend>
+            <div class="f-row">
+              {where.map((v, i) => <button type="button" class="chip" data-chip="where" data-v={v} aria-pressed={i === 0 ? "true" : "false"}>{v}</button>)}
+            </div>
+          </fieldset>
+
+          <fieldset class="fs">
+            <legend>When, and for how long?</legend>
+            <div class="f2">
+              <div class="fld">
+                <label for="month">Month</label>
+                <select id="month">{months.map((m) => <option>{m}</option>)}</select>
+              </div>
+              <div class="fld">
+                <label for="year">Year</label>
+                <select id="year">{years.map((y) => <option selected={y === defaultYear}>{y}</option>)}</select>
+              </div>
+            </div>
+            <div class="f-row" role="group" aria-label="Length of the trip">
+              {PLAN.durations.map((v, i) => <button type="button" class="chip" data-chip="length" data-v={v} aria-pressed={i === 2 ? "true" : "false"}>{v}</button>)}
+            </div>
+          </fieldset>
+
+          <fieldset class="fs">
+            <legend>Who is coming?</legend>
+            <div class="f-row" style="gap:24px">
               {
-                planHelp.contacts.map((c) => (
-                  <a href={c.href} class="flex flex-col gap-[3px] hover:opacity-80">
-                    <span class="text-[13px]/[18px] text-[#8a9eac]">{c.label}</span>
-                    <span class="text-[18px]/[26px] font-semibold text-white">{c.value}</span>
-                  </a>
+                who.map(([id, label, min, value]) => (
+                  <div class="fld">
+                    <label for={id}>{label}</label>
+                    <div class="stepper">
+                      <button type="button" data-step={id} data-d="-1" aria-label={`One fewer: ${label.toLowerCase()}`}>−</button>
+                      <input id={id} type="number" min={min} max="60" value={value} inputmode="numeric" />
+                      <button type="button" data-step={id} data-d="1" aria-label={`One more: ${label.toLowerCase()}`}>+</button>
+                    </div>
+                  </div>
                 ))
               }
             </div>
-          </div>
+          </fieldset>
 
-          <div class="flex flex-col gap-[18px] bg-v2-cream p-9 max-md:px-5 max-md:py-8">
-            <h3 class="m-0 text-[20px]/[28px] font-semibold tracking-[-0.01em] text-v2-navy">
-              {planHelp.next.heading}
-            </h3>
-            <div class="flex flex-col gap-3.5">
-              {planHelp.next.steps.map((s) => <p class="m-0 text-[15px]/[23px] text-[#42586a]">{s}</p>)}
+          <fieldset class="fs">
+            <legend>What are you interested in?</legend>
+            <p class="hint2">Pick as many as you like.</p>
+            <div class="f-row">
+              {PLAN.interests.map((v) => <button type="button" class="chip" data-chip="interests" data-multi data-v={v} aria-pressed="false">{v}</button>)}
             </div>
-          </div>
+          </fieldset>
 
-          <div class="flex flex-col gap-4 bg-v2-cream p-9 max-md:px-5 max-md:py-8">
-            <h3 class="m-0 text-[20px]/[28px] font-semibold tracking-[-0.01em] text-v2-navy">Find us</h3>
-            {
-              planHelp.offices.map((o) => (
-                <p class="m-0 text-[15px]/[23px] text-[#42586a]">
-                  {o.place}
-                  <br />
-                  {o.address}
-                </p>
-              ))
-            }
-          </div>
-        </aside>
-      </PlanSteps>
-    </main>
+          <fieldset class="fs">
+            <legend>Budget per person</legend>
+            <p class="hint2">In US dollars, not including international flights.</p>
+            <div class="f-row">
+              {PLAN.budgets.map((v, i) => <button type="button" class="chip" data-chip="budget" data-v={v} aria-pressed={i === 1 ? "true" : "false"}>{v}</button>)}
+            </div>
+          </fieldset>
 
-    <FooterWide statementFace="body" />
-  </div>
+          <fieldset class="fs">
+            <legend>About you</legend>
+            <p class="hint2">We need your name, email and phone number to reply.</p>
+            <div class="f2">
+              <div class="fld">
+                <label for="first">First name</label>
+                <input id="first" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="fld">
+                <label for="last">Last name</label>
+                <input id="last" type="text" autocomplete="family-name" required />
+              </div>
+            </div>
+            <div class="fld">
+              <label for="email">Email</label>
+              <input id="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="f2 ph">
+              <div class="fld">
+                <label for="code">Country code</label>
+                <select id="code" autocomplete="tel-country-code">
+                  <option value="">Choose</option>
+                  {codes.map((c) => <option>{c}</option>)}
+                </select>
+              </div>
+              <div class="fld">
+                <label for="phone">Phone</label>
+                <input id="phone" type="tel" autocomplete="tel-national" required />
+              </div>
+            </div>
+            <div class="fld">
+              <label for="country">Where you live</label>
+              <select id="country" autocomplete="country-name">
+                <option value="">Choose a country</option>
+                {countries.map((c) => <option>{c}</option>)}
+              </select>
+            </div>
+            <div class="fld">
+              <label for="notes">Anything else?</label>
+              <textarea id="notes" placeholder="Dates, places you have heard about, things to avoid."></textarea>
+            </div>
+            <div class="visually-hidden" aria-hidden="true">
+              <label for="website">Leave this empty</label>
+              <input id="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+          </fieldset>
+
+          <div class="acts">
+            <button type="submit" class="btn ink big">Send to a travel designer <Ar /></button>
+            <p class="micro">{MICRO}</p>
+          </div>
+          <p class="small" id="planErr" role="alert" style="color:var(--ink)"></p>
+          <noscript>
+            <p class="small">This form needs JavaScript to send. You can also email {CONTACT.email} or call us on {CONTACT.phones[1]!.number}.</p>
+          </noscript>
+        </form>
+
+        <div id="planSent" class="sent" tabindex="-1" hidden>
+          <h2 class="h2">Thank you, <span id="sentName"></span>.</h2>
+          <p class="lede">Your message is with a travel designer, and a copy is on its way to your inbox. We will reply within a day, with questions before suggestions.</p>
+          <div class="acts">
+            <a class="btn ink" href="/packages">Browse the tours <Ar /></a>
+            <a class="lnk" href="/blog">Read the travel notes</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side-help" aria-label="Other ways to reach us">
+        <div class="box">
+          <h2 class="h4">A real person is here to help.</h2>
+          {CONTACT.phones.map((p) => <div class="num"><b>{p.number}</b><span>{p.label}</span></div>)}
+          <div class="num"><b>{CONTACT.email}</b><span>Email</span></div>
+        </div>
+        <div class="box">
+          <h2 class="h4">What happens next</h2>
+          <ol>{PLAN.next.map((s) => <li><span>{s}</span></li>)}</ol>
+        </div>
+        <div class="box">
+          <h2 class="h4">Offices</h2>
+          {CONTACT.offices.map((o) => <p class="small"><b style="color:var(--ink)">{o.place}</b><br />{o.address}</p>)}
+        </div>
+      </aside>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .ph {
+    grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+  }
+  .fld .stepper input {
+    width: 3.2em;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    font: 500 var(--fs-body) / 1 var(--sans);
+    font-variant-numeric: tabular-nums;
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+  .fld .stepper input::-webkit-inner-spin-button,
+  .fld .stepper input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>

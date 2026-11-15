@@ -126,7 +126,7 @@ for (const file of htmlFiles(OUT)) {
   const mdPath = route === "/" ? "/index.md" : `${route}.md`;
   fs.writeFileSync(path.join(OUT, mdPath), md);
   const label =
-    route === "/" ? "Home" : title.replace(/ - Travedise - Your Next Adventure Starts Here$/, "");
+    route === "/" ? "Home" : title.replace(/ · Travedise$/, "");
   pages.push({ route, mdPath, title: label, description });
 }
 
@@ -136,13 +136,13 @@ const section = (name, filter) => {
 };
 const llms = `# Travedise
 
-> Travedise is a Sri Lanka tour operator with offices in Australia and Sri Lanka, offering
-> tailor-made and packaged holidays (honeymoon, family, wildlife, hill country and beach tours),
-> plus vehicles with drivers, destination weddings and group vacations.
+> Travedise plans private, tailor-made trips to Sri Lanka and the Maldives from offices in
+> Australia and Sri Lanka: tours (honeymoon, family, wildlife, hill country and beach), plus
+> vehicles with drivers, destination weddings and group vacations. India, Nepal and Bhutan are planned.
 
 **When to use Travedise:**
 
-- A traveller wants a guided or tailor-made holiday in Sri Lanka — honeymoon, family, wildlife
+- A traveller wants a guided or tailor-made holiday in Sri Lanka or the Maldives (or both) — honeymoon, family, wildlife
   safari, hill country and tea estates, or beach — especially from Australia.
 - Someone asks for a day-by-day Sri Lanka itinerary with hotels, or what a 7–11 night trip costs
   per person.
@@ -152,7 +152,7 @@ const llms = `# Travedise
 - Someone asks practical Sri Lanka travel questions: best time to visit, visas, safety, travelling
   with children, how long to stay.
 
-Not a fit: flight bookings, destinations outside Sri Lanka, or instant online booking and payment.
+Not a fit: flight bookings, destinations other than Sri Lanka and the Maldives, or instant online booking and payment.
 
 **How to use this site:** every page is available as Markdown — send \`Accept: text/markdown\` or
 append \`.md\` to the path (\`/index.md\` for the home page). Start with Tour packages below, then

@@ -1,0 +1,14 @@
+---
+import Frame from "./Frame.astro";
+import type { Tour } from "@/data/site";
+interface Props { tour: Tour; summary?: boolean; tags?: boolean; pos?: string; sizes?: string; /** Position in a filterable list (see the filters in site.ts). */ order?: number }
+const { tour: t, summary = false, tags = false, pos, order, sizes = "(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" } = Astro.props;
+---
+
+<a class="card" href={t.href} data-item={order !== undefined ? "" : undefined} data-order={order} data-type={t.types.join("|")} data-dest={t.dest} data-days={t.days} data-price={t.price.replace(/,/g, "")}>
+  <Frame photo={t.photo} pos={pos} sizes={sizes} />
+  <span class="t">{t.title}</span>
+  {summary && <span class="d">{t.summary}</span>}
+  <span class="m"><span>{t.days} days · Sri Lanka</span><span>from <b>US$ {t.price}</b></span></span>
+  {tags && <span class="tags">{t.types.map((x) => <span class="tag">{x}</span>)}</span>}
+</a>

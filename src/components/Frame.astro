@@ -1,0 +1,64 @@
+---
+/**
+ * A photo in a cropped frame. Pass a `photo` key from `src/data/photos.ts` (resized by Astro),
+ * or a `src` from /public with its `alt`. With neither, it draws a placeholder.
+ * `bg` renders only the full-bleed layer for heroes and photo bands.
+ */
+import { Image } from "astro:assets";
+import { photo as getPhoto, type PhotoKey } from "@/data/photos";
+
+interface Props {
+  photo?: PhotoKey | null;
+  src?: string;
+  alt?: string;
+  pos?: string;
+  class?: string;
+  style?: string;
+  eager?: boolean;
+  sizes?: string;
+  widths?: number[];
+  empty?: string;
+  bg?: boolean;
+}
+
+const {
+  photo: key,
+  src,
+  alt = "",
+  pos = "50% 50%",
+  class: cls = "",
+  style,
+  eager = false,
+  bg = false,
+  sizes = bg ? "100vw" : "(max-width: 860px) 100vw, 40vw",
+  widths = bg ? [768, 1280, 1920] : [480, 800, 1200],
+  empty = "Photo to come",
+} = Astro.props;
+
+const p = key ? getPhoto(key) : null;
+const imgStyle = `object-position:${pos}`;
+---
+
+{
+  bg ? (
+    <div class="px">
+      {p && (
+        <Image src={p.image} alt={p.alt} widths={widths} sizes={sizes} quality={72} loading={eager ? "eager" : "lazy"} fetchpriority={eager ? "high" : "auto"} style={imgStyle} />
+      )}
+    </div>
+  ) : p || src ? (
+    <div class={`frame ${cls}`} style={style}>
+      <div class="px">
+        {p ? (
+          <Image src={p.image} alt={p.alt} widths={widths} sizes={sizes} quality={72} loading={eager ? "eager" : "lazy"} fetchpriority={eager ? "high" : "auto"} style={imgStyle} />
+        ) : (
+          <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" style={imgStyle} />
+        )}
+      </div>
+    </div>
+  ) : (
+    <div class={`frame nophoto ${cls}`} style={style}>
+      <span>{empty}</span>
+    </div>
+  )
+}

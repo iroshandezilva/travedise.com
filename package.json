@@ -13,22 +13,14 @@
     "node": ">=22.12.0"
   },
   "dependencies": {
-    "@astrojs/react": "7.1.0",
     "astro": "7.3.8",
-    "clsx": "^2.1.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "tailwind-merge": "^3.7.0"
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "@types/turndown": "^5.0.6",
     "prettier": "^3.9.6",
-    "tailwindcss": "^4.3.3",
     "turndown": "^7.2.4",
     "typescript": "^5"
   },

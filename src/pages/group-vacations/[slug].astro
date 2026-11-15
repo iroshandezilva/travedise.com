@@ -1,125 +1,80 @@
 ---
-import FooterWide from "@/components/v2/footer-wide.astro";
-import Questions from "@/components/v2/questions.astro";
-import Section from "@/components/v2/section.astro";
-import FactsBar from "@/components/v2/services/facts-bar.astro";
-import PhotoCard from "@/components/v2/services/photo-card.astro";
-import PhotoHero from "@/components/v2/services/photo-hero.astro";
-import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
-import TitledGrid from "@/components/v2/services/titled-grid.astro";
-import { groupsContent as page, groupTypes, type GroupType } from "@/data/v2/services";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import Frame from "@/components/Frame.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import { GROUP_PHOTO, groupTypes, type GroupType } from "@/data/content";
+import { emLast, esc, lowerFirst } from "@/data/services-pages";
 
-/** Static build: one page per group type in `src/content/groups/`. */
 export function getStaticPaths() {
-  return groupTypes.map((group) => ({ params: { slug: group.slug }, props: { group } }));
+  return groupTypes.map((g) => ({ params: { slug: g.slug }, props: { g } }));
 }
 
-/**
- * A group type. No itinerary and no fixed price: who it suits, the services we bring
- * together for it, shapes to start from, how planning works, and the group form with
- * this type chosen.
- */
-const { group } = Astro.props as { group: GroupType };
-const services = group.services.items.map((s) => (s.title === "Group transport" ? { ...s, href: "/vehicles" } : s));
-const others = groupTypes.filter((g) => g.slug !== group.slug).slice(0, 3);
+interface Props { g: GroupType }
+const { g } = Astro.props;
+
+const enquire = `/plan-your-trip?tour=${encodeURIComponent(g.name)}`;
+// The facts are, in order: how many travel, how far ahead to plan, how it is priced.
+const FACT_LABELS = ["Group size", "Lead time", "Price"];
+const others = groupTypes.filter((o) => o.slug !== g.slug);
 ---
 
-<Base title={`${group.name} in Sri Lanka | Travedise`} description={group.summary} canonical={`/group-vacations/${group.slug}`} image={group.image.src} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PhotoHero
-      eyebrow="Group vacations"
-      title={group.name}
-      body={group.summary}
-      image={group.image.src}
-      alt={group.image.alt}
-      position={group.image.position}
-      current="/group-vacations"
-    />
-    <main>
-      <FactsBar facts={group.facts} href={`#${page.form.id}`} action="Tell us about your group ↗" />
+<Base title={g.name} description={g.summary} canonical={`/group-vacations/${g.slug}`} section="services">
+  <PageHead title={emLast(`${g.name}.`)} lede={g.summary}>
+    <div class="acts">
+      <a class="btn ink" href={enquire}>Plan this trip <Ar /></a>
+      <a class="lnk" href="/group-vacations">All group trips</a>
+    </div>
+  </PageHead>
 
-      <Section class="py-24 max-md:py-14" innerClass="flex items-start justify-between gap-24 max-lg:flex-col max-lg:gap-10">
-        <div class="flex w-[480px] shrink-0 flex-col gap-[22px] max-lg:w-full max-md:gap-4">
-          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
-            {group.suits.heading}
-          </h2>
-          <p class="m-0 text-[17px]/[27px] text-[#42586a] max-md:text-[15px]/[24px]">{group.suits.body}</p>
-        </div>
-        <ul class="m-0 flex min-w-0 flex-1 list-none flex-col p-0">
-          {
-            group.suits.points.map((p) => (
-              <li class="flex items-center gap-3 border-t border-v2-navy/14 py-[18px] text-[18px]/[26px] text-v2-navy last:border-b max-md:text-[16px]/[24px]">
-                <span aria-hidden="true" class="size-1.5 shrink-0 rounded-full bg-v2-sand" />
-                {p}
-              </li>
-            ))
-          }
-        </ul>
-      </Section>
-
-      <TitledGrid heading={group.services.heading} body={group.services.body} items={services} surface="cream" />
-
-      <Section class="py-24 max-md:py-14">
-        <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
-          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
-            {group.shapes.heading}
-          </h2>
-          <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{group.shapes.lede}</p>
-        </div>
-        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-1 max-md:gap-5">
-          {
-            group.shapes.items.map((shape) => (
-              <div class="flex flex-col gap-4 bg-v2-navy px-8 pt-8 pb-9 max-md:px-6 max-md:pt-6 max-md:pb-7">
-                <span class="text-[13px]/[18px] tracking-[0.04em] text-v2-sand uppercase">{shape.length}</span>
-                <h3 class="m-0 font-display text-[26px]/[32px] font-normal text-white max-md:text-[22px]/[28px]">{shape.title}</h3>
-                <p class="m-0 text-[15px]/[24px] text-v2-muted">{shape.body}</p>
-              </div>
-            ))
-          }
-        </div>
-      </Section>
-
-      <TitledGrid heading={page.steps.heading} items={page.steps.items} columns={4} numbered surface="cream" />
-
-      <ServiceEnquiry service="group" form={page.form} preset={group.slug} />
-
-      <Questions
-        items={[...group.questions, ...page.questions.slice(1, 4)]}
-        heading="Before you plan."
-        body="The questions organisers of this kind of trip ask us first."
-        action="Tell us about your group ↗"
-        href={`#${page.form.id}`}
-      />
-
-      <Section class="py-24 max-md:py-14">
-        <div class="mb-12 flex items-end justify-between gap-10 max-md:mb-8 max-md:flex-col max-md:items-start max-md:gap-4">
-          <h2 class="m-0 font-display text-[40px]/[48px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[28px]/[36px]">
-            Other kinds of group.
-          </h2>
-          <a href="/group-vacations" class="text-[15px]/[22px] font-medium text-v2-navy underline decoration-v2-sky decoration-2 underline-offset-[6px]">
-            All group vacations ↗
-          </a>
-        </div>
-        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
-          {
-            others.map((g) => (
-              <PhotoCard
-                href={`/group-vacations/${g.slug}`}
-                image={g.image.src}
-                alt={g.image.alt}
-                position={g.image.position}
-                tag={g.theme}
-                title={g.name}
-                body={g.short}
-                meta={g.size}
-                compact
-              />
-            ))
-          }
-        </div>
-      </Section>
-    </main>
-    <FooterWide statement="Everyone in the right place, at the right time, with nobody in the group stuck organising it." />
+  <div class="wrap art-hero" style="margin-top:0">
+    <Frame src={g.image.src} alt={g.image.alt} pos={g.image.position} eager />
   </div>
+
+  <section class="wrap" style="padding-top:clamp(40px,5vw,64px)" aria-label={`${g.name} at a glance`}>
+    <dl class="facts" style={`--fc:${g.facts.length}`}>
+      {g.facts.map((f, i) => <div><dt>{FACT_LABELS[i] ?? f.detail}</dt><dd>{f.value}<small>{f.detail}</small></dd></div>)}
+    </dl>
+  </section>
+
+  <section class="sect wrap">
+    <SecHead title={emLast(g.suits.heading)}>{g.suits.body && <p>{g.suits.body}</p>}</SecHead>
+    <ul class="every">{g.suits.points.map((p) => <li><span>{p}</span></li>)}</ul>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title={emLast(g.services.heading)}>{g.services.body && <p>{g.services.body}</p>}</SecHead>
+    <div class="inc">{g.services.items.map((it) => <div><h3 class="h4">{it.title}</h3><p>{it.body}</p></div>)}</div>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title={emLast(g.shapes.heading)}>{g.shapes.lede && <p>{g.shapes.lede}</p>}</SecHead>
+    <ul class="rows">{g.shapes.items.map((s) => <li><span class="k">{s.title}</span><span class="v">{s.body}</span><span class="w">{s.length}</span></li>)}</ul>
+    <div class="plan-cta"><a class="btn ink big" href={enquire}>Plan this trip <Ar /></a></div>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="Other groups <em>we plan for.</em>"><a class="lnk" href="/group-vacations">All group trips <Ar /></a></SecHead>
+    <ul class="tlist">
+      {
+        others.map((o) => (
+          <li>
+            <a href={`/group-vacations/${o.slug}`}>
+              <Frame photo={GROUP_PHOTO[o.slug] ?? null} widths={[200, 400]} sizes="(max-width: 860px) 120px, 200px" />
+              <span><span class="t">{o.name}</span><span class="d" style="display:block">{o.short}</span></span>
+              <span class="m">{o.size}</span>
+              <Ar />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Faq title={`Questions about <em>${esc(lowerFirst(g.name))}.</em>`} items={g.questions.map((q) => [q.q, q.a] as [string, string])} />
+
+  <CloseBand photo={GROUP_PHOTO[g.slug] ?? "templeNight"} title="Bring <em>everyone.</em>" cta="Plan this trip" href={enquire} />
 </Base>

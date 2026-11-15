@@ -1,47 +1,191 @@
 ---
-import FooterWide from "@/components/v2/footer-wide.astro";
-import Frames from "@/components/v2/home/frames.astro";
-import Hero from "@/components/v2/home/hero.astro";
-import Journeys from "@/components/v2/home/journeys.astro";
-import PlanningSteps from "@/components/v2/home/planning-steps.astro";
-import ReadyBand from "@/components/v2/home/ready-band.astro";
-import Regions from "@/components/v2/home/regions.astro";
-import Team from "@/components/v2/home/team.astro";
-import TravelNotes from "@/components/v2/home/travel-notes.astro";
-import Questions from "@/components/v2/questions.astro";
-import { images } from "@/data/v2/images";
-import { hero, homeQuestions } from "@/data/v2/home";
-import Base from "@/layouts/base.astro";
-import { SHARE_IMAGE } from "@/lib/site";
+import { getImage, Image } from "astro:assets";
 
-const TITLE = "Travedise — See Sri Lanka. Keep time for what matters.";
-const DESCRIPTION = hero.body;
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import SecHead from "@/components/SecHead.astro";
+import Steps from "@/components/Steps.astro";
+import TourCard from "@/components/TourCard.astro";
+import Base from "@/layouts/Base.astro";
+import { vehicles, weddingStyles } from "@/data/content";
+import { photo } from "@/data/photos";
+import { DEST, MICRO, NOTES, SERVICES, SOON, STEPS, TYPES, tourBySlug } from "@/data/site";
 
-/**
- * Home page — the "Home V8 Decision path" design, which lived at `/v2` while it was
- * being built. It brings its own palette, Ragmont for display type, and its own nav and
- * footer; the rest of the site still runs on the original design, so the links out of
- * here (About, Travel notes, the journey pages) cross into it.
- */
+const hero = photo("teaPluckers");
+const heroImg = await getImage({ src: hero.image, width: 1920, format: "webp", quality: 72 });
+const follow = await Promise.all(TYPES.map((t) => getImage({ src: photo(t.photo).image, width: 460, format: "webp", quality: 70 })));
+const featured = ["hillcountry", "wildlife-package", "dream-honeymoon-in-sri-lanka"].map((s) => tourBySlug(s)!);
+const notes = NOTES.slice(0, 5);
 ---
 
-<Base title={TITLE} description={DESCRIPTION} canonical="/" image={SHARE_IMAGE} ogType="website">
-  <link slot="head" rel="preload" href={images.heroPoster} as="image" fetchpriority="high" />
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <Hero />
-    <main>
-      <Regions />
-      <Journeys />
-      <Frames />
-      <Team />
-      <PlanningSteps />
-      <TravelNotes />
-      <Questions items={homeQuestions} />
-      <ReadyBand />
-    </main>
-    <FooterWide
-      statement="A small island with long days in it. Plan it once, properly, and it stays with you for years."
-      statementFace="body"
-    />
-  </div>
+<Base
+  title="Travedise"
+  description="Tailor-made trips to Sri Lanka and the Maldives, weddings by the sea, group trips and vehicles with drivers. Planned by one team in Galle and Bundeena."
+  canonical="/"
+  heroPreload={heroImg.src}
+>
+  <section class="hero" id="top">
+    <div class="hero-media">
+      <div class="slide on"><img src={heroImg.src} alt={hero.alt} width={heroImg.attributes.width} height={heroImg.attributes.height} fetchpriority="high" style="object-position:40% 50%" /></div>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="hero-copy">
+      <div class="txt">
+        <h1 class="hero-h intro"><span class="ln"><span>Keep time for what matters.</span></span></h1>
+        <p class="hero-p">Tailor-made trips to Sri Lanka and the Maldives, planned end to end.</p>
+      </div>
+      <a class="hero-btn" href="/plan-your-trip">Plan your trip <Ar /></a>
+    </div>
+  </section>
+
+  <section class="sect" style="padding-bottom:0">
+    <div class="wrap">
+      <p class="statement">
+        We plan private trips around <a href="/destinations/sri-lanka">Sri Lanka</a> and <a href="/destinations/maldives">the Maldives</a>, <a href="/weddings">weddings</a> by the sea, <a href="/group-vacations">group trips</a>, and <a href="/vehicles">the car</a> that gets everyone there.
+      </p>
+    </div>
+    <div class="svc-cols">
+      {
+        SERVICES.map((s) => (
+          <a class="svc-col" href={s.href}>
+            <Frame photo={s.photo} sizes="(max-width: 860px) 100vw, 40vw" />
+            <div class="scrim" />
+            <div class="svc-in">
+              <h2 class="svc-t">{s.t}</h2>
+              <p>{s.d}</p>
+              <span class="go">{s.go} <Ar /></span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="wrap">
+      <SecHead title="Where we <em>go.</em>"><p>Each destination has its own tours, planned by the same team.</p></SecHead>
+      <div class="tabs" role="tablist" data-tabs aria-label="Destinations">
+        {
+          (["lk", "mv"] as const).map((k, i) => (
+            <button class="tab" role="tab" id={`tab-${k}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} aria-controls={`dest-${k}`} data-img={`img-${k}`}>
+              {DEST[k].name}
+            </button>
+          ))
+        }
+      </div>
+      <p class="soon-label">Coming soon: {SOON.join(", ")}</p>
+    </div>
+    <div class="dest-band">
+      {
+        (["lk", "mv"] as const).map((k, i) => (
+          <div class:list={["dest-img", { on: i === 0 }]} id={`img-${k}`}>
+            <Image src={photo(DEST[k].photo).image} alt={photo(DEST[k].photo).alt} widths={[768, 1280, 1920]} sizes="100vw" quality={72} />
+          </div>
+        ))
+      }
+      <div class="scrim"></div>
+      {
+        (["lk", "mv"] as const).map((k, i) => (
+          <div class="dest-copy wrap" id={`dest-${k}`} role="tabpanel" aria-labelledby={`tab-${k}`} hidden={i !== 0}>
+            <h3 class="h2">{DEST[k].name}</h3>
+            <p>{DEST[k].line}</p>
+            <span class="meta">{DEST[k].meta}</span>
+            <div class="acts">
+              <a class="btn light" href={DEST[k].href}>{DEST[k].cta} <Ar /></a>
+              {k === "lk" && <a class="lnk" style="color:#fff" href="/packages">See the tours</a>}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sect wrap">
+    <SecHead title="Start with <em>what you came for.</em>" />
+    <ul class="types-list">
+      {
+        TYPES.map((t, i) => (
+          <li>
+            <a class="type-row" href={`/packages?type=${encodeURIComponent(t.t)}`} data-follow={follow[i]!.src}>
+              <span class="type-n">{t.t}</span>
+              <span class="type-d">{t.d}</span>
+              <span class="tags">{t.tags.map((x) => <span class="tag">{x}</span>)}</span>
+              <Ar />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="pk-head"><h3 class="h3">Featured tours</h3><a class="lnk" href="/packages">All tours <Ar /></a></div>
+    <div class="cardgrid scroller" style="--n:3">
+      {featured.map((t) => <TourCard tour={t} />)}
+    </div>
+  </section>
+
+  <section class="film" aria-label="Film: Sigiriya at dawn">
+    <img class="poster" src="/media/film-poster.jpg" alt="" data-pl="0.12" />
+    <video id="film" muted playsinline preload="none" poster="/media/film-poster.jpg" data-pl="0.12"><source src="/media/film.mp4" type="video/mp4" /></video>
+    <div class="scrim"></div>
+    <div class="film-top wrap">
+      <span class="cap on-photo" style="margin:0">Pidurangala, facing Sigiriya</span>
+      <button type="button" class="vbtn" id="filmBtn" aria-label="Play the film"><i aria-hidden="true"></i><span>Play</span></button>
+    </div>
+    <div class="film-copy wrap">
+      <h2 class="h1">Before the heat, <em>before the coaches.</em></h2>
+      <p>We plan the early starts that make the day.</p>
+      <div class="acts"><a class="btn light" href="/plan-your-trip">Plan your trip <Ar /></a></div>
+    </div>
+  </section>
+
+  <section class="sect wrap">
+    <div class="veh">
+      <figure class="fig">
+        <Frame photo="jeep" pos="50% 60%" />
+        <figcaption class="cap"><span>Our jeep, on the road south</span></figcaption>
+      </figure>
+      <div class="veh-r">
+        <h2 class="h2">A car and driver <em>for every trip.</em></h2>
+        <p class="lede">From a tuk-tuk to dinner in Galle to a coach for the wedding guests. Book one for a day, or for the whole trip.</p>
+        <ul class="fleet">{vehicles.map((v) => <li><span>{v.name}</span><span>{v.seats.min} to {v.seats.max} people</span></li>)}</ul>
+        <div class="acts"><a class="btn ink" href="/vehicles">See all vehicles <Ar /></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <Band photo="wedCeremony" title="Say it <em>somewhere warm.</em>" text="We plan the day, the stays, and how every guest gets there.">
+      <a class="btn light big" href="/weddings">Plan a wedding <Ar /></a>
+    </Band>
+    <div class="wrap">
+      <ul class="cols3" style="padding-top:48px">
+        {weddingStyles.map((w) => <li><h3 class="h4"><a href={`/weddings/${w.slug}`} style="text-decoration:none">{w.name}</a></h3><p>{w.short}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sect wrap">
+    <SecHead title="How planning <em>works.</em>" />
+    <Steps items={STEPS} />
+    <div class="plan-cta"><a class="btn ink big" href="/plan-your-trip">Plan your trip <Ar /></a><p class="micro">{MICRO}</p></div>
+  </section>
+
+  <section class="sect wrap" style="padding-top:0">
+    <SecHead title="Read this <em>before you go.</em>"><a class="lnk" href="/blog">All travel notes <Ar /></a></SecHead>
+    <div class="gds">
+      {
+        notes.map((n) => (
+          <a class="gd" href={n.href}>
+            <Frame photo={n.photo} />
+            <span class="gd-t">{n.title}</span>
+            <span class="tags"><span class="tag">{n.category}</span></span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <CloseBand photo="templeNight" />
+  <div class="follow" id="follow" aria-hidden="true"><img alt="" /></div>
 </Base>

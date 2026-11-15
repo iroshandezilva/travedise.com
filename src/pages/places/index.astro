@@ -1,32 +1,59 @@
 ---
-import ContainedCta from "@/components/v2/contained-cta.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import PlacesExplorer from "@/components/v2/places/places-explorer.astro";
-import PlacesHero from "@/components/v2/places/places-hero.astro";
-import { placesHero } from "@/data/v2/places";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import { places } from "@/data/content";
+import { PLACE_REGIONS } from "@/data/info-pages";
 
-const TITLE = "Places in Sri Lanka we know well — Travedise";
-
-/**
- * The places index. Driven by `src/data/v2/places.ts` — the map, the region list and the
- * grid all read the same entries, and each card opens that place's own page.
- */
+const groups = PLACE_REGIONS.map((r) => ({ ...r, places: places.filter((p) => p.region === r.key) })).filter((g) => g.places.length);
 ---
 
-<Base title={TITLE} description={placesHero.body} canonical="/places" image={placesHero.image} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PlacesHero />
-    <main>
-      <PlacesExplorer />
-      <ContainedCta
-        class="pt-0"
-        body="Tell us what you like and when you can travel. We will suggest the places and join them into a route."
-        action="Plan your trip"
-      >
-        <Fragment slot="heading">Not sure <em class="italic">where to start</em>?</Fragment>
-      </ContainedCta>
-    </main>
-    <FooterWide />
-  </div>
+<Base
+  title="Places in Sri Lanka"
+  description="Fourteen places in Sri Lanka we know well, from Kandy and Ella to Galle, Yala and the east coast, grouped by region, with what each one is for."
+  canonical="/places"
+  section="destinations"
+>
+  <PageHead title="Places we <em>know well.</em>" lede="The towns, hills, parks and beaches our tours pass through, what each one is really for, and the months it is at its best.">
+    <a class="lnk" href="/destinations/sri-lanka">Sri Lanka, region by region <Ar /></a>
+  </PageHead>
+
+  {
+    groups.map((g, gi) => (
+      <section class:list={["sect wrap", { top0: gi === 0 }]} aria-labelledby={`r-${g.key}`}>
+        <div class="sec-head">
+          <h2 class="h2" id={`r-${g.key}`}>{g.name}</h2>
+          <div class="side">
+            <p>{g.blurb}</p>
+            {g.best && <p class="small">At its best: {g.best}</p>}
+          </div>
+        </div>
+        <div class="cardgrid" style="--n:4">
+          {g.places.map((p, i) => (
+            <a class="card" href={`/places/${p.slug}`}>
+              <Frame src={p.image.src} alt={p.image.alt} pos={p.image.position} eager={gi === 0 && i < 2} />
+              <span class="t">{p.name}</span>
+              <span class="d">{p.line}</span>
+              <span class="tags"><span class="tag">{p.nights}</span></span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="sect wrap top0">
+    <SecHead title="Which month, <em>which coast.</em>">
+      <p>Two monsoons take turns, so some part of the island is always in season.</p>
+    </SecHead>
+    <div class="acts">
+      <a class="btn ink" href="/when-to-go">When to go <Ar /></a>
+      <a class="lnk" href="/packages">See the tours</a>
+    </div>
+  </section>
+
+  <CloseBand photo="teaMist" />
 </Base>

@@ -1,0 +1,72 @@
+---
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import { groupTypes, places, vehicles, weddingStyles } from "@/data/content";
+import { stockCredits } from "@/data/photos";
+import { NOTES, TOURS } from "@/data/site";
+
+type Node = { t: string; path: string; kids?: Node[] };
+
+const TREE: Node[] = [
+  { t: "Home", path: "/" },
+  {
+    t: "Destinations",
+    path: "/destinations",
+    kids: [
+      {
+        t: "Sri Lanka",
+        path: "/destinations/sri-lanka",
+        kids: [
+          { t: "Places", path: "/places", kids: places.map((p) => ({ t: p.name, path: `/places/${p.slug}` })) },
+          { t: "When to go", path: "/when-to-go" },
+        ],
+      },
+      { t: "The Maldives", path: "/destinations/maldives" },
+    ],
+  },
+  { t: "Tour packages", path: "/packages", kids: TOURS.map((t) => ({ t: t.title, path: t.href })) },
+  {
+    t: "Services",
+    path: "/services",
+    kids: [
+      {
+        t: "Weddings",
+        path: "/weddings",
+        kids: [...weddingStyles.map((w) => ({ t: w.name, path: `/weddings/${w.slug}` })), { t: "Plan a wedding", path: "/weddings/plan" }],
+      },
+      { t: "Group trips", path: "/group-vacations", kids: groupTypes.map((g) => ({ t: g.name, path: `/group-vacations/${g.slug}` })) },
+      { t: "Vehicles and drivers", path: "/vehicles", kids: vehicles.map((v) => ({ t: v.name, path: `/vehicles/${v.slug}` })) },
+    ],
+  },
+  { t: "Travel notes", path: "/blog", kids: NOTES.map((n) => ({ t: n.title, path: n.href })) },
+  { t: "About us", path: "/about" },
+  { t: "Plan your trip", path: "/plan-your-trip" },
+  { t: "Questions", path: "/faq" },
+  { t: "Privacy", path: "/privacy" },
+];
+
+const count = (list: Node[]): number => list.reduce((n, x) => n + 1 + (x.kids ? count(x.kids) : 0), 0);
+const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+const tree = (list: Node[], depth = 0): string =>
+  `<ul class="tree${depth ? ` lvl${Math.min(depth + 1, 3)}` : ""}">${list
+    .map((n) => `<li><div class="node"><a href="${esc(n.path)}">${esc(n.t)}</a><code>${esc(n.path)}</code></div>${n.kids ? tree(n.kids, depth + 1) : ""}</li>`)
+    .join("")}</ul>`;
+---
+
+<Base
+  title="Sitemap"
+  description="Every page on travedise.com in one list: destinations, places, tours, services, travel notes and the planning pages, with credits for the photos."
+  canonical="/sitemap"
+>
+  <PageHead title="Sitemap" lede={`Every page on travedise.com, grouped the way the menus are. ${count(TREE) + 1} pages in all, this one included.`} />
+
+  <nav class="wrap" style="padding-bottom:clamp(64px,8vw,112px)" aria-label="Every page" set:html={tree(TREE)} />
+
+  <section class="sect wrap top0">
+    <SecHead title="Photo <em>credits.</em>"><p>Some photos are free stock from Unsplash, used until our own shoot. Each one links to its Unsplash page.</p></SecHead>
+    <ul class="credits">
+      {stockCredits.map((c) => <li><a href={c.href} target="_blank" rel="noopener">{c.alt}</a></li>)}
+    </ul>
+  </section>
+</Base>

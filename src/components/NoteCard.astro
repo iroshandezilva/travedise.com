@@ -1,0 +1,13 @@
+---
+import Frame from "./Frame.astro";
+import type { NoteCard } from "@/data/site";
+interface Props { note: NoteCard; eager?: boolean }
+const { note: n, eager = false } = Astro.props;
+---
+
+<a class="card" href={n.href} data-item data-cat={n.category}>
+  <Frame photo={n.photo} eager={eager} />
+  <span class="t">{n.title}</span>
+  <span class="d">{n.standfirst}</span>
+  <span class="tags"><span class="tag">{n.category}</span></span>
+</a>

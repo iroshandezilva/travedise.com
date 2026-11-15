@@ -1,33 +1,52 @@
 ---
-import PillLink from "@/components/v2/buttons/pill-link.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import PlainHero from "@/components/v2/plain-hero.astro";
-import QuestionList from "@/components/v2/question-list.astro";
-import Section from "@/components/v2/section.astro";
-import { faqHeading, faqPageFaqs } from "@/data/faqs";
-import { questionsIntro } from "@/data/v2/shared";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import PageHead from "@/components/PageHead.astro";
+import Base from "@/layouts/Base.astro";
+import { FAQ_PAGE } from "@/data/info-pages";
+import { CONTACT } from "@/data/site";
 
-const TITLE = "Questions — Travedise";
-const DESCRIPTION = faqHeading.title;
-
-/** The questions page: the same answers as before, in the new page shell. */
-const items = faqPageFaqs.map((item) => ({ q: item.question, a: item.answer }));
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_PAGE.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
 ---
 
-<Base title={TITLE} description={DESCRIPTION} canonical="/faq" ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PlainHero title="Questions" body={faqHeading.title} current="/faq" />
-    <main>
-      <Section surface="cream" class="py-[90px] max-md:py-14">
-        <div class="mx-auto flex w-full max-w-[820px] flex-col items-start gap-10">
-          <QuestionList items={items} />
-          <PillLink href={questionsIntro.href} variant="navy">
-            {questionsIntro.action}
-          </PillLink>
+<Base
+  title="Questions"
+  description="Answers to what people ask before a trip to Sri Lanka: when to go, how long to stay, what it costs, visas, safety and travelling with children."
+  canonical="/faq"
+  jsonLd={faqLd}
+>
+  <PageHead title="Questions <em>we get asked.</em>" lede="What people ask us before they book a trip to Sri Lanka. If yours is not here, write to us and the person who plans your trip will answer it." />
+
+  <section class="sect wrap top0">
+    <div class="split" style="align-items:start">
+      <div class="a" style="grid-column:1 / span 4">
+        <h2 class="h2">Before <em>you go.</em></h2>
+        <p class="small" style="margin-top:16px">
+          More on <a href="/destinations/sri-lanka">Sri Lanka</a>, <a href="/destinations/maldives">the Maldives</a> and <a href="/when-to-go">when to go</a>.
+        </p>
+      </div>
+      <div class="b" style="grid-column:6 / span 7;justify-items:stretch">
+        <div class="faq">
+          {
+            FAQ_PAGE.map((f) => (
+              <details>
+                <summary>{f.q}</summary>
+                <div class="ans">
+                  <p>{f.a}</p>
+                  {f.link && <p><a class="lnk" href={f.link.href}>{f.link.text} <Ar /></a></p>}
+                </div>
+              </details>
+            ))
+          }
         </div>
-      </Section>
-    </main>
-    <FooterWide statementFace="body" />
-  </div>
+        <p class="small" style="margin-top:28px">Something else? Email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or <a href="/plan-your-trip">tell us about your trip</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <CloseBand photo="trainRed" />
 </Base>

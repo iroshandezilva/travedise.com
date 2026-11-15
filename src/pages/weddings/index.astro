@@ -1,123 +1,60 @@
 ---
-import ContainedCta from "@/components/v2/contained-cta.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import Questions from "@/components/v2/questions.astro";
-import Section from "@/components/v2/section.astro";
-import PhotoCard from "@/components/v2/services/photo-card.astro";
-import PhotoHero from "@/components/v2/services/photo-hero.astro";
-import Timeline from "@/components/v2/services/timeline.astro";
-import TitledGrid from "@/components/v2/services/titled-grid.astro";
-import WeddingNav from "@/components/v2/weddings/wedding-nav.astro";
-import Reveal from "@/components/ui/reveal.astro";
-import { weddingsContent as page, weddingStyles } from "@/data/v2/services";
-import Base from "@/layouts/base.astro";
-
-const TITLE = "Weddings in Sri Lanka | Travedise";
-
-/**
- * The weddings section's front page. The section has its own bar (`WeddingNav`) and its
- * own pages: one per style, and the brief at `/weddings/plan`. Words in
- * `src/content/pages/weddings.json`, styles in `src/content/weddings/`.
- */
-const { hero, why, styles, settings, handle, timeline, questions } = page;
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import Frame from "@/components/Frame.astro";
+import PageHero from "@/components/PageHero.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import { WEDDING_PHOTO, weddingStyles } from "@/data/content";
+import { FAQ_WEDDINGS, WED_ARRANGE, WED_GO, WED_PLACES, WED_WEEK } from "@/data/services-pages";
 ---
 
-<Base title={TITLE} description={hero.body} canonical="/weddings" image={hero.image} ogType="website">
-  <div class="v2 flex flex-col bg-white">
-    <PhotoHero {...hero} current="/weddings" tall />
-    <WeddingNav current="/weddings" />
-    <main class="overflow-clip">
-      <Section class="py-24 max-md:py-14">
-        <div class="flex items-start justify-between gap-24 max-lg:flex-col max-lg:gap-8">
-          <Reveal
-            as="h2"
-            from="rise"
-            class="m-0 w-[540px] shrink-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-lg:w-full max-md:text-[30px]/[38px]"
-          >
-            {why.heading}
-          </Reveal>
-          <Reveal from="rise" delay={100} class="flex min-w-0 max-w-[600px] flex-1 flex-col gap-5">
-            {why.paragraphs.map((p) => <p class="m-0 text-[18px]/[29px] text-[#42586a] max-md:text-[16px]/[26px]">{p}</p>)}
-          </Reveal>
-        </div>
-        <dl class="m-0 mt-16 grid grid-cols-3 gap-10 border-t border-v2-navy/14 pt-10 max-md:mt-10 max-md:grid-cols-1 max-md:gap-6 max-md:pt-8">
-          {
-            why.facts.map((f) => (
-              <div class="flex flex-col gap-1.5">
-                <dt class="order-2 text-[14px]/[20px] text-[#6e808e]">{f.detail}</dt>
-                <dd class="order-1 m-0 font-display text-[34px]/[40px] text-v2-navy max-md:text-[28px]/[34px]">{f.value}</dd>
-              </div>
-            ))
-          }
-        </dl>
-      </Section>
+<Base
+  title="Weddings"
+  description="Beach weddings, elopements and vow renewals in Sri Lanka and the Maldives. We plan the day, the stays and how every guest gets there."
+  canonical="/weddings"
+  section="services"
+>
+  <PageHero photo="wedCeremony" title="Weddings" lede="Beach weddings, elopements and vow renewals in Sri Lanka and the Maldives. We plan the day, the stays, and how every guest gets there.">
+    <a class="btn light" href="/weddings/plan">Plan a wedding <Ar /></a>
+  </PageHero>
 
-      <Section id="styles" surface="cream" class="scroll-mt-20 py-24 max-md:py-14">
-        <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
-          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
-            {styles.heading}
-          </h2>
-          <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{styles.body}</p>
-        </div>
-        <div class="grid grid-cols-3 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
-          {
-            weddingStyles.map((s) => (
-              <PhotoCard
-                href={`/weddings/${s.slug}`}
-                image={s.image.src}
-                alt={s.image.alt}
-                position={s.image.position}
-                tag={/\d/.test(s.facts[0].value) ? `${s.facts[0].value} guests` : s.facts[0].value}
-                title={s.name}
-                body={s.short}
-                meta={s.facts[2].value + " to plan"}
-              />
-            ))
-          }
-        </div>
-      </Section>
+  <section class="sect wrap">
+    <p class="statement" style="margin-bottom:clamp(56px,7vw,96px)">The ceremony is one afternoon. <em>The rest is a week of travel</em> for the people you love, and we plan that too.</p>
+    <div class="cardgrid" style="--n:3">
+      {
+        weddingStyles.map((w) => (
+          <a class="card" href={`/weddings/${w.slug}`}>
+            <Frame photo={WEDDING_PHOTO[w.slug] ?? null} sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" />
+            <span class="t h3" style="font-size:var(--fs-h3)">{w.name}</span>
+            <span class="d">{w.summary}</span>
+            <span class="lnk" style="justify-self:start">{WED_GO[w.slug] ?? `More about ${w.name.toLowerCase()}`} <Ar /></span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
 
-      <Section id="settings" class="scroll-mt-20 py-24 max-md:py-14">
-        <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
-          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
-            {settings.heading}
-          </h2>
-          <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{settings.body}</p>
-        </div>
-        <div class="grid grid-cols-5 gap-5 max-xl:grid-cols-3 max-md:grid-cols-1 max-md:gap-6">
-          {
-            settings.items.map((s) => (
-              <a href={s.href} class="group flex flex-col gap-4">
-                <div class="h-[300px] overflow-clip max-xl:h-[260px] max-md:h-[220px]">
-                  <img src={s.image} alt={s.alt} loading="lazy" class="v2-card-img block size-full object-cover" />
-                </div>
-                <h3 class="m-0 text-[19px]/[26px] font-medium text-v2-navy group-hover:underline group-hover:decoration-v2-sky group-hover:decoration-2 group-hover:underline-offset-[6px]">
-                  {s.name}
-                </h3>
-                <p class="m-0 text-[14px]/[22px] text-[#52687b]">{s.line}</p>
-              </a>
-            ))
-          }
-        </div>
-      </Section>
+  <section class="sect wrap top0">
+    <SecHead title="Where to <em>say it.</em>"><p>A few of the places we know well. Each comes with rooms nearby for guests.</p></SecHead>
+    <ul class="rows">{WED_PLACES.map(([k, v, w]) => <li><span class="k">{k}</span><span class="v">{v}</span><span class="w">{w}</span></li>)}</ul>
+  </section>
 
-      <TitledGrid id="handle" heading={handle.heading} body={handle.body} items={handle.items} surface="cream" />
-      <Timeline id="timeline" heading={timeline.heading} body={timeline.body} items={timeline.items} />
-      <Questions
-        items={questions}
-        heading="Questions couples ask first."
-        body="The practical things worth settling early. Ask us anything else in your brief."
-        action="Start your brief ↗"
-        href="/weddings/plan"
-      />
-      <ContainedCta
-        href="/weddings/plan"
-        action="Start your brief"
-        body="Tell us the kind of wedding you imagine, roughly when, and who is coming. We will reply within a day."
-      >
-        <Fragment slot="heading">Imagining it <em class="italic">already?</em></Fragment>
-      </ContainedCta>
-    </main>
-    <FooterWide statement="The guests are met, the venue is ready and the day runs to time. All you have to do is be there." />
-  </div>
+  <Band photo="groupLong" pos="50% 62%" title="Everyone <em>gets there.</em>" text="Airport pick-ups, a coach between hotels and a tuk-tuk to dinner. We plan the guests’ travel as carefully as the day." />
+
+  <section class="sect wrap">
+    <SecHead title="What <em>we arrange.</em>" />
+    <ul class="also">{WED_ARRANGE.map(([b, s]) => <li><b>{b}</b><span>{s}</span></li>)}</ul>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="A wedding <em>week.</em>"><p>An example for a beach wedding with forty guests. Yours will differ.</p></SecHead>
+    <ol class="week">{WED_WEEK.map(([d, t, p]) => <li><span class="dy">{d}</span><h3 class="h4">{t}</h3><p>{p}</p></li>)}</ol>
+  </section>
+
+  <Faq title="Wedding <em>questions.</em>" items={FAQ_WEDDINGS} />
+
+  <CloseBand photo="beachCouple" title="Somewhere <em>warm.</em>" cta="Plan a wedding" href="/weddings/plan" />
 </Base>

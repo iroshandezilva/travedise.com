@@ -1,73 +1,58 @@
 ---
-import FooterWide from "@/components/v2/footer-wide.astro";
-import Questions from "@/components/v2/questions.astro";
-import Section from "@/components/v2/section.astro";
-import FactsBar from "@/components/v2/services/facts-bar.astro";
-import PhotoCard from "@/components/v2/services/photo-card.astro";
-import PhotoHero from "@/components/v2/services/photo-hero.astro";
-import ServiceEnquiry from "@/components/v2/services/service-enquiry.astro";
-import SplitText from "@/components/v2/services/split-text.astro";
-import TitledGrid from "@/components/v2/services/titled-grid.astro";
-import { groupsContent as page, groupTypes } from "@/data/v2/services";
-import { cn } from "@/lib/cn";
-import Base from "@/layouts/base.astro";
-
-const TITLE = "Group vacations in Sri Lanka | Travedise";
-
-/**
- * Group vacations: a package type sold as services around a group, not as a fixed
- * route. The five group types, the service menu, how planning works, and the group form.
- * Words in `src/content/pages/groups.json`, group types in `src/content/groups/`.
- */
-const { hero, intro, types, catalog, steps, questions, form } = page;
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import Frame from "@/components/Frame.astro";
+import PageHero from "@/components/PageHero.astro";
+import SecHead from "@/components/SecHead.astro";
+import Steps from "@/components/Steps.astro";
+import Base from "@/layouts/Base.astro";
+import { GROUP_PHOTO, groupTypes } from "@/data/content";
+import { FAQ_GROUPS, GROUP_SIZES, GROUP_STEPS } from "@/data/services-pages";
 ---
 
-<Base title={TITLE} description={hero.body} canonical="/group-vacations" image={hero.image} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PhotoHero {...hero} current="/group-vacations" />
-    <main>
-      <FactsBar facts={intro.facts} href={`#${form.id}`} action="Tell us about your group ↗" />
-      <SplitText heading={intro.heading} paragraphs={intro.paragraphs} />
+<Base
+  title="Group trips"
+  description="Retreats, family reunions, milestones, pilgrimages and club tours in Sri Lanka, planned for six or more people with one planner and one plan."
+  canonical="/group-vacations"
+  section="services"
+>
+  <PageHero photo="groupLong" pos="50% 60%" title="Group trips" lede="Retreats, reunions, milestones, pilgrimages and clubs. One planner, one plan, and nobody stuck organising it.">
+    <a class="btn light" href="/plan-your-trip">Plan a group trip <Ar /></a>
+  </PageHero>
 
-      <Section surface="cream" class="py-24 max-md:py-14">
-        <div class="mb-14 flex items-end justify-between gap-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-md:mb-8">
-          <h2 class="m-0 font-display text-[44px]/[52px] font-normal tracking-[-0.01em] text-v2-navy max-md:text-[30px]/[38px]">
-            {types.heading}
-          </h2>
-          <p class="m-0 w-[400px] shrink-0 text-[16px]/[25px] text-[#52687b] max-lg:w-full max-md:text-[15px]/[24px]">{types.body}</p>
-        </div>
-        {/* Three across, then two wider cards: five types without an orphan. */}
-        <div class="grid grid-cols-6 gap-[34px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
-          {
-            groupTypes.map((g, i) => (
-              <div class={cn(i < 3 ? "col-span-2" : "col-span-3", "flex max-lg:col-span-1 [&>a]:flex-1")}>
-                <PhotoCard
-                  href={`/group-vacations/${g.slug}`}
-                  image={g.image.src}
-                  alt={g.image.alt}
-                  position={g.image.position}
-                  tag={g.theme}
-                  title={g.name}
-                  body={g.short}
-                  meta={g.size}
-                />
-              </div>
-            ))
-          }
-        </div>
-      </Section>
+  <section class="sect wrap">
+    <SecHead title="Who we <em>plan for.</em>" />
+    <ul class="tlist">
+      {
+        groupTypes.map((g) => (
+          <li>
+            <a href={`/group-vacations/${g.slug}`}>
+              <Frame photo={GROUP_PHOTO[g.slug] ?? null} widths={[200, 400]} sizes="(max-width: 860px) 120px, 200px" />
+              <span><span class="t">{g.name}</span><span class="d" style="display:block">{g.summary}</span></span>
+              <span class="m">{g.size}</span>
+              <Ar />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
-      <TitledGrid heading={catalog.heading} body={catalog.body} items={catalog.items} columns={4} />
-      <TitledGrid heading={steps.heading} items={steps.items} columns={4} numbered surface="cream" />
-      <ServiceEnquiry service="group" form={form} />
-      <Questions
-        items={questions}
-        heading="Before you plan a group trip."
-        body="The questions organisers ask us first."
-        action="Tell us about your group ↗"
-        href={`#${form.id}`}
-      />
-    </main>
-    <FooterWide statement="Everyone in the right place, at the right time, with nobody in the group stuck organising it." />
-  </div>
+  <section class="sect wrap top0">
+    <SecHead title="Size <em>and vehicle.</em>"><p>One vehicle where we can, so the group travels together.</p></SecHead>
+    <ul class="rows">{GROUP_SIZES.map((s) => <li><span class="k">{s.k}</span><span class="v">{s.v}</span><span class="w"><a href={s.href}>{s.w}</a></span></li>)}</ul>
+  </section>
+
+  <Band photo="teaAerial" title="One plan, <em>many people.</em>" text="Rooming lists, dietary needs, who shares with whom and who pays for what. We keep it in one place and send each person what they need." />
+
+  <section class="sect wrap">
+    <SecHead title="How group <em>planning works.</em>" />
+    <Steps items={GROUP_STEPS} />
+  </section>
+
+  <Faq title="Group <em>questions.</em>" items={FAQ_GROUPS} />
+
+  <CloseBand photo="templeNight" title="Bring <em>everyone.</em>" cta="Plan a group trip" />
 </Base>

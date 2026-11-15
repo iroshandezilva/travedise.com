@@ -1,67 +1,76 @@
 ---
-import Offices from "@/components/v2/about/offices.astro";
-import Opening from "@/components/v2/about/opening.astro";
-import Principles from "@/components/v2/about/principles.astro";
-import Reviews from "@/components/v2/about/reviews.astro";
-import Team from "@/components/v2/about/team.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import HeroScrim from "@/components/v2/hero-scrim.astro";
-import ProofStrip from "@/components/v2/home/proof-strip.astro";
-import ReadyBand from "@/components/v2/home/ready-band.astro";
-import SiteNav from "@/components/v2/site-nav.astro";
-import { aboutHero, proofPoints, showTeam } from "@/data/v2/about";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import type { PhotoKey } from "@/data/photos";
+import { CONTACT, PRINCIPLES, PROOF } from "@/data/site";
 
-const TITLE = "About us — Travedise";
-
-/**
- * The About page, from the "About The team" design: why Travedise exists, who you will
- * deal with, how the team thinks, what travellers said, and where the two offices are.
- * Sections waiting on material from the team (portraits, reviews) stay out until it
- * arrives, and the team section stays off while `showTeam` is false — see
- * `src/data/v2/about.ts`.
- */
+const [galle, bundeena] = CONTACT.offices;
+const [auPhone, lkPhone] = CONTACT.phones;
+const offices: { title: string; photo: PhotoKey | null; address: string; phone: { number: string; tel: string } }[] = [
+  { title: "Galle, Sri Lanka", photo: "galleStreet", address: galle!.address, phone: lkPhone! },
+  { title: "Bundeena, Australia", photo: "bundeena", address: bundeena!.address, phone: auPhone! },
+];
 ---
 
-<Base title={TITLE} description={aboutHero.body} canonical="/about" image={aboutHero.image} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <header class="relative h-[520px] w-full shrink-0 overflow-clip gutter-v2 max-md:h-[560px] max-md:px-0">
-      <img
-        src={aboutHero.image}
-        alt={aboutHero.alt}
-        class="absolute inset-0 block size-full object-cover object-[50%_58%]"
-      />
-      <HeroScrim desktop="linear-gradient(0deg, oklab(0.182 -0.013 -0.008 / 0.9) 0%, oklab(0 0 0 / 0) 74%), linear-gradient(180deg, oklab(0.2 -0.014 -0.012 / 0.52) 0%, oklab(0 0 0 / 0) 30%)" />
-      <div class="relative mx-auto h-full w-full max-w-[1280px]">
-        <SiteNav />
-        <div
-          class="absolute inset-x-0 bottom-[58px] flex max-w-[820px] flex-col gap-[18px] max-md:right-5 max-md:bottom-8 max-md:left-5 max-md:gap-3"
-        >
-          <h1
-            class="m-0 font-display text-[60px]/[66px] font-medium tracking-[-0.01em] text-white max-lg:text-[52px]/[58px] max-md:text-[38px]/[44px]"
-          >
-            The people who draw your route
-          </h1>
-          <p class="m-0 max-w-[660px] text-[19px]/[29px] text-[#e8eef1] max-md:text-[16px]/[25px]">
-            {aboutHero.body}
-          </p>
-        </div>
+<Base
+  title="About us"
+  description="A small team in Galle and Bundeena planning private trips to Sri Lanka and the Maldives: how we plan, the rules we hold to, and where to find us."
+  canonical="/about"
+  section="about"
+>
+  <PageHead title="A small team <em>on two coasts.</em>" lede="We plan trips to Sri Lanka and the Maldives from a desk in Galle and one in Bundeena, New South Wales. The person you first write to plans your trip." />
+
+  <section class="wrap" style="padding-bottom:clamp(88px,11vw,160px)">
+    <div class="split">
+      <div class="a"><Frame photo="traveller" pos="50% 40%" eager sizes="(max-width: 860px) 100vw, 50vw" /></div>
+      <div class="b">
+        <p class="statement" style="font-size:var(--fs-h3)">We would rather send you to four places properly <em>than nine from a car window.</em></p>
+        <p class="small">Every route is written by someone who has driven it, and one of us has slept in every room we book. Where that is not true yet, we say so.</p>
+        <a class="btn ink" href="/plan-your-trip">Talk to our team <Ar /></a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <main>
-      <ProofStrip points={proofPoints} />
-      <Opening />
-      {showTeam && <Team />}
-      <Principles />
-      <Reviews />
-      <Offices />
-      <ReadyBand />
-    </main>
+  <Band photo="teaMist" title="How we <em>plan.</em>" text="Four rules we hold to, even when a longer itinerary would sell better." />
 
-    <FooterWide
-      statement="A small island with long days in it. Plan it once, properly, and it stays with you for years."
-      statementFace="body"
-    />
-  </div>
+  <section class="sect wrap">
+    <div class="princ">
+      {PRINCIPLES.map(([t, b]) => <div><h3 class="h3">{t}</h3><p>{b}</p></div>)}
+    </div>
+  </section>
+
+  <section class="sect wrap top0">
+    <h2 class="visually-hidden">What you can count on</h2>
+    <ul class="proof">
+      {PROOF.map(([t, d]) => <li><h3 class="h4">{t}</h3><p>{d}</p></li>)}
+    </ul>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="Two <em>offices.</em>"><p>Write to either. The same team answers, and the person who replies plans your trip.</p></SecHead>
+    <div class="offices">
+      {
+        offices.map((o) => (
+          <div>
+            <Frame photo={o.photo} empty="Photo of the office to come" sizes="(max-width: 760px) 100vw, 50vw" />
+            <h3 class="h3">{o.title}</h3>
+            <p class="small">
+              {o.address}
+              <br />
+              <a href={`tel:${o.phone.tel}`}>{o.phone.number}</a>
+              <br />
+              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CloseBand photo="galleAerial" title="Talk to <em>the team.</em>" cta="Plan your trip" />
 </Base>

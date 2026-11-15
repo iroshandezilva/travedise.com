@@ -1,0 +1,114 @@
+---
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import Frame from "@/components/Frame.astro";
+import PageHero from "@/components/PageHero.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import { MV } from "@/data/destinations";
+
+const ask = "/plan-your-trip?tour=the%20Maldives";
+const askBoth = "/plan-your-trip?tour=Sri%20Lanka%20and%20the%20Maldives";
+
+const seasons: [string, string, string][] = [
+  ["December to April", "The dry northeast monsoon. Calm seas, clear water and the highest prices, especially over Christmas and Easter.", "At its best"],
+  ["May to November", "The southwest monsoon. Warmer, with showers and some rough days, lower prices, and manta season in Baa.", "Good"],
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: MV.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+};
+---
+
+<Base
+  title="The Maldives"
+  description="Atolls, house reefs and water villas in the Maldives, on their own or after Sri Lanka: which atoll, which villa, how the transfers work and when to go."
+  canonical="/destinations/maldives"
+  section="destinations"
+  jsonLd={faqLd}
+>
+  <PageHero photo="mvSandbar" title="The Maldives" lede="Atolls, house reefs and a villa over the water, on its own or as the slow end to a Sri Lanka trip.">
+    <a class="btn light" href={ask}>Ask about the Maldives <Ar /></a>
+  </PageHero>
+
+  <section class="sect wrap" aria-labelledby="mv-overview-h">
+    <h2 class="visually-hidden" id="mv-overview-h">The Maldives at a glance</h2>
+    <p class="statement" style="margin-bottom:clamp(48px,6vw,80px)">Choosing the Maldives is easy. Choosing <em>the island</em> is the work, and that is the part we do.</p>
+    <dl class="facts" style="--fc:3">
+      {MV.facts.map(([k, v, s]) => <div><dt>{k}</dt><dd>{v}<small>{s}</small></dd></div>)}
+    </dl>
+  </section>
+
+  <section class="sect wrap top0">
+    <div class="split">
+      <div class="a"><Frame photo="mvPlaneWater" pos="50% 60%" sizes="(max-width: 860px) 100vw, 50vw" /></div>
+      <div class="b">
+        <h2 class="h2">How a stay <em>works.</em></h2>
+        <ol class="steps4" style="grid-template-columns:1fr;gap:0">
+          {
+            MV.steps.map(([t, d], i) => (
+              <li style="padding:18px 0;border-top:1px solid var(--stone)">
+                <span class="n" aria-hidden="true" style="font-size:var(--fs-h4)">{i + 1}</span>
+                <h3 class="h4">{t}</h3>
+                <p style="max-width:none">{d}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <Band photo="mvHouse2" title="Water villa, <em>or beach villa?</em>" text="A water villa has the lagoon under the deck. A beach villa has the sand at the door and more shade. Many couples split the stay." />
+
+  <section class="sect wrap">
+    <SecHead title="Which <em>atoll.</em>"><p>Distance from Malé sets the transfer, and the transfer sets the price. These are the ones we send people to most.</p></SecHead>
+    <ul class="atolls">
+      {MV.atolls.map(([n, d]) => <li><span class="nm">{n}</span><p>{d}</p></li>)}
+    </ul>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="Under <em>the water.</em>" />
+    <div class="cardgrid" style="--n:4">
+      {
+        MV.under.map(([p, t, d]) => (
+          <div class="card">
+            <Frame photo={p} style="aspect-ratio:3/4" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 25vw" />
+            <h3 class="t">{t}</h3>
+            <p class="d">{d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sect wrap top0">
+    <div class="split r">
+      <div class="a"><Frame photo="mvHouses" sizes="(max-width: 860px) 100vw, 50vw" /></div>
+      <div class="b">
+        <h2 class="h2">Sri Lanka, <em>then the Maldives.</em></h2>
+        <p class="lede">Ten days on the island, then four slow ones on an atoll. A short flight joins them, and one team plans both.</p>
+        <div class="acts">
+          <a class="btn ink" href={askBoth}>Ask about both <Ar /></a>
+          <a class="lnk" href="/destinations/sri-lanka">See Sri Lanka</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="When <em>to go.</em>" />
+    <ul class="rows">
+      {seasons.map(([k, v, w]) => <li><span class="k">{k}</span><span class="v">{v}</span><span class="w">{w}</span></li>)}
+    </ul>
+  </section>
+
+  <Faq title="Questions <em>we get asked.</em>" items={MV.faq} />
+
+  <CloseBand photo="mvSunset" title="An island <em>of your own.</em>" cta="Ask about the Maldives" href={ask} />
+</Base>
