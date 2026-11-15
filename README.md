@@ -28,7 +28,7 @@ The only server code is the Cloudflare Pages Functions in `functions/`.
 ```
 src/
   pages/              routes; each page composes components and sets its <Base> metadata
-  layouts/Base.astro  <html>, meta tags, fonts, JSON-LD, header, footer, live chat, shared script
+  layouts/Base.astro  <html>, meta tags, fonts, JSON-LD, header, footer, shared script
   components/         Header, Footer, Frame (every photo), PageHero, PageHead, Band, CloseBand,
                       SecHead, Faq, Steps, TourCard, NoteCard
   assets/photos/      the site's own photos; assets/stock/ free Unsplash photos used until the shoot
