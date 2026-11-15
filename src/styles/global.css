@@ -128,7 +128,8 @@ em{font-style:italic;font-weight:inherit}
 @media (max-width:640px){.wm-img{height:20px}.hdr .btn.ink{display:none}.hdr{--hdr:72px;height:72px}}
 
 /* ---------- Home hero (from the owner's Figma frame 658:607) and page heroes ---------- */
-.hero{position:relative;height:100vh;min-height:640px;max-height:1000px;overflow:hidden;color:#fff;background:#14201f}
+/* Fills the window at every size. svh = the visible height on phones (browser bars showing), so the copy never hides under them; 100vh is the fallback. The 480px floor only kicks in on landscape phones. */
+.hero{position:relative;height:100vh;height:100svh;min-height:480px;overflow:hidden;color:#fff;background:#14201f}
 .hero-media{position:absolute;inset:0}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s var(--ease)}
 .slide.on{opacity:1}
