@@ -50,3 +50,11 @@ yarn-error.log*
 
 # Stacki (and anything else) running `npm install` writes this; the lockfile here is pnpm-lock.yaml
 /package-lock.json
+
+# Leftovers from the old Next.js version of the site (it's Astro now); a stale build can recreate them
+/.next/
+/out/
+/next-env.d.ts
+
+# Local preview-pane config for Claude Code; per machine, removed from the repo in #39
+/.claude/launch.json
