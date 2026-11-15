@@ -1,43 +1,115 @@
 ---
-import ContainedCta from "@/components/v2/contained-cta.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import PlaceDoing from "@/components/v2/places/place-doing.astro";
-import PlaceHero from "@/components/v2/places/place-hero.astro";
-import PlaceIntro from "@/components/v2/places/place-intro.astro";
-import PlaceJourneys from "@/components/v2/places/place-journeys.astro";
-import PlaceNearby from "@/components/v2/places/place-nearby.astro";
-import PlaceSeasons from "@/components/v2/places/place-seasons.astro";
-import { placeBySlug, placeSlugs } from "@/data/v2/places";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import TourCard from "@/components/TourCard.astro";
+import Base from "@/layouts/Base.astro";
+import { places, type Place } from "@/data/content";
+import { placeRegion } from "@/data/info-pages";
+import { TOURS } from "@/data/site";
 
-/** Static build: every place in `places` gets a page. */
 export function getStaticPaths() {
-  return placeSlugs.map((slug) => ({ params: { slug } }));
+  return places.map((place) => ({ params: { slug: place.slug }, props: { place } }));
 }
 
-/**
- * The place template. Everything on the page comes from the place's entry in
- * `src/content/places/`; the months come from its region's row in the month guide, and
- * the journeys from the routes that stop there.
- */
-const { slug } = Astro.params;
-const place = placeBySlug[slug!];
-const title = `${place.seo?.title ?? `${place.name}, Sri Lanka`} — Travedise`;
+interface Props {
+  place: Place;
+}
+
+const { place: p } = Astro.props;
+const region = placeRegion(p.region);
+const nearby = p.nearby.slugs.map((s) => places.find((x) => x.slug === s)).filter((x): x is Place => !!x);
+const tours = TOURS.filter((t) => t.stops.includes(p.name));
+const plan = `/plan-your-trip?tour=${encodeURIComponent(p.name)}`;
+const description = p.seo?.description ?? (p.summary.length <= 160 ? p.summary : p.line);
 ---
 
-<Base title={title} description={place.seo?.description ?? place.summary} canonical={`/places/${slug}`} image={place.image.src} ogType="article">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PlaceHero place={place} />
-    <main>
-      <PlaceIntro place={place} />
-      <PlaceDoing place={place} />
-      <PlaceSeasons place={place} />
-      <PlaceJourneys place={place} />
-      <PlaceNearby place={place} />
-      <ContainedCta body={place.ctaBody} action="Plan your trip">
-        <Fragment slot="heading">Want {place.name}{" "}<em class="italic">in your</em> route?</Fragment>
-      </ContainedCta>
-    </main>
-    <FooterWide />
+<Base
+  title={p.seo?.title ?? `${p.name}, Sri Lanka`}
+  description={description}
+  canonical={`/places/${p.slug}`}
+  section="destinations"
+  image={{ url: p.image.src, alt: p.image.alt }}
+>
+  <PageHead title={p.name} lede={p.summary}>
+    <div class="acts">
+      <span class="tags"><span class="tag">{region.name}</span></span>
+      <a class="lnk" href="/places">All places in Sri Lanka <Ar /></a>
+    </div>
+  </PageHead>
+
+  <div class="wrap art-hero" style="margin-top:0">
+    <Frame src={p.image.src} alt={p.image.alt} pos={p.image.position} eager />
   </div>
+
+  <section class="sect wrap" aria-labelledby="intro-h">
+    <dl class="facts" style="--fc:3;margin-bottom:clamp(64px,8vw,112px)">
+      <div><dt>Time to allow</dt><dd>{p.nights}</dd></div>
+      <div><dt>Good for</dt><dd>{p.goodFor}</dd></div>
+      <div><dt>Best months</dt><dd>{region.best || "All year"}<small>{p.season}</small></dd></div>
+    </dl>
+    <div class="split" style="align-items:start">
+      <div class="a"><h2 class="h2" id="intro-h">{p.intro.heading}</h2></div>
+      <div class="b prose">
+        {p.intro.paragraphs.map((t) => <p>{t}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="What to <em>do.</em>"><p>{p.doing.lede}</p></SecHead>
+    <div class="princ">
+      {p.doing.items.map((d) => <div><h3 class="h4">{d.title}</h3><p>{d.body}</p></div>)}
+    </div>
+  </section>
+
+  {
+    p.gallery && (
+      <section class="wrap" aria-label={`${p.name} in photos`}>
+        <div class="cardgrid" style="--n:2;--ar:3/2">
+          {p.gallery.map((g) => <figure class="card"><Frame src={g.src} alt={g.alt} pos={g.position} /></figure>)}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="sect wrap">
+    <SecHead title={p.nearby.heading}><a class="lnk" href="/places">All places <Ar /></a></SecHead>
+    <div class="cardgrid" style="--n:3;--ar:4/3">
+      {
+        nearby.map((n) => (
+          <a class="card" href={`/places/${n.slug}`}>
+            <Frame src={n.image.src} alt={n.image.alt} pos={n.image.position} />
+            <span class="t">{n.name}</span>
+            <span class="d">{n.line}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    tours.length > 0 && (
+      <section class="sect wrap top0">
+        <SecHead title={`Tours that stop <em>in ${p.name}.</em>`}>
+          <p>Each one is a starting point. Add a night here, or drop a stop elsewhere.</p>
+        </SecHead>
+        <div class="cardgrid" style={`--n:${tours.length === 4 ? 4 : 3}`}>
+          {tours.map((t) => <TourCard tour={t} />)}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="sect wrap top0">
+    <div class="plan-cta" style="margin-top:0">
+      <a class="btn ink big" href={plan}>Plan a trip with {p.name} <Ar /></a>
+      <p class="micro">{p.ctaBody}</p>
+    </div>
+  </section>
+
+  <CloseBand photo={region.photo} />
 </Base>
+

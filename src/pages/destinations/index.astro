@@ -1,0 +1,102 @@
+---
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import type { PhotoKey } from "@/data/photos";
+import { DEST, TOURS } from "@/data/site";
+
+const rows: { photo: PhotoKey; title: string; line: string; href: string; facts: [string, string][]; more: [string, string] }[] = [
+  {
+    photo: "sigAerial",
+    title: DEST.lk.name,
+    line: DEST.lk.line,
+    href: DEST.lk.href,
+    facts: [
+      ["Tours", `${TOURS.length} to start from`],
+      ["Best months", "December to April in the south; May to September in the east"],
+      ["Good for", "Culture, hills, wildlife, beaches"],
+    ],
+    more: ["See the tours", "/packages"],
+  },
+  {
+    photo: "mvSandbar",
+    title: DEST.mv.name,
+    line: DEST.mv.line,
+    href: DEST.mv.href,
+    facts: [
+      ["Trips", "Planned around your dates, on their own or after Sri Lanka"],
+      ["Best months", "December to April"],
+      ["Good for", "Honeymoons, reefs, doing nothing well"],
+    ],
+    more: ["Ask about a stay", "/plan-your-trip?tour=the%20Maldives"],
+  },
+];
+
+const soon: [string, string][] = [
+  ["India", "Kerala’s backwaters and the south, a short hop from Colombo."],
+  ["Nepal", "Kathmandu valley, the lakes at Pokhara, and walks with a view."],
+  ["Bhutan", "Dzongs, valleys and a slower kind of trek."],
+];
+---
+
+<Base
+  title="Destinations"
+  description="Where Travedise plans trips: Sri Lanka and the Maldives now, alone or together, with India, Nepal and Bhutan coming soon. One team plans them all."
+  canonical="/destinations"
+  section="destinations"
+>
+  <PageHead title="Where we <em>go.</em>" lede="Two countries now, three more being planned. Each has its own tours, planned by the same team in Galle and Bundeena." />
+
+  <section class="wrap dests" style="padding-bottom:clamp(88px,11vw,160px)">
+    {
+      rows.map((d, i) => (
+        <div class:list={["split", { r: i % 2 === 1 }]}>
+          <a class="a" href={d.href} aria-label={d.title}>
+            <Frame photo={d.photo} style="aspect-ratio:4/3" sizes="(max-width: 860px) 100vw, 50vw" eager={i === 0} />
+          </a>
+          <div class="b">
+            <h2 class="h1">{d.title}</h2>
+            <p class="lede">{d.line}</p>
+            <dl class="facts" style="--fc:1;width:100%">
+              {d.facts.map(([k, v]) => (
+                <div>
+                  <dt>{k}</dt>
+                  <dd style="font-size:var(--fs-small);font-family:var(--sans)">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <div class="acts">
+              <a class="btn ink" href={d.href}>Explore {d.title} <Ar /></a>
+              <a class="lnk" href={d.more[1]}>{d.more[0]}</a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <Band photo="mvHouses" title="Both, <em>in one trip.</em>" text="Ten days on the island, then a few slow ones on an atoll. A short flight joins them, and we plan the whole thing as one.">
+    <a class="btn light" href="/plan-your-trip?tour=Sri%20Lanka%20and%20the%20Maldives">Ask about both <Ar /></a>
+  </Band>
+
+  <section class="sect wrap">
+    <SecHead title="Coming <em>soon.</em>"><p>We are planning these now. Tell us if you want to hear first.</p></SecHead>
+    <div class="soon-grid">
+      {
+        soon.map(([n, d]) => (
+          <div>
+            <h3 class="h3">{n}</h3>
+            <p class="small">{d}</p>
+            <a class="lnk" href={`/plan-your-trip?tour=${encodeURIComponent(n)}`}>Register interest<span class="visually-hidden"> in {n}</span> <Ar /></a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CloseBand photo="trainRed" title="Not sure <em>where yet?</em>" cta="Ask us" />
+</Base>

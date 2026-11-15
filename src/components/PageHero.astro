@@ -1,0 +1,17 @@
+---
+/** A full-bleed photo hero with the page title at the bottom left. */
+import Frame from "./Frame.astro";
+import type { PhotoKey } from "@/data/photos";
+interface Props { photo: PhotoKey; pos?: string; title: string; lede?: string; short?: boolean }
+const { photo, pos, title, lede, short = false } = Astro.props;
+---
+
+<section class:list={["phero", { short }]}>
+  <Frame bg photo={photo} pos={pos} eager />
+  <div class="hero-shade"></div>
+  <div class="phero-copy wrap">
+    <h1 class="d0 intro"><span class="ln"><span set:html={title} /></span></h1>
+    {lede && <p class="lede">{lede}</p>}
+    {Astro.slots.has("default") && <div class="acts"><slot /></div>}
+  </div>
+</section>

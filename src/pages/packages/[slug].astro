@@ -1,47 +1,185 @@
 ---
-import ContainedCta from "@/components/v2/contained-cta.astro";
-import CtaBand from "@/components/v2/cta-band.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import PackageFacts from "@/components/v2/package/facts.astro";
-import PackageHero from "@/components/v2/package/hero.astro";
-import PackageIncludes from "@/components/v2/package/includes.astro";
-import PackageItinerary from "@/components/v2/package/itinerary.astro";
-import Questions from "@/components/v2/questions.astro";
-import { packageQuestions, packagesV2, packageV2Slugs, type PackageV2 } from "@/data/v2/packages";
-import Base from "@/layouts/base.astro";
+import { getImage } from "astro:assets";
 
-/** Static build: every journey with an itinerary in `packagesV2` gets a page. */
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import Frame from "@/components/Frame.astro";
+import PageHero from "@/components/PageHero.astro";
+import SecHead from "@/components/SecHead.astro";
+import TourCard from "@/components/TourCard.astro";
+import Base from "@/layouts/Base.astro";
+import { packages, type Pkg } from "@/data/content";
+import { photo, type PhotoKey } from "@/data/photos";
+import { emLast, esc } from "@/data/services-pages";
+import { CONTACT, FAQ_GENERAL, PLACE_PHOTO, TOURS, tourBySlug } from "@/data/site";
+import { SITE_URL } from "@/lib/site";
+
 export function getStaticPaths() {
-  return packageV2Slugs.map((slug) => ({ params: { slug } }));
+  return packages.map((pkg) => ({ params: { slug: pkg.slug }, props: { pkg } }));
 }
 
-/**
- * The package template. Everything on the page comes from `packagesV2`, so a new
- * journey is a content entry rather than a new page. The nav, the questions and the
- * closing band are the same components the v2 home page uses.
- */
-const { slug } = Astro.params;
-const pkg = packagesV2[slug as keyof typeof packagesV2] as PackageV2;
-const title = `${pkg.seo?.title ?? pkg.title} — Travedise`;
+interface Props { pkg: Pkg }
+const { pkg } = Astro.props;
+const tour = tourBySlug(pkg.slug)!;
+
+const path = `/packages/${pkg.slug}`;
+const url = `${SITE_URL}${path}`;
+const ask = `/plan-your-trip?tour=${encodeURIComponent(tour.title)}`;
+const nights = Math.max(0, tour.days - 1);
+
+// "Days 4–5 · Yala" → label "Days 4–5", place "Yala"
+const days = pkg.itinerary.days.map((d) => {
+  const [label = "", place = ""] = d.meta.split(" · ");
+  return { ...d, label, place, photo: PLACE_PHOTO[place] ?? null };
+});
+const stops = days.filter((d) => d.place && d.place !== "Airport");
+
+// "December to April on this route, when the south coast is dry" → "December to April" + "When the south coast is dry"
+const [bestMain = "", ...bestRest] = tour.best.split(/[,;]/);
+const bestDetail = bestRest.join(",").trim().replace(/^./, (c) => c.toUpperCase());
+
+/** A photo band in the middle of the page that isn't already used by a day, the hero or the cards below. */
+const others = TOURS.filter((o) => o.slug !== pkg.slug).slice(0, 3);
+const used = new Set<PhotoKey>([tour.hero, "galleStreet", ...others.map((o) => o.photo), ...days.flatMap((d) => (d.photo ? [d.photo] : []))]);
+const bandPhoto = (["teaAerial", "galleAerial", "mist", "coconutHill", "stilt2"] as PhotoKey[]).find((k) => !used.has(k)) ?? "teaAerial";
+
+const title = pkg.seo?.title ?? tour.title;
+const description = pkg.seo?.description ?? tour.summary;
+const hero = photo(tour.hero);
+const share = await getImage({ src: hero.image, width: 1200, format: "jpg", quality: 75 });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  name: tour.title,
+  description,
+  url,
+  image: `${SITE_URL}${share.src}`,
+  itinerary: {
+    "@type": "ItemList",
+    itemListElement: stops.map((s, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "Place", name: s.place } })),
+  },
+  provider: { "@id": `${SITE_URL}/#organization` },
+  ...(tour.price
+    ? { offers: { "@type": "Offer", price: tour.price.replace(/,/g, ""), priceCurrency: "USD", url } }
+    : {}),
+};
 ---
 
 <Base
   title={title}
-  description={pkg.seo?.description ?? pkg.summary}
-  canonical={`/packages/${slug}`}
-  image={pkg.shots[0].src}
-  ogType="article"
+  description={description}
+  canonical={path}
+  section="tours"
+  image={{ url: share.src, width: Number(share.attributes.width), height: Number(share.attributes.height), alt: hero.alt }}
+  jsonLd={jsonLd}
 >
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PackageHero title={pkg.title} summary={pkg.summary} shots={pkg.shots} />
-    <main>
-      <PackageFacts facts={pkg.facts} />
-      <PackageIncludes includes={pkg.includes} />
-      <PackageItinerary itinerary={pkg.itinerary} />
-      <ContainedCta />
-      <Questions items={packageQuestions(pkg)} />
-      <CtaBand />
-    </main>
-    <FooterWide />
-  </div>
+  <PageHero photo={tour.hero} title={esc(tour.title)} lede={tour.summary} short>
+    <a class="btn light" href={ask}>Ask about this tour <Ar /></a>
+  </PageHero>
+
+  <section class="wrap" style="padding-top:clamp(40px,5vw,64px)" aria-label="The tour at a glance">
+    <dl class="facts" style="--fc:4">
+      <div><dt>Length</dt><dd>{tour.days} days<small>{nights} nights, private and tailor-made</small></dd></div>
+      <div><dt>Route</dt><dd>{stops.length} stops<small>{stops.map((s) => s.place).join(" · ")}</small></dd></div>
+      <div><dt>Best months</dt><dd>{bestMain.replace(/ on this route/, "").trim()}{bestDetail && <small>{bestDetail}</small>}</dd></div>
+      <div><dt>Price</dt><dd>From US$ {tour.price}<small>Per person, sharing a room</small></dd></div>
+    </dl>
+  </section>
+
+  <section class="sect wrap tight">
+    <div class="pk-layout">
+      <div class="pk-main">
+        <div class="pk-block">
+          <h2 class="h2">The <em>route.</em></h2>
+          {pkg.timeAnswer && <p class="lede" style="max-width:56ch">{pkg.timeAnswer}</p>}
+          <ol class="route">
+            {stops.map((s) => <li><span class="nm">{s.place}</span><span class="dy">{s.label}</span></li>)}
+          </ol>
+        </div>
+
+        <div class="pk-block">
+          <div class="sec-head" style="margin:0">
+            <h2 class="h2" set:html={emLast(pkg.itinerary.heading)} />
+            <button type="button" class="lnk" id="openAll">Open every day</button>
+          </div>
+          <ol class="days" id="days">
+            {
+              days.map((d, i) => (
+                <li class:list={["day", { open: i === 0 }]}>
+                  <button type="button" aria-expanded={i === 0 ? "true" : "false"} aria-controls={`day-${i}`}>
+                    <span class="mt">{d.label}<br />{d.place}</span>
+                    <span class="tt">{d.title}</span>
+                    <span class="pl" aria-hidden="true">+</span>
+                  </button>
+                  <div class="day-b" id={`day-${i}`}>
+                    <div>
+                      <div class="day-in">
+                        <p>{d.body}</p>
+                        <span class="stay">
+                          {d.stay.name}
+                          {(d.stay.note || d.place !== "Airport") && <small>{d.stay.note || "Where you sleep"}</small>}
+                        </span>
+                        {d.photo && <Frame photo={d.photo} sizes="(max-width: 760px) 100vw, (max-width: 960px) 40vw, 22vw" />}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+          <noscript><style is:inline>.day-b{grid-template-rows:1fr!important}.day .pl,#openAll{display:none}</style></noscript>
+        </div>
+
+        <div class="pk-block">
+          <h2 class="h2" set:html={emLast(pkg.includes.heading)} />
+          {pkg.includes.body && <p class="small" style="max-width:60ch">{pkg.includes.body}</p>}
+          <div class="inc">
+            {pkg.includes.items.map((it) => <div><h3 class="h4">{it.title}</h3><p>{it.body}</p></div>)}
+            <div class="no"><h3 class="h4">flights and visas</h3><p>We can book flights for you or work around yours. Most visitors need an ETA before they fly.</p></div>
+            <div class="no"><h3 class="h4">travel insurance</h3><p>Please arrange your own before you travel.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="ask" aria-label="Ask about this tour">
+        <div class="price">US$ {tour.price}<small>From, per person sharing. The exact price depends on dates and stays.</small></div>
+        <ul>
+          <li>Your own driver-guide and vehicle</li>
+          <li>{nights} nights in the stays we suggest</li>
+          <li>Breakfast every day</li>
+          <li>Change anything before you book</li>
+        </ul>
+        <a class="btn ink" href={ask}>Ask about this tour <Ar /></a>
+        <div>
+          <p class="micro">Or call</p>
+          {CONTACT.phones.map((p) => <p class="num"><a href={`tel:${p.tel}`}>{p.number}</a> <span class="muted">· {p.label}</span></p>)}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <Band photo={bandPhoto} title="Change <em>any of it.</em>" text="Add a night in the hills, swap a hotel, slow the pace for children or join this tour to another. The first route and price are free.">
+    <a class="btn light" href={ask}>Ask about this tour <Ar /></a>
+  </Band>
+
+  <section class="sect wrap">
+    <SecHead title="Other tours <em>to start from.</em>"><a class="lnk" href="/packages">All tours <Ar /></a></SecHead>
+    <div class="cardgrid" style="--n:3">
+      {others.map((o) => <TourCard tour={o} />)}
+    </div>
+  </section>
+
+  <Faq title="About <em>this tour.</em>" items={FAQ_GENERAL} />
+
+  <CloseBand photo="galleStreet" title="Make it <em>yours.</em>" cta="Ask about this tour" href={ask} />
 </Base>
+
+<style>
+  .pk-main { display: grid; gap: clamp(72px, 9vw, 120px); min-width: 0; }
+  .pk-block { display: grid; gap: 28px; min-width: 0; }
+  .ask .num a { text-decoration: none; }
+  .ask .num a:hover { text-decoration: underline; text-underline-offset: 4px; }
+</style>

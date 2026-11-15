@@ -1,0 +1,63 @@
+---
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Steps from "@/components/Steps.astro";
+import Base from "@/layouts/Base.astro";
+import { ALSO, SVC_DETAIL } from "@/data/services-pages";
+import { MICRO, PROOF, STEPS } from "@/data/site";
+---
+
+<Base
+  title="What we do"
+  description="Tailor-made trips, weddings, group trips and vehicles with drivers in Sri Lanka and the Maldives, planned by one team in Galle and Bundeena."
+  canonical="/services"
+  section="services"
+>
+  <PageHead title="What we <em>do.</em>" lede="Four kinds of trip, planned by the same team in Galle and Bundeena, with our own vehicles and drivers on every one." />
+
+  <section style="padding-bottom:clamp(88px,11vw,160px)">
+    <div class="wrap svc-blocks">
+      {
+        SVC_DETAIL.map((s, i) => (
+          <div class:list={["split", { r: i % 2 === 1 }]}>
+            <div class="a"><Frame photo={s.photo} sizes="(max-width: 860px) 100vw, 50vw" /></div>
+            <div class="b">
+              <h2 class="h1">{s.t}</h2>
+              <p class="lede">{s.lede}</p>
+              <ul>{s.items.map((x) => <li>{x}</li>)}</ul>
+              <div class="acts">
+                <a class="btn ink" href={s.href}>{s.go} <Ar /></a>
+                <a class="lnk" href="/plan-your-trip" aria-label={s.ask}>Ask us</a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="Also <em>on request.</em>" />
+    <ul class="also">{ALSO.map(([b, s]) => <li><b>{b}</b><span>{s}</span></li>)}</ul>
+  </section>
+
+  <Band photo="galleAerial" title="One team, <em>two offices.</em>" text="A desk in Galle and one in Bundeena, New South Wales. The person who plans your trip is the person you talk to, from the first email to the last airport run.">
+    <a class="btn light" href="/about">About us <Ar /></a>
+  </Band>
+
+  <section class="sect wrap">
+    <ul class="proof">{PROOF.map(([t, d]) => <li><h3 class="h4">{t}</h3><p>{d}</p></li>)}</ul>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="How planning <em>works.</em>" />
+    <Steps items={STEPS} />
+    <div class="plan-cta"><a class="btn ink big" href="/plan-your-trip">Plan your trip <Ar /></a><p class="micro">{MICRO}</p></div>
+  </section>
+
+  <CloseBand photo="coconutHill" />
+</Base>

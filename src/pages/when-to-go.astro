@@ -1,31 +1,105 @@
 ---
-import FooterWide from "@/components/v2/footer-wide.astro";
-import ReadyBand from "@/components/v2/home/ready-band.astro";
-import WhenToGoHero from "@/components/v2/when-to-go/when-to-go-hero.astro";
-import MonthPicker from "@/components/v2/when-to-go/month-picker.astro";
-import YearGrid from "@/components/v2/when-to-go/year-grid.astro";
-import { whenToGoHero } from "@/data/v2/when-to-go";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import NoteCard from "@/components/NoteCard.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Base from "@/layouts/Base.astro";
+import whenToGo from "@/content/pages/when-to-go.json";
+import { LEVEL, MONTHS, NOTES, SEASON_REGIONS } from "@/data/site";
 
-const TITLE = "When to go to Sri Lanka, month by month — Travedise";
+const GUIDE = "/blog-posts/which-coast-and-when";
 
-/**
- * The month guide. Driven by `src/data/v2/when-to-go.ts` — the month picker and the
- * year grid both read the same ratings table.
- */
+/** Month indexes as readable ranges, wrapping round the year: [11, 0, 1] → "December to February". */
+function ranges(idx: number[]): string {
+  if (!idx.length) return "";
+  if (idx.length === 12) return "All year";
+  const on = new Set(idx);
+  const starts = idx.filter((i) => !on.has((i + 11) % 12)).sort((a, b) => a - b);
+  const runs = starts.map((s) => {
+    let e = s;
+    while (on.has((e + 1) % 12)) e = (e + 1) % 12;
+    return [s, e] as const;
+  });
+  const name = (i: number) => MONTHS[i]!.name;
+  const parts = runs.map(([s, e]) => (s === e ? name(s) : (e - s + 12) % 12 === 1 ? `${name(s)} and ${name(e)}` : `${name(s)} to ${name(e)}`));
+  return parts.length === 1 ? parts[0]! : `${parts.slice(0, -1).join(", ")} and ${parts.at(-1)}`;
+}
+
+const regionRows = SEASON_REGIONS.map((r, j) => {
+  const at = (level: number) => MONTHS.flatMap((m, i) => (m.ratings[j] === level ? [i] : []));
+  return { ...r, best: ranges(at(3)), wet: ranges(at(1)) };
+});
+
+const picker = whenToGo.monthPicker;
+const glance = whenToGo.yearAtAGlance;
+const notes = ["which-coast-and-when", "a-first-trip-to-sri-lanka", "the-kandy-perahera"].map((s) => NOTES.find((n) => n.slug === s)).filter((n): n is NonNullable<typeof n> => !!n);
 ---
 
-<Base title={TITLE} description={whenToGoHero.body} canonical="/when-to-go" image={whenToGoHero.image} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <WhenToGoHero />
-    <main>
-      <MonthPicker />
-      <YearGrid />
-      <ReadyBand above="white" />
-    </main>
-    <FooterWide
-      statement="A small island with long days in it. Plan it once, properly, and it stays with you for years."
-      statementFace="body"
-    />
-  </div>
+<Base
+  title="When to go to Sri Lanka"
+  description="Sri Lanka month by month: which coast is dry, when the hills are clearest and when the parks are best, so you can pick the right side of the island."
+  canonical="/when-to-go"
+  section="destinations"
+>
+  <PageHead title="When to go to <em>Sri Lanka.</em>" lede="Two monsoons take turns, so there is always a dry side of the island. Pick your month and we will show you where to be, and where not to bother.">
+    <a class="lnk" href={GUIDE}>Read the full guide: Which coast, and when <Ar /></a>
+  </PageHead>
+
+  <section class="sect wrap top0">
+    <SecHead title="Pick a <em>month.</em>"><p>The month on the left, the five regions on the right. Three full bars is where you want to be.</p></SecHead>
+    <div class="months" role="group" aria-label="Choose a month">
+      {MONTHS.map((m, i) => <button type="button" data-month aria-pressed={i === 0 ? "true" : "false"} aria-label={m.name}>{m.name.slice(0, 3)}</button>)}
+    </div>
+    {
+      MONTHS.map((m, i) => (
+        <div class="month-view" data-mpanel hidden={i !== 0}>
+          <div>
+            <h3 class="h3">{m.name}: {m.title}</h3>
+            <p>{m.body}</p>
+          </div>
+          <ul class="rate" aria-label={`How each region is in ${m.name}`}>
+            {SEASON_REGIONS.map((r, j) => (
+              <li>
+                <span class="nm">{r.name}<small>{r.note}</small></span>
+                <span class="bar" aria-hidden="true">{[1, 2, 3].map((n) => <i class:list={[{ on: n <= (m.ratings[j] ?? 0) }]} />)}</span>
+                <span class="lv">{LEVEL[m.ratings[j] ?? 2]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+    <p class="small" style="margin-top:40px;max-width:60ch">{picker.footnote}</p>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="Region <em>by region.</em>"><p>The same year, read the other way: when each part of the island is at its best, and when it is wettest.</p></SecHead>
+    <ul class="rows">
+      {
+        regionRows.map((r) => (
+          <li>
+            <span class="k">{r.name}</span>
+            <span class="v">{r.note}.{r.wet && ` Wettest ${r.wet}.`}</span>
+            <span class="w">At its best {r.best}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p style="margin-top:28px"><a class="lnk" href="/places">Every place we send people, by region <Ar /></a></p>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title={glance.heading.replace(/at a glance\.$/, "<em>at a glance.</em>")} />
+    <ul class="cols3">
+      {glance.notes.map((n) => <li><h3 class="h4">{n.title}</h3><p>{n.body}</p></li>)}
+    </ul>
+  </section>
+
+  <section class="sect wrap top0">
+    <SecHead title="Read this <em>before you go.</em>"><a class="lnk" href="/blog">All travel notes <Ar /></a></SecHead>
+    <div class="cardgrid" style="--n:3">{notes.map((n) => <NoteCard note={n} />)}</div>
+  </section>
+
+  <CloseBand photo="coconutHill" title="Tell us your dates, <em>we will pick the coast.</em>" />
 </Base>

@@ -1,17 +1,15 @@
 import { contactEmail, contactOffices, contactPhones } from "@/data/contact";
-import { packages } from "@/data/packages";
-import { packagesV2, packageV2Slugs } from "@/data/v2/packages";
+import { TOURS } from "@/data/site";
 
 /**
  * What `src/scripts/webmcp-tools.ts` hands to in-browser agents. Written into each page as
- * JSON by `webmcp-data.astro`, so none of the content ships as JavaScript.
+ * JSON by `WebMcpData.astro`, so none of the content ships as JavaScript.
  */
 export const webMcpData = {
-  // Only journeys with a page; the title is the page's, the price line the card's.
-  packages: packageV2Slugs.map((slug) => ({
-    title: packagesV2[slug]!.title,
-    priceLine: packages[slug].priceLine,
-    href: packages[slug].href,
+  packages: TOURS.map((t) => ({
+    title: t.title,
+    priceLine: `From US$ ${t.price} per person / ${t.days} days`,
+    href: t.href,
   })),
   contact: {
     email: contactEmail.value,

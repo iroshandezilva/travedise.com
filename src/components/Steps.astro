@@ -1,0 +1,11 @@
+---
+/** Numbered steps: the content is a real sequence, so the numbers carry meaning. */
+interface Props { items: [string, string][] }
+const { items } = Astro.props;
+---
+
+<ol class="steps4">
+  {items.map(([t, d], i) => (
+    <li><span class="n" aria-hidden="true">{i + 1}</span><h3 class="h4">{t}</h3><p>{d}</p></li>
+  ))}
+</ol>

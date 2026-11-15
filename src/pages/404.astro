@@ -1,17 +1,22 @@
 ---
-import FooterWide from "@/components/v2/footer-wide.astro";
-import PillLink from "@/components/v2/buttons/pill-link.astro";
-import PlainHero from "@/components/v2/plain-hero.astro";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import PageHead from "@/components/PageHead.astro";
+import Base from "@/layouts/Base.astro";
 ---
 
-<Base title="Page not found — Travedise" noindex>
-  <div class="v2 flex min-h-screen flex-col overflow-clip bg-white">
-    <PlainHero title="This page is not here." body="The link may be old, or the page has moved." />
-    <main class="container-v2 flex flex-col items-start gap-4 gutter-v2 py-16 max-md:py-12">
-      <PillLink href="/">Back to the home page</PillLink>
-      <PillLink href="/plan-your-trip" variant="outline">Plan your trip</PillLink>
-    </main>
-    <FooterWide statementFace="body" />
-  </div>
+<Base title="Page not found" description="This page could not be found. Start again from the home page, the tours or the sitemap." noindex>
+  <PageHead title="This page has <em>moved on.</em>" lede="The link may be old, or the page may have a new name. Start again from the home page, or go straight to the tours.">
+    <div class="acts">
+      <a class="btn ink" href="/">Go to the home page <Ar /></a>
+      <a class="btn line" href="/packages">See the tours</a>
+    </div>
+  </PageHead>
+
+  <section class="wrap" style="padding-bottom:clamp(88px,11vw,160px)">
+    <ul class="cols3">
+      <li><a class="h4" href="/destinations" style="text-decoration:none">Destinations</a><p>Sri Lanka and the Maldives, alone or together.</p></li>
+      <li><a class="h4" href="/blog" style="text-decoration:none">Travel notes</a><p>Which coast in which month, what to book early and what to skip.</p></li>
+      <li><a class="h4" href="/sitemap" style="text-decoration:none">Sitemap</a><p>Every page on the site, in one list.</p></li>
+    </ul>
+  </section>
 </Base>

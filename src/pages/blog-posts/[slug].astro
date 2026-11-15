@@ -1,48 +1,198 @@
 ---
-import Emphasis from "@/components/v2/blog/emphasis.astro";
-import KeepReading from "@/components/v2/blog/keep-reading.astro";
-import PostBody from "@/components/v2/blog/post-body.astro";
-import PostHero from "@/components/v2/blog/post-hero.astro";
-import ContainedCta from "@/components/v2/contained-cta.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import { getNote, noteSlugs, relatedNotes, type Note } from "@/data/blog";
-import Base from "@/layouts/base.astro";
+import path from "node:path";
+import sharp from "sharp";
 
-/** Static build: every note in `src/content/blog` gets a page. */
+import Ar from "@/components/Ar.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Frame from "@/components/Frame.astro";
+import NoteCard from "@/components/NoteCard.astro";
+import SecHead from "@/components/SecHead.astro";
+import TourCard from "@/components/TourCard.astro";
+import Base from "@/layouts/Base.astro";
+import type { Inline } from "@/data/blog";
+import { NOTES, TOURS, type NoteCard as Note } from "@/data/site";
+import { SITE_URL } from "@/lib/site";
+
 export function getStaticPaths() {
-  return noteSlugs.map((slug) => ({ params: { slug } }));
+  return NOTES.map((note) => ({ params: { slug: note.slug }, props: { note } }));
 }
 
-/**
- * The travel note template. Everything on the page comes from the note's file in
- * `src/content/blog`, so a new note is a content entry rather than a new page.
- */
-const note = getNote(Astro.params.slug) as Note;
-const title = `${note.seo?.title ?? note.title} — Travedise`;
+interface Props {
+  note: Note;
+}
+
+const { note: n } = Astro.props;
+
+const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+const cut = n.titleEm ? n.title.lastIndexOf(n.titleEm) : -1;
+const titleHtml = cut > -1 ? `${esc(n.title.slice(0, cut))}<em>${esc(n.titleEm!)}</em>${esc(n.title.slice(cut + n.titleEm!.length))}` : esc(n.title);
+
+/** The meta description: the dek, cut to whole sentences under 160 characters, or the standfirst. */
+function describe(): string {
+  if (n.seo?.description) return n.seo.description;
+  if (n.dek.length <= 160) return n.dek;
+  let out = "";
+  for (const s of n.dek.match(/[^.!?]+[.!?]+/g) ?? []) {
+    const next = (out + s).trim();
+    if (next.length > 160) break;
+    out = next;
+  }
+  return out || n.standfirst;
+}
+
+/** Width and height of a /public image, so figures keep their space while they load. */
+async function size(src: string): Promise<{ width?: number; height?: number }> {
+  try {
+    const m = await sharp(path.join(process.cwd(), "public", src)).metadata();
+    return { width: m.autoOrient?.width ?? m.width, height: m.autoOrient?.height ?? m.height };
+  } catch {
+    return {};
+  }
+}
+const figSizes = await Promise.all(n.body.map((b): Promise<{ width?: number; height?: number }> => (b.type === "figure" ? size(b.src) : Promise.resolve({}))));
+
+/** Two tours to start from, matched to the note's topic. */
+const TYPE_FOR: Record<string, string> = {
+  Wildlife: "Wildlife",
+  Couples: "Honeymoons",
+  Families: "Families",
+  Coast: "Beaches and islands",
+  Culture: "Culture and history",
+  Routes: "Hills and tea",
+};
+const want = TYPE_FOR[n.category];
+const fits = (t: (typeof TOURS)[number]) => !!want && t.types.includes(want);
+const tours = [...TOURS.filter(fits), ...TOURS.filter((t) => !fits(t))].slice(0, 2);
+
+const others = NOTES.filter((o) => o.slug !== n.slug);
+const more = [...others.filter((o) => o.category === n.category), ...others.filter((o) => o.category !== n.category)].slice(0, 3);
+
+const url = `${SITE_URL}${n.href}`;
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: n.title,
+  description: n.dek,
+  datePublished: n.date,
+  image: `${SITE_URL}${n.image.src}`,
+  author: { "@type": "Organization", name: "Travedise", url: SITE_URL },
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  url,
+  mainEntityOfPage: url,
+  inLanguage: "en",
+};
+
+const isLink = (x: Inline): x is { text: string; href: string } => typeof x !== "string";
 ---
 
-<Base title={title} description={note.seo?.description ?? note.dek} canonical={note.href} image={note.image.src} ogType="article" publishedTime={note.date}>
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <PostHero note={note} />
-    <main>
-      <PostBody note={note} />
-      <KeepReading notes={relatedNotes(note)} />
-      {
-        note.cta ? (
-          <ContainedCta body={note.cta.body}>
-            <Fragment slot="heading">
-              <Emphasis text={note.cta.heading} em={note.cta.em} />
-            </Fragment>
-          </ContainedCta>
-        ) : (
-          <ContainedCta body="Tell us your dates and what you hope to see. We will shape the rest around you.">
-            <Fragment slot="heading">
-              Want this <em class="italic">in your route</em>?
-            </Fragment>
-          </ContainedCta>
-        )
-      }
-    </main>
-    <FooterWide />
+<Base
+  title={n.seo?.title ?? n.title}
+  description={describe()}
+  canonical={n.href}
+  section="notes"
+  ogType="article"
+  publishedTime={n.date}
+  image={{ url: n.image.src, alt: n.image.alt }}
+  jsonLd={articleLd}
+>
+  <header class="art-head wrap narrow">
+    <h1 class="h1 intro"><span class="ln"><span set:html={titleHtml} /></span></h1>
+    {n.standfirst && <p class="lede">{n.standfirst}</p>}
+    <div class="art-meta">
+      <a href={`/blog?cat=${encodeURIComponent(n.category)}`}>{n.category}</a>
+      <span><time datetime={n.date}>{n.dateLabel}</time></span>
+      <span>{n.author.name}</span>
+    </div>
+  </header>
+
+  <div class="wrap art-hero">
+    <Frame photo={n.photo} eager sizes="100vw" widths={[768, 1280, 1920]} />
   </div>
+
+  <article class="article wrap">
+    {
+      n.body.map((b, i) => {
+        switch (b.type) {
+          case "lead":
+            return <p class="lead">{b.text.map((x) => (isLink(x) ? <a href={x.href}>{x.text}</a> : x))}</p>;
+          case "p":
+            return <p>{b.text.map((x) => (isLink(x) ? <a href={x.href}>{x.text}</a> : x))}</p>;
+          case "h2":
+            return <h2 id={b.id}>{b.text}</h2>;
+          case "list":
+            return (
+              <ul>
+                {b.items.map((item) => (
+                  <li><span>{item.map((x) => (isLink(x) ? <a href={x.href}>{x.text}</a> : x))}</span></li>
+                ))}
+              </ul>
+            );
+          case "table":
+            return (
+              <div class="tbl">
+                <table>
+                  <caption>{b.caption}</caption>
+                  <thead><tr>{b.columns.map((c) => <th scope="col">{c}</th>)}</tr></thead>
+                  <tbody>
+                    {b.rows.map(([head, ...cells]) => (
+                      <tr><th scope="row">{head}</th>{cells.map((c) => <td>{c}</td>)}</tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          case "quote":
+            return <blockquote>{b.text}</blockquote>;
+          case "note":
+            return <div class="note"><b>{b.label}</b><p style="margin:0;color:var(--ink)">{b.text}</p></div>;
+          case "figure":
+            return (
+              <figure class="art-fig">
+                <img src={b.src} alt={b.alt} width={figSizes[i]?.width} height={figSizes[i]?.height} loading="lazy" decoding="async" />
+                <figcaption class="cap">{b.caption}</figcaption>
+              </figure>
+            );
+          default:
+            return null;
+        }
+      })
+    }
+    <div class="start">
+      <p class="h4" style="margin:0;color:var(--ink)">Start from a tour</p>
+      <div class="cardgrid" style="--n:2">{tours.map((t) => <TourCard tour={t} sizes="(max-width: 600px) 100vw, 380px" />)}</div>
+    </div>
+  </article>
+
+  <section class="sect wrap top0">
+    <SecHead title="More <em>notes.</em>"><a class="lnk" href="/blog">All travel notes <Ar /></a></SecHead>
+    <div class="cardgrid" style="--n:3">{more.map((o) => <NoteCard note={o} />)}</div>
+  </section>
+
+  <CloseBand photo={n.photo === "teaMist" ? "coconutHill" : "teaMist"} title="Plan it <em>with us.</em>" />
 </Base>
+
+<style>
+  .art-meta a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .art-fig {
+    margin: 12px 0 36px;
+  }
+  /* Natural size, never wider than the column: some of the older photos are small. */
+  .art-fig img {
+    height: auto;
+  }
+  tbody th {
+    font-weight: 600;
+    border-bottom-color: var(--stone);
+  }
+  .start {
+    border-top: 1px solid var(--ink);
+    padding-top: 22px;
+    margin-top: 20px;
+    display: grid;
+    gap: 16px;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+/** Questions as native disclosure widgets, beside a heading. `title` may contain <em>. */
+interface Props { title: string; items: [string, string][]; note?: string; top0?: boolean }
+const { title, items, note, top0 = true } = Astro.props;
+---
+
+<section class:list={["sect wrap", { top0 }]}>
+  <div class="split faq-split">
+    <div class="a">
+      <h2 class="h2" set:html={title} />
+      {note && <p class="small" style="margin-top:16px">{note}</p>}
+    </div>
+    <div class="b">
+      <div class="faq">
+        {items.map(([q, a]) => (
+          <details>
+            <summary>{q}</summary>
+            <div class="ans"><p>{a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

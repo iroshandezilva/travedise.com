@@ -1,35 +1,77 @@
 ---
-import { MapExplorer } from "@/components/islands/map-explorer";
-import ContainedCta from "@/components/v2/contained-cta.astro";
-import FooterWide from "@/components/v2/footer-wide.astro";
-import Gallery from "@/components/v2/gallery.astro";
-import JourneysHero from "@/components/v2/packages/hero.astro";
-import JourneysIntro from "@/components/v2/packages/intro.astro";
-import JourneyGrid from "@/components/v2/packages/journey-grid.astro";
-import { journeysHero } from "@/data/v2/journeys";
-import Base from "@/layouts/base.astro";
+import Ar from "@/components/Ar.astro";
+import Band from "@/components/Band.astro";
+import CloseBand from "@/components/CloseBand.astro";
+import Faq from "@/components/Faq.astro";
+import PageHead from "@/components/PageHead.astro";
+import SecHead from "@/components/SecHead.astro";
+import Steps from "@/components/Steps.astro";
+import TourCard from "@/components/TourCard.astro";
+import Base from "@/layouts/Base.astro";
+import { FAQ_GENERAL, STEPS, TOURS, TYPES } from "@/data/site";
 
-const TITLE = "Journeys across Sri Lanka — Travedise";
-
-/**
- * The journeys index. Driven entirely by `src/data/v2/journeys.ts` — the map, the
- * route list and the cards all read the same six entries, so a route can never appear
- * in one and not the others.
- */
+const LENGTHS: [string, string][] = [
+  ["any", "Any length"],
+  ["short", "Up to 9 days"],
+  ["long", "10 days or more"],
+];
 ---
 
-<Base title={TITLE} description={journeysHero.body} canonical="/packages" image={journeysHero.image} ogType="website">
-  <div class="v2 flex flex-col overflow-clip bg-white">
-    <JourneysHero />
-    <main>
-      <JourneysIntro />
-      <Gallery heading="The island, between the stops." lede="Frames from journeys we ran this year." />
-      <MapExplorer client:visible />
-      <JourneyGrid />
-      <ContainedCta body="Tell us what you would change and we will redraw the route around you.">
-        <Fragment slot="heading">Not quite the journey <em class="italic">you had</em> in mind?</Fragment>
-      </ContainedCta>
-    </main>
-    <FooterWide />
-  </div>
+<Base
+  title="Tour packages"
+  description="Private tours of Sri Lanka to start from: tea country, wildlife, honeymoons and family trips. Each one can be changed to fit your dates and pace."
+  canonical="/packages"
+  section="tours"
+>
+  <PageHead title="Tour <em>packages.</em>" lede="Every tour is private, and every tour is a starting point. Pick the one that is closest, then we change it to fit." />
+
+  <section class="wrap" style="padding-bottom:clamp(88px,11vw,160px)" aria-label="All tours">
+    <div class="filters" data-filter-root="#tourList" data-word="tour">
+      <div class="f-row" role="group" aria-labelledby="f-type">
+        <b id="f-type">Trip type</b>
+        <button type="button" class="chip" data-f="type" data-v="all" aria-pressed="true">Any</button>
+        {TYPES.map((t) => <button type="button" class="chip" data-f="type" data-v={t.t} aria-pressed="false">{t.t}</button>)}
+      </div>
+      <div class="f-row" role="group" aria-labelledby="f-len">
+        <b id="f-len">Length</b>
+        {LENGTHS.map(([v, l], i) => <button type="button" class="chip" data-f="len" data-v={v} aria-pressed={i === 0 ? "true" : "false"}>{l}</button>)}
+      </div>
+      <div class="f-foot">
+        <span data-count role="status">{TOURS.length} tours</span>
+        <label>Sort
+          <select data-sort>
+            <option value="rec" selected>Recommended</option>
+            <option value="short">Shortest first</option>
+            <option value="price">Lowest price first</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="cardgrid" style="--n:3" id="tourList">
+      {TOURS.map((t, i) => <TourCard tour={t} summary tags order={i} />)}
+    </div>
+
+    <div class="empty-state" data-empty hidden>
+      <h2 class="h3">No tour matches all of that yet.</h2>
+      <p class="small">Every tour can be changed, so a near match is a good start. Or tell us what you want and we will write one.</p>
+      <div class="acts">
+        <button type="button" class="btn line" data-clear>Clear the filters</button>
+        <a class="btn ink" href="/plan-your-trip">Ask for a tailor-made trip <Ar /></a>
+      </div>
+    </div>
+  </section>
+
+  <Band photo="teaAerial" title="Nothing quite <em>right?</em>" text="Most of our trips are written from scratch. Tell us the dates, who is coming and what you care about.">
+    <a class="btn light" href="/plan-your-trip">Ask for a tailor-made trip <Ar /></a>
+  </Band>
+
+  <section class="sect wrap">
+    <SecHead title="How planning <em>works.</em>" />
+    <Steps items={STEPS} />
+  </section>
+
+  <Faq title="About <em>the tours.</em>" items={FAQ_GENERAL} />
+
+  <CloseBand photo="coconutHill" />
 </Base>

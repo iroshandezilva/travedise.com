@@ -6,7 +6,7 @@ import { SITE_URL } from "./site";
 const ORG_ID = `${SITE_URL}/#organization`;
 
 const DESCRIPTION =
-  "Travedise is a Sri Lanka tour operator with offices in Australia and Sri Lanka, offering tailor-made and packaged holidays — honeymoon, family, wildlife, hill country and beach tours.";
+  "Travedise plans private, tailor-made trips to Sri Lanka and the Maldives from offices in Australia and Sri Lanka, with weddings, group trips and vehicles with drivers.";
 
 /**
  * schema.org JSON-LD for the whole site: the business (Organization + TravelAgency, with

@@ -1,0 +1,65 @@
+---
+import { CONTACT, SOON, TOURS } from "@/data/site";
+import { SOCIALS } from "@/lib/socials";
+---
+
+<footer class="ftr wrap">
+  <div class="ftr-top">
+    <div>
+      <a class="wm" href="/">TRAVEDISE</a>
+      <p>Tailor-made trips to Sri Lanka and the Maldives, planned in Galle and Bundeena.</p>
+    </div>
+    <div>
+      <h2>Destinations</h2>
+      <ul>
+        <li><a href="/destinations/sri-lanka">Sri Lanka</a></li>
+        <li><a href="/destinations/maldives">The Maldives</a></li>
+        <li><a href="/destinations">All destinations</a></li>
+        <li><a href="/places">Places in Sri Lanka</a></li>
+        <li><a href="/when-to-go">When to go</a></li>
+        <li class="muted">Soon: {SOON.join(", ")}</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Tours</h2>
+      <ul>
+        {TOURS.map((t) => <li><a href={t.href}>{t.title}</a></li>)}
+        <li><a href="/packages">All tours</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Services</h2>
+      <ul>
+        <li><a href="/services">All services</a></li>
+        <li><a href="/weddings">Weddings</a></li>
+        <li><a href="/group-vacations">Group trips</a></li>
+        <li><a href="/vehicles">Vehicles and drivers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="/about">About us</a></li>
+        <li><a href="/blog">Travel notes</a></li>
+        <li><a href="/faq">Questions</a></li>
+        <li><a href="/plan-your-trip">Plan your trip</a></li>
+        <li><a href="/sitemap">Sitemap</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Offices</h2>
+      <ul>
+        {CONTACT.offices.map((o) => <li>{o.address}</li>)}
+        {CONTACT.phones.map((p) => <li><a href={`tel:${p.tel}`}>{p.number}</a></li>)}
+        <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ftr-row">
+    <span>© {new Date().getFullYear()} Travedise</span>
+    <span>SLTDA registered, ATAS accredited</span>
+    <a href="/privacy">Privacy</a>
+    <a href="/sitemap">Sitemap</a>
+    <span class="ftr-soc">{SOCIALS.map((s) => <a href={s.href} rel="noopener" target="_blank">{s.name}</a>)}</span>
+  </div>
+</footer>

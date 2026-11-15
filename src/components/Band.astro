@@ -1,0 +1,17 @@
+---
+/** A full-bleed photo band with a heading at the bottom left. Never place two next to each other. */
+import Frame from "./Frame.astro";
+import type { PhotoKey } from "@/data/photos";
+interface Props { photo: PhotoKey; pos?: string; title: string; text?: string; id?: string }
+const { photo, pos, title, text, id } = Astro.props;
+---
+
+<section class="band anchor" id={id}>
+  <Frame bg photo={photo} pos={pos} />
+  <div class="scrim"></div>
+  <div class="band-copy wrap">
+    <h2 class="h1" set:html={title} />
+    {text && <p>{text}</p>}
+    {Astro.slots.has("default") && <div class="acts"><slot /></div>}
+  </div>
+</section>

@@ -1,6 +1,4 @@
 // @ts-check
-import react from "@astrojs/react";
-import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
@@ -8,44 +6,29 @@ export default defineConfig({
   // Fully static: every page is HTML at build time. The only server code is the
   // Cloudflare Pages Functions in `functions/`, which sit outside Astro.
   output: "static",
-  // `about.html`, not `about/index.html` — the same files the Next.js export wrote, so
-  // Cloudflare's clean URLs, `_routes.json` and the tests keep working unchanged.
+  // `about.html`, not `about/index.html`, so Cloudflare's clean URLs, `_routes.json`
+  // and the tests keep working unchanged.
   build: { format: "file" },
   trailingSlash: "never",
-  integrations: [react()],
   fonts: [
     {
-      // Display face — a variable font with weight and width axes; the italic is its own file.
-      name: "Ragmont",
-      cssVariable: "--font-ragmont",
-      provider: fontProviders.local(),
-      fallbacks: ["Georgia", "serif"],
-      options: {
-        variants: [
-          {
-            src: ["./src/assets/fonts/Ragmont-Variable.woff2"],
-            weight: "100 900",
-            style: "normal",
-            stretch: "75% 150%",
-          },
-          {
-            src: ["./src/assets/fonts/Ragmont-Variable-Italic.woff2"],
-            weight: "100 900",
-            style: "italic",
-            stretch: "75% 150%",
-          },
-        ],
-      },
+      // Headings. Newsreader stands in for Nocturne Serif until a webfont licence is bought.
+      name: "Newsreader",
+      cssVariable: "--font-display",
+      provider: fontProviders.google(),
+      weights: [300, 400],
+      styles: ["normal", "italic"],
+      subsets: ["latin"],
+      fallbacks: ["Georgia", "Times New Roman", "serif"],
     },
     {
-      name: "Inter Tight",
-      cssVariable: "--font-inter-tight",
+      name: "Schibsted Grotesk",
+      cssVariable: "--font-sans",
       provider: fontProviders.google(),
       weights: [400, 500, 600],
       styles: ["normal"],
       subsets: ["latin"],
-      fallbacks: ["system-ui", "sans-serif"],
+      fallbacks: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
     },
   ],
-  vite: { plugins: [tailwindcss()] },
 });
