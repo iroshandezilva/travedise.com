@@ -57,6 +57,31 @@ Never merge on your own initiative or for anyone else.
   data. Full rule: `astro7-site` skill → "Where text lives"; Stacki guide: `docs/editing-with-stacki.md`.
 - Preview a production build with `pnpm build && pnpm preview`.
 
+## Designing pages
+
+The owner's rules for page and section design (the home page first, but they apply everywhere):
+
+- **Never put two full-width sections next to each other.** A full-bleed photo, film or colour band
+  is always followed by a white section with normal margins, for example: destinations band →
+  trip types → film → vehicles → weddings band. Two bands back to back read as one broken block.
+  Check the whole section order whenever you add, move or remove a section.
+- **Vary the section formats.** Don't repeat the same heading-left, text-right, grid layout. Alternate
+  full-width photo bands with white editorial blocks.
+- **White backgrounds.** No brown or cream page tints, even in wireframes. The photos carry the colour.
+- **No overlines.** No small uppercase labels above headings.
+- **No clocks or live times** on the page.
+- **Keep text short.** One line where one line will do.
+- **Equal cards for lists of the same kind**, such as packages and guides. Don't mix big and small cards.
+- **Motion follows the visitor.** Use hover, scroll-linked movement and controls the visitor operates.
+  Sections don't fade in on scroll. A rotating hero photo is fine with a pause control.
+- **Use the Emil design skills where they fit**, and say which you used. They are:
+  - `emil-marketing-pages`: landing pages, CTAs, motion restraint
+  - `emil-unslop-design`: generic or "AI-looking" layouts
+  - `emil-ui-polish` and `emil-typography`: details and type
+  - `emil-animations`: any motion
+  - `emil-get-creative`: when the owner is still exploring a direction; build a lab with switches
+  - `emil-prototype`: comparing a few set directions
+
 ## Sub-agents and skills
 
 Project agents are in `.claude/agents/`, their skills in `.claude/skills/`. The usual flow:
