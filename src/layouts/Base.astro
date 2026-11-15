@@ -46,19 +46,6 @@ const FAVICONS = [
   { href: "6a3375a31e3fd9ef9da7e4ff", rel: "icon", sizes: "512x512" },
   { href: "6a3375a351ef67e160de31e4", rel: "apple-touch-icon", sizes: "180x180" },
 ];
-
-const TAWK = `(function(){
-  function load(){
-    if (window.__tawkLoaded) return;
-    window.__tawkLoaded = true;
-    var Tawk_API=window.Tawk_API||{}, Tawk_LoadStart=new Date();
-    window.Tawk_API=Tawk_API; window.Tawk_LoadStart=Tawk_LoadStart;
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true; s1.src='https://embed.tawk.to/6a8bd90e5d2e283449285f96/1k0p4foar'; s1.charset='UTF-8'; s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-  }
-  if ('requestIdleCallback' in window) requestIdleCallback(load, {timeout: 5000}); else setTimeout(load, 3000);
-})();`;
 ---
 
 <!doctype html>
@@ -99,7 +86,6 @@ const TAWK = `(function(){
         </>
       )
     }
-    {import.meta.env.PROD && <script is:inline set:html={TAWK} />}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
