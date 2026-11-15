@@ -294,3 +294,6 @@ $$("[data-filter-root]").forEach((rootEl) => {
     }
   });
 })();
+
+/* Heading-size dials for tuning the type scale: the dev site and local previews only, never travedise.com. */
+if (!/(^|\.)travedise\.com$/.test(location.hostname)) import("./type-dials");
