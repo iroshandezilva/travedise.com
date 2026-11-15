@@ -8,11 +8,11 @@
   --ease:cubic-bezier(.22,1,.36,1);
   --m:.6; --bleed:.5; --gut:16px; --edge:16px; --hdr:92px;
   /* Type scale: desktop sizes display 104, hero 48, h1 72, h2 54, h3 38, h4 26, lede 20, body 18, small 15, cap 13, ui 15. Headings shrink fluidly to phone width (375px). */
-  --fs-display:clamp(57px, calc(40.45px + 4.413vw), 104px);
-  --fs-hero:clamp(32px, calc(26.37px + 1.502vw), 48px);
-  --fs-h1:clamp(39.5px, calc(28.06px + 3.052vw), 72px);
-  --fs-h2:clamp(33.5px, calc(26.28px + 1.925vw), 54px);
-  --fs-h3:clamp(28.5px, calc(25.15px + 0.892vw), 38px);
+  --fs-display:clamp(40px, calc(37.18px + 0.751vw), 48px);
+  --fs-hero:clamp(32px, calc(29.36px + 0.704vw), 39.5px);
+  --fs-h1:clamp(44px, calc(43.12px + 0.235vw), 46.5px);
+  --fs-h2:clamp(28px, calc(25.18px + 0.751vw), 36px);
+  --fs-h3:clamp(22.5px, calc(19.68px + 0.751vw), 30.5px);
   --fs-h4:clamp(22.5px, calc(21.27px + 0.329vw), 26px);
   --fs-lede:clamp(18.5px, calc(17.97px + 0.141vw), 20px);
   --fs-body:18px;

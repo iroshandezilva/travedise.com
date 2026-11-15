@@ -18,11 +18,11 @@ const DESKTOP = 1440;
 
 /** [token, label, desktop px, phone px] — defaults match src/styles/global.css. */
 const HEADINGS = [
-  ["display", "Page titles", 104, 57],
-  ["hero", "Home hero line", 48, 32],
-  ["h1", "H1", 72, 39.5],
-  ["h2", "H2", 54, 33.5],
-  ["h3", "H3", 38, 28.5],
+  ["display", "Page titles", 48, 40],
+  ["hero", "Home hero line", 39.5, 32],
+  ["h1", "H1", 46.5, 44],
+  ["h2", "H2", 36, 28],
+  ["h3", "H3", 30.5, 22.5],
   ["h4", "H4", 26, 22.5],
 ] as const;
 
