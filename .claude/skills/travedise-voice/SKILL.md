@@ -39,9 +39,9 @@ these from the Webflow site — don't copy them; replace them when you touch tha
 
 ## Patterns the site uses
 
-- **Title + italic ending.** The end of a title is set in Ragmont italic: "Which coast,
-  *and when*". In JSON that is `titleEm` (notes) or `em` (CTA headings) — it must be the exact
-  ending of the text.
+- **Title + italic ending.** The end of a title is set in the display italic: "Which coast,
+  *and when*". One italic phrase per title, never two. In JSON that is `titleEm` (notes) or `em`
+  (CTA headings) — it must be the exact ending of the text.
 - **Note titles** name a place or a decision, then a twist after a comma: "A morning in Yala,
   and why we leave at five", "Polonnaruwa, on two wheels".
 - **Standfirst:** one sentence under the title that says what the reader will get.
@@ -54,6 +54,38 @@ these from the Webflow site — don't copy them; replace them when you touch tha
   "Tell us your dates and we will fit it in, with the train booked for the way in."
 - **Author:** `{ "name": "The Travedise team", "role": "Travel designers in Galle and Bundeena" }`
   unless the owner names a person.
+
+## Interface copy
+
+The same voice, shorter. Sentence case everywhere.
+
+| Where | Rule | Write | Not |
+|---|---|---|---|
+| Hero heading | 3–7 words, a promise or a place | Keep time for what matters. | Discover the magic of Sri Lanka! |
+| Lede | One sentence: what, where, how | Tailor-made trips to Sri Lanka and the Maldives, planned end to end. | We are passionate about unforgettable experiences. |
+| Button | Verb + object, 1–4 words | Plan your trip · See the tours · Ask about this tour | Submit · Click here · Learn more |
+| Link by a heading | "All" + the thing | All tours · All destinations | View more · Explore |
+| Navigation | Nouns, 1–2 words | Destinations · Travel notes | Our Blog |
+| Form label | Short, above the field; never only a placeholder | When would you like to go? | Enter travel dates here |
+| Help text | Why we ask, or what happens | We use this to suggest the right coast. | Required field |
+| Error | The problem and the fix | Add an email address so we can send your route. | Invalid input |
+| Empty state | Why it is empty, and the next step | No tours match these filters. Clear one, or tell us what you have in mind. | No results found |
+| Success | What happens next, and when | Thank you, Anna. Your planner will reply within two working days. | Success! |
+| Meta line | Facts only, joined by " · " | 9 days · Sri Lanka · From US$ 2,500 | Amazing 9-day adventure |
+
+Never create urgency: no countdowns, "only 2 left", "book now before it's gone".
+
+## Numbers, dates and names
+
+- Counts in prose: one to nine in words, 10 and up in figures. Meta lines always use figures (9 days).
+- Prices: `From US$ 2,500 per person` (a space after US$, a comma in thousands, no decimals).
+- Dates: `12 March 2027`; ranges `December to April`. Times: `6am`, `5.30pm` in meta, "by six" in prose.
+- Distances matter less than drive times: "about 3 hours from Kandy".
+- Phones: `+94 76 397 2171`, `+61 426 965 569`.
+- One spelling: Sri Lanka, the Maldives (with "the"), Malé, Nuwara Eliya, Sigiriya, Polonnaruwa,
+  Anuradhapura, Dambulla, Kandy, Ella, Galle, Mirissa, Tangalle, Arugam Bay, Trincomalee, Jaffna,
+  Yala, Udawalawe, Minneriya, Wilpattu, Baa Atoll, Ari Atoll, Nine Arch Bridge, Temple of the Tooth.
+- Also never: journey (for a trip), curated, seamless.
 
 ## Facts
 

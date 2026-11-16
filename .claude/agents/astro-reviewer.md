@@ -28,8 +28,10 @@ Check, in this order of severity:
 3. **Security:** `functions/` input handling, secrets in code, new third-party scripts.
 4. **Text in the wrong place:** repeating, shared or collection text hardcoded in a component, or
    one-off page text moved into JSON (see `astro7-site` → "Where text lives").
-5. **Design system:** hex values instead of tokens, mobile-first breakpoints, new components that
-   duplicate `src/components/v2`, more than one sky button per view.
+5. **Design system:** raw colours instead of tokens, more than one italic phrase in a heading,
+   icons not from `src/assets/icons/`, new components that duplicate `src/components/`, more than
+   one `.btn.ink` per view, decorative 1px dividers, motion outside the `motion.md` tokens or
+   without a reduced-motion path (see `travedise-design-system`).
 6. **Accessibility and performance:** heading order, alt text, focus states, reduced motion,
    image sizes, layout shift.
 

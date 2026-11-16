@@ -1,7 +1,10 @@
 /**
  * Behaviour for every page. Each part looks for its own markup and does nothing without it,
- * and every page reads fully without JavaScript.
+ * and every page reads fully without JavaScript. Motion (smooth scroll, reveals, the menu sheet)
+ * lives in ./motion.ts.
  */
+import { lockScroll, scrollToEl, sheet, unfoldNow } from "./motion";
+
 const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
 const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => Array.from(r.querySelectorAll<T>(s));
 const root = document.documentElement;
@@ -27,16 +30,18 @@ const hdr = $("#hdr");
 const hero = $("main > .hero:first-child, main > .phero:first-child");
 const mnav = $("#mnav"), menuBtn = $<HTMLButtonElement>("#menuBtn");
 let lastY = 0;
-const menuOpen = () => !!mnav && !mnav.hidden;
+let menuIsOpen = false;
+const menuOpen = () => menuIsOpen;
 function closeDropdowns(except?: Element) {
   $$(".nav-i.open").forEach((n) => { if (n !== except) { n.classList.remove("open"); n.querySelector("button")?.setAttribute("aria-expanded", "false"); } });
 }
 function setMenu(open: boolean) {
   if (!mnav || !menuBtn) return;
-  mnav.hidden = !open;
+  menuIsOpen = open;
+  sheet(mnav, open);
   menuBtn.setAttribute("aria-expanded", String(open));
   menuBtn.textContent = open ? "Close" : "Menu";
-  document.body.style.overflow = open ? "hidden" : "";
+  lockScroll(open);
   onScroll();
 }
 const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -54,9 +59,7 @@ menuBtn?.addEventListener("click", () => setMenu(!menuOpen()));
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeDropdowns(); if (menuOpen()) { setMenu(false); menuBtn?.focus(); } } });
 document.addEventListener("click", (e) => { if (!(e.target as Element).closest(".nav-i")) closeDropdowns(); });
 
-/* Scroll: header state and a gentle parallax on photos */
-const px = $$(".frame .px, .band > .px, .phero > .px, .close-band > .px");
-const pl = $$("[data-pl]");
+/* Scroll: header state (photo drift and reveals are in ./motion.ts) */
 function onScroll() {
   const vh = innerHeight, y = scrollY;
   if (hdr) {
@@ -67,19 +70,6 @@ function onScroll() {
     root.classList.toggle("hdr-away", hdr.classList.contains("away"));
   }
   lastY = y;
-  if (!motion()) return;
-  for (const el of px) {
-    const r = el.getBoundingClientRect();
-    if (r.bottom < -120 || r.top > vh + 120 || !r.height) continue;
-    const p = Math.min(1, Math.max(-1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)));
-    const img = el.firstElementChild as HTMLElement | null;
-    if (img) img.style.transform = `translate3d(0,${(p * 30).toFixed(1)}px,0) scale(1.12)`;
-  }
-  for (const el of pl) {
-    const r = el.closest("section")!.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > vh) continue;
-    el.style.transform = `translate3d(0,${(-r.top * Number(el.dataset.pl) * 0.6).toFixed(1)}px,0)`;
-  }
 }
 let ticking = false;
 addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; onScroll(); }); } }, { passive: true });
@@ -123,7 +113,8 @@ $$("[role=tablist][data-tabs]").forEach((list) => {
     if (on) { const p = b.parentElement!; p.scrollTo({ left: b.offsetLeft - p.clientWidth / 2 + b.offsetWidth / 2 }); }
   });
   btns.forEach((b) => b.addEventListener("click", () => {
-    document.getElementById(b.dataset.jump!)?.scrollIntoView({ behavior: motion() ? "smooth" : "auto", block: "start" });
+    const target = document.getElementById(b.dataset.jump!);
+    if (target) scrollToEl(target);
     mark(b.dataset.jump!);
   }));
   const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && mark(e.target.id)), { rootMargin: "-35% 0px -60% 0px" });
@@ -287,6 +278,7 @@ $$("[data-filter-root]").forEach((rootEl) => {
       form.hidden = true;
       sent.hidden = false;
       sent.focus();
+      unfoldNow(Array.from(sent.children));
     } catch (error) {
       if (err) err.textContent = `${error instanceof Error ? error.message : "Your enquiry could not be sent."} Please try again, or email contact@travedise.com.`;
     } finally {

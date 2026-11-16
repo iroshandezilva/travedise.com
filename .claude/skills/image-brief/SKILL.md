@@ -21,16 +21,21 @@ there. The slots:
 
 ## Use what the site already has first
 
-Photos live in `public/` (`public/v2/`, `public/places/`, `public/assets/`); file names are hashes
-and tell you nothing. Search the descriptions instead — every used photo already has an `alt` or
-`caption`:
+Every photo the pages use is a key in `src/data/photos.ts` (files in `src/assets/photos` and
+`src/assets/stock`), each with its `alt` and `place`. Search those first:
 
 ```bash
-grep -rhoE '"(src|alt|caption|label)": "[^"]*"' src/content | paste - - | grep -i "<subject>"
+grep -nE "^\s+\w+: (own|stock)\(" src/data/photos.ts | grep -i "<subject>"
 ```
 
+Then choose by colour: `src/data/photo-colours.json` gives each key a family (green, sea, earth,
+dusk, night), warmth, busyness and whether white text can sit on it. The rules for matching a
+photo to its neighbours and its content are in `travedise-design-system` → `photos.md`; the sheet
+of every photo by family is in `docs/design.html#photos`.
+
 To see a candidate, open it with the Read tool (it shows images). A photo already used as a hero
-elsewhere should not be a hero again; it can be a figure.
+elsewhere should not be a hero again; it can be a figure. After adding a photo to `photos.ts`, run
+`pnpm photo-colours`.
 
 ## When a new photo is needed: the shot list
 
