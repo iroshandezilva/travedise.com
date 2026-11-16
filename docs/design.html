@@ -3,204 +3,636 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Travedise design system</title>
+<title>Travedise Standard</title>
 <!--
-  The visual reference for the v2 design language. Open this file in a browser from the
-  repository (the fonts and photos load from ../src/assets and ../public).
-  Source of truth for every value is src/styles/global.css — update both together.
-  Rules and the component catalogue: .claude/skills/travedise-design-system/SKILL.md
+  The Travedise Standard: principles, colour, type, photos, icons, motion and writing.
+  Open this file in a browser from the repository. Photos and icons load from ../src/assets.
+  Values here match src/styles/global.css — change both in the same PR.
+  The photo sheet between the photos:start/photos:end markers is written by `pnpm photo-colours`.
+  Agent rules that follow this page: .claude/skills/travedise-design-system/ (and its topic files).
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @font-face { font-family: Ragmont; src: url("../src/assets/fonts/Ragmont-Variable.woff2") format("woff2"); font-weight: 100 900; font-stretch: 75% 150%; font-style: normal; }
-  @font-face { font-family: Ragmont; src: url("../src/assets/fonts/Ragmont-Variable-Italic.woff2") format("woff2"); font-weight: 100 900; font-stretch: 75% 150%; font-style: italic; }
+:root{
+  /* Colour — one warm hue (OKLCH h 75). Same values as global.css. */
+  --paper:#FCFBF8; --mist:#F7F4F0; --wash:#EFEAE4; --sand:#E5DFD6; --stone:#D0C7BC;
+  --dune:#8E8578; --clay:#6F665A; --bark:#4F4639; --umber:#30271A; --ink:#1C1204;
+  --error:#A04130; --ok:#3D7149;
+  /* Motion */
+  --ease-out:cubic-bezier(.23,1,.32,1); --ease-in-out:cubic-bezier(.77,0,.175,1); --ease-drawer:cubic-bezier(.32,.72,0,1);
+  --dur-press:160ms; --dur-hover:200ms; --dur-ui:320ms; --dur-sheet:480ms; --dur-reveal:900ms; --dur-settle:1400ms;
+  --display:"Newsreader", Georgia, serif; --sans:"Schibsted Grotesk", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;max-width:1360px;margin:0 auto;padding:0 40px}
+nav.toc{position:sticky;top:0;align-self:start;padding:48px 0;display:grid;gap:4px;font:500 14px/1.4 var(--sans)}
+nav.toc a{text-decoration:none;color:var(--clay);padding:5px 0}
+nav.toc a:hover{color:var(--ink)}
+nav.toc b{font:300 24px/1.1 var(--display);margin-bottom:18px;display:block}
+main{padding:48px 0 160px;min-width:0}
+section{padding:72px 0 24px}
+section+section{border-top:1px solid var(--stone)}
+h1{font:300 clamp(40px,5vw,64px)/1.02 var(--display);letter-spacing:-.015em;text-wrap:balance}
+h2{font:300 44px/1.05 var(--display);letter-spacing:-.015em;margin-bottom:16px}
+h3{font:400 24px/1.2 var(--display);margin:48px 0 12px}
+h1 em,h2 em,h3 em{font-style:italic}
+p{max-width:68ch;color:var(--bark)}
+p+p{margin-top:12px}
+.lede{font-size:20px;line-height:1.5;color:var(--bark);max-width:60ch;margin-top:20px}
+.label{font:600 12px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--clay)}
+.small{font-size:14px;line-height:1.5;color:var(--bark)}
+.cap{font-size:13px;line-height:1.45;color:var(--clay)}
+code{font:500 13px/1.4 ui-monospace,Menlo,monospace;background:var(--wash);padding:2px 6px;border-radius:5px;color:var(--ink)}
+ul.rules{list-style:none;display:grid;gap:10px;max-width:76ch;margin-top:16px}
+ul.rules li{padding-left:22px;position:relative;color:var(--bark)}
+ul.rules li::before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--dune)}
+ul.rules li b{color:var(--ink);font-weight:500}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.panel{background:var(--mist);border-radius:16px;padding:28px}
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.dodont>div{border-radius:14px;padding:20px 22px;background:var(--mist)}
+.dodont .h{font:600 12px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.dodont .do .h{color:var(--ok)}.dodont .dont .h{color:var(--error)}
+.dodont p{font-size:15px}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px}
+th{font:600 12px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--clay);text-align:left;padding:10px 12px 10px 0}
+td{padding:12px 12px 12px 0;vertical-align:top;color:var(--bark);border-top:1px solid var(--wash)}
+td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+td .eg{color:var(--ink)}
+pre.flow{font:500 13px/1.6 ui-monospace,Menlo,monospace;background:var(--mist);border-radius:14px;padding:20px 22px;margin-top:16px;overflow:auto;color:var(--ink)}
 
-  :root {
-    --v2-navy: #101b2e; --v2-cream: #f7f5ef; --v2-sky: #47cdff; --v2-sand: #c4af8c;
-    --v2-ember: #c96a45; --v2-body: #545c63; --v2-muted: #cbd8df;
-    --hair: #101b2e1a;
-    --display: Ragmont, Georgia, serif; --sans: "Inter Tight", system-ui, sans-serif;
-    --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94); --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1); --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
-    --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #fff; color: var(--v2-body); font: 16px/1.5 var(--sans); }
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 54px; }
-  @media (width < 768px) { .wrap { padding: 0 20px; } }
-  header.top { background: var(--v2-navy); color: var(--v2-muted); padding: 72px 0 56px; }
-  header.top h1 { font: 400 clamp(40px, 7vw, 70px)/1.09 var(--display); color: #fff; margin: 0 0 12px; }
-  header.top h1 em { font-style: italic; }
-  nav.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-  nav.toc a { color: #fff; text-decoration: none; font-size: 14px; padding: 6px 14px; border: 1px solid #ffffff33; border-radius: 999px; }
-  section { padding: 64px 0; border-bottom: 1px solid var(--hair); }
-  section.cream { background: var(--v2-cream); }
-  h2.sec { font: 500 32px/1.3 var(--sans); color: var(--v2-navy); margin: 0 0 6px; }
-  p.note { margin: 0 0 32px; max-width: 70ch; }
-  code { font: 13px/1.4 ui-monospace, Menlo, monospace; background: #101b2e0d; padding: 1px 5px; border-radius: 4px; color: var(--v2-navy); }
+/* Principles */
+.princ{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.princ>div{background:var(--mist);border-radius:16px;padding:28px}
+.princ h3{margin:16px 0 8px;font-size:30px;font-weight:300}
+.princ .n{font:500 13px/1 var(--sans);color:var(--clay)}
 
-  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
-  .sw { border-radius: 20px; overflow: hidden; border: 1px solid var(--hair); background: #fff; }
-  .sw .chip { height: 110px; }
-  .sw .meta { padding: 12px 14px; font-size: 13px; }
-  .sw .meta b { display: block; color: var(--v2-navy); font-weight: 600; }
-  .legacy .sw .chip { height: 56px; }
+/* Colour */
+.ramp{display:grid;grid-template-columns:repeat(10,1fr);gap:10px;margin-top:28px}
+.sw .chip{height:96px;border-radius:12px}
+.sw b{display:block;font:500 14px/1.3 var(--sans);margin-top:10px}
+.sw span{display:block;font-size:12px;line-height:1.45;color:var(--clay)}
+.bar{display:flex;height:56px;border-radius:12px;overflow:hidden;margin-top:16px;font:500 13px/56px var(--sans)}
+.bar>div{padding-left:14px;white-space:nowrap;overflow:hidden}
+.pairs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.pair{border-radius:12px;padding:16px;font-size:14px;line-height:1.35}
+.pair b{display:block;font-weight:500}
 
-  .spec { display: grid; grid-template-columns: 160px 1fr; gap: 6px 24px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--hair); }
-  .spec .lab { font-size: 13px; }
-  .spec .lab b { display: block; color: var(--v2-navy); }
-  .d { font-family: var(--display); color: var(--v2-navy); font-weight: 400; margin: 0; }
-  .s { font-family: var(--sans); color: var(--v2-navy); font-weight: 500; margin: 0; }
-  @media (width < 768px) { .spec { grid-template-columns: 1fr; } }
+/* Type */
+.spec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 24px;align-items:baseline;padding:18px 0;border-top:1px solid var(--wash)}
+.spec .meta{font-size:12px;line-height:1.5;color:var(--clay)}
 
-  .row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; }
-  .radius { width: 160px; height: 110px; background: var(--v2-cream); border: 1px solid var(--hair); display: grid; place-items: end start; padding: 12px; font-size: 13px; }
-  .bp { display: grid; gap: 8px; }
-  .bp div { height: 34px; background: var(--v2-navy); color: #fff; border-radius: 6px; font-size: 13px; display: flex; align-items: center; padding: 0 12px; }
+/* Photos */
+.fam{margin-top:40px}
+.fam-h{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+.fam-h h3{margin:0}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px}
+.ph figure{display:grid;gap:6px}
+.ph img{aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--wash)}
+.ph .chips{display:flex;height:8px;border-radius:4px;overflow:hidden}
+.ph .chips i{flex:1}
+.ph figcaption{font-size:11.5px;line-height:1.4;color:var(--clay)}
+.ph figcaption b{color:var(--ink);font-weight:500}
 
-  .ease { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: center; padding: 10px 0; }
-  .track { height: 36px; background: var(--v2-cream); border-radius: 999px; position: relative; overflow: hidden; }
-  .dot { position: absolute; top: 6px; left: 6px; width: 24px; height: 24px; border-radius: 50%; background: var(--v2-navy); }
-  .ease:hover .dot, .ease:focus-within .dot { left: calc(100% - 30px); }
-  @media (prefers-reduced-motion: reduce) { .dot { transition: none !important; } }
+/* Icons */
+.icons-ui{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-top:16px}
+.icons-ui figure{display:grid;justify-items:center;gap:8px;padding:18px 6px 14px;background:var(--mist);border-radius:12px}
+.icons-ui img{width:24px;height:24px}
+.icons-ui figcaption,.icons-spot figcaption{font-size:12px;color:var(--clay);text-align:center}
+.icons-spot{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:16px}
+.icons-spot figure{display:grid;gap:10px}
+.icons-spot .tile{aspect-ratio:1;background:var(--wash);border-radius:14px;display:grid;place-items:center}
+.icons-spot img{width:72px;height:72px}
+.icons-spot figcaption b{display:block;color:var(--ink);font-weight:500;font-size:14px}
+.keyline{display:grid;grid-template-columns:auto auto;gap:24px;align-items:center;margin-top:16px}
 
-  .btns { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .pill { font: 500 16px/1 var(--sans); padding: 16px 26px; border-radius: 999px; border: 1px solid transparent; text-decoration: none; display: inline-flex; gap: 10px; align-items: center; }
-  .pill.sky { background: var(--v2-sky); color: var(--v2-navy); }
-  .pill.navy { background: var(--v2-navy); color: #fff; }
-  .pill.outline { border-color: var(--v2-navy); color: var(--v2-navy); }
-  .pill.glass { background: #ffffff1f; color: #fff; border-color: #ffffff40; }
-  .quiet { color: var(--v2-navy); text-decoration: underline; text-underline-offset: 4px; }
-  .dark { background: var(--v2-navy); border-radius: 25px; padding: 28px; }
-
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (width < 992px) { .cards { grid-template-columns: 1fr 1fr; } }
-  @media (width < 768px) { .cards { grid-template-columns: 1fr; } }
-  .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; display: block; }
-  .card .k { font-size: 13px; margin: 12px 0 4px; }
-  .card .k i { color: var(--v2-sand); font-style: normal; padding: 0 6px; }
-  .card h3 { font: 500 24px/1.33 var(--sans); color: var(--v2-navy); margin: 0; }
-
-  .cta { background: var(--v2-navy); border-radius: 25px; padding: 56px; color: var(--v2-muted); display: flex; justify-content: space-between; gap: 32px; align-items: center; flex-wrap: wrap; }
-  .cta h3 { font: 400 52px/1.12 var(--display); color: #fff; margin: 0 0 10px; }
-  .disc { width: 56px; height: 56px; border-radius: 50%; background: var(--v2-ember); color: #fff; display: grid; place-items: center; font-size: 22px; }
-  @media (width < 768px) { .cta { padding: 32px; } .cta h3 { font-size: 36px; } }
+/* Motion demos */
+.demo{background:var(--mist);border-radius:16px;padding:24px;display:grid;gap:16px;align-content:start}
+.demo .stage{background:var(--paper);border-radius:12px;min-height:220px;padding:24px;position:relative;overflow:hidden}
+.demo .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.demo .row b{font:500 15px/1.3 var(--sans)}
+.play{all:unset;cursor:pointer;font:500 13px/1 var(--sans);padding:10px 16px;border-radius:999px;background:var(--ink);color:var(--paper);transition:transform var(--dur-press) var(--ease-out)}
+.play:active{transform:scale(.97)}
+.play:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln>span{display:block}
+.demo-h{font:300 34px/1.05 var(--display);letter-spacing:-.015em}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cards div{aspect-ratio:4/5;border-radius:10px;background:var(--wash)}
+.photo{position:absolute;inset:24px;border-radius:10px;overflow:hidden;background:var(--wash)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.scroller{height:220px;overflow:auto;border-radius:12px;background:var(--paper)}
+.scroller .pad{height:200px;display:grid;place-items:center;font-size:13px;color:var(--clay)}
+.scroller .band{height:200px;overflow:hidden;position:relative;margin:0 16px;border-radius:10px}
+.scroller .band img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover}
+.phone{width:200px;height:220px;margin:0 auto;border-radius:20px;background:var(--paper);position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px var(--stone)}
+.phone .bar2{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font:300 15px/1 var(--display)}
+.sheet{position:absolute;inset:40px 0 0;background:var(--paper);padding:14px;display:grid;gap:6px;align-content:start;opacity:0;visibility:hidden}
+.sheet div{font:300 20px/1.2 var(--display)}
+.curve svg{width:100%;height:auto;background:var(--paper);border-radius:12px}
+details.acc{border-top:1px solid var(--stone);border-bottom:1px solid var(--stone);interpolate-size:allow-keywords}
+details.acc summary{list-style:none;cursor:pointer;padding:16px 0;font:400 20px/1.2 var(--display);display:flex;justify-content:space-between}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font:300 24px/1 var(--sans);color:var(--clay);transition:transform var(--dur-ui) var(--ease-out)}
+details.acc[open] summary::after{transform:rotate(45deg)}
+details.acc::details-content{block-size:0;overflow:hidden;transition:block-size var(--dur-ui) var(--ease-in-out),content-visibility var(--dur-ui) allow-discrete}
+details.acc[open]::details-content{block-size:auto}
+details.acc p{padding-bottom:16px;font-size:15px}
+@media (prefers-reduced-motion:reduce){
+  .play,details.acc summary::after,details.acc::details-content{transition:none}
+}
+@media (max-width:980px){
+  .wrap{grid-template-columns:1fr;padding:0 20px}
+  nav.toc{position:static;padding:32px 0 0;grid-template-columns:repeat(3,auto);justify-content:start;gap:4px 18px}
+  nav.toc b{grid-column:1/-1}
+  .princ,.g3,.g4,.pairs{grid-template-columns:1fr 1fr}
+  .ramp{grid-template-columns:repeat(5,1fr)}
+  .dodont,.g2{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<div class="wrap">
+<nav class="toc" aria-label="Sections">
+  <b>Travedise Standard</b>
+  <a href="#principles">Principles</a>
+  <a href="#colour">Colour</a>
+  <a href="#type">Type</a>
+  <a href="#photos">Photos</a>
+  <a href="#icons">Icons</a>
+  <a href="#motion">Motion</a>
+  <a href="#writing">Writing</a>
+</nav>
+<main>
 
-<header class="top">
-  <div class="wrap">
-    <h1>Travedise, <em>by design</em></h1>
-    <p>The v2 design language: tokens, type, layout, motion and the core components. Values mirror <code style="background:#ffffff1a;color:#fff">src/styles/global.css</code>.</p>
-    <nav class="toc">
-      <a href="#colour">Colour</a><a href="#type">Type</a><a href="#layout">Layout</a>
-      <a href="#motion">Motion</a><a href="#components">Components</a>
-    </nav>
+<!-- ============================== PRINCIPLES ============================== -->
+<header id="principles">
+  <p class="label">Travedise Standard · November 2026</p>
+  <h1 style="margin-top:14px">Keep time for <em>what matters.</em></h1>
+  <p class="lede">How Travedise looks, moves and speaks. Every rule on this page comes back to one of three principles. When a case is not covered, ask which choice keeps all three.</p>
+  <div class="princ">
+    <div><span class="n">01</span><h3>Unhurried</h3><p>Nothing rushes. Wide margins, one idea per section, content that arrives slowly while the interface answers at once. We never create urgency: no countdowns, no "only 2 left".</p></div>
+    <div><span class="n">02</span><h3>Real</h3><p>Real places in real light, photos left as they were taken. The colour comes from the photographs; the interface stays a quiet warm neutral so the photos can speak.</p></div>
+    <div><span class="n">03</span><h3>Specific</h3><p>Months, hours, prices and place names, never adjectives. Every word, icon and animation has one job, and you can say what it is.</p></div>
   </div>
 </header>
 
+<!-- ============================== COLOUR ============================== -->
 <section id="colour">
-  <div class="wrap">
-    <h2 class="sec">Colour</h2>
-    <p class="note">Live pages sit inside <code>.v2</code> and use only these. Sections pick one surface: white, cream or navy. One sky button per view.</p>
-    <div class="swatches">
-      <div class="sw"><div class="chip" style="background:#101b2e"></div><div class="meta"><b>v2-navy</b>#101b2e · dark sections, headings, primary buttons</div></div>
-      <div class="sw"><div class="chip" style="background:#f7f5ef"></div><div class="meta"><b>v2-cream</b>#f7f5ef · warm alternate surface</div></div>
-      <div class="sw"><div class="chip" style="background:#ffffff"></div><div class="meta"><b>white</b>#ffffff · default surface</div></div>
-      <div class="sw"><div class="chip" style="background:#47cdff"></div><div class="meta"><b>v2-sky</b>#47cdff · accent, the CTA fill</div></div>
-      <div class="sw"><div class="chip" style="background:#c4af8c"></div><div class="meta"><b>v2-sand</b>#c4af8c · step numerals, fact dots</div></div>
-      <div class="sw"><div class="chip" style="background:#c96a45"></div><div class="meta"><b>v2-ember</b>#c96a45 · closing CTA arrow disc only</div></div>
-      <div class="sw"><div class="chip" style="background:#545c63"></div><div class="meta"><b>v2-body</b>#545c63 · body copy on light</div></div>
-      <div class="sw"><div class="chip" style="background:#cbd8df"></div><div class="meta"><b>v2-muted</b>#cbd8df · body copy on navy</div></div>
-    </div>
-    <p class="note" style="margin:40px 0 16px">Legacy Webflow palette — still in <code>@theme</code>, not for new work.</p>
-    <div class="swatches legacy">
-      <div class="sw"><div class="chip" style="background:#091733"></div><div class="meta"><b>navy</b>#091733</div></div>
-      <div class="sw"><div class="chip" style="background:#656e7f"></div><div class="meta"><b>slate</b>#656e7f</div></div>
-      <div class="sw"><div class="chip" style="background:#a0f751"></div><div class="meta"><b>lime</b>#a0f751</div></div>
-      <div class="sw"><div class="chip" style="background:#f7f7f7"></div><div class="meta"><b>surface</b>#f7f7f7</div></div>
-    </div>
+  <h2>Colour</h2>
+  <p>One warm hue (OKLCH hue 75) runs from paper to ink, so every neutral belongs to the same family. The page is an off-white only just warmer than white. There is no brand accent: hierarchy comes from ink, and colour comes from photographs.</p>
+  <div class="ramp">
+    <div class="sw"><div class="chip" style="background:var(--paper);box-shadow:inset 0 0 0 1px var(--stone)"></div><b>paper</b><span>#FCFBF8 · L .988<br>Page background</span></div>
+    <div class="sw"><div class="chip" style="background:var(--mist)"></div><b>mist</b><span>#F7F4F0 · L .968<br>Alternate section</span></div>
+    <div class="sw"><div class="chip" style="background:var(--wash)"></div><b>wash</b><span>#EFEAE4 · L .94<br>Panels, tags, tiles</span></div>
+    <div class="sw"><div class="chip" style="background:var(--sand)"></div><b>sand</b><span>#E5DFD6 · L .905<br>Pressed, selected</span></div>
+    <div class="sw"><div class="chip" style="background:var(--stone)"></div><b>stone</b><span>#D0C7BC · L .835<br>Allowed hairlines</span></div>
+    <div class="sw"><div class="chip" style="background:var(--dune)"></div><b>dune</b><span>#8E8578 · L .62<br>Field outlines 3.5:1</span></div>
+    <div class="sw"><div class="chip" style="background:var(--clay)"></div><b>clay</b><span>#6F665A · L .515<br>Captions, meta 5.4:1</span></div>
+    <div class="sw"><div class="chip" style="background:var(--bark)"></div><b>bark</b><span>#4F4639 · L .40<br>Body copy 8.9:1</span></div>
+    <div class="sw"><div class="chip" style="background:var(--umber)"></div><b>umber</b><span>#30271A · L .28<br>Panels on dark</span></div>
+    <div class="sw"><div class="chip" style="background:var(--ink)"></div><b>ink</b><span>#1C1204 · L .19<br>Headings, buttons 17.9:1</span></div>
   </div>
+  <div class="grid g2" style="margin-top:16px;max-width:520px">
+    <div class="sw"><div class="chip" style="height:48px;background:var(--error)"></div><b>error</b><span>#A04130 · 6.2:1. Field errors, always with an icon and a sentence.</span></div>
+    <div class="sw"><div class="chip" style="height:48px;background:var(--ok)"></div><b>ok</b><span>#3D7149 · 5.6:1. Sent and saved confirmations only.</span></div>
+  </div>
+
+  <h3>Proportion on a page</h3>
+  <div class="bar"><div style="width:80%;background:var(--mist)">80% paper, mist, wash</div><div style="width:15%;background:var(--wash);color:var(--bark)">15% photos</div><div style="width:5%;background:var(--ink);color:var(--paper)">5%</div></div>
+  <p class="small" style="margin-top:10px">Ink fills (primary buttons, one dark band) stay near 5% of a screen. Two dark bands in a row read as a different site.</p>
+
+  <h3>Text on each surface</h3>
+  <div class="pairs">
+    <div class="pair" style="background:var(--paper);box-shadow:inset 0 0 0 1px var(--wash)"><b style="color:var(--ink)">ink on paper 17.9</b><span style="color:var(--bark)">bark 8.9</span><br><span style="color:var(--clay)">clay 5.4</span></div>
+    <div class="pair" style="background:var(--wash)"><b style="color:var(--ink)">ink on wash 15.5</b><span style="color:var(--bark)">bark 7.7</span><br><span style="color:var(--clay)">clay 4.7</span></div>
+    <div class="pair" style="background:var(--ink)"><b style="color:var(--paper)">paper on ink 17.9</b><span style="color:var(--stone)">stone 11.1</span><br><span style="color:var(--dune)">dune 5.1</span></div>
+    <div class="pair" style="background:var(--umber)"><b style="color:var(--paper)">paper on umber 14</b><span style="color:var(--sand)">sand 11</span></div>
+  </div>
+
+  <h3>Choosing a colour</h3>
+<pre class="flow">What background?
+ ├── The page → paper
+ ├── A section that must read as separate, with no line → mist
+ ├── A panel, tag, icon tile or photo placeholder → wash
+ └── The one closing band or CTA card on a page → ink (umber for panels inside it)
+
+What text colour?
+ ├── Headings, buttons, links, anything you click → ink
+ ├── Paragraphs and descriptions → bark
+ ├── Captions, meta, labels, the line under a field → clay   (never smaller than 13px)
+ └── On ink → paper, then stone, then dune
+
+A line?
+ ├── Form field, select, outline chip → dune (needs 3:1)
+ ├── Accordion divider, sticky header edge, selected tab → stone
+ └── Anything else → no line. Use space, mist or wash.</pre>
+
+  <div class="dodont">
+    <div class="do"><div class="h">Do</div><p>Separate sections with space or a mist background. Let a photograph carry the colour of a page.</p></div>
+    <div class="dont"><div class="h">Don't</div><p>Add an accent colour, a gradient, orange or yellow. Don't tint, filter or colour-grade photos to match the UI. Don't use opacity to make a lighter text colour; use the next token.</p></div>
+  </div>
+  <p class="cap" style="margin-top:14px">Tokens: <code>--paper</code> <code>--mist</code> <code>--wash</code> <code>--sand</code> <code>--stone</code> <code>--dune</code> <code>--clay</code> <code>--bark</code> <code>--umber</code> <code>--ink</code> <code>--error</code> <code>--ok</code> in <code>src/styles/global.css</code>. Never a raw hex in a component.</p>
 </section>
 
-<section id="type" class="cream">
-  <div class="wrap">
-    <h2 class="sec">Type</h2>
-    <p class="note">Ragmont for display and the italic ending; Inter Tight 400/500/600 for everything else. Heading sizes shrink by themselves at each breakpoint (desktop sizes shown).</p>
-    <div class="spec"><div class="lab"><b>Display h1</b>Ragmont · 70 / 109%<br>60 · 45 · 36</div><p class="d" style="font-size:70px;line-height:1.09">Which coast, <em>and when</em></p></div>
-    <div class="spec"><div class="lab"><b>Display h2</b>Ragmont · 52 / 112%<br>45 · 36 · 32</div><p class="d" style="font-size:52px;line-height:1.12">Want Ella <em>in your</em> route?</p></div>
-    <div class="spec"><div class="lab"><b>h3</b>40 / 112.5%<br>36 · 32 · 28</div><p class="s" style="font-size:40px;line-height:1.125">Two monsoons, two coasts</p></div>
-    <div class="spec"><div class="lab"><b>h4</b>32 / 144%<br>28 · 28 · 25</div><p class="s" style="font-size:32px;line-height:1.44">A town for walking.</p></div>
-    <div class="spec"><div class="lab"><b>h5</b>24 / 133%</div><p class="s" style="font-size:24px;line-height:1.33">Hill Country &amp; Beach</p></div>
-    <div class="spec"><div class="lab"><b>h6</b>20 / 150%</div><p class="s" style="font-size:20px;line-height:1.5">Best months</p></div>
-    <div class="spec"><div class="lab"><b>body-lg</b>Inter Tight 400 · 18 / 150%</div><p style="font-size:18px;margin:0;max-width:62ch">There are two rainy seasons in Sri Lanka, and they take turns. That is good news: in almost any month, one side of the island is dry.</p></div>
-    <div class="spec"><div class="lab"><b>body</b>Inter Tight 400 · 16 / 150%</div><p style="margin:0;max-width:62ch">Ella is a single street of cafés and guesthouses in a gap between two ridges, looking south over the lowlands.</p></div>
+<!-- ============================== TYPE ============================== -->
+<section id="type">
+  <h2>Type</h2>
+  <p>A serif for what we say, a grotesk for what you do. Headings are Newsreader Light, standing in for Nocturne Serif until its web licence is settled. Everything else is Schibsted Grotesk.</p>
+  <div style="margin-top:24px">
+    <div class="spec"><div class="meta">Display · 48 → 40<br>--fs-display</div><div style="font:300 48px/1.04 var(--display);letter-spacing:-.015em">Keep time for <em>what matters.</em></div></div>
+    <div class="spec"><div class="meta">H1 · 46.5 → 44<br>--fs-h1</div><div style="font:300 46px/1.04 var(--display);letter-spacing:-.015em">Tour <em>packages.</em></div></div>
+    <div class="spec"><div class="meta">H2 · 36 → 28<br>--fs-h2</div><div style="font:300 36px/1.05 var(--display)">From the tea to <em>the sea.</em></div></div>
+    <div class="spec"><div class="meta">H3 · 30.5 → 22.5<br>--fs-h3</div><div style="font:300 30px/1.1 var(--display)">Hill Country &amp; Beach</div></div>
+    <div class="spec"><div class="meta">Lede · 20 → 18.5<br>--fs-lede</div><div style="font:400 20px/1.5 var(--sans);color:var(--bark);max-width:44ch">Every tour is private, and every tour is a starting point.</div></div>
+    <div class="spec"><div class="meta">Body · 18<br>--fs-body</div><div style="font:400 18px/1.6 var(--sans);color:var(--bark);max-width:64ch">Nine days covers the hills and the coast without rushing. Shorter trips usually mean dropping a stop rather than moving faster.</div></div>
+    <div class="spec"><div class="meta">Small · 15<br>--fs-small</div><div style="font:400 15px/1.55 var(--sans);color:var(--bark)">9 days · Sri Lanka · From US$ 2,500 per person</div></div>
+    <div class="spec"><div class="meta">Caption · 13 (minimum)<br>--fs-cap</div><div style="font:500 13px/1.4 var(--sans);color:var(--clay)">The 9.30 from Kandy, seen from the tea above the bridge.</div></div>
   </div>
+  <ul class="rules">
+    <li><b>One italic phrase per heading, at the end.</b> "Which coast, <em>and when</em>". It is the house signature; two italic phrases cancel it out. Never italic for emphasis in body copy.</li>
+    <li><b>Headings are weight 300.</b> Never bold a serif heading. Grotesk uses 400 for reading, 500 for labels and buttons, 600 only for small uppercase labels.</li>
+    <li><b>Nothing under 13px.</b> Body is 18px; lines stop at 64 characters (<code>max-width:64ch</code>).</li>
+    <li><b>Balance headings, pretty paragraphs.</b> <code>text-wrap:balance</code> on headings, <code>pretty</code> on paragraphs.</li>
+    <li><b>Numbers that line up use tabular figures.</b> Prices, days and times in lists: <code>font-variant-numeric:tabular-nums</code>.</li>
+    <li><b>Sentence case everywhere</b>, including buttons and navigation. Uppercase only for 12–13px labels, with .06em tracking.</li>
+  </ul>
 </section>
 
-<section id="layout">
-  <div class="wrap">
-    <h2 class="sec">Layout</h2>
-    <p class="note"><code>&lt;Section surface&gt;</code> = background + <code>gutter-v2</code> (54px at 1440) + <code>container-v2</code> (1280px). Desktop-first: write desktop, override with <code>max-lg:</code> <code>max-md:</code> <code>max-sm:</code>.</p>
-    <div class="row" style="margin-bottom:32px">
-      <div class="radius" style="border-radius:20px"><span><b style="color:var(--v2-navy)">rounded-card</b><br>20px · cards, photos</span></div>
-      <div class="radius" style="border-radius:25px;width:220px"><span><b style="color:var(--v2-navy)">rounded-panel</b><br>25px · big panels</span></div>
-      <div class="radius" style="border-radius:999px;height:56px;place-items:center"><span><b style="color:var(--v2-navy)">pill</b> · buttons</span></div>
-    </div>
-    <div class="bp">
-      <div style="width:100%">default — desktop, column 1280px</div>
-      <div style="width:77%">max-lg: ≤ 991px</div>
-      <div style="width:60%">max-md: ≤ 767px · card grids become a .v2-rail</div>
-      <div style="width:37%">max-sm: ≤ 479px</div>
+<!-- ============================== PHOTOS ============================== -->
+<section id="photos">
+  <h2>Photos, chosen by colour</h2>
+  <p>A page feels calm when its photos share a colour family. Every photo the site uses is measured by <code>pnpm photo-colours</code> and written to <code>src/data/photo-colours.json</code>: its family, warmth, lightness, how busy it is, five main colours, and whether white text can sit in the bottom-left.</p>
+
+  <h3>Match the family to the content</h3>
+  <table>
+    <tr><th>Content</th><th>First family</th><th>Pairs well with</th></tr>
+    <tr><td>Hill country, tea, wildlife, rainforest</td><td>green</td><td>earth</td></tr>
+    <tr><td>Coasts, the Maldives, whales, beaches</td><td>sea</td><td>earth (sand), dusk for evenings</td></tr>
+    <tr><td>Culture, temples, ruins, food, people</td><td>earth</td><td>dusk, green</td></tr>
+    <tr><td>Weddings, honeymoons, evenings, festivals</td><td>earth or dusk</td><td>sea</td></tr>
+    <tr><td>Closing bands, night scenes</td><td>night</td><td>dusk</td></tr>
+    <tr><td>Services, vehicles, planning</td><td>earth</td><td>whatever the trip shown is</td></tr>
+  </table>
+
+  <h3>Rules</h3>
+  <ul class="rules">
+    <li><b>Photos side by side share a family, or at least a temperature.</b> In a card row, keep <code>warmth</code> on the same side of 0. A blue Maldives card next to two brown temple cards looks like a mistake.</li>
+    <li><b>One loud photo per view.</b> Only one photo on screen with <code>colourfulness</code> above 0.7. The rest calm it down.</li>
+    <li><b>Pair busy with calm.</b> Next to a photo with <code>busy</code> above 0.55, use one under 0.4.</li>
+    <li><b>Text over a photo needs <code>whiteText: true</code></b> (the bottom-left is dark enough), plus the standard scrim. If it is false, move the text beside the photo instead.</li>
+    <li><b>Never tint, filter or grade a photo to fit.</b> Fix white balance only. If the colour is wrong for the page, choose another photo.</li>
+    <li><b>A section takes the colour of its photo, not the reverse.</b> Backgrounds stay paper, mist or wash whatever the photo.</li>
+    <li><b>People doing things, not posing.</b> Real places, named. No AI-generated places, ever.</li>
+    <li><b>Pinned families.</b> When the eye disagrees with the numbers, pin the family in <code>scripts/photo-colours.mjs</code> with a reason.</li>
+  </ul>
+<pre class="flow">Choosing a photo for a slot
+ 1. Which family suits the content?          → the table above
+ 2. Which photos sit next to it?             → same family, or same side of warmth 0
+ 3. Is there already a loud photo in view?   → then choose colourfulness under 0.7
+ 4. Will text sit on it?                     → whiteText must be true
+ 5. Is it already a hero elsewhere?          → use it as a figure, not a hero</pre>
+
+  <!-- photos:start -->
+  <p class="cap">Written by <code>pnpm photo-colours</code>. Darkest first in each family.</p>
+  <div class="fam" id="fam-green">
+    <div class="fam-h"><h3>Green</h3><span class="small">Forest, tea, grass and wildlife.</span><span class="cap">19 photos</span></div>
+    <div class="ph-grid">
+      <figure class="ph"><img src="../src/assets/stock/teaBowl.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#3a4d2f;flex:0.24"></i><i style="background:#5b663f;flex:0.24"></i><i style="background:#263523;flex:0.21"></i><i style="background:#161d17;flex:0.19"></i><i style="background:#838359;flex:0.12"></i></span><figcaption><b>teaBowl</b><br>warmth 0.41 · busy 0.57 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/train-red.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#343321;flex:0.29"></i><i style="background:#4f4d33;flex:0.27"></i><i style="background:#6e6e4a;flex:0.21"></i><i style="background:#191a0f;flex:0.15"></i><i style="background:#a7a07c;flex:0.07"></i></span><figcaption><b>trainRed</b><br>warmth 0.98 · busy 0.6 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/arches-tea.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#3f4434;flex:0.27"></i><i style="background:#646941;flex:0.27"></i><i style="background:#1f2222;flex:0.22"></i><i style="background:#9d9473;flex:0.17"></i><i style="background:#e6e5d4;flex:0.08"></i></span><figcaption><b>archesTea</b><br>warmth 0.92 · busy 0.62 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/sigAerial.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#383d18;flex:0.29"></i><i style="background:#1a1e0b;flex:0.23"></i><i style="background:#63643a;flex:0.2"></i><i style="background:#96a489;flex:0.15"></i><i style="background:#f0f6f7;flex:0.13"></i></span><figcaption><b>sigAerial</b><br>warmth 0.49 · busy 0.42 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/groupTable.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#939172;flex:0.25"></i><i style="background:#4a4326;flex:0.23"></i><i style="background:#6e6444;flex:0.22"></i><i style="background:#242510;flex:0.17"></i><i style="background:#c9cfb2;flex:0.13"></i></span><figcaption><b>groupTable</b><br>warmth 0.97 · busy 0.54 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/sigiriya.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#66613e;flex:0.29"></i><i style="background:#49492a;flex:0.26"></i><i style="background:#dddee2;flex:0.17"></i><i style="background:#2c2a16;flex:0.14"></i><i style="background:#9b896c;flex:0.13"></i></span><figcaption><b>sigiriya</b><br>warmth 1 · busy 0.39 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/teaMist.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#2c4217;flex:0.26"></i><i style="background:#4b6c2a;flex:0.24"></i><i style="background:#f0f2ee;flex:0.2"></i><i style="background:#111b09;flex:0.18"></i><i style="background:#85a471;flex:0.12"></i></span><figcaption><b>teaMist</b><br>warmth -0.98 · busy 0.57 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/train-blue.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#4a543c;flex:0.29"></i><i style="background:#767c5d;flex:0.23"></i><i style="background:#2b3328;flex:0.21"></i><i style="background:#b6af57;flex:0.16"></i><i style="background:#c5d4f2;flex:0.11"></i></span><figcaption><b>trainBlue</b><br>warmth 0.46 · busy 0.49 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/monksField.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#508a40;flex:0.26"></i><i style="background:#6da862;flex:0.26"></i><i style="background:#3b623d;flex:0.21"></i><i style="background:#463825;flex:0.14"></i><i style="background:#767364;flex:0.12"></i></span><figcaption><b>monksField</b><br>warmth -0.06 · busy 0.39 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/mist.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#1a2d1b;flex:0.36"></i><i style="background:#dfebe3;flex:0.25"></i><i style="background:#3a4e45;flex:0.14"></i><i style="background:#a1bac2;flex:0.13"></i><i style="background:#63797e;flex:0.12"></i></span><figcaption><b>mist</b> (pinned)<br>warmth -0.96 · busy 0.24 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/slothBear.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#708139;flex:0.35"></i><i style="background:#9baa68;flex:0.24"></i><i style="background:#4d5d2c;flex:0.19"></i><i style="background:#141710;flex:0.13"></i><i style="background:#d9dfcf;flex:0.09"></i></span><figcaption><b>slothBear</b><br>warmth 0.93 · busy 0.48 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/tea-pluckers.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#767e48;flex:0.33"></i><i style="background:#4d5f27;flex:0.25"></i><i style="background:#b19b52;flex:0.19"></i><i style="background:#243425;flex:0.11"></i><i style="background:#9dcfe6;flex:0.11"></i></span><figcaption><b>teaPluckers</b><br>warmth 0.41 · busy 0.45 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/teaAerial.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#42885e;flex:0.29"></i><i style="background:#2e684b;flex:0.24"></i><i style="background:#254530;flex:0.19"></i><i style="background:#e1dfdc;flex:0.16"></i><i style="background:#73ad80;flex:0.13"></i></span><figcaption><b>teaAerial</b><br>warmth -0.9 · busy 0.34 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/foodLeaf.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#adb851;flex:0.26"></i><i style="background:#4f7323;flex:0.22"></i><i style="background:#ac8e47;flex:0.22"></i><i style="background:#3a3711;flex:0.17"></i><i style="background:#806035;flex:0.14"></i></span><figcaption><b>foodLeaf</b><br>warmth 0.99 · busy 0.55 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/coachRoad.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#bbb9b8;flex:0.26"></i><i style="background:#505e51;flex:0.22"></i><i style="background:#878889;flex:0.22"></i><i style="background:#2a322d;flex:0.15"></i><i style="background:#5a8c38;flex:0.14"></i></span><figcaption><b>coachRoad</b><br>warmth -0.17 · busy 0.59 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/leopard.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#858838;flex:0.3"></i><i style="background:#a9ae51;flex:0.27"></i><i style="background:#5c5e2f;flex:0.19"></i><i style="background:#303322;flex:0.13"></i><i style="background:#dcd4b6;flex:0.11"></i></span><figcaption><b>leopard</b><br>warmth 0.98 · busy 0.5 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/waterfall.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#adb5a1;flex:0.23"></i><i style="background:#e4e2d5;flex:0.23"></i><i style="background:#325039;flex:0.22"></i><i style="background:#122826;flex:0.2"></i><i style="background:#638365;flex:0.12"></i></span><figcaption><b>waterfall</b><br>warmth -0.52 · busy 0.4 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/foodBfast.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#bc8649;flex:0.25"></i><i style="background:#e4cea5;flex:0.25"></i><i style="background:#666325;flex:0.21"></i><i style="background:#32330e;flex:0.17"></i><i style="background:#84ab2c;flex:0.12"></i></span><figcaption><b>foodBfast</b><br>warmth 0.99 · busy 0.53 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/kingfisher.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#5e7a4e;flex:0.3"></i><i style="background:#7e9f5f;flex:0.27"></i><i style="background:#a4c258;flex:0.23"></i><i style="background:#d9e889;flex:0.15"></i><i style="background:#312d29;flex:0.05"></i></span><figcaption><b>kingfisher</b><br>warmth -0.08 · busy 0.43 · no text on it</figcaption></figure>
     </div>
   </div>
-</section>
-
-<section id="motion" class="cream">
-  <div class="wrap">
-    <h2 class="sec">Motion</h2>
-    <p class="note">Hover a row to play its curve (600ms). Scroll-in uses <code>&lt;Reveal from="rise"&gt;</code>. Hover lifts only with a real pointer; larger motion respects reduced motion.</p>
-    <div class="ease"><span><b style="color:var(--v2-navy)">ease-out-quart</b><br>entrances</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-out-quart)"></div></div></div>
-    <div class="ease"><span><b style="color:var(--v2-navy)">ease-out-quint</b><br>entrances, longer</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-out-quint)"></div></div></div>
-    <div class="ease"><span><b style="color:var(--v2-navy)">ease-out-quad</b><br>button press</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-out-quad)"></div></div></div>
-    <div class="ease"><span><b style="color:var(--v2-navy)">ease-in-out-quart</b><br>moves on screen</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-in-out-quart)"></div></div></div>
-    <div class="ease"><span><b style="color:var(--v2-navy)">ease-in-out-sine</b><br>loops</span><div class="track" tabindex="0"><div class="dot" style="transition:left .6s var(--ease-in-out-sine)"></div></div></div>
-  </div>
-</section>
-
-<section id="components">
-  <div class="wrap">
-    <h2 class="sec">Components</h2>
-    <p class="note">Samples of the core parts in <code>src/components/v2/</code>. Reuse them before writing new markup.</p>
-
-    <p class="note" style="margin-bottom:12px"><b style="color:var(--v2-navy)">buttons/pill-link</b> — sky, navy, outline; glass on photos · <b style="color:var(--v2-navy)">quiet-link</b></p>
-    <div class="btns" style="margin-bottom:20px">
-      <a class="pill sky" href="#">Plan your trip ↗</a>
-      <a class="pill navy" href="#">See the itinerary</a>
-      <a class="pill outline" href="#">All journeys</a>
-      <a class="quiet" href="#">Browse journeys ↗</a>
-    </div>
-    <div class="dark btns" style="margin-bottom:48px">
-      <a class="pill glass" href="#">Travel notes</a>
-      <span style="color:var(--v2-muted)">On navy, body copy is v2-muted.</span>
-    </div>
-
-    <p class="note" style="margin-bottom:12px"><b style="color:var(--v2-navy)">Cards</b> — photo with rounded-card, a fact line with a sand dot, the title</p>
-    <div class="cards" style="margin-bottom:48px">
-      <div class="card"><img src="../public/v2/6bbb9c964adcfd7bed8e04ad714c5daa.jpg" alt="Coconut palms on a red headland above the sea"><p class="k">Planning<i>•</i>6 min read</p><h3>Which coast, and when</h3></div>
-      <div class="card"><img src="../public/v2/c5670454fa292ca33ce909311116223f.jpg" alt="A blue train crossing the Nine Arch Bridge through the trees"><p class="k">Hill country<i>•</i>2 nights</p><h3>Ella</h3></div>
-      <div class="card"><div style="aspect-ratio:4/3;border-radius:20px;background:var(--v2-cream);display:grid;place-items:center;font-size:13px">photo slot · 4:3</div><p class="k">9 days<i>•</i>Private, tailor-made</p><h3>Hill Country &amp; Beach</h3></div>
-    </div>
-
-    <p class="note" style="margin-bottom:12px"><b style="color:var(--v2-navy)">contained-cta</b> — navy panel; italic ending in the heading; ember disc only on the closing CTA</p>
-    <div class="cta">
-      <div><h3>Tell us your dates, <em>we will pick</em> the coast.</h3><p style="margin:0;max-width:52ch">A travel designer comes back with a first route shaped around the weather you will actually get.</p></div>
-      <div class="btns"><a class="pill sky" href="#">Plan your trip</a><span class="disc">↗</span></div>
+  <div class="fam" id="fam-sea">
+    <div class="fam-h"><h3>Sea and sky</h3><span class="small">Water, reef and open sky.</span><span class="cap">23 photos</span></div>
+    <div class="ph-grid">
+      <figure class="ph"><img src="../src/assets/stock/whaleShark.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#17252a;flex:0.31"></i><i style="background:#1a333b;flex:0.25"></i><i style="background:#1b4b54;flex:0.18"></i><i style="background:#1a727e;flex:0.15"></i><i style="background:#36a7b6;flex:0.1"></i></span><figcaption><b>whaleShark</b><br>warmth -1 · busy 0.26 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mask.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#305565;flex:0.25"></i><i style="background:#120b02;flex:0.24"></i><i style="background:#32302f;flex:0.21"></i><i style="background:#a0c1c7;flex:0.16"></i><i style="background:#937a68;flex:0.15"></i></span><figcaption><b>mask</b><br>warmth -0.1 · busy 0.63 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvManta.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#205b76;flex:0.49"></i><i style="background:#1d4b5f;flex:0.2"></i><i style="background:#597992;flex:0.17"></i><i style="background:#121e26;flex:0.11"></i><i style="background:#94adc7;flex:0.05"></i></span><figcaption><b>mvManta</b><br>warmth -1 · busy 0.39 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvRay.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#00344e;flex:0.28"></i><i style="background:#2790ab;flex:0.2"></i><i style="background:#085f7d;flex:0.18"></i><i style="background:#001a29;flex:0.17"></i><i style="background:#6dc1d5;flex:0.17"></i></span><figcaption><b>mvRay</b><br>warmth -1 · busy 0.26 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvIslet.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#014b7f;flex:0.28"></i><i style="background:#126170;flex:0.28"></i><i style="background:#5d9da0;flex:0.2"></i><i style="background:#0d6d99;flex:0.17"></i><i style="background:#cdddd8;flex:0.07"></i></span><figcaption><b>mvIslet</b><br>warmth -0.97 · busy 0.24 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/whaleTail.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#223140;flex:0.23"></i><i style="background:#80a1be;flex:0.22"></i><i style="background:#36506a;flex:0.21"></i><i style="background:#557594;flex:0.17"></i><i style="background:#b7cdde;flex:0.17"></i></span><figcaption><b>whaleTail</b><br>warmth -1 · busy 0.44 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/carSedan.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#73a5cc;flex:0.27"></i><i style="background:#377daa;flex:0.23"></i><i style="background:#3c4e56;flex:0.22"></i><i style="background:#adbfd1;flex:0.15"></i><i style="background:#1b1e1e;flex:0.13"></i></span><figcaption><b>carSedan</b><br>warmth -1 · busy 0.32 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/sigPath.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#087bdb;flex:0.36"></i><i style="background:#717130;flex:0.21"></i><i style="background:#30360d;flex:0.17"></i><i style="background:#c9bc7f;flex:0.17"></i><i style="background:#6dacee;flex:0.1"></i></span><figcaption><b>sigPath</b><br>warmth -0.6 · busy 0.41 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvTurtle.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#0a5888;flex:0.32"></i><i style="background:#d7d9c8;flex:0.21"></i><i style="background:#557573;flex:0.18"></i><i style="background:#98a696;flex:0.18"></i><i style="background:#1a2219;flex:0.1"></i></span><figcaption><b>mvTurtle</b><br>warmth -0.72 · busy 0.59 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/goldTemple.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#80a0b7;flex:0.51"></i><i style="background:#506d66;flex:0.18"></i><i style="background:#34362a;flex:0.17"></i><i style="background:#b07543;flex:0.1"></i><i style="background:#dab688;flex:0.03"></i></span><figcaption><b>goldTemple</b><br>warmth -0.33 · busy 0.34 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvPlaneWater.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#206c97;flex:0.27"></i><i style="background:#48ccca;flex:0.21"></i><i style="background:#095180;flex:0.19"></i><i style="background:#5d879d;flex:0.18"></i><i style="background:#32aab2;flex:0.14"></i></span><figcaption><b>mvPlaneWater</b><br>warmth -0.95 · busy 0.22 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/bundeena.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#5e7a83;flex:0.33"></i><i style="background:#aea58e;flex:0.3"></i><i style="background:#1f241e;flex:0.14"></i><i style="background:#438ce0;flex:0.13"></i><i style="background:#6aa6ec;flex:0.09"></i></span><figcaption><b>bundeena</b><br>warmth -0.58 · busy 0.29 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvPath.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#aec5dc;flex:0.28"></i><i style="background:#81b2da;flex:0.24"></i><i style="background:#815441;flex:0.22"></i><i style="background:#392318;flex:0.15"></i><i style="background:#3187a1;flex:0.12"></i></span><figcaption><b>mvPath</b><br>warmth -0.31 · busy 0.27 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/whale.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#5e93aa;flex:0.39"></i><i style="background:#8dadbb;flex:0.32"></i><i style="background:#49697d;flex:0.17"></i><i style="background:#202f3c;flex:0.07"></i><i style="background:#f0f1ed;flex:0.05"></i></span><figcaption><b>whale</b><br>warmth -1 · busy 0.36 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvHouse2.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#93bdd7;flex:0.27"></i><i style="background:#5890c7;flex:0.24"></i><i style="background:#5e9c8e;flex:0.23"></i><i style="background:#487262;flex:0.19"></i><i style="background:#293630;flex:0.07"></i></span><figcaption><b>mvHouse2</b><br>warmth -0.97 · busy 0.36 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/palms.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#43aed2;flex:0.31"></i><i style="background:#558681;flex:0.29"></i><i style="background:#5a513f;flex:0.17"></i><i style="background:#d6c3a0;flex:0.13"></i><i style="background:#c6855e;flex:0.1"></i></span><figcaption><b>palms</b><br>warmth -0.39 · busy 0.48 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/turtleBeach.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#d5c0b3;flex:0.29"></i><i style="background:#b8a69c;flex:0.23"></i><i style="background:#3d6b8e;flex:0.17"></i><i style="background:#114163;flex:0.15"></i><i style="background:#758f9c;flex:0.15"></i></span><figcaption><b>turtleBeach</b><br>warmth -0.32 · busy 0.25 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/galleRamp.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#6b5f40;flex:0.23"></i><i style="background:#749bcb;flex:0.23"></i><i style="background:#a1bad8;flex:0.23"></i><i style="background:#cfdae4;flex:0.2"></i><i style="background:#423c2c;flex:0.11"></i></span><figcaption><b>galleRamp</b><br>warmth -0.46 · busy 0.22 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvBoatIsland.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#0da0bb;flex:0.4"></i><i style="background:#74b8d4;flex:0.37"></i><i style="background:#15749e;flex:0.11"></i><i style="background:#737545;flex:0.06"></i><i style="background:#d9ddd6;flex:0.05"></i></span><figcaption><b>mvBoatIsland</b><br>warmth -0.94 · busy 0.2 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/coconut-hill.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#b4d9ef;flex:0.3"></i><i style="background:#8dbbcb;flex:0.25"></i><i style="background:#728877;flex:0.18"></i><i style="background:#dda97f;flex:0.16"></i><i style="background:#414e37;flex:0.12"></i></span><figcaption><b>coconutHill</b><br>warmth -0.39 · busy 0.53 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvSandbar.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#e1e2de;flex:0.31"></i><i style="background:#23abb3;flex:0.26"></i><i style="background:#1d99b2;flex:0.21"></i><i style="background:#147ba2;flex:0.12"></i><i style="background:#9fbab7;flex:0.1"></i></span><figcaption><b>mvSandbar</b><br>warmth -1 · busy 0.09 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/stilt1.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#d7d7d1;flex:0.29"></i><i style="background:#6bb2db;flex:0.25"></i><i style="background:#cbbaa2;flex:0.23"></i><i style="background:#838c84;flex:0.15"></i><i style="background:#434027;flex:0.08"></i></span><figcaption><b>stilt1</b><br>warmth -0.22 · busy 0.42 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvHouses.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#d0e2e5;flex:0.3"></i><i style="background:#acc4c4;flex:0.29"></i><i style="background:#5ac5b6;flex:0.21"></i><i style="background:#6e816c;flex:0.12"></i><i style="background:#213834;flex:0.08"></i></span><figcaption><b>mvHouses</b><br>warmth -0.78 · busy 0.35 · no text on it</figcaption></figure>
     </div>
   </div>
+  <div class="fam" id="fam-earth">
+    <div class="fam-h"><h3>Earth</h3><span class="small">Stone, sand, wood, skin and ruins: warm and low in colour.</span><span class="cap">30 photos</span></div>
+    <div class="ph-grid">
+      <figure class="ph"><img src="../src/assets/stock/gopuram.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#695e46;flex:0.23"></i><i style="background:#887d60;flex:0.23"></i><i style="background:#020201;flex:0.22"></i><i style="background:#120e0a;flex:0.2"></i><i style="background:#473525;flex:0.12"></i></span><figcaption><b>gopuram</b><br>warmth 0.99 · busy 0.44 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/groupEat.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#1f1b14;flex:0.27"></i><i style="background:#332a1a;flex:0.25"></i><i style="background:#5b3d25;flex:0.2"></i><i style="background:#866042;flex:0.18"></i><i style="background:#b6997d;flex:0.09"></i></span><figcaption><b>groupEat</b><br>warmth 0.99 · busy 0.38 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/vanHills.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#0b1310;flex:0.27"></i><i style="background:#172725;flex:0.25"></i><i style="background:#8fa0b5;flex:0.19"></i><i style="background:#5d727c;flex:0.15"></i><i style="background:#35433a;flex:0.14"></i></span><figcaption><b>vanHills</b><br>warmth -0.63 · busy 0.33 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/foodRice.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#190f04;flex:0.35"></i><i style="background:#9e8241;flex:0.22"></i><i style="background:#2d2115;flex:0.15"></i><i style="background:#74581e;flex:0.14"></i><i style="background:#b5b8a9;flex:0.14"></i></span><figcaption><b>foodRice</b><br>warmth 0.97 · busy 0.39 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/suvDark.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#86a9b2;flex:0.28"></i><i style="background:#2e2925;flex:0.27"></i><i style="background:#1b181a;flex:0.18"></i><i style="background:#423d38;flex:0.18"></i><i style="background:#5c6b6b;flex:0.09"></i></span><figcaption><b>suvDark</b><br>warmth -0.64 · busy 0.26 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/dambPaint.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#77604e;flex:0.26"></i><i style="background:#604e3d;flex:0.24"></i><i style="background:#483b2b;flex:0.21"></i><i style="background:#897766;flex:0.17"></i><i style="background:#2b261a;flex:0.12"></i></span><figcaption><b>dambPaint</b><br>warmth 0.99 · busy 0.32 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/galleAerial.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#161a14;flex:0.26"></i><i style="background:#333532;flex:0.23"></i><i style="background:#505966;flex:0.18"></i><i style="background:#9298aa;flex:0.18"></i><i style="background:#d5d1d4;flex:0.15"></i></span><figcaption><b>galleAerial</b><br>warmth -0.77 · busy 0.21 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/tukGreen.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#6d5134;flex:0.24"></i><i style="background:#3c351b;flex:0.22"></i><i style="background:#1a1606;flex:0.19"></i><i style="background:#a98962;flex:0.18"></i><i style="background:#e9d0a4;flex:0.16"></i></span><figcaption><b>tukGreen</b><br>warmth 0.98 · busy 0.51 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/groupLong.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#665950;flex:0.25"></i><i style="background:#9fa7af;flex:0.21"></i><i style="background:#838588;flex:0.2"></i><i style="background:#161610;flex:0.19"></i><i style="background:#41372d;flex:0.15"></i></span><figcaption><b>groupLong</b><br>warmth 0.34 · busy 0.55 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/polo2.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#534536;flex:0.3"></i><i style="background:#36332a;flex:0.22"></i><i style="background:#715c47;flex:0.22"></i><i style="background:#ac8d6d;flex:0.14"></i><i style="background:#cfcaba;flex:0.12"></i></span><figcaption><b>polo2</b><br>warmth 0.9 · busy 0.46 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/elephants2.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#676a60;flex:0.27"></i><i style="background:#272723;flex:0.22"></i><i style="background:#46443c;flex:0.21"></i><i style="background:#bc9c8b;flex:0.19"></i><i style="background:#e3dfdf;flex:0.11"></i></span><figcaption><b>elephants2</b><br>warmth 0.6 · busy 0.4 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/polo1.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#5c6f7f;flex:0.24"></i><i style="background:#9d7c59;flex:0.23"></i><i style="background:#635139;flex:0.21"></i><i style="background:#a79c94;flex:0.19"></i><i style="background:#382e21;flex:0.13"></i></span><figcaption><b>polo1</b><br>warmth 0.55 · busy 0.43 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/beach-couple.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#221812;flex:0.23"></i><i style="background:#5b3f30;flex:0.2"></i><i style="background:#94715e;flex:0.19"></i><i style="background:#cca995;flex:0.19"></i><i style="background:#eddbcb;flex:0.19"></i></span><figcaption><b>beachCouple</b><br>warmth 0.99 · busy 0.44 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/polo3.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#6a9fb1;flex:0.25"></i><i style="background:#605d4e;flex:0.21"></i><i style="background:#b2a287;flex:0.21"></i><i style="background:#8e846d;flex:0.17"></i><i style="background:#393830;flex:0.15"></i></span><figcaption><b>polo3</b><br>warmth 0.08 · busy 0.4 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/kandy-steps.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#868178;flex:0.26"></i><i style="background:#b1aba6;flex:0.23"></i><i style="background:#e2e2e3;flex:0.19"></i><i style="background:#251f17;flex:0.17"></i><i style="background:#5b5243;flex:0.16"></i></span><figcaption><b>kandySteps</b><br>warmth 1 · busy 0.51 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/jeep.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#a4c5d6;flex:0.29"></i><i style="background:#685c3a;flex:0.19"></i><i style="background:#978156;flex:0.19"></i><i style="background:#3d3828;flex:0.18"></i><i style="background:#f09951;flex:0.14"></i></span><figcaption><b>jeep</b> (pinned)<br>warmth 0.53 · busy 0.48 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/elephants.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#a8954c;flex:0.33"></i><i style="background:#76673e;flex:0.25"></i><i style="background:#94a8bc;flex:0.2"></i><i style="background:#4d402b;flex:0.14"></i><i style="background:#d8d4d0;flex:0.08"></i></span><figcaption><b>elephants</b><br>warmth 0.75 · busy 0.35 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/jafParade.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#665045;flex:0.27"></i><i style="background:#e7ebee;flex:0.25"></i><i style="background:#99826d;flex:0.19"></i><i style="background:#2c2226;flex:0.17"></i><i style="background:#c7cfd4;flex:0.12"></i></span><figcaption><b>jafParade</b><br>warmth 0.71 · busy 0.53 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/galleLight.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#abada3;flex:0.29"></i><i style="background:#cecbbf;flex:0.24"></i><i style="background:#3e2e1e;flex:0.16"></i><i style="background:#714f35;flex:0.15"></i><i style="background:#b27b53;flex:0.15"></i></span><figcaption><b>galleLight</b><br>warmth 1 · busy 0.34 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/arugAerial.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#c5af99;flex:0.28"></i><i style="background:#7e7961;flex:0.22"></i><i style="background:#909b8f;flex:0.2"></i><i style="background:#395a4a;flex:0.18"></i><i style="background:#c4d7db;flex:0.13"></i></span><figcaption><b>arugAerial</b><br>warmth 0.08 · busy 0.48 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/trincoSun.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#ab9482;flex:0.3"></i><i style="background:#c5cbc9;flex:0.21"></i><i style="background:#707568;flex:0.19"></i><i style="background:#354842;flex:0.15"></i><i style="background:#edaa72;flex:0.14"></i></span><figcaption><b>trincoSun</b><br>warmth 0.59 · busy 0.18 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/miniCoach.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#c5bdb1;flex:0.27"></i><i style="background:#959484;flex:0.21"></i><i style="background:#5b6d61;flex:0.19"></i><i style="background:#d5dad9;flex:0.18"></i><i style="background:#263e38;flex:0.16"></i></span><figcaption><b>miniCoach</b><br>warmth -0.04 · busy 0.55 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/traveller.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#bcb7bb;flex:0.26"></i><i style="background:#d1d6e2;flex:0.23"></i><i style="background:#756856;flex:0.2"></i><i style="background:#9f8f7d;flex:0.2"></i><i style="background:#433928;flex:0.11"></i></span><figcaption><b>traveller</b><br>warmth 0.43 · busy 0.45 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mapGlasses.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#b9af97;flex:0.33"></i><i style="background:#a09574;flex:0.26"></i><i style="background:#87744e;flex:0.16"></i><i style="background:#cecebf;flex:0.15"></i><i style="background:#4b3727;flex:0.1"></i></span><figcaption><b>mapGlasses</b><br>warmth 1 · busy 0.39 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/wedStand.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#d4c9b8;flex:0.29"></i><i style="background:#bdb6a8;flex:0.25"></i><i style="background:#5e4e40;flex:0.16"></i><i style="background:#7c6857;flex:0.16"></i><i style="background:#9f988b;flex:0.13"></i></span><figcaption><b>wedStand</b><br>warmth 1 · busy 0.38 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/jafClock.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#e5e8e9;flex:0.4"></i><i style="background:#fcfcfa;flex:0.18"></i><i style="background:#1f130e;flex:0.14"></i><i style="background:#6e5440;flex:0.14"></i><i style="background:#b1a89f;flex:0.14"></i></span><figcaption><b>jafClock</b><br>warmth 1 · busy 0.3 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/wedCeremony.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#b7a698;flex:0.28"></i><i style="background:#f7f7f5;flex:0.23"></i><i style="background:#d8ccb9;flex:0.22"></i><i style="background:#90796a;flex:0.19"></i><i style="background:#54443b;flex:0.08"></i></span><figcaption><b>wedCeremony</b><br>warmth 0.9 · busy 0.35 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/stilt2.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#d7cbb7;flex:0.25"></i><i style="background:#aab0a6;flex:0.23"></i><i style="background:#e9e9e2;flex:0.22"></i><i style="background:#9b8d72;flex:0.19"></i><i style="background:#645d46;flex:0.11"></i></span><figcaption><b>stilt2</b><br>warmth 0.63 · busy 0.26 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/table-for-two.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#e4d9e8;flex:0.48"></i><i style="background:#d9b9a2;flex:0.19"></i><i style="background:#c7c8e9;flex:0.15"></i><i style="background:#b58d77;flex:0.11"></i><i style="background:#683b27;flex:0.06"></i></span><figcaption><b>tableForTwo</b><br>warmth 0.84 · busy 0.24 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/wedCouple.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#eef3f0;flex:0.48"></i><i style="background:#a3a39d;flex:0.27"></i><i style="background:#d7e6e4;flex:0.11"></i><i style="background:#c1d4d2;flex:0.09"></i><i style="background:#524e46;flex:0.06"></i></span><figcaption><b>wedCouple</b><br>warmth -0.37 · busy 0.16 · no text on it</figcaption></figure>
+    </div>
+  </div>
+  <div class="fam" id="fam-dusk">
+    <div class="fam-h"><h3>Dusk and lamp light</h3><span class="small">Sunsets and warm, saturated light.</span><span class="cap">4 photos</span></div>
+    <div class="ph-grid">
+      <figure class="ph"><img src="../src/assets/stock/fireDance.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#70330f;flex:0.33"></i><i style="background:#4a1e0b;flex:0.32"></i><i style="background:#220d10;flex:0.17"></i><i style="background:#ad591f;flex:0.13"></i><i style="background:#e9bd92;flex:0.05"></i></span><figcaption><b>fireDance</b><br>warmth 0.98 · busy 0.47 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/mvSunset.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#ac9d96;flex:0.36"></i><i style="background:#161f23;flex:0.27"></i><i style="background:#998880;flex:0.18"></i><i style="background:#2c3539;flex:0.1"></i><i style="background:#766d68;flex:0.08"></i></span><figcaption><b>mvSunset</b> (pinned)<br>warmth 0.63 · busy 0.22 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/monkYoung.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#be704a;flex:0.33"></i><i style="background:#7a6a5b;flex:0.23"></i><i style="background:#774032;flex:0.2"></i><i style="background:#2e1f12;flex:0.15"></i><i style="background:#d6cec5;flex:0.1"></i></span><figcaption><b>monkYoung</b><br>warmth 1 · busy 0.29 · no text on it</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/moonstone.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#6c463c;flex:0.28"></i><i style="background:#b97c64;flex:0.23"></i><i style="background:#976250;flex:0.21"></i><i style="background:#dea78b;flex:0.17"></i><i style="background:#432c26;flex:0.11"></i></span><figcaption><b>moonstone</b><br>warmth 1 · busy 0.4 · white text ok</figcaption></figure>
+    </div>
+  </div>
+  <div class="fam" id="fam-night">
+    <div class="fam-h"><h3>Night</h3><span class="small">Mostly dark, lit by lamps.</span><span class="cap">4 photos</span></div>
+    <div class="ph-grid">
+      <figure class="ph"><img src="../src/assets/stock/dancer1.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#020201;flex:0.37"></i><i style="background:#000000;flex:0.27"></i><i style="background:#7f563a;flex:0.13"></i><i style="background:#b79370;flex:0.13"></i><i style="background:#1e2015;flex:0.1"></i></span><figcaption><b>dancer1</b><br>warmth 0.88 · busy 0.49 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/galle-street.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#171512;flex:0.25"></i><i style="background:#383229;flex:0.24"></i><i style="background:#61584b;flex:0.23"></i><i style="background:#030303;flex:0.21"></i><i style="background:#c0a881;flex:0.07"></i></span><figcaption><b>galleStreet</b><br>warmth 0.63 · busy 0.56 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/stock/dambCave.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#050300;flex:0.3"></i><i style="background:#794105;flex:0.22"></i><i style="background:#4e2803;flex:0.21"></i><i style="background:#271504;flex:0.14"></i><i style="background:#b46911;flex:0.12"></i></span><figcaption><b>dambCave</b><br>warmth 1 · busy 0.34 · white text ok</figcaption></figure>
+      <figure class="ph"><img src="../src/assets/photos/temple-night.jpg" alt="" loading="lazy"><span class="chips"><i style="background:#27354a;flex:0.28"></i><i style="background:#131c2f;flex:0.25"></i><i style="background:#385982;flex:0.22"></i><i style="background:#5385bf;flex:0.13"></i><i style="background:#c48068;flex:0.13"></i></span><figcaption><b>templeNight</b> (pinned)<br>warmth -0.49 · busy 0.36 · white text ok</figcaption></figure>
+    </div>
+  </div>
+  <!-- photos:end -->
 </section>
 
+<!-- ============================== ICONS ============================== -->
+<section id="icons">
+  <h2>Icons</h2>
+  <p>Two sets, both drawn by us, both in ink. UI icons sit beside words and help you act. Spot icons introduce an idea, the way a chapter number would. The source of every drawing is <code>scripts/icons.mjs</code>; <code>pnpm icons</code> writes the SVG files to <code>src/assets/icons/</code>.</p>
+
+  <h3>UI icons · 24 grid · 1.5 stroke</h3>
+  <div class="keyline">
+    <svg width="168" height="168" viewBox="0 0 24 24" aria-hidden="true" style="background:var(--mist);border-radius:12px"><g stroke="var(--stone)" stroke-width=".05" fill="none"><path d="M0 1h24M0 2h24M0 3h24M0 4h24M0 5h24M0 6h24M0 7h24M0 8h24M0 9h24M0 10h24M0 11h24M0 12h24M0 13h24M0 14h24M0 15h24M0 16h24M0 17h24M0 18h24M0 19h24M0 20h24M0 21h24M0 22h24M0 23h24M1 0v24M2 0v24M3 0v24M4 0v24M5 0v24M6 0v24M7 0v24M8 0v24M9 0v24M10 0v24M11 0v24M12 0v24M13 0v24M14 0v24M15 0v24M16 0v24M17 0v24M18 0v24M19 0v24M20 0v24M21 0v24M22 0v24M23 0v24"/></g><rect x="2" y="2" width="20" height="20" fill="none" stroke="var(--dune)" stroke-width=".1" stroke-dasharray=".4 .4"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--dune)" stroke-width=".1" stroke-dasharray=".4 .4"/><g fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.25"/></g></svg>
+    <ul class="rules" style="margin:0">
+      <li><b>24 × 24 grid, drawing inside 20 × 20</b> (2px padding). Round shapes may touch the 10px circle; square ones stay inside it.</li>
+      <li><b>1.5 stroke, round caps and joins, no fills.</b> A dot is a filled circle of 0.9 radius.</li>
+      <li><b>Points on whole or half pixels</b> so 1x screens stay sharp.</li>
+      <li><b>Use at 20 or 24px only.</b> At 16px redraw with a 1.25 stroke; never scale a 24 drawing down.</li>
+      <li><b><code>stroke="currentColor"</code></b>, so the icon takes the colour of its text.</li>
+    </ul>
+  </div>
+  <div class="icons-ui" id="iconsUi"></div>
+
+  <h3>Spot icons · 72 grid · 1.25 stroke</h3>
+  <ul class="rules">
+    <li><b>Drawn at 72, shown on a wash tile at least 2.5 times its size.</b> One spot icon per card; never inline with text.</li>
+    <li><b>Geometric and open.</b> Circles, arcs and straight lines; leave paths open where the eye can close them. One dot of detail at most, dotted lines for routes and rows.</li>
+    <li><b>No people's faces, no flags, no religious symbols beyond architecture</b>, and nothing that is a cliché of the place (no elephant silhouette for "Sri Lanka").</li>
+    <li><b>Scale between 56 and 96px only.</b> Below 56 use a UI icon; above 96 redraw with the same 1.25 stroke.</li>
+  </ul>
+  <div class="icons-spot" id="iconsSpot"></div>
+
+  <h3>Using icons</h3>
+  <ul class="rules">
+    <li><b>Icons sit beside words; they do not replace them.</b> The only icon-only buttons are close, menu, play and the arrows in a carousel, and each has an <code>aria-label</code> naming the action ("Close menu", not "Icon").</li>
+    <li><b>Chevron means "opens here", arrow means "goes there".</b> Accordions and dropdowns use <code>chevron-down</code>; links and buttons that navigate use <code>arrow-right</code>; a link that leaves the site uses <code>arrow-up-right</code>.</li>
+    <li><b>8px between an icon and its label</b> (6px at 13–15px text). Optical centre: nudge <code>play</code> 1px right in a circle.</li>
+    <li><b>One set only.</b> Never mix in Lucide, Phosphor or an emoji, even for one missing icon. Draw it here, following this page, and add it to <code>scripts/icons.mjs</code>.</li>
+    <li><b>An icon button is 44 × 44</b> even when the icon is 24.</li>
+  </ul>
+</section>
+
+<!-- ============================== MOTION ============================== -->
+<section id="motion">
+  <h2>Motion: <em>respond fast, arrive slowly.</em></h2>
+  <p>The interface answers you at once: a press, a hover, a menu open in a fifth of a second. Content takes its time: headings rise, photos settle, sections unfold as you reach them, the way a place comes into view. Scrolling is smoothed with Lenis; scroll reveals run on motion.dev. Nothing bounces, nothing loops, nothing moves on its own.</p>
+
+  <h3>Tokens</h3>
+  <table>
+    <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+    <tr><td><code>--ease-out</code></td><td>cubic-bezier(.23, 1, .32, 1)</td><td>Anything arriving or leaving: reveals, menus, press</td></tr>
+    <tr><td><code>--ease-in-out</code></td><td>cubic-bezier(.77, 0, .175, 1)</td><td>Something already on screen moving or changing size: header hide, accordion height</td></tr>
+    <tr><td><code>--ease-drawer</code></td><td>cubic-bezier(.32, .72, 0, 1)</td><td>Sheets and the phone menu</td></tr>
+    <tr><td><code>ease</code></td><td>CSS keyword</td><td>Colour and background changes on hover</td></tr>
+    <tr><td><code>--dur-press</code></td><td>160ms</td><td>Press feedback: <code>scale(.97)</code></td></tr>
+    <tr><td><code>--dur-hover</code></td><td>200ms</td><td>Hover colour, arrow nudge (3px)</td></tr>
+    <tr><td><code>--dur-ui</code></td><td>320ms</td><td>Dropdowns, mega menu, accordions, tab panels; exits take 200ms</td></tr>
+    <tr><td><code>--dur-sheet</code></td><td>480ms</td><td>Phone menu sheet; exit 240ms</td></tr>
+    <tr><td><code>--dur-reveal</code></td><td>900ms</td><td>Rise and unfold, with 70ms between items, at most 6 staggered</td></tr>
+    <tr><td><code>--dur-settle</code></td><td>1400ms</td><td>Photos settling from <code>scale(1.08)</code></td></tr>
+  </table>
+
+  <div class="grid g3" style="margin-top:20px">
+    <div class="curve"><svg viewBox="0 0 120 100" aria-label="ease-out curve"><path d="M10 90 L110 90 M10 90 L10 10" stroke="var(--stone)" stroke-width=".6" fill="none"/><path d="M10 90 C33 -10 42 10 110 10" stroke="var(--ink)" stroke-width="1.6" fill="none"/></svg><p class="cap" style="margin-top:6px">ease-out · arrive</p></div>
+    <div class="curve"><svg viewBox="0 0 120 100" aria-label="ease-in-out curve"><path d="M10 90 L110 90 M10 90 L10 10" stroke="var(--stone)" stroke-width=".6" fill="none"/><path d="M10 90 C87 90 27.5 10 110 10" stroke="var(--ink)" stroke-width="1.6" fill="none"/></svg><p class="cap" style="margin-top:6px">ease-in-out · move</p></div>
+    <div class="curve"><svg viewBox="0 0 120 100" aria-label="ease-drawer curve"><path d="M10 90 L110 90 M10 90 L10 10" stroke="var(--stone)" stroke-width=".6" fill="none"/><path d="M10 90 C42 32.4 10 10 110 10" stroke="var(--ink)" stroke-width="1.6" fill="none"/></svg><p class="cap" style="margin-top:6px">ease-drawer · sheets</p></div>
+  </div>
+
+  <h3>The five signature moves</h3>
+  <p class="small" id="rmNote" hidden>Your system asks for reduced motion, so the demos jump to their end state. That is exactly what the site does for you.</p>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="demo">
+      <div class="row"><b>1 · Rise</b><button class="play" data-play="rise">Play</button></div>
+      <div class="stage"><h4 class="demo-h" id="riseH"><span class="ln"><span>From the tea</span></span><span class="ln"><span>to <em>the sea.</em></span></span></h4></div>
+      <p class="small">The hero heading, set in lines (<code>.ln</code>). Each line rises from behind a mask: <code>y 105% → 0</code>, 900ms ease-out, 80ms per line. Once per page per visit.</p>
+    </div>
+    <div class="demo">
+      <div class="row"><b>2 · Unfold</b><button class="play" data-play="unfold">Play</button></div>
+      <div class="stage"><div class="cards" id="unfoldC"><div></div><div></div><div></div></div></div>
+      <p class="small">Cards, rows, paragraphs. <code>opacity 0 → 1</code>, <code>y 24px → 0</code>, 900ms ease-out, 70ms apart, at most 6 staggered.</p>
+    </div>
+    <div class="demo">
+      <div class="row"><b>3 · Settle</b><button class="play" data-play="settle">Play</button></div>
+      <div class="stage"><div class="photo"><img id="settleI" src="../src/assets/photos/tea-pluckers.jpg" alt="Two tea pluckers on a hillside estate"></div></div>
+      <p class="small">Photos. Fade in over 600ms while the image scales <code>1.08 → 1</code> over 1400ms, ease-out. The wash behind it means there is never a blank box.</p>
+    </div>
+    <div class="demo">
+      <div class="row"><b>4 · Drift</b><span class="cap">Scroll inside the box</span></div>
+      <div class="scroller" id="driftS" data-lenis-prevent><div class="pad">Scroll down</div><div class="band"><img id="driftI" src="../src/assets/stock/teaAerial.jpg" alt="Tea estate from the air"></div><div class="pad">The photo moves at 1:1 with your scroll</div></div>
+      <p class="small">Full-bleed photo bands only. The photo moves from <code>-6%</code> to <code>6%</code> as the band crosses the window, tied 1:1 to the scroll.</p>
+    </div>
+    <div class="demo">
+      <div class="row"><b>5 · Sheet</b><button class="play" data-play="sheet">Open</button></div>
+      <div class="stage" style="display:grid;place-items:center"><div class="phone"><div class="bar2">Travedise <span style="font:500 11px var(--sans)">Menu</span></div><div class="sheet" id="sheetS"><div>Destinations</div><div>Tours</div><div>Services</div><div>Travel notes</div></div></div></div>
+      <p class="small">The phone menu. Opens in 480ms with ease-drawer (<code>opacity</code>, <code>y -8px → 0</code>), rows follow 40ms apart. Closes in 240ms.</p>
+    </div>
+    <div class="demo">
+      <div class="row"><b>Feedback · press and open</b><button class="play">Press me</button></div>
+      <div class="stage"><details class="acc"><summary>Can we change a tour?</summary><p>Yes. Every tour is a starting point: move a night, add a stop, slow it down.</p></details><details class="acc"><summary>Is the price per person?</summary><p>Yes, sharing a room. We quote single rooms on request.</p></details></div>
+      <p class="small">Press: <code>scale(.97)</code> in 160ms. Accordions animate their height in 320ms ease-in-out; the plus turns 45°.</p>
+    </div>
+  </div>
+
+  <h3>Smooth scrolling (Lenis)</h3>
+  <ul class="rules">
+    <li><b>Wheel only.</b> <code>lerp: 0.1</code>, <code>smoothWheel: true</code>. Touch scrolling stays native (<code>syncTouch: false</code>); phones already scroll well.</li>
+    <li><b>Off for reduced motion</b>, and paused while a menu or sheet is open (<code>lenis.stop()</code>).</li>
+    <li><b>Anchors and "jump to" links</b> go through Lenis with the header height as the offset.</li>
+    <li><b>Inner scroll areas keep native scrolling:</b> add <code>data-lenis-prevent</code> to menus, carousels and any element with its own scrollbar.</li>
+  </ul>
+
+  <h3>Scroll reveals (motion.dev)</h3>
+  <ul class="rules">
+    <li><b>Once.</b> A reveal plays the first time an element is 15% in view, and never again on that page.</li>
+    <li><b>Nothing above the fold is hidden.</b> Elements already in view when the page loads show at once; only the hero heading rises, and only once per visit.</li>
+    <li><b>The page reads without JavaScript.</b> Hidden start states apply only when the script has run and motion is allowed (<code>html.m-on</code>).</li>
+    <li><b>One container, one entrance.</b> A grid unfolds as one group; never reveal each paragraph of an article.</li>
+    <li><b>Never on what people read to decide.</b> Prices, filter results, form fields, the month planner: these change instantly.</li>
+    <li><b>Only <code>transform</code> and <code>opacity</code></b> (and <code>height</code> for accordions). No blur, no clip-path on large photos.</li>
+  </ul>
+
+  <h3>Reduced motion</h3>
+  <p>When the system asks for reduced motion: no smooth scroll, no reveals, no drift, no rise. Everything is in place when the page loads. Menus and accordions open instantly. Colour changes on hover stay, because they are not movement.</p>
+
+  <h3>Where the site moves, and where it doesn't</h3>
+  <table>
+    <tr><th>Moment</th><th>Move</th><th>Why</th></tr>
+    <tr><td>Hero heading</td><td>Rise, once per visit</td><td>Arrival</td></tr>
+    <tr><td>Section heads, card grids, row lists, steps</td><td>Unfold</td><td>Group entrance, so a section doesn't pop in</td></tr>
+    <tr><td>Photos in frames and cards</td><td>Settle</td><td>Prevents a hard pop when the image arrives</td></tr>
+    <tr><td>Full-bleed bands, page heroes</td><td>Drift</td><td>Depth tied 1:1 to scroll</td></tr>
+    <tr><td>Phone menu</td><td>Sheet</td><td>Shows where the menu came from</td></tr>
+    <tr><td>Mega menu panels</td><td>320ms ease-out, <code>y -8px</code>, panel and dimmed page together</td><td>Paired elements share one timing</td></tr>
+    <tr><td>FAQ and itinerary days</td><td>Height 320ms ease-in-out</td><td>State change you can follow</td></tr>
+    <tr><td>Tab and month panels</td><td>Crossfade 200ms ease</td><td>Prevents a jarring swap</td></tr>
+    <tr><td>Enquiry sent</td><td>The check draws in 600ms, then the message rises</td><td>Rare moment, worth a beat</td></tr>
+    <tr><td>Buttons</td><td>Press 160ms; arrow nudges 3px on hover</td><td>Feedback</td></tr>
+    <tr><td>Tour and note filters</td><td>None</td><td>Tens of times a visit; people are reading results</td></tr>
+    <tr><td>Month buttons on When to go</td><td>None</td><td>Used to compare quickly</td></tr>
+    <tr><td>Hero slideshow</td><td>No auto-advance</td><td>Motion the visitor didn't start</td></tr>
+    <tr><td>Text over a photo</td><td>No parallax</td><td>Moving words are harder to read</td></tr>
+    <tr><td>Keyboard actions, focus moves</td><td>None</td><td>Never animate what the keyboard does</td></tr>
+  </table>
+</section>
+
+<!-- ============================== WRITING ============================== -->
+<section id="writing">
+  <h2>Writing</h2>
+  <p>We write as the team: travel designers in Galle and Bundeena who have been to every place we name. Plain, calm, specific, honest about the downsides. The full voice, with examples from the travel notes, is in <code>.claude/skills/travedise-voice/</code>.</p>
+
+  <h3>The six rules</h3>
+  <ul class="rules">
+    <li><b>Short sentences, one idea each.</b> No exclamation marks.</li>
+    <li><b>Say the hard part.</b> "Leopards are never promised, only made likely."</li>
+    <li><b>Facts over adjectives.</b> Months, hours, prices and drive times. Never invent one: mark it <code>[CHECK: …]</code>.</li>
+    <li><b>Advice, not description.</b> Every paragraph helps someone decide.</li>
+    <li><b>No contractions, no em dashes, British spelling, sentence case.</b></li>
+    <li><b>One italic phrase per heading, at the end.</b></li>
+  </ul>
+
+  <h3>Interface copy</h3>
+  <table>
+    <tr><th>Where</th><th>Rule</th><th>Write</th><th>Not</th></tr>
+    <tr><td>Hero heading</td><td>3–7 words. A promise or a place.</td><td class="eg">Keep time for what matters.</td><td>Discover the magic of Sri Lanka!</td></tr>
+    <tr><td>Lede</td><td>One sentence: what, where, how.</td><td class="eg">Tailor-made trips to Sri Lanka and the Maldives, planned end to end.</td><td>We are passionate about creating unforgettable experiences.</td></tr>
+    <tr><td>Button</td><td>Verb + object, 1–4 words.</td><td class="eg">Plan your trip · See the tours · Ask about this tour</td><td>Submit · Click here · Learn more</td></tr>
+    <tr><td>Link by a heading</td><td>"All" + the thing.</td><td class="eg">All tours · All destinations</td><td>View more · Explore</td></tr>
+    <tr><td>Navigation</td><td>Nouns, 1–2 words.</td><td class="eg">Destinations · Travel notes</td><td>Our Blog · Where We Go</td></tr>
+    <tr><td>Form label</td><td>Short, above the field, never only a placeholder.</td><td class="eg">When would you like to go?</td><td>Enter travel dates here</td></tr>
+    <tr><td>Help text</td><td>Why we ask, or what happens.</td><td class="eg">We use this to suggest the right coast.</td><td>Required field</td></tr>
+    <tr><td>Error</td><td>Name the problem and the fix.</td><td class="eg">Add an email address so we can send your route.</td><td>Invalid input</td></tr>
+    <tr><td>Empty state</td><td>Why it is empty, and the next step.</td><td class="eg">No tours match these filters. Clear one, or tell us what you have in mind.</td><td>No results found</td></tr>
+    <tr><td>Success</td><td>What happens next, and when.</td><td class="eg">Thank you, Anna. Your planner will reply within two working days.</td><td>Success!</td></tr>
+    <tr><td>Meta line</td><td>Facts only, joined by a middle dot.</td><td class="eg">9 days · Sri Lanka · From US$ 2,500</td><td>Amazing 9-day adventure</td></tr>
+    <tr><td>Alt text</td><td>What is in the picture, one sentence, under 125 characters.</td><td class="eg">A leopard crossing the track in front of a safari jeep</td><td>Image of wildlife safari Sri Lanka best tour</td></tr>
+  </table>
+
+  <h3>How we write numbers</h3>
+  <table>
+    <tr><th>Thing</th><th>Write</th></tr>
+    <tr><td>Counts in prose</td><td>one to nine in words, 10 and up in figures. "Two days in Yala", "14 places"</td></tr>
+    <tr><td>Durations in meta</td><td>Always figures: 9 days, 3 nights, about 4 hours</td></tr>
+    <tr><td>Prices</td><td>From US$ 2,500 per person (sharing). A space after US$, a comma in thousands, no decimals</td></tr>
+    <tr><td>Dates</td><td>12 March 2027. Months in full. Ranges: December to April</td></tr>
+    <tr><td>Times</td><td>6am, 5.30pm in meta; "by six" in prose</td></tr>
+    <tr><td>Distances</td><td>140 km. Drive times beat distances: "about 3 hours from Kandy"</td></tr>
+    <tr><td>Phone</td><td>+94 76 397 2171 · +61 426 965 569</td></tr>
+  </table>
+
+  <h3>Names we spell one way</h3>
+  <p>Sri Lanka · the Maldives (with "the") · Malé · Nuwara Eliya · Sigiriya · Polonnaruwa · Anuradhapura · Dambulla · Kandy · Ella · Galle · Mirissa · Tangalle · Arugam Bay · Trincomalee · Jaffna · Yala · Udawalawe · Minneriya · Wilpattu · Baa Atoll · Ari Atoll · Nine Arch Bridge · Temple of the Tooth</p>
+
+  <h3>Words we never use</h3>
+  <p>paradise, hidden gem, breathtaking, stunning, nestled, must-see, bucket list, unforgettable, once in a lifetime, perfect (as praise), exotic, magical, vibrant, boasts, embark, delve, journey (for a trip), curated, seamless, "look no further", "whether you are … or …".</p>
+</section>
+
+</main>
+</div>
+
+<script type="module">
+/* Icons: rendered from the SVG files so this page never drifts from them. */
+const UI=["arrow-right","arrow-left","arrow-up-right","chevron-down","plus","minus","close","menu","check","search","phone","chat","mail","pin","calendar","clock","people","car","plane","sun","info","play"];
+const SPOT={compass:"Local knowledge",coast:"The coast",hills:"Hill country",wildlife:"Wildlife",culture:"Culture",route:"Tailor-made",support:"Support",rings:"Weddings",group:"Groups",vehicle:"Vehicles",season:"When to go"};
+document.getElementById("iconsUi").innerHTML=UI.map(n=>`<figure><img src="../src/assets/icons/ui/${n}.svg" alt=""><figcaption>${n}</figcaption></figure>`).join("");
+document.getElementById("iconsSpot").innerHTML=Object.entries(SPOT).map(([n,l])=>`<figure><div class="tile"><img src="../src/assets/icons/spot/${n}.svg" alt=""></div><figcaption><b>${l}</b>${n}</figcaption></figure>`).join("");
+
+/* Motion demos, with the same values the site uses (src/scripts/motion.ts). */
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(reduce) document.getElementById("rmNote").hidden=false;
+let M=null;
+try{ M=await import("https://cdn.jsdelivr.net/npm/motion@14.9.0/+esm"); }catch{}
+const OUT=[.23,1,.32,1], DRAWER=[.32,.72,0,1];
+const demos={
+  rise(){ const s=[...document.querySelectorAll("#riseH .ln>span")]; if(reduce||!M) return; M.animate(s,{transform:["translateY(105%)","translateY(0)"]},{duration:.9,ease:OUT,delay:M.stagger(.08)}); },
+  unfold(){ const s=[...document.querySelectorAll("#unfoldC>div")]; if(reduce||!M) return; M.animate(s,{opacity:[0,1],transform:["translateY(24px)","translateY(0)"]},{duration:.9,ease:OUT,delay:M.stagger(.07)}); },
+  settle(){ const i=document.getElementById("settleI"); if(reduce||!M) return; M.animate(i,{opacity:[0,1]},{duration:.6,ease:OUT}); M.animate(i,{transform:["scale(1.08)","scale(1)"]},{duration:1.4,ease:OUT}); },
+  sheet(btn){ const s=document.getElementById("sheetS"); const open=s.style.visibility!=="visible";
+    btn.textContent=open?"Close":"Open";
+    if(reduce||!M){ s.style.visibility=open?"visible":"hidden"; s.style.opacity=open?1:0; return; }
+    if(open){ s.style.visibility="visible"; M.animate(s,{opacity:[0,1],transform:["translateY(-8px)","translateY(0)"]},{duration:.48,ease:DRAWER}); M.animate([...s.children],{opacity:[0,1],transform:["translateY(8px)","translateY(0)"]},{duration:.48,ease:DRAWER,delay:M.stagger(.04,{startDelay:.06})}); }
+    else { M.animate(s,{opacity:0},{duration:.24,ease:OUT}).then(()=>{s.style.visibility="hidden";}); }
+  }
+};
+document.querySelectorAll("[data-play]").forEach(b=>b.addEventListener("click",()=>demos[b.dataset.play](b)));
+if(M && !reduce){
+  const img=document.getElementById("driftI"), box=document.getElementById("driftS");
+  M.scroll(M.animate(img,{transform:["translateY(-6%)","translateY(6%)"]},{ease:"linear"}),{container:box,target:img.parentElement,offset:["start end","end start"]});
+}
+</script>
 </body>
 </html>

@@ -25,7 +25,7 @@ to a better design that can be published, through rounds on the canvas — not t
 Follow the `canvas-iteration` skill exactly: read the canvas first, brief, diverge into 2–3
 options that differ in idea, show desktop (1440) and phone (390), recommend one, converge on the
 owner's comments, and keep the decision log. Use real content from `src/content/**` and real
-photos from `public/`.
+photos from `src/data/photos.ts`, chosen by colour family (`travedise-design-system` → `photos.md`).
 
 Every option stays inside the `travedise-design-system` skill. If you think the system itself
 should change (a new token, a new component), propose it as its own option with the reason.

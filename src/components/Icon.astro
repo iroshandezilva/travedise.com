@@ -1,0 +1,32 @@
+---
+/**
+ * A Travedise icon, inlined so it takes the colour of the text around it.
+ * UI icons (24 grid) sit beside words: <Icon name="arrow-right" />.
+ * Spot icons (72 grid) introduce an idea on a wash tile: <Icon spot name="compass" />.
+ * The drawings come from scripts/icons.mjs (`pnpm icons`); the rules are in docs/design.html#icons.
+ * Decorative by default (aria-hidden). Pass `label` only when the icon is the only content of a link.
+ */
+const ui = import.meta.glob<string>("/src/assets/icons/ui/*.svg", { query: "?raw", import: "default", eager: true });
+const spot = import.meta.glob<string>("/src/assets/icons/spot/*.svg", { query: "?raw", import: "default", eager: true });
+
+export type UiIcon =
+  | "arrow-right" | "arrow-left" | "arrow-up-right" | "chevron-down" | "plus" | "minus" | "close" | "menu"
+  | "check" | "search" | "phone" | "chat" | "mail" | "pin" | "calendar" | "clock" | "people" | "car"
+  | "plane" | "sun" | "info" | "play";
+export type SpotIcon =
+  | "compass" | "coast" | "hills" | "wildlife" | "culture" | "route" | "support" | "rings" | "group"
+  | "vehicle" | "season";
+
+type Props =
+  | { spot?: false; name: UiIcon; size?: 20 | 24; label?: string; class?: string }
+  | { spot: true; name: SpotIcon; size?: number; label?: string; class?: string };
+
+const { name, spot: isSpot = false, size, label, class: cls = "" } = Astro.props;
+const svg = (isSpot ? spot : ui)[`/src/assets/icons/${isSpot ? "spot" : "ui"}/${name}.svg`];
+if (!svg) throw new Error(`Icon "${name}" does not exist. Draw it in scripts/icons.mjs (see docs/design.html#icons).`);
+const px = size ?? (isSpot ? 72 : 24);
+const a11y = label ? `role="img" aria-label="${label.replace(/"/g, "&quot;")}"` : `aria-hidden="true" focusable="false"`;
+const html = svg.replace("<svg ", `<svg class="icon ${cls}" style="--icon:${px}px" ${a11y} `);
+---
+
+<Fragment set:html={html} />

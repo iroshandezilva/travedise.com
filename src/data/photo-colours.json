@@ -1,0 +1,2486 @@
+{
+ "teaPluckers": {
+  "family": "green",
+  "warmth": 0.41,
+  "lightness": 0.57,
+  "colourfulness": 0.72,
+  "busy": 0.45,
+  "textZone": 0.47,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#767e48",
+    "share": 0.33
+   },
+   {
+    "hex": "#4d5f27",
+    "share": 0.25
+   },
+   {
+    "hex": "#b19b52",
+    "share": 0.19
+   },
+   {
+    "hex": "#243425",
+    "share": 0.11
+   },
+   {
+    "hex": "#9dcfe6",
+    "share": 0.11
+   }
+  ]
+ },
+ "sigiriya": {
+  "family": "green",
+  "warmth": 1,
+  "lightness": 0.52,
+  "colourfulness": 0.36,
+  "busy": 0.39,
+  "textZone": 0.43,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#66613e",
+    "share": 0.29
+   },
+   {
+    "hex": "#49492a",
+    "share": 0.26
+   },
+   {
+    "hex": "#dddee2",
+    "share": 0.17
+   },
+   {
+    "hex": "#2c2a16",
+    "share": 0.14
+   },
+   {
+    "hex": "#9b896c",
+    "share": 0.13
+   }
+  ]
+ },
+ "mist": {
+  "family": "green",
+  "warmth": -0.96,
+  "lightness": 0.56,
+  "colourfulness": 0.28,
+  "busy": 0.24,
+  "textZone": 0.39,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#1a2d1b",
+    "share": 0.36
+   },
+   {
+    "hex": "#dfebe3",
+    "share": 0.25
+   },
+   {
+    "hex": "#3a4e45",
+    "share": 0.14
+   },
+   {
+    "hex": "#a1bac2",
+    "share": 0.13
+   },
+   {
+    "hex": "#63797e",
+    "share": 0.12
+   }
+  ],
+  "pinned": true
+ },
+ "trainBlue": {
+  "family": "green",
+  "warmth": 0.46,
+  "lightness": 0.53,
+  "colourfulness": 0.48,
+  "busy": 0.49,
+  "textZone": 0.51,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#4a543c",
+    "share": 0.29
+   },
+   {
+    "hex": "#767c5d",
+    "share": 0.23
+   },
+   {
+    "hex": "#2b3328",
+    "share": 0.21
+   },
+   {
+    "hex": "#b6af57",
+    "share": 0.16
+   },
+   {
+    "hex": "#c5d4f2",
+    "share": 0.11
+   }
+  ]
+ },
+ "trainRed": {
+  "family": "green",
+  "warmth": 0.98,
+  "lightness": 0.4,
+  "colourfulness": 0.35,
+  "busy": 0.6,
+  "textZone": 0.36,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#343321",
+    "share": 0.29
+   },
+   {
+    "hex": "#4f4d33",
+    "share": 0.27
+   },
+   {
+    "hex": "#6e6e4a",
+    "share": 0.21
+   },
+   {
+    "hex": "#191a0f",
+    "share": 0.15
+   },
+   {
+    "hex": "#a7a07c",
+    "share": 0.07
+   }
+  ]
+ },
+ "archesTea": {
+  "family": "green",
+  "warmth": 0.92,
+  "lightness": 0.47,
+  "colourfulness": 0.34,
+  "busy": 0.62,
+  "textZone": 0.39,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#3f4434",
+    "share": 0.27
+   },
+   {
+    "hex": "#646941",
+    "share": 0.27
+   },
+   {
+    "hex": "#1f2222",
+    "share": 0.22
+   },
+   {
+    "hex": "#9d9473",
+    "share": 0.17
+   },
+   {
+    "hex": "#e6e5d4",
+    "share": 0.08
+   }
+  ]
+ },
+ "kandySteps": {
+  "family": "earth",
+  "warmth": 1,
+  "lightness": 0.61,
+  "colourfulness": 0.14,
+  "busy": 0.51,
+  "textZone": 0.47,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#868178",
+    "share": 0.26
+   },
+   {
+    "hex": "#b1aba6",
+    "share": 0.23
+   },
+   {
+    "hex": "#e2e2e3",
+    "share": 0.19
+   },
+   {
+    "hex": "#251f17",
+    "share": 0.17
+   },
+   {
+    "hex": "#5b5243",
+    "share": 0.16
+   }
+  ]
+ },
+ "templeNight": {
+  "family": "night",
+  "warmth": -0.49,
+  "lightness": 0.41,
+  "colourfulness": 0.63,
+  "busy": 0.36,
+  "textZone": 0.52,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#27354a",
+    "share": 0.28
+   },
+   {
+    "hex": "#131c2f",
+    "share": 0.25
+   },
+   {
+    "hex": "#385982",
+    "share": 0.22
+   },
+   {
+    "hex": "#5385bf",
+    "share": 0.13
+   },
+   {
+    "hex": "#c48068",
+    "share": 0.13
+   }
+  ],
+  "pinned": true
+ },
+ "elephants": {
+  "family": "earth",
+  "warmth": 0.75,
+  "lightness": 0.62,
+  "colourfulness": 0.52,
+  "busy": 0.35,
+  "textZone": 0.61,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#a8954c",
+    "share": 0.33
+   },
+   {
+    "hex": "#76673e",
+    "share": 0.25
+   },
+   {
+    "hex": "#94a8bc",
+    "share": 0.2
+   },
+   {
+    "hex": "#4d402b",
+    "share": 0.14
+   },
+   {
+    "hex": "#d8d4d0",
+    "share": 0.08
+   }
+  ]
+ },
+ "coconutHill": {
+  "family": "sea",
+  "warmth": -0.39,
+  "lightness": 0.72,
+  "colourfulness": 0.48,
+  "busy": 0.53,
+  "textZone": 0.76,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#b4d9ef",
+    "share": 0.3
+   },
+   {
+    "hex": "#8dbbcb",
+    "share": 0.25
+   },
+   {
+    "hex": "#728877",
+    "share": 0.18
+   },
+   {
+    "hex": "#dda97f",
+    "share": 0.16
+   },
+   {
+    "hex": "#414e37",
+    "share": 0.12
+   }
+  ]
+ },
+ "beachCouple": {
+  "family": "earth",
+  "warmth": 0.99,
+  "lightness": 0.55,
+  "colourfulness": 0.33,
+  "busy": 0.44,
+  "textZone": 0.44,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#221812",
+    "share": 0.23
+   },
+   {
+    "hex": "#5b3f30",
+    "share": 0.2
+   },
+   {
+    "hex": "#94715e",
+    "share": 0.19
+   },
+   {
+    "hex": "#cca995",
+    "share": 0.19
+   },
+   {
+    "hex": "#eddbcb",
+    "share": 0.19
+   }
+  ]
+ },
+ "jeep": {
+  "family": "earth",
+  "warmth": 0.53,
+  "lightness": 0.61,
+  "colourfulness": 0.53,
+  "busy": 0.48,
+  "textZone": 0.59,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#a4c5d6",
+    "share": 0.29
+   },
+   {
+    "hex": "#685c3a",
+    "share": 0.19
+   },
+   {
+    "hex": "#978156",
+    "share": 0.19
+   },
+   {
+    "hex": "#3d3828",
+    "share": 0.18
+   },
+   {
+    "hex": "#f09951",
+    "share": 0.14
+   }
+  ],
+  "pinned": true
+ },
+ "leopard": {
+  "family": "green",
+  "warmth": 0.98,
+  "lightness": 0.6,
+  "colourfulness": 0.71,
+  "busy": 0.5,
+  "textZone": 0.64,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#858838",
+    "share": 0.3
+   },
+   {
+    "hex": "#a9ae51",
+    "share": 0.27
+   },
+   {
+    "hex": "#5c5e2f",
+    "share": 0.19
+   },
+   {
+    "hex": "#303322",
+    "share": 0.13
+   },
+   {
+    "hex": "#dcd4b6",
+    "share": 0.11
+   }
+  ]
+ },
+ "moonstone": {
+  "family": "dusk",
+  "warmth": 1,
+  "lightness": 0.55,
+  "colourfulness": 0.58,
+  "busy": 0.4,
+  "textZone": 0.53,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#6c463c",
+    "share": 0.28
+   },
+   {
+    "hex": "#b97c64",
+    "share": 0.23
+   },
+   {
+    "hex": "#976250",
+    "share": 0.21
+   },
+   {
+    "hex": "#dea78b",
+    "share": 0.17
+   },
+   {
+    "hex": "#432c26",
+    "share": 0.11
+   }
+  ]
+ },
+ "galleStreet": {
+  "family": "night",
+  "warmth": 0.63,
+  "lightness": 0.3,
+  "colourfulness": 0.23,
+  "busy": 0.56,
+  "textZone": 0.3,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#171512",
+    "share": 0.25
+   },
+   {
+    "hex": "#383229",
+    "share": 0.24
+   },
+   {
+    "hex": "#61584b",
+    "share": 0.23
+   },
+   {
+    "hex": "#030303",
+    "share": 0.21
+   },
+   {
+    "hex": "#c0a881",
+    "share": 0.07
+   }
+  ]
+ },
+ "tableForTwo": {
+  "family": "earth",
+  "warmth": 0.84,
+  "lightness": 0.82,
+  "colourfulness": 0.34,
+  "busy": 0.24,
+  "textZone": 0.76,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#e4d9e8",
+    "share": 0.48
+   },
+   {
+    "hex": "#d9b9a2",
+    "share": 0.19
+   },
+   {
+    "hex": "#c7c8e9",
+    "share": 0.15
+   },
+   {
+    "hex": "#b58d77",
+    "share": 0.11
+   },
+   {
+    "hex": "#683b27",
+    "share": 0.06
+   }
+  ]
+ },
+ "traveller": {
+  "family": "earth",
+  "warmth": 0.43,
+  "lightness": 0.68,
+  "colourfulness": 0.27,
+  "busy": 0.45,
+  "textZone": 0.63,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#bcb7bb",
+    "share": 0.26
+   },
+   {
+    "hex": "#d1d6e2",
+    "share": 0.23
+   },
+   {
+    "hex": "#756856",
+    "share": 0.2
+   },
+   {
+    "hex": "#9f8f7d",
+    "share": 0.2
+   },
+   {
+    "hex": "#433928",
+    "share": 0.11
+   }
+  ]
+ },
+ "sigAerial": {
+  "family": "green",
+  "warmth": 0.49,
+  "lightness": 0.48,
+  "colourfulness": 0.42,
+  "busy": 0.42,
+  "textZone": 0.27,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#383d18",
+    "share": 0.29
+   },
+   {
+    "hex": "#1a1e0b",
+    "share": 0.23
+   },
+   {
+    "hex": "#63643a",
+    "share": 0.2
+   },
+   {
+    "hex": "#96a489",
+    "share": 0.15
+   },
+   {
+    "hex": "#f0f6f7",
+    "share": 0.13
+   }
+  ]
+ },
+ "sigPath": {
+  "family": "sea",
+  "warmth": -0.6,
+  "lightness": 0.58,
+  "colourfulness": 0.99,
+  "busy": 0.41,
+  "textZone": 0.58,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#087bdb",
+    "share": 0.36
+   },
+   {
+    "hex": "#717130",
+    "share": 0.21
+   },
+   {
+    "hex": "#30360d",
+    "share": 0.17
+   },
+   {
+    "hex": "#c9bc7f",
+    "share": 0.17
+   },
+   {
+    "hex": "#6dacee",
+    "share": 0.1
+   }
+  ]
+ },
+ "dambCave": {
+  "family": "night",
+  "warmth": 1,
+  "lightness": 0.3,
+  "colourfulness": 0.55,
+  "busy": 0.34,
+  "textZone": 0.38,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#050300",
+    "share": 0.3
+   },
+   {
+    "hex": "#794105",
+    "share": 0.22
+   },
+   {
+    "hex": "#4e2803",
+    "share": 0.21
+   },
+   {
+    "hex": "#271504",
+    "share": 0.14
+   },
+   {
+    "hex": "#b46911",
+    "share": 0.12
+   }
+  ]
+ },
+ "dambPaint": {
+  "family": "earth",
+  "warmth": 0.99,
+  "lightness": 0.44,
+  "colourfulness": 0.3,
+  "busy": 0.32,
+  "textZone": 0.5,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#77604e",
+    "share": 0.26
+   },
+   {
+    "hex": "#604e3d",
+    "share": 0.24
+   },
+   {
+    "hex": "#483b2b",
+    "share": 0.21
+   },
+   {
+    "hex": "#897766",
+    "share": 0.17
+   },
+   {
+    "hex": "#2b261a",
+    "share": 0.12
+   }
+  ]
+ },
+ "teaMist": {
+  "family": "green",
+  "warmth": -0.98,
+  "lightness": 0.52,
+  "colourfulness": 0.51,
+  "busy": 0.57,
+  "textZone": 0.35,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#2c4217",
+    "share": 0.26
+   },
+   {
+    "hex": "#4b6c2a",
+    "share": 0.24
+   },
+   {
+    "hex": "#f0f2ee",
+    "share": 0.2
+   },
+   {
+    "hex": "#111b09",
+    "share": 0.18
+   },
+   {
+    "hex": "#85a471",
+    "share": 0.12
+   }
+  ]
+ },
+ "teaAerial": {
+  "family": "green",
+  "warmth": -0.9,
+  "lightness": 0.58,
+  "colourfulness": 0.62,
+  "busy": 0.34,
+  "textZone": 0.49,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#42885e",
+    "share": 0.29
+   },
+   {
+    "hex": "#2e684b",
+    "share": 0.24
+   },
+   {
+    "hex": "#254530",
+    "share": 0.19
+   },
+   {
+    "hex": "#e1dfdc",
+    "share": 0.16
+   },
+   {
+    "hex": "#73ad80",
+    "share": 0.13
+   }
+  ]
+ },
+ "galleLight": {
+  "family": "earth",
+  "warmth": 1,
+  "lightness": 0.64,
+  "colourfulness": 0.32,
+  "busy": 0.34,
+  "textZone": 0.48,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#abada3",
+    "share": 0.29
+   },
+   {
+    "hex": "#cecbbf",
+    "share": 0.24
+   },
+   {
+    "hex": "#3e2e1e",
+    "share": 0.16
+   },
+   {
+    "hex": "#714f35",
+    "share": 0.15
+   },
+   {
+    "hex": "#b27b53",
+    "share": 0.15
+   }
+  ]
+ },
+ "galleRamp": {
+  "family": "sea",
+  "warmth": -0.46,
+  "lightness": 0.66,
+  "colourfulness": 0.43,
+  "busy": 0.22,
+  "textZone": 0.49,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#6b5f40",
+    "share": 0.23
+   },
+   {
+    "hex": "#749bcb",
+    "share": 0.23
+   },
+   {
+    "hex": "#a1bad8",
+    "share": 0.23
+   },
+   {
+    "hex": "#cfdae4",
+    "share": 0.2
+   },
+   {
+    "hex": "#423c2c",
+    "share": 0.11
+   }
+  ]
+ },
+ "galleAerial": {
+  "family": "earth",
+  "warmth": -0.77,
+  "lightness": 0.47,
+  "colourfulness": 0.17,
+  "busy": 0.21,
+  "textZone": 0.27,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#161a14",
+    "share": 0.26
+   },
+   {
+    "hex": "#333532",
+    "share": 0.23
+   },
+   {
+    "hex": "#505966",
+    "share": 0.18
+   },
+   {
+    "hex": "#9298aa",
+    "share": 0.18
+   },
+   {
+    "hex": "#d5d1d4",
+    "share": 0.15
+   }
+  ]
+ },
+ "jafClock": {
+  "family": "earth",
+  "warmth": 1,
+  "lightness": 0.74,
+  "colourfulness": 0.13,
+  "busy": 0.3,
+  "textZone": 0.57,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#e5e8e9",
+    "share": 0.4
+   },
+   {
+    "hex": "#fcfcfa",
+    "share": 0.18
+   },
+   {
+    "hex": "#1f130e",
+    "share": 0.14
+   },
+   {
+    "hex": "#6e5440",
+    "share": 0.14
+   },
+   {
+    "hex": "#b1a89f",
+    "share": 0.14
+   }
+  ]
+ },
+ "jafParade": {
+  "family": "earth",
+  "warmth": 0.71,
+  "lightness": 0.62,
+  "colourfulness": 0.28,
+  "busy": 0.53,
+  "textZone": 0.45,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#665045",
+    "share": 0.27
+   },
+   {
+    "hex": "#e7ebee",
+    "share": 0.25
+   },
+   {
+    "hex": "#99826d",
+    "share": 0.19
+   },
+   {
+    "hex": "#2c2226",
+    "share": 0.17
+   },
+   {
+    "hex": "#c7cfd4",
+    "share": 0.12
+   }
+  ]
+ },
+ "gopuram": {
+  "family": "earth",
+  "warmth": 0.99,
+  "lightness": 0.34,
+  "colourfulness": 0.23,
+  "busy": 0.44,
+  "textZone": 0.45,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#695e46",
+    "share": 0.23
+   },
+   {
+    "hex": "#887d60",
+    "share": 0.23
+   },
+   {
+    "hex": "#020201",
+    "share": 0.22
+   },
+   {
+    "hex": "#120e0a",
+    "share": 0.2
+   },
+   {
+    "hex": "#473525",
+    "share": 0.12
+   }
+  ]
+ },
+ "goldTemple": {
+  "family": "sea",
+  "warmth": -0.33,
+  "lightness": 0.59,
+  "colourfulness": 0.49,
+  "busy": 0.34,
+  "textZone": 0.46,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#80a0b7",
+    "share": 0.51
+   },
+   {
+    "hex": "#506d66",
+    "share": 0.18
+   },
+   {
+    "hex": "#34362a",
+    "share": 0.17
+   },
+   {
+    "hex": "#b07543",
+    "share": 0.1
+   },
+   {
+    "hex": "#dab688",
+    "share": 0.03
+   }
+  ]
+ },
+ "stilt1": {
+  "family": "sea",
+  "warmth": -0.22,
+  "lightness": 0.75,
+  "colourfulness": 0.44,
+  "busy": 0.42,
+  "textZone": 0.77,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#d7d7d1",
+    "share": 0.29
+   },
+   {
+    "hex": "#6bb2db",
+    "share": 0.25
+   },
+   {
+    "hex": "#cbbaa2",
+    "share": 0.23
+   },
+   {
+    "hex": "#838c84",
+    "share": 0.15
+   },
+   {
+    "hex": "#434027",
+    "share": 0.08
+   }
+  ]
+ },
+ "stilt2": {
+  "family": "earth",
+  "warmth": 0.63,
+  "lightness": 0.77,
+  "colourfulness": 0.3,
+  "busy": 0.26,
+  "textZone": 0.61,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#d7cbb7",
+    "share": 0.25
+   },
+   {
+    "hex": "#aab0a6",
+    "share": 0.23
+   },
+   {
+    "hex": "#e9e9e2",
+    "share": 0.22
+   },
+   {
+    "hex": "#9b8d72",
+    "share": 0.19
+   },
+   {
+    "hex": "#645d46",
+    "share": 0.11
+   }
+  ]
+ },
+ "arugAerial": {
+  "family": "earth",
+  "warmth": 0.08,
+  "lightness": 0.66,
+  "colourfulness": 0.42,
+  "busy": 0.48,
+  "textZone": 0.7,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#c5af99",
+    "share": 0.28
+   },
+   {
+    "hex": "#7e7961",
+    "share": 0.22
+   },
+   {
+    "hex": "#909b8f",
+    "share": 0.2
+   },
+   {
+    "hex": "#395a4a",
+    "share": 0.18
+   },
+   {
+    "hex": "#c4d7db",
+    "share": 0.13
+   }
+  ]
+ },
+ "trincoSun": {
+  "family": "earth",
+  "warmth": 0.59,
+  "lightness": 0.66,
+  "colourfulness": 0.35,
+  "busy": 0.18,
+  "textZone": 0.54,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#ab9482",
+    "share": 0.3
+   },
+   {
+    "hex": "#c5cbc9",
+    "share": 0.21
+   },
+   {
+    "hex": "#707568",
+    "share": 0.19
+   },
+   {
+    "hex": "#354842",
+    "share": 0.15
+   },
+   {
+    "hex": "#edaa72",
+    "share": 0.14
+   }
+  ]
+ },
+ "monksField": {
+  "family": "green",
+  "warmth": -0.06,
+  "lightness": 0.54,
+  "colourfulness": 0.8,
+  "busy": 0.39,
+  "textZone": 0.6,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#508a40",
+    "share": 0.26
+   },
+   {
+    "hex": "#6da862",
+    "share": 0.26
+   },
+   {
+    "hex": "#3b623d",
+    "share": 0.21
+   },
+   {
+    "hex": "#463825",
+    "share": 0.14
+   },
+   {
+    "hex": "#767364",
+    "share": 0.12
+   }
+  ]
+ },
+ "monkYoung": {
+  "family": "dusk",
+  "warmth": 1,
+  "lightness": 0.54,
+  "colourfulness": 0.59,
+  "busy": 0.29,
+  "textZone": 0.6,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#be704a",
+    "share": 0.33
+   },
+   {
+    "hex": "#7a6a5b",
+    "share": 0.23
+   },
+   {
+    "hex": "#774032",
+    "share": 0.2
+   },
+   {
+    "hex": "#2e1f12",
+    "share": 0.15
+   },
+   {
+    "hex": "#d6cec5",
+    "share": 0.1
+   }
+  ]
+ },
+ "dancer1": {
+  "family": "night",
+  "warmth": 0.88,
+  "lightness": 0.21,
+  "colourfulness": 0.21,
+  "busy": 0.49,
+  "textZone": 0.33,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#020201",
+    "share": 0.37
+   },
+   {
+    "hex": "#000000",
+    "share": 0.27
+   },
+   {
+    "hex": "#7f563a",
+    "share": 0.13
+   },
+   {
+    "hex": "#b79370",
+    "share": 0.13
+   },
+   {
+    "hex": "#1e2015",
+    "share": 0.1
+   }
+  ]
+ },
+ "fireDance": {
+  "family": "dusk",
+  "warmth": 0.98,
+  "lightness": 0.37,
+  "colourfulness": 0.73,
+  "busy": 0.47,
+  "textZone": 0.4,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#70330f",
+    "share": 0.33
+   },
+   {
+    "hex": "#4a1e0b",
+    "share": 0.32
+   },
+   {
+    "hex": "#220d10",
+    "share": 0.17
+   },
+   {
+    "hex": "#ad591f",
+    "share": 0.13
+   },
+   {
+    "hex": "#e9bd92",
+    "share": 0.05
+   }
+  ]
+ },
+ "mask": {
+  "family": "sea",
+  "warmth": -0.1,
+  "lightness": 0.42,
+  "colourfulness": 0.48,
+  "busy": 0.63,
+  "textZone": 0.36,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#305565",
+    "share": 0.25
+   },
+   {
+    "hex": "#120b02",
+    "share": 0.24
+   },
+   {
+    "hex": "#32302f",
+    "share": 0.21
+   },
+   {
+    "hex": "#a0c1c7",
+    "share": 0.16
+   },
+   {
+    "hex": "#937a68",
+    "share": 0.15
+   }
+  ]
+ },
+ "foodLeaf": {
+  "family": "green",
+  "warmth": 0.99,
+  "lightness": 0.58,
+  "colourfulness": 0.89,
+  "busy": 0.55,
+  "textZone": 0.55,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#adb851",
+    "share": 0.26
+   },
+   {
+    "hex": "#4f7323",
+    "share": 0.22
+   },
+   {
+    "hex": "#ac8e47",
+    "share": 0.22
+   },
+   {
+    "hex": "#3a3711",
+    "share": 0.17
+   },
+   {
+    "hex": "#806035",
+    "share": 0.14
+   }
+  ]
+ },
+ "foodBfast": {
+  "family": "green",
+  "warmth": 0.99,
+  "lightness": 0.62,
+  "colourfulness": 0.77,
+  "busy": 0.53,
+  "textZone": 0.5,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#bc8649",
+    "share": 0.25
+   },
+   {
+    "hex": "#e4cea5",
+    "share": 0.25
+   },
+   {
+    "hex": "#666325",
+    "share": 0.21
+   },
+   {
+    "hex": "#32330e",
+    "share": 0.17
+   },
+   {
+    "hex": "#84ab2c",
+    "share": 0.12
+   }
+  ]
+ },
+ "foodRice": {
+  "family": "earth",
+  "warmth": 0.97,
+  "lightness": 0.41,
+  "colourfulness": 0.44,
+  "busy": 0.39,
+  "textZone": 0.36,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#190f04",
+    "share": 0.35
+   },
+   {
+    "hex": "#9e8241",
+    "share": 0.22
+   },
+   {
+    "hex": "#2d2115",
+    "share": 0.15
+   },
+   {
+    "hex": "#74581e",
+    "share": 0.14
+   },
+   {
+    "hex": "#b5b8a9",
+    "share": 0.14
+   }
+  ]
+ },
+ "teaBowl": {
+  "family": "green",
+  "warmth": 0.41,
+  "lightness": 0.39,
+  "colourfulness": 0.42,
+  "busy": 0.57,
+  "textZone": 0.41,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#3a4d2f",
+    "share": 0.24
+   },
+   {
+    "hex": "#5b663f",
+    "share": 0.24
+   },
+   {
+    "hex": "#263523",
+    "share": 0.21
+   },
+   {
+    "hex": "#161d17",
+    "share": 0.19
+   },
+   {
+    "hex": "#838359",
+    "share": 0.12
+   }
+  ]
+ },
+ "whale": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.63,
+  "colourfulness": 0.42,
+  "busy": 0.36,
+  "textZone": 0.57,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#5e93aa",
+    "share": 0.39
+   },
+   {
+    "hex": "#8dadbb",
+    "share": 0.32
+   },
+   {
+    "hex": "#49697d",
+    "share": 0.17
+   },
+   {
+    "hex": "#202f3c",
+    "share": 0.07
+   },
+   {
+    "hex": "#f0f1ed",
+    "share": 0.05
+   }
+  ]
+ },
+ "whaleTail": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.55,
+  "colourfulness": 0.39,
+  "busy": 0.44,
+  "textZone": 0.44,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#223140",
+    "share": 0.23
+   },
+   {
+    "hex": "#80a1be",
+    "share": 0.22
+   },
+   {
+    "hex": "#36506a",
+    "share": 0.21
+   },
+   {
+    "hex": "#557594",
+    "share": 0.17
+   },
+   {
+    "hex": "#b7cdde",
+    "share": 0.17
+   }
+  ]
+ },
+ "elephants2": {
+  "family": "earth",
+  "warmth": 0.6,
+  "lightness": 0.52,
+  "colourfulness": 0.19,
+  "busy": 0.4,
+  "textZone": 0.57,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#676a60",
+    "share": 0.27
+   },
+   {
+    "hex": "#272723",
+    "share": 0.22
+   },
+   {
+    "hex": "#46443c",
+    "share": 0.21
+   },
+   {
+    "hex": "#bc9c8b",
+    "share": 0.19
+   },
+   {
+    "hex": "#e3dfdf",
+    "share": 0.11
+   }
+  ]
+ },
+ "polo1": {
+  "family": "earth",
+  "warmth": 0.55,
+  "lightness": 0.53,
+  "colourfulness": 0.36,
+  "busy": 0.43,
+  "textZone": 0.52,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#5c6f7f",
+    "share": 0.24
+   },
+   {
+    "hex": "#9d7c59",
+    "share": 0.23
+   },
+   {
+    "hex": "#635139",
+    "share": 0.21
+   },
+   {
+    "hex": "#a79c94",
+    "share": 0.19
+   },
+   {
+    "hex": "#382e21",
+    "share": 0.13
+   }
+  ]
+ },
+ "polo2": {
+  "family": "earth",
+  "warmth": 0.9,
+  "lightness": 0.49,
+  "colourfulness": 0.3,
+  "busy": 0.46,
+  "textZone": 0.5,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#534536",
+    "share": 0.3
+   },
+   {
+    "hex": "#36332a",
+    "share": 0.22
+   },
+   {
+    "hex": "#715c47",
+    "share": 0.22
+   },
+   {
+    "hex": "#ac8d6d",
+    "share": 0.14
+   },
+   {
+    "hex": "#cfcaba",
+    "share": 0.12
+   }
+  ]
+ },
+ "polo3": {
+  "family": "earth",
+  "warmth": 0.08,
+  "lightness": 0.58,
+  "colourfulness": 0.34,
+  "busy": 0.4,
+  "textZone": 0.61,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#6a9fb1",
+    "share": 0.25
+   },
+   {
+    "hex": "#605d4e",
+    "share": 0.21
+   },
+   {
+    "hex": "#b2a287",
+    "share": 0.21
+   },
+   {
+    "hex": "#8e846d",
+    "share": 0.17
+   },
+   {
+    "hex": "#393830",
+    "share": 0.15
+   }
+  ]
+ },
+ "waterfall": {
+  "family": "green",
+  "warmth": -0.52,
+  "lightness": 0.6,
+  "colourfulness": 0.38,
+  "busy": 0.4,
+  "textZone": 0.52,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#adb5a1",
+    "share": 0.23
+   },
+   {
+    "hex": "#e4e2d5",
+    "share": 0.23
+   },
+   {
+    "hex": "#325039",
+    "share": 0.22
+   },
+   {
+    "hex": "#122826",
+    "share": 0.2
+   },
+   {
+    "hex": "#638365",
+    "share": 0.12
+   }
+  ]
+ },
+ "palms": {
+  "family": "sea",
+  "warmth": -0.39,
+  "lightness": 0.64,
+  "colourfulness": 0.7,
+  "busy": 0.48,
+  "textZone": 0.62,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#43aed2",
+    "share": 0.31
+   },
+   {
+    "hex": "#558681",
+    "share": 0.29
+   },
+   {
+    "hex": "#5a513f",
+    "share": 0.17
+   },
+   {
+    "hex": "#d6c3a0",
+    "share": 0.13
+   },
+   {
+    "hex": "#c6855e",
+    "share": 0.1
+   }
+  ]
+ },
+ "mvSandbar": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.73,
+  "colourfulness": 0.57,
+  "busy": 0.09,
+  "textZone": 0.71,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#e1e2de",
+    "share": 0.31
+   },
+   {
+    "hex": "#23abb3",
+    "share": 0.26
+   },
+   {
+    "hex": "#1d99b2",
+    "share": 0.21
+   },
+   {
+    "hex": "#147ba2",
+    "share": 0.12
+   },
+   {
+    "hex": "#9fbab7",
+    "share": 0.1
+   }
+  ]
+ },
+ "mvHouse2": {
+  "family": "sea",
+  "warmth": -0.97,
+  "lightness": 0.63,
+  "colourfulness": 0.6,
+  "busy": 0.36,
+  "textZone": 0.62,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#93bdd7",
+    "share": 0.27
+   },
+   {
+    "hex": "#5890c7",
+    "share": 0.24
+   },
+   {
+    "hex": "#5e9c8e",
+    "share": 0.23
+   },
+   {
+    "hex": "#487262",
+    "share": 0.19
+   },
+   {
+    "hex": "#293630",
+    "share": 0.07
+   }
+  ]
+ },
+ "mvHouses": {
+  "family": "sea",
+  "warmth": -0.78,
+  "lightness": 0.76,
+  "colourfulness": 0.42,
+  "busy": 0.35,
+  "textZone": 0.72,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#d0e2e5",
+    "share": 0.3
+   },
+   {
+    "hex": "#acc4c4",
+    "share": 0.29
+   },
+   {
+    "hex": "#5ac5b6",
+    "share": 0.21
+   },
+   {
+    "hex": "#6e816c",
+    "share": 0.12
+   },
+   {
+    "hex": "#213834",
+    "share": 0.08
+   }
+  ]
+ },
+ "mvSunset": {
+  "family": "dusk",
+  "warmth": 0.63,
+  "lightness": 0.51,
+  "colourfulness": 0.16,
+  "busy": 0.22,
+  "textZone": 0.44,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#ac9d96",
+    "share": 0.36
+   },
+   {
+    "hex": "#161f23",
+    "share": 0.27
+   },
+   {
+    "hex": "#998880",
+    "share": 0.18
+   },
+   {
+    "hex": "#2c3539",
+    "share": 0.1
+   },
+   {
+    "hex": "#766d68",
+    "share": 0.08
+   }
+  ],
+  "pinned": true
+ },
+ "mvPath": {
+  "family": "sea",
+  "warmth": -0.31,
+  "lightness": 0.62,
+  "colourfulness": 0.55,
+  "busy": 0.27,
+  "textZone": 0.43,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#aec5dc",
+    "share": 0.28
+   },
+   {
+    "hex": "#81b2da",
+    "share": 0.24
+   },
+   {
+    "hex": "#815441",
+    "share": 0.22
+   },
+   {
+    "hex": "#392318",
+    "share": 0.15
+   },
+   {
+    "hex": "#3187a1",
+    "share": 0.12
+   }
+  ]
+ },
+ "mvManta": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.44,
+  "colourfulness": 0.52,
+  "busy": 0.39,
+  "textZone": 0.46,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#205b76",
+    "share": 0.49
+   },
+   {
+    "hex": "#1d4b5f",
+    "share": 0.2
+   },
+   {
+    "hex": "#597992",
+    "share": 0.17
+   },
+   {
+    "hex": "#121e26",
+    "share": 0.11
+   },
+   {
+    "hex": "#94adc7",
+    "share": 0.05
+   }
+  ]
+ },
+ "mvRay": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.45,
+  "colourfulness": 0.65,
+  "busy": 0.26,
+  "textZone": 0.28,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#00344e",
+    "share": 0.28
+   },
+   {
+    "hex": "#2790ab",
+    "share": 0.2
+   },
+   {
+    "hex": "#085f7d",
+    "share": 0.18
+   },
+   {
+    "hex": "#001a29",
+    "share": 0.17
+   },
+   {
+    "hex": "#6dc1d5",
+    "share": 0.17
+   }
+  ]
+ },
+ "mvPlaneWater": {
+  "family": "sea",
+  "warmth": -0.95,
+  "lightness": 0.59,
+  "colourfulness": 0.85,
+  "busy": 0.22,
+  "textZone": 0.72,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#206c97",
+    "share": 0.27
+   },
+   {
+    "hex": "#48ccca",
+    "share": 0.21
+   },
+   {
+    "hex": "#095180",
+    "share": 0.19
+   },
+   {
+    "hex": "#5d879d",
+    "share": 0.18
+   },
+   {
+    "hex": "#32aab2",
+    "share": 0.14
+   }
+  ]
+ },
+ "mvBoatIsland": {
+  "family": "sea",
+  "warmth": -0.94,
+  "lightness": 0.68,
+  "colourfulness": 0.8,
+  "busy": 0.2,
+  "textZone": 0.63,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#0da0bb",
+    "share": 0.4
+   },
+   {
+    "hex": "#74b8d4",
+    "share": 0.37
+   },
+   {
+    "hex": "#15749e",
+    "share": 0.11
+   },
+   {
+    "hex": "#737545",
+    "share": 0.06
+   },
+   {
+    "hex": "#d9ddd6",
+    "share": 0.05
+   }
+  ]
+ },
+ "mvIslet": {
+  "family": "sea",
+  "warmth": -0.97,
+  "lightness": 0.52,
+  "colourfulness": 0.74,
+  "busy": 0.24,
+  "textZone": 0.52,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#014b7f",
+    "share": 0.28
+   },
+   {
+    "hex": "#126170",
+    "share": 0.28
+   },
+   {
+    "hex": "#5d9da0",
+    "share": 0.2
+   },
+   {
+    "hex": "#0d6d99",
+    "share": 0.17
+   },
+   {
+    "hex": "#cdddd8",
+    "share": 0.07
+   }
+  ]
+ },
+ "wedCeremony": {
+  "family": "earth",
+  "warmth": 0.9,
+  "lightness": 0.76,
+  "colourfulness": 0.24,
+  "busy": 0.35,
+  "textZone": 0.68,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#b7a698",
+    "share": 0.28
+   },
+   {
+    "hex": "#f7f7f5",
+    "share": 0.23
+   },
+   {
+    "hex": "#d8ccb9",
+    "share": 0.22
+   },
+   {
+    "hex": "#90796a",
+    "share": 0.19
+   },
+   {
+    "hex": "#54443b",
+    "share": 0.08
+   }
+  ]
+ },
+ "wedStand": {
+  "family": "earth",
+  "warmth": 1,
+  "lightness": 0.69,
+  "colourfulness": 0.23,
+  "busy": 0.38,
+  "textZone": 0.59,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#d4c9b8",
+    "share": 0.29
+   },
+   {
+    "hex": "#bdb6a8",
+    "share": 0.25
+   },
+   {
+    "hex": "#5e4e40",
+    "share": 0.16
+   },
+   {
+    "hex": "#7c6857",
+    "share": 0.16
+   },
+   {
+    "hex": "#9f988b",
+    "share": 0.13
+   }
+  ]
+ },
+ "wedCouple": {
+  "family": "earth",
+  "warmth": -0.37,
+  "lightness": 0.85,
+  "colourfulness": 0.11,
+  "busy": 0.16,
+  "textZone": 0.74,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#eef3f0",
+    "share": 0.48
+   },
+   {
+    "hex": "#a3a39d",
+    "share": 0.27
+   },
+   {
+    "hex": "#d7e6e4",
+    "share": 0.11
+   },
+   {
+    "hex": "#c1d4d2",
+    "share": 0.09
+   },
+   {
+    "hex": "#524e46",
+    "share": 0.06
+   }
+  ]
+ },
+ "tukGreen": {
+  "family": "earth",
+  "warmth": 0.98,
+  "lightness": 0.48,
+  "colourfulness": 0.46,
+  "busy": 0.51,
+  "textZone": 0.41,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#6d5134",
+    "share": 0.24
+   },
+   {
+    "hex": "#3c351b",
+    "share": 0.22
+   },
+   {
+    "hex": "#1a1606",
+    "share": 0.19
+   },
+   {
+    "hex": "#a98962",
+    "share": 0.18
+   },
+   {
+    "hex": "#e9d0a4",
+    "share": 0.16
+   }
+  ]
+ },
+ "groupTable": {
+  "family": "green",
+  "warmth": 0.97,
+  "lightness": 0.51,
+  "colourfulness": 0.4,
+  "busy": 0.54,
+  "textZone": 0.5,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#939172",
+    "share": 0.25
+   },
+   {
+    "hex": "#4a4326",
+    "share": 0.23
+   },
+   {
+    "hex": "#6e6444",
+    "share": 0.22
+   },
+   {
+    "hex": "#242510",
+    "share": 0.17
+   },
+   {
+    "hex": "#c9cfb2",
+    "share": 0.13
+   }
+  ]
+ },
+ "groupEat": {
+  "family": "earth",
+  "warmth": 0.99,
+  "lightness": 0.37,
+  "colourfulness": 0.35,
+  "busy": 0.38,
+  "textZone": 0.39,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#1f1b14",
+    "share": 0.27
+   },
+   {
+    "hex": "#332a1a",
+    "share": 0.25
+   },
+   {
+    "hex": "#5b3d25",
+    "share": 0.2
+   },
+   {
+    "hex": "#866042",
+    "share": 0.18
+   },
+   {
+    "hex": "#b6997d",
+    "share": 0.09
+   }
+  ]
+ },
+ "groupLong": {
+  "family": "earth",
+  "warmth": 0.34,
+  "lightness": 0.48,
+  "colourfulness": 0.2,
+  "busy": 0.55,
+  "textZone": 0.55,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#665950",
+    "share": 0.25
+   },
+   {
+    "hex": "#9fa7af",
+    "share": 0.21
+   },
+   {
+    "hex": "#838588",
+    "share": 0.2
+   },
+   {
+    "hex": "#161610",
+    "share": 0.19
+   },
+   {
+    "hex": "#41372d",
+    "share": 0.15
+   }
+  ]
+ },
+ "mapGlasses": {
+  "family": "earth",
+  "warmth": 1,
+  "lightness": 0.68,
+  "colourfulness": 0.37,
+  "busy": 0.39,
+  "textZone": 0.6,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#b9af97",
+    "share": 0.33
+   },
+   {
+    "hex": "#a09574",
+    "share": 0.26
+   },
+   {
+    "hex": "#87744e",
+    "share": 0.16
+   },
+   {
+    "hex": "#cecebf",
+    "share": 0.15
+   },
+   {
+    "hex": "#4b3727",
+    "share": 0.1
+   }
+  ]
+ },
+ "slothBear": {
+  "family": "green",
+  "warmth": 0.93,
+  "lightness": 0.56,
+  "colourfulness": 0.63,
+  "busy": 0.48,
+  "textZone": 0.57,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#708139",
+    "share": 0.35
+   },
+   {
+    "hex": "#9baa68",
+    "share": 0.24
+   },
+   {
+    "hex": "#4d5d2c",
+    "share": 0.19
+   },
+   {
+    "hex": "#141710",
+    "share": 0.13
+   },
+   {
+    "hex": "#d9dfcf",
+    "share": 0.09
+   }
+  ]
+ },
+ "kingfisher": {
+  "family": "green",
+  "warmth": -0.08,
+  "lightness": 0.67,
+  "colourfulness": 0.89,
+  "busy": 0.43,
+  "textZone": 0.61,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#5e7a4e",
+    "share": 0.3
+   },
+   {
+    "hex": "#7e9f5f",
+    "share": 0.27
+   },
+   {
+    "hex": "#a4c258",
+    "share": 0.23
+   },
+   {
+    "hex": "#d9e889",
+    "share": 0.15
+   },
+   {
+    "hex": "#312d29",
+    "share": 0.05
+   }
+  ]
+ },
+ "turtleBeach": {
+  "family": "sea",
+  "warmth": -0.32,
+  "lightness": 0.65,
+  "colourfulness": 0.43,
+  "busy": 0.25,
+  "textZone": 0.79,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#d5c0b3",
+    "share": 0.29
+   },
+   {
+    "hex": "#b8a69c",
+    "share": 0.23
+   },
+   {
+    "hex": "#3d6b8e",
+    "share": 0.17
+   },
+   {
+    "hex": "#114163",
+    "share": 0.15
+   },
+   {
+    "hex": "#758f9c",
+    "share": 0.15
+   }
+  ]
+ },
+ "whaleShark": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.37,
+  "colourfulness": 0.4,
+  "busy": 0.26,
+  "textZone": 0.38,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#17252a",
+    "share": 0.31
+   },
+   {
+    "hex": "#1a333b",
+    "share": 0.25
+   },
+   {
+    "hex": "#1b4b54",
+    "share": 0.18
+   },
+   {
+    "hex": "#1a727e",
+    "share": 0.15
+   },
+   {
+    "hex": "#36a7b6",
+    "share": 0.1
+   }
+  ]
+ },
+ "mvTurtle": {
+  "family": "sea",
+  "warmth": -0.72,
+  "lightness": 0.58,
+  "colourfulness": 0.51,
+  "busy": 0.59,
+  "textZone": 0.57,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#0a5888",
+    "share": 0.32
+   },
+   {
+    "hex": "#d7d9c8",
+    "share": 0.21
+   },
+   {
+    "hex": "#557573",
+    "share": 0.18
+   },
+   {
+    "hex": "#98a696",
+    "share": 0.18
+   },
+   {
+    "hex": "#1a2219",
+    "share": 0.1
+   }
+  ]
+ },
+ "carSedan": {
+  "family": "sea",
+  "warmth": -1,
+  "lightness": 0.56,
+  "colourfulness": 0.48,
+  "busy": 0.32,
+  "textZone": 0.48,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#73a5cc",
+    "share": 0.27
+   },
+   {
+    "hex": "#377daa",
+    "share": 0.23
+   },
+   {
+    "hex": "#3c4e56",
+    "share": 0.22
+   },
+   {
+    "hex": "#adbfd1",
+    "share": 0.15
+   },
+   {
+    "hex": "#1b1e1e",
+    "share": 0.13
+   }
+  ]
+ },
+ "suvDark": {
+  "family": "earth",
+  "warmth": -0.64,
+  "lightness": 0.43,
+  "colourfulness": 0.18,
+  "busy": 0.26,
+  "textZone": 0.31,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#86a9b2",
+    "share": 0.28
+   },
+   {
+    "hex": "#2e2925",
+    "share": 0.27
+   },
+   {
+    "hex": "#1b181a",
+    "share": 0.18
+   },
+   {
+    "hex": "#423d38",
+    "share": 0.18
+   },
+   {
+    "hex": "#5c6b6b",
+    "share": 0.09
+   }
+  ]
+ },
+ "vanHills": {
+  "family": "earth",
+  "warmth": -0.63,
+  "lightness": 0.38,
+  "colourfulness": 0.3,
+  "busy": 0.33,
+  "textZone": 0.22,
+  "whiteText": true,
+  "colours": [
+   {
+    "hex": "#0b1310",
+    "share": 0.27
+   },
+   {
+    "hex": "#172725",
+    "share": 0.25
+   },
+   {
+    "hex": "#8fa0b5",
+    "share": 0.19
+   },
+   {
+    "hex": "#5d727c",
+    "share": 0.15
+   },
+   {
+    "hex": "#35433a",
+    "share": 0.14
+   }
+  ]
+ },
+ "miniCoach": {
+  "family": "earth",
+  "warmth": -0.04,
+  "lightness": 0.66,
+  "colourfulness": 0.24,
+  "busy": 0.55,
+  "textZone": 0.66,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#c5bdb1",
+    "share": 0.27
+   },
+   {
+    "hex": "#959484",
+    "share": 0.21
+   },
+   {
+    "hex": "#5b6d61",
+    "share": 0.19
+   },
+   {
+    "hex": "#d5dad9",
+    "share": 0.18
+   },
+   {
+    "hex": "#263e38",
+    "share": 0.16
+   }
+  ]
+ },
+ "coachRoad": {
+  "family": "green",
+  "warmth": -0.17,
+  "lightness": 0.58,
+  "colourfulness": 0.32,
+  "busy": 0.59,
+  "textZone": 0.64,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#bbb9b8",
+    "share": 0.26
+   },
+   {
+    "hex": "#505e51",
+    "share": 0.22
+   },
+   {
+    "hex": "#878889",
+    "share": 0.22
+   },
+   {
+    "hex": "#2a322d",
+    "share": 0.15
+   },
+   {
+    "hex": "#5a8c38",
+    "share": 0.14
+   }
+  ]
+ },
+ "bundeena": {
+  "family": "sea",
+  "warmth": -0.58,
+  "lightness": 0.59,
+  "colourfulness": 0.53,
+  "busy": 0.29,
+  "textZone": 0.69,
+  "whiteText": false,
+  "colours": [
+   {
+    "hex": "#5e7a83",
+    "share": 0.33
+   },
+   {
+    "hex": "#aea58e",
+    "share": 0.3
+   },
+   {
+    "hex": "#1f241e",
+    "share": 0.14
+   },
+   {
+    "hex": "#438ce0",
+    "share": 0.13
+   },
+   {
+    "hex": "#6aa6ec",
+    "share": 0.09
+   }
+  ]
+ }
+}
